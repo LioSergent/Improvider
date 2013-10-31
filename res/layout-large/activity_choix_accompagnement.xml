@@ -1,0 +1,106 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MonTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fadeScrollbars="false"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ChoixAccompagnement" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/titre_choix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:gravity="center"
+            android:text="@string/choix1"
+            android:textColor="@color/black"
+            android:textSize="38sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/boutonBarBlues"
+            style="@style/btnStyleGenoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titre_choix"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:text="Bar Blues"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/boutonBluesSoul"
+            style="@style/btnStyleGenoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titre_choix"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="45dp"
+            android:layout_toLeftOf="@+id/boutonBarBlues"
+            android:text="Blues Soul"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/boutonHipHop"
+            style="@style/btnStyleGenoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titre_choix"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="45dp"
+            android:layout_toRightOf="@+id/boutonBarBlues"
+            android:text="Hip Hop"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:id="@+id/linear_choix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/boutonBarBlues"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/boutonAcoustic"
+                style="@style/btnStyleGenoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="Acoustic Guitar"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/boutonHardRock"
+                style="@style/btnStyleGenoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="Hard Rock"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bouton_choix_retour"
+            style="@style/btnStyleGenoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_choix"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:text="@string/retour"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
+</ScrollView>

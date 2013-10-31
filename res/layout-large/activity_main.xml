@@ -1,0 +1,324 @@
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tabhost"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:screenOrientation="landscape"     >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <!-- Le premier onglet permettant de choisir un morceau et d'en gérer la lecture -->
+
+            <ScrollView
+                android:id="@+id/tab1"
+                style="@style/themeMain"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fadeScrollbars="false"
+                android:background="@drawable/background5" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/auteur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Musique X par auteur Y"
+                        android:typeface="monospace"
+                        android:layout_marginTop="45dp"
+                        android:textSize="30dp" />
+
+                    <Button
+                        android:id="@+id/boutonPlay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/auteur"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/play"
+                        android:minHeight="80dp"
+                        android:minWidth="80dp" />
+
+                    <TextView
+                        android:id="@+id/avancement_min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/boutonPlay"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="90dp"
+                        android:text="   0:00 "
+                        android:textSize="25dp" />
+
+                    <TextView
+                        android:id="@+id/avancement_max"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/boutonPlay"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="90dp"
+                        android:text=" 0:30   "
+                        android:textSize="25dp" />
+
+                    <SeekBar
+                        android:id="@+id/avancement_bar"                     
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/boutonPlay"
+                        android:layout_marginTop="4dp"
+                        android:layout_toLeftOf="@+id/avancement_max"
+                        android:layout_toRightOf="@+id/avancement_min"
+                        android:max="100"
+                        android:progress="0"
+                        android:secondaryProgress="0" />
+
+                    <TextView
+                        android:id="@+id/volume_accompagnement_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/avancement_bar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="14dp"                       
+                        android:text="@string/volume_accompagnement"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:id="@+id/volume_accompagnement_moins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/volume_accompagnement_text"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="110dp"
+                        android:text="  -  "
+                        android:textSize="32dp" />
+
+                    <TextView
+                        android:id="@+id/volume_accompagnement_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/volume_accompagnement_text"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="110dp"
+                        android:text="  +  "
+                        android:textSize="28dp" />
+
+                    <SeekBar
+                        android:id="@+id/volume_accompagnement_bar"                        
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/volume_accompagnement_text"
+                        android:layout_toLeftOf="@+id/volume_accompagnement_plus"
+                        android:layout_toRightOf="@+id/volume_accompagnement_moins"
+                        android:max="100"
+                         android:layout_marginTop="4dp"
+                        android:progress="0"
+                        android:secondaryProgress="0" />
+
+                    <Button
+                        android:id="@+id/bouton_morceau_retour"
+                        style="@style/btnStyleGenoa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/volume_accompagnement_bar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="60dp"
+                        android:text="@string/retour_choix"
+                        android:textSize="25sp" />
+                </RelativeLayout>
+            </ScrollView>
+
+            <!-- Le second onglet pour jouer -->
+<RelativeLayout
+     android:id="@+id/tab2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                     android:orientation="vertical" >
+                
+            <com.improvider.PianoHorizontalScrollView
+                 android:id="@+id/scroller"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                  android:layout_alignParentLeft="true"
+                  android:layout_alignParentTop="true"
+                android:fadeScrollbars="true"
+                android:scrollbars="none"
+                android:fillViewport="true"
+                 android:background="@drawable/backavecfleches">
+
+               
+                
+                <com.improvider.Piano
+                    android:id="@+id/tab_piano"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                 </com.improvider.PianoHorizontalScrollView>
+ <FrameLayout
+    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                     
+                      >  
+                                    
+        <com.improvider.ImageScroller
+                    android:id="@+id/image_scroller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    
+                    
+                      />
+                 
+                   </FrameLayout>
+                  </RelativeLayout>
+            <!-- Le troisième onglet de configuration -->
+
+            <ScrollView
+                android:id="@+id/tab3"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fadeScrollbars="false"
+                 android:background="@drawable/background5" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <TextView
+                        android:id="@+id/volume_piano_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="50dp"
+                        android:text="@string/volume_piano"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:id="@+id/volume_piano_moins"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="110dp"
+                        android:layout_below="@+id/volume_piano_text"
+                        android:layout_marginTop="0dp"
+                        android:text="  - "
+                        android:textSize="32sp" />
+
+                    <TextView
+                        android:id="@+id/volume_piano_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/volume_piano_text"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="110dp"
+                        android:text=" +  "
+                        android:textSize="28sp" />
+
+                    <SeekBar
+                        android:id="@+id/volume_piano_bar"
+                        
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/volume_piano_text"
+                        android:layout_toLeftOf="@+id/volume_piano_plus"
+                        android:layout_toRightOf="@+id/volume_piano_moins"
+                        android:max="50"
+                        android:layout_marginTop="4dp"
+                        android:progress="0"
+                        android:secondaryProgress="0" />
+
+                    <CheckBox
+                        android:id="@+id/sustain_box"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/volume_piano_bar"
+                        android:layout_marginLeft="140dp"
+                        android:layout_marginTop="27dp"
+                        android:checked="true"
+                        android:text="@string/sustain"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:id="@+id/nbre_blanches_visibles_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/sustain_box"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="25dp"
+                        android:text="@string/nombre_touches"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:id="@+id/nbre_touches_min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_below="@+id/nbre_blanches_visibles_text"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginLeft="90dp"
+                        android:text="  3 "
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:id="@+id/nbre_touches_max"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/nbre_blanches_visibles_text"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginRight="90sp"
+                        android:text=" 14  "
+                        android:textSize="25dp" />
+
+                    <SeekBar
+                        android:id="@+id/nbre_blanches_visibles_bar"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nbre_blanches_visibles_text"
+                        android:layout_toLeftOf="@+id/nbre_touches_max"
+                        android:layout_toRightOf="@+id/nbre_touches_min"
+                        android:max="11"
+                        android:layout_marginTop="1dp"
+                        android:progress="5"
+                        android:secondaryProgress="0" />
+
+                    <Button
+                        android:id="@+id/bouton_reglages_retour"
+                        style="@style/btnStyleGenoa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nbre_blanches_visibles_bar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="60dp"
+                        android:text="@string/retour_choix"
+                        android:textSize="25sp" />
+                </RelativeLayout>
+            </ScrollView>
+        </FrameLayout>
+    </LinearLayout>
+
+</TabHost>

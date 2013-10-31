@@ -1,0 +1,66 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MonTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Tutoriel" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/text_tutoriel"
+            style="@style/falseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/diapotuto1"
+            android:textSize="19sp" />
+
+        <ImageView
+            android:id="@+id/image_tutoriel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_tutoriel"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/diapotutoaccompagnement" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_tutoriel"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/bouton_tutoriel_precedent"
+                style="@style/btnStyleGenoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="@string/precedent"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/bouton_tutoriel_suivant"
+                style="@style/btnStyleGenoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="Suivant"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>
