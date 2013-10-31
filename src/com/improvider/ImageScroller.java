@@ -34,9 +34,9 @@ public class ImageScroller extends View {
 	private final static double proportionToucheNoireHauteur = 0.75;
 	private final static double proportionToucheNoireLargeur = 0.32;
 	private final static int nbreOctave = 3;
-	private final static double proportionPianoVerticale = 0.1;
+	private final static double proportionPianoVerticale = 0.11;
 
-	private double proportionPianoHorizontale = 0.2;
+	private double proportionPianoHorizontale = 0.24;
 
 	/*
 	 * Id du pointeur, numero de la touche (en commencant à 0) (+ 10 si noire)
@@ -396,7 +396,8 @@ private final double proportionInitiale=0.875;
 		canvas.drawLine(0, 1, 0, hauteurToucheBlanche,
 				new Paint());
 		
-		
+		canvas.drawLine(7*largeurToucheBlanche*nbreOctave-1, 0, 7*largeurToucheBlanche*nbreOctave-1, hauteurToucheBlanche,
+				new Paint());
 		
 		canvas.drawRoundRect(
 				

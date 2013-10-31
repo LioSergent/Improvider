@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
     <issue id="NewApi">
+        <ignore path="src/com/improvider/Main.java" />
         <ignore path="src/com/improvider/Tutoriel.java" />
     </issue>
 </lint>

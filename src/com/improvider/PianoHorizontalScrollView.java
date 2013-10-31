@@ -134,6 +134,9 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 			return false;
 		}
 */
+		
+		
+		/*
 		if (y > hauteur) {
 			switch (event.getAction()) {
 
@@ -149,7 +152,9 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 			}
 
 		}
+		*/
 		return false;
+		
 	}
 
 	public boolean onTouchEventBis(MotionEvent event) {

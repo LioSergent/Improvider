@@ -287,6 +287,9 @@ public class Main extends Activity {
 		piano.setScreenWidth(screenWidth);
 		piano.setTonique(tonique);
 
+		int a=piano.getHeight();
+		Log.d("HauteurPiano", String.valueOf(a));
+		
 		// Recuperation du volume
 		AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 		float actualVolume = (float) audioManager
@@ -488,13 +491,15 @@ public class Main extends Activity {
 						Log.d("Listener", String.valueOf(getWindow()));
 						Log.d("Scroller", "avant le run");
 						if (!premierScroll) {
-
+							int a=piano.getHeight();
+							Log.d("HauteurPiano", String.valueOf(a));
 							return false;
 
 						}
 
 						else {
-
+							int a=piano.getHeight();
+							Log.d("HauteurPiano", String.valueOf(a));
 							Handler lHandler = new Handler();
 
 							lHandler.postDelayed(new Runnable() {

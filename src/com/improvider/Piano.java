@@ -365,7 +365,7 @@ public class Piano extends View {
 		}
 		canvas.drawLine(0, hauteurToucheBlanche - 1, 7 * nbreOctave
 				* largeurToucheBlanche, hauteurToucheBlanche - 1, new Paint());
-		canvas.drawLine(0, 1, 7 * nbreOctave * largeurToucheBlanche, 1,
+		canvas.drawLine(0, 0, 7 * nbreOctave * largeurToucheBlanche, 0,
 				new Paint());
 	}
 
