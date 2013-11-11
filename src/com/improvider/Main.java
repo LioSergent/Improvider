@@ -78,7 +78,9 @@ public class Main extends Activity {
 	private int widthScreen;
 
 	private int heightScreen;
-
+    private float density;
+    private float dpHeight;
+    private float dpWidth;
 	public void onCreate(Bundle icicle)
 
 	{
@@ -444,7 +446,11 @@ public class Main extends Activity {
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
-
+		density  = getResources().getDisplayMetrics().density;
+		dpHeight = heightScreen / density;
+	   dpWidth  = widthScreen / density;
+		
+		
 		imageScroller.setScreenWidth(widthScreen);
 
 		onglets = (TabHost) findViewById(R.id.tabhost);
@@ -715,13 +721,13 @@ public class Main extends Activity {
 
 		else {
 			if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
-				sizeTexte = 15;
+				sizeTexte = 14;
 				textview.setTextSize(sizeTexte);
 			}
 
 			else {
 				if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
-					sizeTexte = 19;
+					sizeTexte = 18;
 					textview.setTextSize(sizeTexte);
 				}
 
@@ -729,10 +735,10 @@ public class Main extends Activity {
 					if (android.os.Build.VERSION.SDK_INT >= 13) {
 
 						if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-							sizeTexte = 23;
+							sizeTexte = 22;
 							textview.setTextSize(sizeTexte);
 						} else {
-							sizeTexte = 20;
+							sizeTexte = 19;
 							textview.setTextSize(sizeTexte);
 						}
 					}
