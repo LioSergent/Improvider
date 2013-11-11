@@ -1,7 +1,5 @@
 package com.improvider;
 
-
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -57,7 +55,7 @@ public class Improvider extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				
+
 				// On passe � l'activit� ImproviderCr�dits
 				Intent explicit = new Intent();
 				explicit.setClassName("com.improvider",

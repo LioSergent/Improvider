@@ -208,7 +208,7 @@ public class Tutoriel extends Activity {
 
 		boutonPrecedent.setText(R.string.retour);
 		explication.setText(R.string.diapotuto1);
-		image.setImageResource(R.drawable.diapotutoaccompagnement);
+		image.setImageResource(R.drawable.diapotutomorceau);
 	}
 
 	private void deuxiemeDiapo() {
@@ -260,17 +260,15 @@ public class Tutoriel extends Activity {
 		}
 
 	}
-	
+
 	public void onBackPressed() {
-		   Log.d("CDA", "onBackPressed Called");
-		   if (state>0) {
-			   this.diapoPrecedente(state);
-			   
-			   
-		   }
-		   else {
-			   finish();
-		   }
-		   
+		Log.d("CDA", "onBackPressed Called");
+		if (state > 0) {
+			this.diapoPrecedente(state);
+
+		} else {
+			finish();
 		}
+
+	}
 }

@@ -514,6 +514,7 @@ Log.d("Scroller10", String.valueOf(a));
 
 									
 									getImageScroller().setX1(positionToScroll);
+									getImageScroller().invalidate();
 								}
 
 							}, 100);

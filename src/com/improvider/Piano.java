@@ -200,6 +200,7 @@ public class Piano extends View {
 	}
 
 	public void onDraw(Canvas canvas) {
+		Log.d("Piano", "OnDraw");
 		if (!init)
 			init();
 

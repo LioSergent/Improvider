@@ -12,14 +12,14 @@ public class SavoirPlus extends Activity {
 
 	Button boutonMontrer;
 	Button boutonRetour;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_savoir_plus);
-		
-		boutonMontrer=(Button) findViewById(R.id.bouton_montre_moi_bis);
-		
+
+		boutonMontrer = (Button) findViewById(R.id.bouton_montre_moi_bis);
+
 		boutonMontrer.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -33,15 +33,14 @@ public class SavoirPlus extends Activity {
 
 			}
 		});
-		
-		
-		boutonRetour=(Button) findViewById(R.id.bouton_retour_savoir);
-		
+
+		boutonRetour = (Button) findViewById(R.id.bouton_retour_savoir);
+
 		boutonRetour.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
- finish();
+				finish();
 				// On passe � l'activit� ChoixAccompagnement
 				Intent explicit = new Intent();
 				explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -51,8 +50,7 @@ public class SavoirPlus extends Activity {
 
 			}
 		});
-		
-		
+
 	}
 
 	@Override

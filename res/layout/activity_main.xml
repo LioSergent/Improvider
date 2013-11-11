@@ -2,7 +2,7 @@
     android:id="@+id/tabhost"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:screenOrientation="landscape"     >
+    android:screenOrientation="landscape" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -28,8 +28,8 @@
                 style="@style/themeMain"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:fadeScrollbars="false"
-                android:background="@drawable/background5" >
+                android:background="@drawable/background5"
+                android:fadeScrollbars="false" >
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
@@ -42,10 +42,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
-                        android:text="Musique X par auteur Y"
-                        android:typeface="monospace"
                         android:layout_marginTop="25dp"
-                        android:textSize="25dp" />
+                        android:text="Musique X par auteur Y"
+                        android:textSize="25dp"
+                        android:typeface="monospace" />
 
                     <Button
                         android:id="@+id/boutonPlay"
@@ -64,8 +64,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/boutonPlay"
-                        android:layout_marginTop="2dp"
                         android:layout_marginLeft="30dp"
+                        android:layout_marginTop="2dp"
                         android:text="   0:00 "
                         android:textSize="20dp" />
 
@@ -75,13 +75,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/boutonPlay"
-                        android:layout_marginTop="2dp"
                         android:layout_marginRight="30dp"
+                        android:layout_marginTop="2dp"
                         android:text=" 0:30   "
                         android:textSize="20dp" />
 
                     <SeekBar
-                        android:id="@+id/avancement_bar"                     
+                        android:id="@+id/avancement_bar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/boutonPlay"
@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/avancement_bar"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="12dp"                       
+                        android:layout_marginTop="12dp"
                         android:text="@string/volume_accompagnement"
                         android:textSize="22sp" />
 
@@ -108,8 +108,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/volume_accompagnement_text"
-                        android:layout_marginTop="0dp"
                         android:layout_marginLeft="70dp"
+                        android:layout_marginTop="0dp"
                         android:text="  -  "
                         android:textSize="28dp" />
 
@@ -119,20 +119,20 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/volume_accompagnement_text"
-                        android:layout_marginTop="0dp"
                         android:layout_marginRight="70dp"
+                        android:layout_marginTop="0dp"
                         android:text="  +  "
                         android:textSize="25dp" />
 
                     <SeekBar
-                        android:id="@+id/volume_accompagnement_bar"                        
+                        android:id="@+id/volume_accompagnement_bar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_accompagnement_text"
+                        android:layout_marginTop="4.5dp"
                         android:layout_toLeftOf="@+id/volume_accompagnement_plus"
                         android:layout_toRightOf="@+id/volume_accompagnement_moins"
                         android:max="100"
-                         android:layout_marginTop="4.5dp"
                         android:progress="0"
                         android:secondaryProgress="0" />
 
@@ -151,70 +151,57 @@
 
             <!-- Le second onglet pour jouer -->
 
- <RelativeLayout
-     android:id="@+id/tab2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                     android:orientation="vertical" >
-                
-        <com.improvider.PianoHorizontalScrollView
-                 android:id="@+id/scroller"
+            <RelativeLayout
+                android:id="@+id/tab2"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                  android:layout_alignParentLeft="true"
-                  android:layout_alignParentTop="true"
-                android:fadeScrollbars="true"
-                android:scrollbars="none"
-                android:fillViewport="true"
-                 android:background="@drawable/backavecfleches">
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
 
-              
-                      
-                
-                <com.improvider.Piano
-                    android:id="@+id/tab_piano"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" 
-                    android:layout_alignParentBottom="true"/>
-                
-                 
-                 </com.improvider.PianoHorizontalScrollView>
- <FrameLayout
-    
+                <com.improvider.PianoHorizontalScrollView
+                    android:id="@+id/scroller"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/backavecfleches"
+                    android:fadeScrollbars="true"
+                    android:fillViewport="true"
+                    android:scrollbars="none" >
+
+                    <com.improvider.Piano
+                        android:id="@+id/tab_piano"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true" />
+                </com.improvider.PianoHorizontalScrollView>
+
+                <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                     
-                      >  
-                                    
-        <com.improvider.ImageScroller
-                    android:id="@+id/image_scroller"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    
-                    
-                      />
-                 
-                   </FrameLayout>
- 
-                  </RelativeLayout>
-           
+                    android:layout_centerHorizontal="true" >
+
+                    <com.improvider.ImageScroller
+                        android:id="@+id/image_scroller"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true" />
+                </FrameLayout>
+            </RelativeLayout>
+
             <!-- Le troisième onglet de configuration -->
 
             <ScrollView
                 android:id="@+id/tab3"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:fadeScrollbars="false"
-                 android:background="@drawable/background5" >
+                android:background="@drawable/background5"
+                android:fadeScrollbars="false" >
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent" >
 
-                    
                     <TextView
                         android:id="@+id/volume_piano_text"
                         android:layout_width="wrap_content"
@@ -229,8 +216,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="70dp"
                         android:layout_below="@+id/volume_piano_text"
+                        android:layout_marginLeft="70dp"
                         android:layout_marginTop="0dp"
                         android:text="  - "
                         android:textSize="25sp" />
@@ -241,21 +228,20 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/volume_piano_text"
-                        android:layout_marginTop="0dp"
                         android:layout_marginRight="70dp"
+                        android:layout_marginTop="0dp"
                         android:text=" +  "
                         android:textSize="25sp" />
 
                     <SeekBar
                         android:id="@+id/volume_piano_bar"
-                        
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_piano_text"
+                        android:layout_marginTop="4dp"
                         android:layout_toLeftOf="@+id/volume_piano_plus"
                         android:layout_toRightOf="@+id/volume_piano_moins"
                         android:max="50"
-                        android:layout_marginTop="4dp"
                         android:progress="0"
                         android:secondaryProgress="0" />
 
@@ -286,8 +272,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/nbre_blanches_visibles_text"
-                        android:layout_marginTop="0dp"
                         android:layout_marginLeft="50dp"
+                        android:layout_marginTop="0dp"
                         android:text="  3 "
                         android:textSize="22sp" />
 
@@ -297,8 +283,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/nbre_blanches_visibles_text"
-                        android:layout_marginTop="0dp"
                         android:layout_marginRight="50sp"
+                        android:layout_marginTop="0dp"
                         android:text=" 14  "
                         android:textSize="22dp" />
 

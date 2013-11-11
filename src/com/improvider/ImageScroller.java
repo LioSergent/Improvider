@@ -21,10 +21,9 @@ import android.widget.HorizontalScrollView;
 
 public class ImageScroller extends View {
 
-	
 	Piano piano;
 	PianoHorizontalScrollView scroller;
-	
+
 	/*
 	 * Constantes de la classe
 	 */
@@ -56,16 +55,15 @@ public class ImageScroller extends View {
 	int heightScreen;
 	int widthScreen;
 
-	
-private int x1=0;
-private int dx1=0;
+	private int x1 = 0;
+	private int dx1 = 0;
 
-private float x3;
-private float x4;
-private float dx3=0;
-private float dx4=0;
+	private float x3;
+	private float x4;
+	private float dx3 = 0;
+	private float dx4 = 0;
 
-private final double proportionInitiale=0.875;
+	private final double proportionInitiale = 0.875;
 
 	Context contexte;
 
@@ -83,7 +81,6 @@ private final double proportionInitiale=0.875;
 	int x, y;
 	boolean init = false;
 
-	
 	int ancienx, ancieny;
 
 	/*
@@ -98,26 +95,19 @@ private final double proportionInitiale=0.875;
 	private Paint pinceauToucheBlancheJouableAppuye;
 	private Paint pinceauToucheTonique;
 	private Paint pinceauToucheToniqueAppuye;
-	
+
 	private Paint pinceauRectangle;
 
 	/*
 	 * Gestion des sons
 	 */
 
-	SoundPool soundPool;
-	private int sonDoBas, sonDoD, sonRe, sonReD, sonMi, sonFa, sonFaD, sonSol,
-			sonSolD, sonLa, sonLaD, sonSi, sonDoHaut;
-	float volume;
-	float volumeProportion;
-	float vol;
-
 	/*
 	 * Deux constructeurs
 	 */
 	public ImageScroller(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		contexte = context;		
+		contexte = context;
 		DisplayMetrics metrics = contexte.getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
@@ -127,7 +117,7 @@ private final double proportionInitiale=0.875;
 
 	public ImageScroller(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		contexte = context;	
+		contexte = context;
 		DisplayMetrics metrics = contexte.getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
@@ -137,7 +127,7 @@ private final double proportionInitiale=0.875;
 	}
 
 	private void init() {
-		
+
 		/*
 		 * Mise en place graphique
 		 */
@@ -156,7 +146,6 @@ private final double proportionInitiale=0.875;
 		int vertToucheBlancheJouable = Color.rgb(10, 190, 10);
 		int vertToucheNoireJouable = Color.rgb(20, 70, 30);
 		int bleuToucheTonique = Color.rgb(20, 150, 130);
-		
 
 		// Création des pinceaux
 
@@ -200,7 +189,7 @@ private final double proportionInitiale=0.875;
 				hauteurToucheNoire,
 				new int[] { bleuToucheTonique, 0xFFAAAAAA }, null,
 				TileMode.MIRROR));
-		
+
 		pinceauRectangle = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinceauRectangle.setColor(bleuToucheTonique);
 		pinceauRectangle.setAlpha(200);
@@ -225,6 +214,8 @@ private final double proportionInitiale=0.875;
 	}
 
 	public void onDraw(Canvas canvas) {
+		
+		Log.d("Ondraw", "BITE");
 		if (!init)
 			init();
 
@@ -388,202 +379,123 @@ private final double proportionInitiale=0.875;
 			}
 
 		}
-		canvas.drawLine(0, hauteurToucheBlanche , 7 * nbreOctave
+		canvas.drawLine(0, hauteurToucheBlanche, 7 * nbreOctave
 				* largeurToucheBlanche, hauteurToucheBlanche, new Paint());
 		canvas.drawLine(0, 0, 7 * nbreOctave * largeurToucheBlanche, 0,
 				new Paint());
-		
-		canvas.drawLine(0, 1, 0, hauteurToucheBlanche,
+
+		canvas.drawLine(0, 1, 0, hauteurToucheBlanche, new Paint());
+
+		canvas.drawLine(7 * largeurToucheBlanche * nbreOctave - 1, 0, 7
+				* largeurToucheBlanche * nbreOctave - 1, hauteurToucheBlanche,
 				new Paint());
-		
-		canvas.drawLine(7*largeurToucheBlanche*nbreOctave-1, 0, 7*largeurToucheBlanche*nbreOctave-1, hauteurToucheBlanche,
-				new Paint());
-		
+
 		canvas.drawRoundRect(
-				
-				new RectF((float) (largeurToucheBlanche*scroller.getScrollX()*this.getNbreTouchePiano()/screenWidth), 0, 
-						(float) (largeurToucheBlanche*scroller.getScrollX()*this.getNbreTouchePiano()/screenWidth +	largeurToucheBlanche*this.getNbreTouchePiano()), hauteurToucheBlanche),
-						5,10,pinceauRectangle);
-						
-				
-						
+
+				new RectF(
+						(float) (largeurToucheBlanche * scroller.getScrollX()
+								* this.getNbreTouchePiano() / screenWidth),
+						0,
+						(float) (largeurToucheBlanche * scroller.getScrollX()
+								* this.getNbreTouchePiano() / screenWidth + largeurToucheBlanche
+								* this.getNbreTouchePiano()),
+						hauteurToucheBlanche), 5, 10, pinceauRectangle);
+		
+		invalidate();
+
 	}
+	
 
 	public boolean onTouchEvent(MotionEvent event) {
 		int ev = MotionEventCompat.getActionMasked(event);
 		int pointerCount = event.getPointerCount();
-		
-		
-		//Pour zoom-in, zoom-out
-		
-		if (pointerCount==2) {
-		/*
-			float x3b = event.getX(0);
-			float x4b = event.getX(1);
-			if (x3!=0) {
-			dx3=x3b-x3;
-			dx4=x4b-x4;
-			x3=x3b;
-			x4=x4b;
-			}
-			else {
-				x3=x3b;
-				x4=x4b;
-			
-			}
-			double prop2;
-			double prop1=this.piano.getProportionPianoHorizontale();
-			float k=(float) (this.screenWidth/(this.proportionInitiale));
-			
-			int positionScrollInitiale=this.scroller.getScrollX();
-			
-			if (x4>x3) {
-				
-				prop2=prop1-(dx4-dx3)/k;
-				Log.d("Prop2", String.valueOf(prop2));
-				
-				double octaves= (double) nbreOctave;
-				double maille= 1/octaves;
-				
-				if (prop2>maille&&prop2<nbreOctave)
-				{
-				this.piano.setProportionPianoHorizontale(prop2);
-				}
-			}
-			
-			else {
-				prop2=prop1-(dx3-dx4)/k;
-				Log.d("Prop2", String.valueOf(prop2));
-				
-				double octaves= (double) nbreOctave;
-				double maille= 1/octaves;
-				
-				
-				if ( prop2>maille&&prop2<nbreOctave)
-				{
-				this.piano.setProportionPianoHorizontale(prop2);
-				}
-			}
-			
-			//Scroll de repla�age pendant le redimensionnement
-			
-			int newPositionToScroll=(int) ((prop2/prop1*positionScrollInitiale+this.screenWidth*((prop2/prop1)-1)));
-			
-			Log.d("NewPositionToScroll", String.valueOf(newPositionToScroll));
-			if (newPositionToScroll>0&&newPositionToScroll<this.piano.getLargeurToucheBlanche()*7*nbreOctave) {
-	//		this.scroller.scrollTo(newPositionToScroll, 0);
-			
-			
-			
-				pointerCount = event.getPointerCount();
-				if (pointerCount==1) {
-					x3=0;
-					x4=0;
-					dx3=0;
-					dx4=0;
-						
-				}
-		} */
-		}
-		else {
-			
-			
-			
-			if  (x3==0) {
-		int pointerIndex = MotionEventCompat.getActionIndex(event);
-		int pointerId = event.getPointerId(pointerIndex);
-		int y = (int) MotionEventCompat.getY(event, pointerIndex);
-		int x = (int) MotionEventCompat.getX(event, pointerIndex);
-		int offsetMedium=(int) ((largeurToucheBlanche*this.getNbreTouchePiano())/2);   
-		int x2=x-offsetMedium;
-			dx1=x2-x1;
-			x1=x2;			
-			int toMove=(int) ((dx1)*this.piano.getProportionPianoHorizontale()/this.proportionPianoHorizontale);
-			this.scroller.scrollBy(toMove, 0);
-		
 
-			
-			 if (ev == MotionEvent.ACTION_UP) {
-				x1=(int) (this.scroller.getScrollX()*this.proportionPianoHorizontale/this.piano.getProportionPianoHorizontale());
-				dx1=0;
+		// Pour zoom-in, zoom-out
+
+		if (pointerCount == 2) {
+			/*
+			 * float x3b = event.getX(0); float x4b = event.getX(1); if (x3!=0)
+			 * { dx3=x3b-x3; dx4=x4b-x4; x3=x3b; x4=x4b; } else { x3=x3b;
+			 * x4=x4b;
+			 * 
+			 * } double prop2; double
+			 * prop1=this.piano.getProportionPianoHorizontale(); float k=(float)
+			 * (this.screenWidth/(this.proportionInitiale));
+			 * 
+			 * int positionScrollInitiale=this.scroller.getScrollX();
+			 * 
+			 * if (x4>x3) {
+			 * 
+			 * prop2=prop1-(dx4-dx3)/k; Log.d("Prop2", String.valueOf(prop2));
+			 * 
+			 * double octaves= (double) nbreOctave; double maille= 1/octaves;
+			 * 
+			 * if (prop2>maille&&prop2<nbreOctave) {
+			 * this.piano.setProportionPianoHorizontale(prop2); } }
+			 * 
+			 * else { prop2=prop1-(dx3-dx4)/k; Log.d("Prop2",
+			 * String.valueOf(prop2));
+			 * 
+			 * double octaves= (double) nbreOctave; double maille= 1/octaves;
+			 * 
+			 * 
+			 * if ( prop2>maille&&prop2<nbreOctave) {
+			 * this.piano.setProportionPianoHorizontale(prop2); } }
+			 * 
+			 * //Scroll de repla�age pendant le redimensionnement
+			 * 
+			 * int newPositionToScroll=(int)
+			 * ((prop2/prop1*positionScrollInitiale
+			 * +this.screenWidth*((prop2/prop1)-1)));
+			 * 
+			 * Log.d("NewPositionToScroll",
+			 * String.valueOf(newPositionToScroll)); if
+			 * (newPositionToScroll>0&&newPositionToScroll
+			 * <this.piano.getLargeurToucheBlanche()*7*nbreOctave) { //
+			 * this.scroller.scrollTo(newPositionToScroll, 0);
+			 * 
+			 * 
+			 * 
+			 * pointerCount = event.getPointerCount(); if (pointerCount==1) {
+			 * x3=0; x4=0; dx3=0; dx4=0;
+			 * 
+			 * } }
+			 */
+		} else {
+
+			if (x3 == 0) {
+				int pointerIndex = MotionEventCompat.getActionIndex(event);
+				int pointerId = event.getPointerId(pointerIndex);
+				int y = (int) MotionEventCompat.getY(event, pointerIndex);
+				int x = (int) MotionEventCompat.getX(event, pointerIndex);
+				int offsetMedium = (int) ((largeurToucheBlanche * this
+						.getNbreTouchePiano()) / 2);
+				int x2 = x - offsetMedium;
+				dx1 = x2 - x1;
+				x1 = x2;
+				int toMove = (int) ((dx1)
+						* this.piano.getProportionPianoHorizontale() / this.proportionPianoHorizontale);
+				this.scroller.scrollBy(toMove, 0);
+
+				if (ev == MotionEvent.ACTION_UP) {
+					x1 = (int) (this.scroller.getScrollX()
+							* this.proportionPianoHorizontale / this.piano
+							.getProportionPianoHorizontale());
+					dx1 = 0;
+				}
 			}
-			}
-			    x3=0;
-				x4=0;
-				dx3=0;
-				dx4=0;
+			x3 = 0;
+			x4 = 0;
+			dx3 = 0;
+			dx4 = 0;
 		}
 		invalidate();
 
 		return true;
 	}
 
-	private int isNoire(int x, int y) {
-		// Si l'on est forcément sur une touche blanche
-		if (y > hauteurToucheNoire) {
-			return -1;
-		}
-		// Sinon on peut être ou sur une noire, ou sur une blanche
-		else {
-
-			for (int k = 1; k < 7 * nbreOctave; k++) {
-				if (x < (k * largeurToucheBlanche + largeurToucheNoire)
-						&& x > (k * largeurToucheBlanche - largeurToucheNoire)
-						&& (k % 7) != 3 && (k % 7) != 0) {
-					return (k - 1);
-				}
-			}
-			return -1;
-		}
-	}
-
-	private String stringValue(MotionEvent event) {
-
-		final int action = event.getAction();
-
-		switch (action) {
-		case MotionEvent.ACTION_DOWN:
-			return "ACTION_DOWN";
-		case MotionEvent.ACTION_MOVE:
-			return "ACTION_MOVE";
-		case MotionEvent.ACTION_UP:
-			return "ACTION_UP";
-		case MotionEvent.ACTION_CANCEL:
-			return "ACTION_CANCEL";
-		}
-
-		return "";
-	}
-
-	private static void log(String message) {
-		if (LOG) {
-			Log.d(TAG, message);
-		}
-	}
-
 	// Fonction qui récupère les infos pour le son et les stocke dans deux
 	// tableaux ayant la même structure que le tableau des états des touches
-	void recupererSon(SoundPool s, int[] sons, float v) {
-		soundPool = s;
-		volume = v;
-
-		for (int i = 0; i < nbreOctave; i++) {
-
-			tabSonTouchesBlanches[7 * i] = sons[12 * i];
-			tabSonTouchesNoires[7 * i] = sons[12 * i + 1];
-			tabSonTouchesBlanches[7 * i + 1] = sons[12 * i + 2];
-			tabSonTouchesNoires[7 * i + 1] = sons[12 * i + 3];
-			tabSonTouchesBlanches[7 * i + 2] = sons[12 * i + 4];
-			tabSonTouchesBlanches[7 * i + 3] = sons[12 * i + 5];
-			tabSonTouchesNoires[7 * i + 3] = sons[12 * i + 6];
-			tabSonTouchesBlanches[7 * i + 4] = sons[12 * i + 7];
-			tabSonTouchesNoires[7 * i + 4] = sons[12 * i + 8];
-			tabSonTouchesBlanches[7 * i + 5] = sons[12 * i + 9];
-			tabSonTouchesNoires[7 * i + 5] = sons[12 * i + 10];
-			tabSonTouchesBlanches[7 * i + 6] = sons[12 * i + 11];
-		}
-
-	}
 
 	private boolean gamme(int i) {
 		// TODO Auto-generated method stub
@@ -610,62 +522,6 @@ private final double proportionInitiale=0.875;
 		return sustain;
 	}
 
-	public void stopNote(final int Note) {
-		if (!sustain) {
-
-			Handler lHandler = new Handler();
-
-			lHandler.postDelayed(new Runnable() {
-				public void run() {
-
-					doStuff(Note, (float) 0.33 * volumeProportion);
-				}
-			}, 20);
-
-			Handler mHandler = new Handler();
-
-			mHandler.postDelayed(new Runnable() {
-				public void run() {
-
-					doStuff(Note, (float) 0.17 * volumeProportion);
-				}
-			}, 200);
-
-			Handler nHandler = new Handler();
-
-			nHandler.postDelayed(new Runnable() {
-				public void run() {
-
-					doStuff(Note, (float) 0.07 * volumeProportion);
-				}
-			}, 350);
-
-			Handler pHandler = new Handler();
-			pHandler.postDelayed(new Runnable() {
-				public void run() {
-					doStuffbis(Note);
-				}
-			}, 600);
-
-		}
-
-	}
-
-	private void doStuff(int Note, float vr) {
-		soundPool.setVolume(Note, vr, vr);
-
-	}
-
-	private void doStuffbis(int Note) {
-		soundPool.stop(Note);
-	}
-
-	public void setVolume(float v) {
-		volume = v;
-		volumeProportion = (float) (v / 0.55);
-
-	}
-
 	public int getHauteur() {
 		return hauteurToucheBlanche;
 	}
@@ -677,8 +533,7 @@ private final double proportionInitiale=0.875;
 	public double getProportionPianoHorizontale() {
 		return proportionPianoHorizontale;
 	}
-	
-	
+
 	public void setProportionPianoHorizontale(double prop) {
 
 		this.proportionPianoHorizontale = prop;
@@ -700,47 +555,47 @@ private final double proportionInitiale=0.875;
 				(int) (heightScreen * proportionPianoVerticale)));
 	}
 
-	public int positionTouche(int i) {
-		if (i < 7) {
-			if (i < 5) {
-				int a = (7 + i) * largeurToucheBlanche;
-				return a;
-			}
-
-			else {
-				int a = i * largeurToucheBlanche;
-				return a;
-			}
-		} else {
-			int a = largeurToucheBlanche * (i - 7) + largeurToucheBlanche
-					- largeurToucheNoire / 2;
-			return a;
-		}
-
-	}
-	
 	public int getLargeurToucheBlanche() {
 		return this.largeurToucheBlanche;
 	}
-	
+
 	public float getNbreTouchePiano() {
-		double prop=this.piano.getProportionPianoHorizontale();
-		float nbreTouche= (float) (7/prop);
+		double prop = this.piano.getProportionPianoHorizontale();
+		float nbreTouche = (float) (7 / prop);
 		return nbreTouche;
-		
+
 	}
-	
-	public void setPiano (Piano piano) {
-		this.piano=piano;
+
+	public void setPiano(Piano piano) {
+		this.piano = piano;
 	}
-	
-	public void setPianoHorizontalScrollView (PianoHorizontalScrollView scroller) {
-		this.scroller=scroller;
+
+	public void setPianoHorizontalScrollView(PianoHorizontalScrollView scroller) {
+		this.scroller = scroller;
 	}
-	
+
 	public void setX1(int x) {
-		int x2=(int) (x*this.proportionPianoHorizontale/this.piano.getProportionPianoHorizontale());
-		this.x1=x2;
+		int x2 = (int) (x * this.proportionPianoHorizontale / this.piano
+				.getProportionPianoHorizontale());
+		this.x1 = x2;
 	}
-	
+	private int isNoire(int x, int y) {
+		// Si l'on est forcément sur une touche blanche
+		if (y > hauteurToucheNoire) {
+			return -1;
+		}
+		// Sinon on peut être ou sur une noire, ou sur une blanche
+		else {
+
+			for (int k = 1; k < 7 * nbreOctave; k++) {
+				if (x < (k * largeurToucheBlanche + largeurToucheNoire)
+						&& x > (k * largeurToucheBlanche - largeurToucheNoire)
+						&& (k % 7) != 3 && (k % 7) != 0) {
+					return (k - 1);
+				}
+			}
+			return -1;
+		}
+	}
+
 }

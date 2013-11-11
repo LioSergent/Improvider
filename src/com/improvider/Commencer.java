@@ -55,7 +55,7 @@ public class Commencer extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-finish();
+				finish();
 				// On passe � l'activit� ChoixAccompagnement
 				Intent explicit = new Intent();
 				explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

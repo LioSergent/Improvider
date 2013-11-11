@@ -197,7 +197,7 @@ public class ChoixAccompagnement extends Activity {
 			}
 		});
 
-		Button boutonChoixRetour = (Button) findViewById(R.id.bouton_choix_retour);
+		boutonChoixRetour = (Button) findViewById(R.id.bouton_choix_retour);
 		boutonChoixRetour.setOnClickListener(new OnClickListener() {
 
 			@Override

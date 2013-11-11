@@ -124,76 +124,61 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		int pointerId = event.getPointerId(pointerIndex);
 		int y = (int) MotionEventCompat.getY(event, pointerIndex);
 		int x = (int) MotionEventCompat.getX(event, pointerIndex);
-		Log.d("hello", String.valueOf(y));
 		
 		/*
-		if (event.getEdgeFlags() != 0) {
-			// Don't handle edge touches immediately -- they may actually belong
-			// to one of our
-			// descendants.
-			return false;
-		}
-*/
-		
-		
+		 * if (event.getEdgeFlags() != 0) { // Don't handle edge touches
+		 * immediately -- they may actually belong // to one of our //
+		 * descendants. return false; }
+		 */
+
 		/*
-		if (y > hauteur) {
-			switch (event.getAction()) {
+		 * if (y > hauteur) { switch (event.getAction()) {
+		 * 
+		 * case MotionEvent.ACTION_DOWN:
+		 * 
+		 * // if we can scroll pass the event to the superclass return
+		 * super.onTouchEvent(event); // only continue to handle the touch event
+		 * if scrolling enabled
+		 * 
+		 * default:
+		 * 
+		 * return super.onTouchEvent(event); }
+		 * 
+		 * } return false;
+		 * 
+		 * }
+		 * 
+		 * public boolean onTouchEventBis(MotionEvent event) { int hauteur =
+		 * (int) (getHeight() * proportionHauteur);
+		 * 
+		 * int ev = MotionEventCompat.getActionMasked(event);
+		 * 
+		 * int pointerIndex = MotionEventCompat.getActionIndex(event); int
+		 * pointerId = event.getPointerId(pointerIndex); int y = (int)
+		 * MotionEventCompat.getY(event, pointerIndex); int x = (int)
+		 * MotionEventCompat.getX(event, pointerIndex); Log.d("OntoucheBis",
+		 * String.valueOf(pointerId));
+		 * 
+		 * /* if (event.getEdgeFlags() != 0) { // Don't handle edge touches
+		 * immediately -- they may actually belong // to one of our //
+		 * descendants. return false; }
+		 */
 
-			case MotionEvent.ACTION_DOWN:
+		switch (event.getAction()) {
 
-				// if we can scroll pass the event to the superclass
-				return super.onTouchEvent(event);
-				// only continue to handle the touch event if scrolling enabled
+		case MotionEvent.ACTION_DOWN:
 
-			default:
+			// if we can scroll pass the event to the superclass
+			return super.onTouchEvent(event);
+			// only continue to handle the touch event if scrolling enabled
 
-				return super.onTouchEvent(event);
-			}
+		default:
 
+			return super.onTouchEvent(event);
 		}
-		*/
-		return false;
-		
+
 	}
 
-	public boolean onTouchEventBis(MotionEvent event) {
-		int hauteur = (int) (getHeight() * proportionHauteur);
-
-		int ev = MotionEventCompat.getActionMasked(event);
-
-		int pointerIndex = MotionEventCompat.getActionIndex(event);
-		int pointerId = event.getPointerId(pointerIndex);
-		int y = (int) MotionEventCompat.getY(event, pointerIndex);
-		int x = (int) MotionEventCompat.getX(event, pointerIndex);
-		Log.d("OntoucheBis", String.valueOf(pointerId));
-		
-		/*
-		if (event.getEdgeFlags() != 0) {
-			// Don't handle edge touches immediately -- they may actually belong
-			// to one of our
-			// descendants.
-			return false;
-		}
-*/
-		
-			switch (event.getAction()) {
-
-			case MotionEvent.ACTION_DOWN:
-
-				// if we can scroll pass the event to the superclass
-				return super.onTouchEvent(event);
-				// only continue to handle the touch event if scrolling enabled
-
-			default:
-
-				return super.onTouchEvent(event);
-			}
-
-		
-	
-	}
-	
 	public boolean onInterceptTouchEvent(MotionEvent event) {
 		// Call super first because it does some hidden motion event handling
 		boolean result = super.onInterceptTouchEvent(event);
@@ -222,7 +207,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		if (getChildCount() == 0) {
 			return;
 		}
-		
+
 		final int width = getWidth() - getPaddingRight() - getPaddingLeft();
 		final int right = getChildAt(0).getWidth();
 		final int maxX = Math.max(0, right - width);
