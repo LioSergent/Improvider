@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -58,7 +59,7 @@ public class Main extends Activity {
 	public int screenWidth;
 	public int screenHeight;
 	private boolean premierScroll = true;
-
+	private AudioManager audioManager = null; 
 	// Boutons de réglages
 	TabHost onglets;
 
@@ -91,6 +92,13 @@ public class Main extends Activity {
 
 		setContentView(R.layout.activity_main);
 
+		
+		
+		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+				audioManager
+                .getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+		
 		/*
 		 * int parentWidth = MeasureSpec.getSize(UNSPECIFIED); FrameLayout
 		 * _rootLayout = (FrameLayout) findViewById(R.id.tabcontent);
