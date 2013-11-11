@@ -30,7 +30,7 @@ public class Piano extends View {
 	private final static double proportionToucheNoireHauteur = 0.75;
 	private final static double proportionToucheNoireLargeur = 0.32;
 	private final static int nbreOctave = 3;
-	private final static double proportionPianoVerticale = 0.75;
+	private double proportionPianoVerticale = 0.75;
     private double proportionPianoHorizontale = 0.875;
 
 	/*
@@ -87,8 +87,7 @@ public class Piano extends View {
 	 */
 
 	SoundPool soundPool;
-	private int sonDoBas, sonDoD, sonRe, sonReD, sonMi, sonFa, sonFaD, sonSol,
-			sonSolD, sonLa, sonLaD, sonSi, sonDoHaut;
+
 	float volume;
 	float volumeProportion;
 	float vol;
@@ -631,24 +630,6 @@ public class Piano extends View {
 		}
 	}
 
-	private String stringValue(MotionEvent event) {
-
-		final int action = event.getAction();
-
-		switch (action) {
-		case MotionEvent.ACTION_DOWN:
-			return "ACTION_DOWN";
-		case MotionEvent.ACTION_MOVE:
-			return "ACTION_MOVE";
-		case MotionEvent.ACTION_UP:
-			return "ACTION_UP";
-		case MotionEvent.ACTION_CANCEL:
-			return "ACTION_CANCEL";
-		}
-
-		return "";
-	}
-
 	private static void log(String message) {
 		if (LOG) {
 			Log.d(TAG, message);
@@ -764,6 +745,9 @@ public class Piano extends View {
 		return hauteurToucheBlanche;
 	}
 
+	public void setProportionPianoVerticale(double a) {
+		this.proportionPianoVerticale=a;
+	}
 	public double getProportionPianoVerticale() {
 		return this.proportionPianoVerticale;
 	}

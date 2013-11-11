@@ -115,6 +115,8 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		
+		/*
 		int hauteur = (int) (getHeight() * proportionHauteur);
 
 		Log.d("passageScroll", String.valueOf(hauteur));
@@ -125,13 +127,13 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		int y = (int) MotionEventCompat.getY(event, pointerIndex);
 		int x = (int) MotionEventCompat.getX(event, pointerIndex);
 		
-		/*
+		
 		 * if (event.getEdgeFlags() != 0) { // Don't handle edge touches
 		 * immediately -- they may actually belong // to one of our //
 		 * descendants. return false; }
-		 */
+		 
 
-		/*
+		
 		 * if (y > hauteur) { switch (event.getAction()) {
 		 * 
 		 * case MotionEvent.ACTION_DOWN:
@@ -162,7 +164,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		 * /* if (event.getEdgeFlags() != 0) { // Don't handle edge touches
 		 * immediately -- they may actually belong // to one of our //
 		 * descendants. return false; }
-		 */
+		 
 
 		switch (event.getAction()) {
 
@@ -176,7 +178,8 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 
 			return super.onTouchEvent(event);
 		}
-
+*/
+		return false;
 	}
 
 	public boolean onInterceptTouchEvent(MotionEvent event) {

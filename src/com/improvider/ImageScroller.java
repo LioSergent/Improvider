@@ -9,12 +9,11 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
-import android.media.SoundPool;
-import android.os.Handler;
+
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -28,14 +27,12 @@ public class ImageScroller extends View {
 	 * Constantes de la classe
 	 */
 
-	private static final boolean LOG = true;
-	private static final String TAG = "Improvider";
 	private final static double proportionToucheNoireHauteur = 0.75;
 	private final static double proportionToucheNoireLargeur = 0.32;
 	private final static int nbreOctave = 3;
-	private final static double proportionPianoVerticale = 0.11;
+	private double proportionPianoVerticale = 0.11;
 
-	private double proportionPianoHorizontale = 0.24;
+	private double proportionPianoHorizontale = 0.27;
 
 	/*
 	 * Id du pointeur, numero de la touche (en commencant à 0) (+ 10 si noire)
@@ -55,6 +52,7 @@ public class ImageScroller extends View {
 	int heightScreen;
 	int widthScreen;
 
+	
 	private int x1 = 0;
 	private int dx1 = 0;
 
@@ -215,7 +213,7 @@ public class ImageScroller extends View {
 
 	public void onDraw(Canvas canvas) {
 		
-		Log.d("Ondraw", "BITE");
+		
 		if (!init)
 			init();
 
@@ -488,6 +486,7 @@ public class ImageScroller extends View {
 			x4 = 0;
 			dx3 = 0;
 			dx4 = 0;
+			
 		}
 		invalidate();
 
@@ -525,7 +524,11 @@ public class ImageScroller extends View {
 	public int getHauteur() {
 		return hauteurToucheBlanche;
 	}
-
+	public void setProportionPianoVerticale(double d) {
+		this.proportionPianoVerticale=d;
+		
+	}
+	
 	public double getProportionPianoVerticale() {
 		return this.proportionPianoVerticale;
 	}
@@ -579,23 +582,7 @@ public class ImageScroller extends View {
 				.getProportionPianoHorizontale());
 		this.x1 = x2;
 	}
-	private int isNoire(int x, int y) {
-		// Si l'on est forcément sur une touche blanche
-		if (y > hauteurToucheNoire) {
-			return -1;
-		}
-		// Sinon on peut être ou sur une noire, ou sur une blanche
-		else {
 
-			for (int k = 1; k < 7 * nbreOctave; k++) {
-				if (x < (k * largeurToucheBlanche + largeurToucheNoire)
-						&& x > (k * largeurToucheBlanche - largeurToucheNoire)
-						&& (k % 7) != 3 && (k % 7) != 0) {
-					return (k - 1);
-				}
-			}
-			return -1;
-		}
-	}
+	
 
 }

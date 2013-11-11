@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
@@ -24,8 +23,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.SeekBar;
@@ -33,8 +30,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TabHost;
 
 public class Main extends Activity {
-
-	private static final int UNSPECIFIED = 0;
 
 	// Attributs liés à l'accompagnement
 	public static int niveausonore = 50;
@@ -45,7 +40,6 @@ public class Main extends Activity {
 			Gd3piano, A3piano, Ad3piano, B3piano, C4piano, Cd4piano, D4piano,
 			Dd4piano, E4piano, F4piano, Fd4piano, G4piano, Gd4piano, A4piano,
 			Ad4piano, B4piano;
-	private boolean loaded = false;
 	private Musique gestionMusique;
 	private int Adresse;
 	private String Auteur;
@@ -64,9 +58,10 @@ public class Main extends Activity {
 	public int screenWidth;
 	public int screenHeight;
 	private boolean premierScroll = true;
-	
 
 	// Boutons de réglages
+	TabHost onglets;
+
 	public SeekBar volumeBar;
 	public SeekBar avancementBar;
 	public SeekBar volumePianoBar;
@@ -89,21 +84,20 @@ public class Main extends Activity {
 	{
 		super.onCreate(icicle);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		
-		
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		setContentView(R.layout.activity_main);
-		
+
 		/*
-		int parentWidth = MeasureSpec.getSize(UNSPECIFIED);
-		 FrameLayout _rootLayout = (FrameLayout) findViewById(R.id.tabcontent);
-		RelativeLayout.LayoutParams _rootLayoutParams = new RelativeLayout.LayoutParams(_rootLayout.getWidth(), _rootLayout.getHeight());
-		_rootLayoutParams.setMargins(300, 0, 300, 0);
-		_rootLayout.setLayoutParams(_rootLayoutParams);
-		
-		*/
-		
+		 * int parentWidth = MeasureSpec.getSize(UNSPECIFIED); FrameLayout
+		 * _rootLayout = (FrameLayout) findViewById(R.id.tabcontent);
+		 * RelativeLayout.LayoutParams _rootLayoutParams = new
+		 * RelativeLayout.LayoutParams(_rootLayout.getWidth(),
+		 * _rootLayout.getHeight()); _rootLayoutParams.setMargins(300, 0, 300,
+		 * 0); _rootLayout.setLayoutParams(_rootLayoutParams);
+		 */
+
 		// On récupère les infos de l'Intent envoyés par ChoixAccompagnement.
 		Bundle extras = getIntent().getExtras();
 		Adresse = extras.getInt("Adresse");
@@ -112,7 +106,7 @@ public class Main extends Activity {
 		Auteur = extras.getString("name");
 
 		// 2 Boutons de retour
-		Button boutonMorceauRetour = (Button) findViewById(R.id.bouton_morceau_retour);
+		boutonMorceauRetour = (Button) findViewById(R.id.bouton_morceau_retour);
 		boutonMorceauRetour.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -128,12 +122,12 @@ public class Main extends Activity {
 			}
 		});
 
-		Button boutonReglageRetour = (Button) findViewById(R.id.bouton_reglages_retour);
+		boutonReglageRetour = (Button) findViewById(R.id.bouton_reglages_retour);
 		boutonReglageRetour.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-				
+
 				finish();
 				Intent explicit = new Intent();
 				explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -287,9 +281,9 @@ public class Main extends Activity {
 		piano.setScreenWidth(screenWidth);
 		piano.setTonique(tonique);
 
-		int a=piano.getHeight();
+		int a = piano.getHeight();
 		Log.d("HauteurPiano", String.valueOf(a));
-		
+
 		// Recuperation du volume
 		AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 		float actualVolume = (float) audioManager
@@ -311,18 +305,16 @@ public class Main extends Activity {
 
 		piano.setVolume(volumeffectif);
 
-		//Cr�ation de l'image Scroller
-		
-		scroller=(PianoHorizontalScrollView) findViewById(R.id.scroller);
-		
-		
-		imageScroller=(ImageScroller) findViewById(R.id.image_scroller);
+		// Cr�ation de l'image Scroller
+
+		scroller = (PianoHorizontalScrollView) findViewById(R.id.scroller);
+
+		imageScroller = (ImageScroller) findViewById(R.id.image_scroller);
 		imageScroller.setPiano(piano);
 		imageScroller.setPianoHorizontalScrollView(scroller);
 		imageScroller.setGamme(Gamme);
 		imageScroller.setTonique(tonique);
-		
-		
+
 		// Barre de réglages du nombre de touches apparaissant à l'écran
 
 		nbreBlanchesVisiblesBar = (SeekBar) findViewById(R.id.nbre_blanches_visibles_bar);
@@ -452,24 +444,22 @@ public class Main extends Activity {
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
-		
+
 		imageScroller.setScreenWidth(widthScreen);
-        
-		TabHost onglets = (TabHost) findViewById(R.id.tabhost);
+
+		onglets = (TabHost) findViewById(R.id.tabhost);
 		onglets.setup();
 
-		
 		// Onglet de selection d'un morceau
 		TabHost.TabSpec ongletMorceau = onglets.newTabSpec("ongletMorceau");
 
-		
 		ongletMorceau.setContent(R.id.tab1);
 		String acc = getString(R.string.accompagnement);
 		ongletMorceau.setIndicator(acc);
 		onglets.addTab(ongletMorceau);
 		onglets.getTabWidget().getChildAt(0).getLayoutParams().height = (int) (heightScreen * 0.11);
-//		onglets.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.tab_bg);
-		
+		// onglets.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.tab_bg);
+
 		// Onglet "Piano"
 		TabHost.TabSpec ongletPiano = onglets.newTabSpec("ongletPiano");
 
@@ -480,9 +470,8 @@ public class Main extends Activity {
 		onglets.addTab(ongletPiano);
 		onglets.getTabWidget().getChildAt(1).getLayoutParams().height = (int) (heightScreen * 0.11);
 
-		
-//		onglets.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.tab_bg);
-		
+		// onglets.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.tab_bg);
+
 		onglets.getTabWidget().getChildAt(1)
 				.setOnTouchListener(new View.OnTouchListener() {
 
@@ -491,14 +480,14 @@ public class Main extends Activity {
 						Log.d("Listener", String.valueOf(getWindow()));
 						Log.d("Scroller", "avant le run");
 						if (!premierScroll) {
-							int a=piano.getHeight();
+							int a = piano.getHeight();
 							Log.d("HauteurPiano", String.valueOf(a));
 							return false;
 
 						}
 
 						else {
-							int a=piano.getHeight();
+							int a = piano.getHeight();
 							Log.d("HauteurPiano", String.valueOf(a));
 							Handler lHandler = new Handler();
 
@@ -506,13 +495,12 @@ public class Main extends Activity {
 								public void run() {
 									PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
 									int a = scroler.getWidth();
-Log.d("Scroller10", String.valueOf(a));
+									Log.d("Scroller10", String.valueOf(a));
 									int positionToScroll = piano
 											.positionTouche(tonique);
 									scroler.customSmoothScrollTo(
 											positionToScroll, 0);
 
-									
 									getImageScroller().setX1(positionToScroll);
 									getImageScroller().invalidate();
 								}
@@ -526,8 +514,6 @@ Log.d("Scroller10", String.valueOf(a));
 					}
 				});
 
-		
-
 		// Onglet "Réglages"
 		TabHost.TabSpec ongletReglages = onglets.newTabSpec("ongletReglages");
 
@@ -537,8 +523,8 @@ Log.d("Scroller10", String.valueOf(a));
 		onglets.addTab(ongletReglages);
 		onglets.getTabWidget().getChildAt(2).getLayoutParams().height = (int) (heightScreen * 0.11);
 
-//		onglets.getTabWidget().getChildAt(2).setBackgroundResource(R.drawable.tab_bg);
-		
+		// onglets.getTabWidget().getChildAt(2).setBackgroundResource(R.drawable.tab_bg);
+
 		for (int i = 0; i < onglets.getTabWidget().getChildCount(); i++) {
 			TextView tv = (TextView) onglets.getTabWidget().getChildAt(i)
 					.findViewById(android.R.id.title);
@@ -546,6 +532,7 @@ Log.d("Scroller10", String.valueOf(a));
 			setTextSizeOnglets(tv);
 
 		}
+		setDimensionsOngletPiano();
 
 	}
 
@@ -557,28 +544,27 @@ Log.d("Scroller10", String.valueOf(a));
 		super.onDestroy();
 		gestionMusique.couperMusique();
 		soundPool.release();
-		
+
 	}
 
 	public void onStop() {
 		super.onStop();
 		gestionMusique.mettreEnPause();
 		soundPool.autoPause();
-		
+
 	}
 
 	public void onPause() {
 		super.onPause();
 		gestionMusique.mettreEnPause();
 		soundPool.autoPause();
-		
 
 	}
 
 	public void onResume() {
 		super.onResume();
 		soundPool.autoResume();
-		
+
 	}
 
 	// GETTERS
@@ -644,11 +630,83 @@ Log.d("Scroller10", String.valueOf(a));
 	public ImageScroller getImageScroller() {
 		return this.imageScroller;
 	}
-	
+
+	private void setDimensionsOngletPiano() {
+
+		Log.d("redimenssionemment", "Passage dans le redim");
+
+		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
+			for (int i = 0; i < 3; i++) {
+				onglets.getTabWidget().getChildAt(i).getLayoutParams().height = (int) (heightScreen * 0.15);
+			}
+			piano.setProportionPianoVerticale(0.65);
+			imageScroller.setProportionPianoVerticale(0.16);
+			double nouvelleProp = (double) 7 / 6;
+			nbreBlanchesVisiblesBar.setProgress(3);
+			piano.setProportionPianoHorizontale(nouvelleProp);
+		}
+
+		else {
+			if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
+				for (int i = 0; i < 3; i++) {
+					onglets.getTabWidget().getChildAt(i).getLayoutParams().height = (int) (heightScreen * 0.11);
+				}
+				piano.setProportionPianoVerticale(0.72);
+				imageScroller.setProportionPianoVerticale(0.13);
+				double nouvelleProp = (double) 7 / 8;
+				nbreBlanchesVisiblesBar.setProgress(5);
+				piano.setProportionPianoHorizontale(nouvelleProp);
+			}
+
+			else {
+				if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
+					for (int i = 0; i < 3; i++) {
+						onglets.getTabWidget().getChildAt(i).getLayoutParams().height = (int) (heightScreen * 0.10);
+					}
+					piano.setProportionPianoVerticale(0.74);
+					imageScroller.setProportionPianoVerticale(0.11);
+					double nouvelleProp = (double) 7 / 10;
+					nbreBlanchesVisiblesBar.setProgress(7);
+					piano.setProportionPianoHorizontale(nouvelleProp);
+					Log.d("redimensionnement", "prout");
+				}
+
+				else {
+					if (android.os.Build.VERSION.SDK_INT >= 13) {
+
+						if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+							for (int i = 0; i < 3; i++) {
+								onglets.getTabWidget().getChildAt(i)
+										.getLayoutParams().height = (int) (heightScreen * 0.09);
+							}
+							piano.setProportionPianoVerticale(0.76);
+							imageScroller.setProportionPianoVerticale(0.10);
+							double nouvelleProp = (double) 7 / 12;
+							nbreBlanchesVisiblesBar.setProgress(7);
+							piano.setProportionPianoHorizontale(nouvelleProp);
+						} else {
+							for (int i = 0; i < 3; i++) {
+								onglets.getTabWidget().getChildAt(i)
+										.getLayoutParams().height = (int) (heightScreen * 0.09);
+							}
+							piano.setProportionPianoVerticale(0.76);
+							imageScroller.setProportionPianoVerticale(0.12);
+							nbreBlanchesVisiblesBar.setProgress(7);
+							double nouvelleProp = (double) 7 / 10;
+
+							piano.setProportionPianoHorizontale(nouvelleProp);
+						}
+					}
+
+				}
+
+			}
+		}
+	}
+
 	private void setTextSizeOnglets(TextView textview) {
 		int sizeTexte = 18;
 		textview.setTextSize(sizeTexte);
-		Log.d("ScreenHeight", String.valueOf(screenHeight));
 
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
 			sizeTexte = 12;
