@@ -23,7 +23,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="@string/diapotuto1"
-            android:textSize="25sp" />
+            android:textSize="22sp" />
 
         <ImageView
             android:id="@+id/image_tutoriel"
@@ -31,11 +31,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_tutoriel"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:adjustViewBounds="true"
             android:scaleType="fitStart"
-            android:maxHeight="350dp"
-            android:maxWidth="500dp"
+            android:maxHeight="250dp"
+            android:maxWidth="300dp"
             android:src="@drawable/diapotutomorceau" />
 
         <LinearLayout
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="@string/precedent"
-                android:textSize="30sp" />
+                android:textSize="27sp" />
 
             <Button
                 android:id="@+id/bouton_tutoriel_suivant"
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Suivant"
-                android:textSize="30sp" />
+                android:textSize="27sp" />
         </LinearLayout>
     </RelativeLayout>
 

@@ -649,7 +649,7 @@ public class Main extends Activity {
 
 	private void setDimensionsOngletPiano() {
 
-		Log.d("redimenssionemment", "Passage dans le redim");
+		
 
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
 			for (int i = 0; i < 3; i++) {
@@ -688,9 +688,11 @@ public class Main extends Activity {
 				}
 
 				else {
+					Log.d("redimenssionemment", "Passage dans le redim");
 					if (android.os.Build.VERSION.SDK_INT >= 13) {
 
 						if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+							Log.d("redimenssionemment", "Passage dans le redim");
 							for (int i = 0; i < 3; i++) {
 								onglets.getTabWidget().getChildAt(i)
 										.getLayoutParams().height = (int) (heightScreen * 0.09);

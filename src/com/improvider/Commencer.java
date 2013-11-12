@@ -91,7 +91,7 @@ public class Commencer extends Activity {
 			float dpWidth = widthScreen / density;
 			
 	       float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
-	    Log.d("Diagon", String.valueOf(diagonalInch));
+	 
 			
 	        if (diagonalInch<4) {
 	        

@@ -65,15 +65,15 @@ public class Tutoriel extends Activity {
 		}
 
 		if (screenHeight > 1000) {
-			proportion = 0.7;
+			proportion = 0.55;
 		}
 
 		if (screenHeight > 1200) {
-			proportion = 0.9;
+			proportion = 0.60;
 		}
 
 		if (screenHeight > 1400) {
-			proportion = 1.2;
+			proportion = 0.65;
 		}
 
 		Log.d("screenWidth", String.valueOf(screenWidth));
@@ -286,7 +286,7 @@ private void reSizeNormal() {
 			float dpWidth = widthScreen / density;
 			
 	       float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
-	    Log.d("Diagon", String.valueOf(diagonalInch));
+	   
 			
 	        if (diagonalInch<4) {
 	        
