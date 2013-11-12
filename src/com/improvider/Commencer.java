@@ -3,10 +3,14 @@ package com.improvider;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Commencer extends Activity {
 	Button boutonMontrer;
@@ -65,6 +69,7 @@ public class Commencer extends Activity {
 
 			}
 		});
+		reSizeNormal();
 
 	}
 
@@ -74,5 +79,33 @@ public class Commencer extends Activity {
 		getMenuInflater().inflate(R.menu.commencer, menu);
 		return true;
 	}
+	private void reSizeNormal() {
+		
+		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
+			DisplayMetrics metrics = getResources().getDisplayMetrics();
+			int widthScreen = metrics.widthPixels;
+			int heightScreen = metrics.heightPixels;
+			float density = getResources().getDisplayMetrics().density;
+			
+			float dpHeight = heightScreen / density;
+			float dpWidth = widthScreen / density;
+			
+	       float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
+	    Log.d("Diagon", String.valueOf(diagonalInch));
+			
+	        if (diagonalInch<4) {
+	        
+	        	
+	        	
+	        	boutonMontrer.setTextSize(17);
+	        	boutonSavoir.setTextSize(17);
+	        	boutonRetour.setTextSize(17);
+	      TextView texte=(TextView) findViewById(R.id.text_commencer);
+	        	texte.setTextSize(21);
+	        }
+	        
+	        }
 
+}
+	
 }

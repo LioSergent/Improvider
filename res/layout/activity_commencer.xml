@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="27dp"
             android:gravity="center"
             android:text="@string/text_commencer"
             android:textColor="@color/black"
@@ -34,9 +34,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/text_commencer"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="25dp"
             android:text="@string/montre_moi"
-            android:textSize="20sp" />
+            android:textSize="21sp" />
 
         <Button
             android:id="@+id/bouton_savoir_plus"
@@ -47,7 +47,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="@string/savoir_plus"
-            android:textSize="20sp" />
+            android:textSize="21sp" />
 
         <Button
             android:id="@+id/bouton_commencer_retour"
@@ -56,9 +56,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/bouton_savoir_plus"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="24dp"
             android:text="@string/retour"
-            android:textSize="20sp" />
+            android:textSize="21sp" />
     </RelativeLayout>
 
 </ScrollView>

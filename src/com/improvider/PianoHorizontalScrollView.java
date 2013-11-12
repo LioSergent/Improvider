@@ -115,25 +115,25 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		
+
 		/*
-		int hauteur = (int) (getHeight() * proportionHauteur);
-
-		Log.d("passageScroll", String.valueOf(hauteur));
-		int ev = MotionEventCompat.getActionMasked(event);
-
-		int pointerIndex = MotionEventCompat.getActionIndex(event);
-		int pointerId = event.getPointerId(pointerIndex);
-		int y = (int) MotionEventCompat.getY(event, pointerIndex);
-		int x = (int) MotionEventCompat.getX(event, pointerIndex);
-		
-		
+		 * int hauteur = (int) (getHeight() * proportionHauteur);
+		 * 
+		 * Log.d("passageScroll", String.valueOf(hauteur)); int ev =
+		 * MotionEventCompat.getActionMasked(event);
+		 * 
+		 * int pointerIndex = MotionEventCompat.getActionIndex(event); int
+		 * pointerId = event.getPointerId(pointerIndex); int y = (int)
+		 * MotionEventCompat.getY(event, pointerIndex); int x = (int)
+		 * MotionEventCompat.getX(event, pointerIndex);
+		 * 
+		 * 
 		 * if (event.getEdgeFlags() != 0) { // Don't handle edge touches
 		 * immediately -- they may actually belong // to one of our //
 		 * descendants. return false; }
-		 
-
-		
+		 * 
+		 * 
+		 * 
 		 * if (y > hauteur) { switch (event.getAction()) {
 		 * 
 		 * case MotionEvent.ACTION_DOWN:
@@ -164,21 +164,20 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		 * /* if (event.getEdgeFlags() != 0) { // Don't handle edge touches
 		 * immediately -- they may actually belong // to one of our //
 		 * descendants. return false; }
-		 
-
-		switch (event.getAction()) {
-
-		case MotionEvent.ACTION_DOWN:
-
-			// if we can scroll pass the event to the superclass
-			return super.onTouchEvent(event);
-			// only continue to handle the touch event if scrolling enabled
-
-		default:
-
-			return super.onTouchEvent(event);
-		}
-*/
+		 * 
+		 * 
+		 * switch (event.getAction()) {
+		 * 
+		 * case MotionEvent.ACTION_DOWN:
+		 * 
+		 * // if we can scroll pass the event to the superclass return
+		 * super.onTouchEvent(event); // only continue to handle the touch event
+		 * if scrolling enabled
+		 * 
+		 * default:
+		 * 
+		 * return super.onTouchEvent(event); }
+		 */
 		return false;
 	}
 

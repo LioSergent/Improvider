@@ -25,13 +25,11 @@ public class Piano extends View {
 	 * Constantes de la classe
 	 */
 
-	private static final boolean LOG = true;
-	private static final String TAG = "Improvider";
 	private final static double proportionToucheNoireHauteur = 0.75;
 	private final static double proportionToucheNoireLargeur = 0.32;
 	private final static int nbreOctave = 3;
 	private double proportionPianoVerticale = 0.75;
-    private double proportionPianoHorizontale = 0.875;
+	private double proportionPianoHorizontale = 0.875;
 
 	/*
 	 * Id du pointeur, numero de la touche (en commencant à 0) (+ 10 si noire)
@@ -199,7 +197,7 @@ public class Piano extends View {
 	}
 
 	public void onDraw(Canvas canvas) {
-		Log.d("Piano", "OnDraw");
+
 		if (!init)
 			init();
 
@@ -465,8 +463,6 @@ public class Piano extends View {
 
 				// Mise à jour écran
 
-				log("UP or DOWN : " + positionPointeurs.toString()
-						+ " Touche reperée: " + indexTouche);
 			}
 		}
 
@@ -541,7 +537,6 @@ public class Piano extends View {
 									this.stopNote(toucheCorrespondante);
 									tabEtatTouchesNoires[toucheCorrespondante
 											- 10 * nbreOctave] = false;
-									Log.d("TCAudio", "Bug sur noire");
 
 								} else { // Sinon, c'est qu'elle �tait blanche
 									if (toucheCorrespondante != -1) {
@@ -627,12 +622,6 @@ public class Piano extends View {
 				}
 			}
 			return -1;
-		}
-	}
-
-	private static void log(String message) {
-		if (LOG) {
-			Log.d(TAG, message);
 		}
 	}
 
@@ -746,8 +735,9 @@ public class Piano extends View {
 	}
 
 	public void setProportionPianoVerticale(double a) {
-		this.proportionPianoVerticale=a;
+		this.proportionPianoVerticale = a;
 	}
+
 	public double getProportionPianoVerticale() {
 		return this.proportionPianoVerticale;
 	}
@@ -755,11 +745,11 @@ public class Piano extends View {
 	public double getProportionPianoHorizontale() {
 		return proportionPianoHorizontale;
 	}
-	
+
 	public int getLargeurToucheBlanche() {
 		return this.largeurToucheBlanche;
 	}
-	
+
 	public void setProportionPianoHorizontale(double prop) {
 
 		this.proportionPianoHorizontale = prop;

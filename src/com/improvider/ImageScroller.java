@@ -52,7 +52,6 @@ public class ImageScroller extends View {
 	int heightScreen;
 	int widthScreen;
 
-	
 	private int x1 = 0;
 	private int dx1 = 0;
 
@@ -212,8 +211,7 @@ public class ImageScroller extends View {
 	}
 
 	public void onDraw(Canvas canvas) {
-		
-		
+
 		if (!init)
 			init();
 
@@ -398,11 +396,10 @@ public class ImageScroller extends View {
 								* this.getNbreTouchePiano() / screenWidth + largeurToucheBlanche
 								* this.getNbreTouchePiano()),
 						hauteurToucheBlanche), 5, 10, pinceauRectangle);
-		
+
 		invalidate();
 
 	}
-	
 
 	public boolean onTouchEvent(MotionEvent event) {
 		int ev = MotionEventCompat.getActionMasked(event);
@@ -486,7 +483,7 @@ public class ImageScroller extends View {
 			x4 = 0;
 			dx3 = 0;
 			dx4 = 0;
-			
+
 		}
 		invalidate();
 
@@ -524,11 +521,12 @@ public class ImageScroller extends View {
 	public int getHauteur() {
 		return hauteurToucheBlanche;
 	}
+
 	public void setProportionPianoVerticale(double d) {
-		this.proportionPianoVerticale=d;
-		
+		this.proportionPianoVerticale = d;
+
 	}
-	
+
 	public double getProportionPianoVerticale() {
 		return this.proportionPianoVerticale;
 	}
@@ -582,7 +580,5 @@ public class ImageScroller extends View {
 				.getProportionPianoHorizontale());
 		this.x1 = x2;
 	}
-
-	
 
 }

@@ -37,7 +37,8 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement, 20000);
 				toast.show();
 				// on cr�e un intent pour passer � l'activit� Improvider
-				//Le handler sert a retarder le lancement, sinon le toast a pas le temps de show
+				// Le handler sert a retarder le lancement, sinon le toast a pas
+				// le temps de show
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -85,8 +86,7 @@ public class ChoixAccompagnement extends Activity {
 								true, true, false, false, false, false, false,
 								false, false };
 						explicit.putExtra("Gamme", value);
-						explicit.putExtra("name",
-								"Blues Soul Em");
+						explicit.putExtra("name", "Blues Soul Em");
 						explicit.putExtra("Tonique", 2);
 						startActivity(explicit);
 
@@ -152,8 +152,7 @@ public class ChoixAccompagnement extends Activity {
 								false, true, false, true, true, false, true,
 								true, false, false };
 						explicit.putExtra("Gamme", value);
-						explicit.putExtra("name",
-								"Acoustic Guitar BM");
+						explicit.putExtra("name", "Acoustic Guitar BM");
 						explicit.putExtra("Tonique", 6);
 						startActivity(explicit);
 
@@ -208,7 +207,6 @@ public class ChoixAccompagnement extends Activity {
 				explicit.setClassName("com.improvider",
 						"com.improvider.Improvider");
 				startActivity(explicit);
-				
 
 			}
 		});
@@ -223,24 +221,24 @@ public class ChoixAccompagnement extends Activity {
 
 	public void onDestroy() {
 		super.onDestroy();
-		if (toast!=null) {
-		
-		toast.cancel();
-	}
+		if (toast != null) {
+
+			toast.cancel();
+		}
 	}
 
 	public void onStop() {
 		super.onStop();
-		if (toast!=null) {
-			
+		if (toast != null) {
+
 			toast.cancel();
 		}
 	}
 
 	public void onPause() {
 		super.onPause();
-		if (toast!=null) {
-			
+		if (toast != null) {
+
 			toast.cancel();
 		}
 

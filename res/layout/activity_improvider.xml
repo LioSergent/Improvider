@@ -14,7 +14,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_gravity="center"
+         >
 
         <Button
             android:id="@+id/bouton_commencer"
@@ -22,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="70dp"
             android:text="@string/commencer"
             android:textSize="30sp" />
 

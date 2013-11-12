@@ -59,7 +59,7 @@ public class Main extends Activity {
 	public int screenWidth;
 	public int screenHeight;
 	private boolean premierScroll = true;
-	private AudioManager audioManager = null; 
+	private AudioManager audioManager = null;
 	// Boutons de réglages
 	TabHost onglets;
 
@@ -79,9 +79,11 @@ public class Main extends Activity {
 	private int widthScreen;
 
 	private int heightScreen;
-    private float density;
-    private float dpHeight;
-    private float dpWidth;
+	private float density;
+	private float dpHeight;
+	private float dpWidth;
+	private float diagonalInch;
+
 	public void onCreate(Bundle icicle)
 
 	{
@@ -92,13 +94,10 @@ public class Main extends Activity {
 
 		setContentView(R.layout.activity_main);
 
-		
-		
 		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-				audioManager
-                .getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-		
+				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
 		/*
 		 * int parentWidth = MeasureSpec.getSize(UNSPECIFIED); FrameLayout
 		 * _rootLayout = (FrameLayout) findViewById(R.id.tabcontent);
@@ -454,11 +453,14 @@ public class Main extends Activity {
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
-		density  = getResources().getDisplayMetrics().density;
+		density = getResources().getDisplayMetrics().density;
+		
 		dpHeight = heightScreen / density;
-	   dpWidth  = widthScreen / density;
+		dpWidth = widthScreen / density;
 		
-		
+        diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
+        Log.d("diagonalInch", String.valueOf(diagonalInch));
+        
 		imageScroller.setScreenWidth(widthScreen);
 
 		onglets = (TabHost) findViewById(R.id.tabhost);

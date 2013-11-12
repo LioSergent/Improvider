@@ -5,7 +5,9 @@ import android.os.Handler;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Point;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -150,6 +152,7 @@ public class Tutoriel extends Activity {
 			}
 		});
 
+		reSizeNormal();
 	}
 
 	@Override
@@ -271,4 +274,30 @@ public class Tutoriel extends Activity {
 		}
 
 	}
+private void reSizeNormal() {
+		
+		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
+			DisplayMetrics metrics = getResources().getDisplayMetrics();
+			int widthScreen = metrics.widthPixels;
+			int heightScreen = metrics.heightPixels;
+			float density = getResources().getDisplayMetrics().density;
+			
+			float dpHeight = heightScreen / density;
+			float dpWidth = widthScreen / density;
+			
+	       float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
+	    Log.d("Diagon", String.valueOf(diagonalInch));
+			
+	        if (diagonalInch<4) {
+	        
+	        	
+	        	
+	        	
+	      Button texte=(Button) findViewById(R.id.text_tutoriel);
+	        	texte.setTextSize(17);
+	        }
+	        
+	        }
+
+}
 }
