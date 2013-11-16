@@ -8,13 +8,13 @@
       <string name="title_activity_improvider_infos">Improvider</string>
     <string name="title_activity_improvider_credits">Improvider</string>
     <string name="title_activity_main">Main</string>
-    <string name="title_activity_commencer">Commencer</string>
-    <string name="text_commencer">Improvider va vous aider à réaliser votre propre improvisation musicale!</string>
-    <string name="montre_moi">Maniement de l\'application</string>
-    <string name="savoir_plus">Comment est-ce possible? Je ne suis pas musicien!</string>
-    <string name="title_activity_tutoriel">Tutoriel</string>
+    <string name="title_activity_commencer">Empezar</string>
+    <string name="text_commencer">¡Improvider va a ayudarle a realizar su improvisación!Improvider va vous aider à réaliser votre propre improvisation musicale!</string>
+    <string name="montre_moi">Manejar la app</string>
+    <string name="savoir_plus">¿Como es posible? No toco musica!</string>
+    <string name="title_activity_tutoriel">Tutorial</string>
     <string name="explication_premier_onglet">Dans l\'onglet Accomapgnement, </string>
-    <string name="title_activity_savoir_plus">SavoirPlus</string>
+    <string name="title_activity_savoir_plus">Saber mas</string>
    <string name="text_savoir_plus">Vous avez sûrement déjà vu des musiciens improviser leur solo de A à Z. Inspiration divine? 
        Travail acharné? Connaissance de milliers de phrases musicales?
        Peut-être, mais pas seulement. En fait, l\'outil principal pour improviser des solos, ce sont les gammes. 
@@ -22,31 +22,31 @@
         Improvider vous propose tout simplement de lancer un playback contenu dans l\'application, et choisit alors pour vous une gamme d\'improvisation classique et "l\'imprime" sur un piano tactile en colorant les touches que vous devriez jouer en vert.
         Après, il ne vous reste plus qu\'à expérimenter, vous laisser aller, et surtout, prendre du plaisir!
    </string>
-   <string name="precedent">Précédent</string>
-   <string name="titre">Improvisez facilement!</string>
-   <string name="jouer">Partie rapide</string>
-   <string name="commencer">Tutoriel</string>
-   <string name="credits">Crédits</string>
-   <string name="retour">Retour</string>
-   <string name="suivant">Suivant</string>
-   <string name="diapotuto1">Dans l\'onglet Accompagnement se trouvent les contrôles et les réglages du morceau qui soutient l\'impro</string>
-   <string name="diapotuto2">Dans l\'onglet piano se trouve le piano dont certaines touches sont colorées. Il s\'agit d\'une gamme adaptée à  l\'accompagnement.</string>
-   <string name="diapotuto3">L\'idée c\'est donc de jouer uniquement sur les touches colorées, ça sonnera forcément juste! Pour s\'en convaincre, il suffit d\'expérimenter et essayer toutes les touches.</string>
-   <string name="diapotuto4">Dans l\'onglet réglages, il est possible de règler quelques paramètres du piano</string>
-   <string name="letgo">C\'est parti!</string>
-   <string name="credits1">Musiques par Tom Bailey</string>
-   <string name="credits2">Retrouvez ces accompagnements sur</string>
+   <string name="precedent">Precedente</string>
+   <string name="titre">Improvisen facilmente!</string>
+   <string name="jouer">Jugar</string>
+   <string name="commencer">Tutorial</string>
+   <string name="credits">Creditos</string>
+   <string name="retour">Retorno</string>
+   <string name="suivant">Siguiente</string>
+   <string name="diapotuto1">En la pantalla acompañamiento, puede encontrar los controles y reglajes de la musica que sostene la impro.</string>
+   <string name="diapotuto2">En la pantalla Piano, puede encontrar el piano cuyas algunas teclas han sido coloradas. Es una scala adaptada al acompañamiento.</string>
+   <string name="diapotuto3">Pues la idea es jugar solo sobre estas teclas coloradas, el sonido será harmonio! Para volverse seguro, hay que experimentar y probar todas las teclas.</string>
+   <string name="diapotuto4">En la pentalla reglajes, se puede controlar algunos parametros del piano.</string>
+   <string name="letgo">Vamos!</string>
+   <string name="credits1">Musicas de Tom Bailey</string>
+   <string name="credits2">Los acompañamientos se pueden encontrar en</string>
    <string name="credits3">http://www.youtube.com/user/guitarbackingtracks4</string>
-   <string name="choix1">Choisissez votre accompagnement</string>
-   <string name="volume_accompagnement">Volume accompagnement</string>
-   <string name="retour_choix">Retour au choix de l\'accompagnement</string>
-   <string name="volume_piano">Volume piano</string>
+   <string name="choix1">Eliga su acompañamiento</string>
+   <string name="volume_accompagnement">Volumen del acompañamiento</string>
+   <string name="retour_choix">Retorno a la eleción del acompañamiento</string>
+   <string name="volume_piano">Volumen del piano</string>
    <string name="sustain">Sustain</string>
-   <string name="nombre_touches">Nombre de touches blanches visibles</string>
-   <string name="accompagnement">Accompagnement</string>
+   <string name="nombre_touches">Scala del piano (numero de teclas)</string>
+   <string name="accompagnement">Acompañamiento</string>
    <string name="piano">Piano</string>
-   <string name="reglages">Réglages</string>
-   <string name="chargement">Chargement</string>
+   <string name="reglages">Reglajes</string>
+   <string name="chargement">Cargando</string>
    
 
   
