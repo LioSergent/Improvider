@@ -56,6 +56,9 @@ public class Tutoriel extends Activity {
 
 		// Petit r√©glage selon la taille de l'√©cran. C'est sale, mais je
 		// voulais le faire t√¥t juste pour le tuto.
+		
+		
+		
 		if (screenHeight < 500) {
 			proportion = 0.37;
 		}
@@ -65,20 +68,33 @@ public class Tutoriel extends Activity {
 		}
 
 		if (screenHeight > 1000) {
-			proportion = 0.55;
+			proportion = 0.53;
 		}
 
 		if (screenHeight > 1200) {
-			proportion = 0.60;
+			proportion = 0.58;
 		}
 
 		if (screenHeight > 1400) {
-			proportion = 0.65;
+			proportion = 0.64;
 		}
-
-		Log.d("screenWidth", String.valueOf(screenWidth));
-		Log.d("screenHeight", String.valueOf(screenHeight));
-
+ 
+		
+// En fonction de la taille rÈelle de l'Ècran.
+		
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		int widthScreen = metrics.widthPixels;
+		int heightScreen = metrics.heightPixels;
+		float density = getResources().getDisplayMetrics().density;
+		
+		float dpHeight = heightScreen / density;
+		float dpWidth = widthScreen / density;
+		
+       float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
+       
+       proportion=
+		
+		
 		imageWidth = (int) (screenWidth * proportion);
 		imageHeight = (int) (imageWidth * proportionNexus4);
 

@@ -119,7 +119,7 @@ public class ChoixAccompagnement extends Activity {
 								false, true, false };
 						explicit.putExtra("Gamme", value);
 						explicit.putExtra("name",
-								"Hip pop style Cm by Tom Bailey ");
+								"Hip pop style Cm");
 						explicit.putExtra("Tonique", 0);
 						startActivity(explicit);
 

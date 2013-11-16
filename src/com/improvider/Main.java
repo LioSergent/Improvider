@@ -729,18 +729,21 @@ public class Main extends Activity {
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
 			sizeTexte = 12;
 			textview.setTextSize(sizeTexte);
+			Log.d("Taille", "Small");
 		}
 
 		else {
 			if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
 				sizeTexte = 14;
 				textview.setTextSize(sizeTexte);
+				Log.d("Taille", "Normal");
 			}
 
 			else {
 				if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
 					sizeTexte = 18;
 					textview.setTextSize(sizeTexte);
+					Log.d("Taille", "Large");
 				}
 
 				else {
@@ -749,9 +752,11 @@ public class Main extends Activity {
 						if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
 							sizeTexte = 22;
 							textview.setTextSize(sizeTexte);
+							Log.d("Taille", "Xlarge");
 						} else {
 							sizeTexte = 19;
 							textview.setTextSize(sizeTexte);
+							Log.d("Taille", "XLarge??");
 						}
 					}
 

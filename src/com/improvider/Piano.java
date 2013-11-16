@@ -131,7 +131,7 @@ public class Piano extends View {
 		// Mise en place des couleurs.
 
 		int vertToucheBlancheJouable = Color.rgb(10, 190, 10);
-		int vertToucheNoireJouable = Color.rgb(20, 70, 30);
+		int vertToucheNoireJouable = Color.rgb(20, 90, 30);
 		int bleuToucheTonique = Color.rgb(20, 150, 130);
 
 		// Création des pinceaux

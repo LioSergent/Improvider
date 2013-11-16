@@ -5,51 +5,46 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_choix_accompagnement">Improvider</string>
-      <string name="title_activity_improvider_infos">Improvider</string>
+    <string name="title_activity_improvider_infos">Improvider</string>
     <string name="title_activity_improvider_credits">Improvider</string>
     <string name="title_activity_main">Main</string>
-    <string name="title_activity_commencer">Commencer</string>
-    <string name="text_commencer">Improvider va vous aider à réaliser votre propre improvisation musicale!</string>
-    <string name="montre_moi">Maniement de l\'application</string>
-    <string name="savoir_plus">Comment est-ce possible? Je ne suis pas musicien!</string>
+    <string name="title_activity_commencer">Start</string>
+    <string name="text_commencer">Improvider will help you to make your own musical improvisation!</string>
+    <string name="montre_moi">Handling the app</string>
+    <string name="savoir_plus">How is that possible? I am not a musician!</string>
     <string name="title_activity_tutoriel">Tutoriel</string>
     <string name="explication_premier_onglet">Dans l\'onglet Accomapgnement, </string>
     <string name="title_activity_savoir_plus">SavoirPlus</string>
-   <string name="text_savoir_plus">Vous avez sûrement déjà vu des musiciens improviser leur solo de A à Z. Inspiration divine? 
-       Travail acharné? Connaissance de milliers de phrases musicales?
-       Peut-être, mais pas seulement. En fait, l\'outil principal pour improviser des solos, ce sont les gammes. 
-        L\'idée pour un musicien, c\'est de chercher une gamme adaptée à l\'accompagnement, suivant les accords utilisés par les autres musiciens. Puis de nombreux musiciens "impriment" visuellement cette gamme sur leur instrument. Ensuite, ils savent qu\'ils ne peuvent jouer que sur les touches, cases, boutons... qu\'ils ont "imprimés".
-        Improvider vous propose tout simplement de lancer un playback contenu dans l\'application, et choisit alors pour vous une gamme d\'improvisation classique et "l\'imprime" sur un piano tactile en colorant les touches que vous devriez jouer en vert.
-        Après, il ne vous reste plus qu\'à expérimenter, vous laisser aller, et surtout, prendre du plaisir!
-   </string>
-   <string name="precedent">Précédent</string>
-   <string name="titre">Improvisez facilement!</string>
-   <string name="jouer">Partie rapide</string>
-   <string name="commencer">Tutoriel</string>
-   <string name="credits">Crédits</string>
-   <string name="retour">Retour</string>
-   <string name="suivant">Suivant</string>
-   <string name="diapotuto1">Dans l\'onglet Accompagnement se trouvent les contrôles et les réglages du morceau qui soutient l\'impro</string>
-   <string name="diapotuto2">Dans l\'onglet piano se trouve le piano dont certaines touches sont colorées. Il s\'agit d\'une gamme adaptée à  l\'accompagnement.</string>
-   <string name="diapotuto3">L\'idée c\'est donc de jouer uniquement sur les touches colorées, ça sonnera forcément juste! Pour s\'en convaincre, il suffit d\'expérimenter et essayer toutes les touches.</string>
-   <string name="diapotuto4">Dans l\'onglet réglages, il est possible de règler quelques paramètres du piano</string>
-   <string name="letgo">C\'est parti!</string>
-   <string name="credits1">Musiques par Tom Bailey</string>
-   <string name="credits2">Retrouvez ces accompagnements sur</string>
-   <string name="credits3">http://www.youtube.com/user/guitarbackingtracks4</string>
-   <string name="choix1">Choisissez votre accompagnement</string>
-   <string name="volume_accompagnement">Volume accompagnement</string>
-   <string name="retour_choix">Retour au choix de l\'accompagnement</string>
-   <string name="volume_piano">Volume piano</string>
-   <string name="sustain">Sustain</string>
-   <string name="nombre_touches">Nombre de touches blanches visibles</string>
-   <string name="accompagnement">Accompagnement</string>
-   <string name="piano">Piano</string>
-   <string name="reglages">Réglages</string>
-   <string name="chargement">Chargement</string>
-   
-
-  
-   
+    <string name="text_savoir_plus">You have surely seen some musicians improvise their solo completely? Divine inspiration?
+       Years of work? Knowledge of thousands of music phrases?
+       Maybe, but not only. Actually, the main tool to improvise solos are the scales.
+       For a musicien, the idea is to search a scale adapted to the backing according to the chords played by his fellow musicians. Then, many musicians "print" visually that scale on their instrument. After that, they know they can play only on the keys/cases/buttons... they previously "printed".
+       Improvider simply suggests you to launch a playback already contained within the app, and choose for you a classic scale for improvising on that track, and print it on the tactile keyboard by coloring the keys you should play with green.
+       Now, up to you to experiment, let you feelings express themselves, and by the way, enjoy!            </string>
+    <string name="precedent">Previous</string>
+    <string name="titre">Easy Impro!</string>
+    <string name="jouer">Play</string>
+    <string name="commencer">Tutorial</string>
+    <string name="credits">Credits</string>
+    <string name="retour">Return</string>
+    <string name="suivant">Next</string>
+    <string name="diapotuto1"> Within the backing tab, you will find the controls and settings concerning the backing.</string>
+    <string name="diapotuto2">Within the Piano tab, you will find the keyboard which some keys have been colored. It is an adapted scale for the backing.</string>
+    <string name="diapotuto3">The idea is: you should only play on the colored keys, it will sound alright! To convince yourself, just experiment and try other keys.</string>
+    <string name="diapotuto4">Within the settings tab, it is possible to set some parameters of the keyboard.</string>
+    <string name="letgo">Let\'s go!</string>
+    <string name="credits1">Backing</string>
+    <string name="credits2">Find those backing tracks at</string>
+    <string name="credits3">http://www.youtube.com/user/guitarbackingtracks4</string>
+    <string name="choix1">Choose your backing track</string>
+    <string name="volume_accompagnement">Backing volume</string>
+    <string name="retour_choix">Back to the backing choice page</string>
+    <string name="volume_piano">Piano volume</string>
+    <string name="sustain">Sustain</string>
+    <string name="nombre_touches">Piano scale: number of white keys</string>
+    <string name="accompagnement">Backing</string>
+    <string name="piano">Piano</string>
+    <string name="reglages">Settings</string>
+    <string name="chargement">Loading</string>
 
 </resources>

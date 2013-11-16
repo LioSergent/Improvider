@@ -23,6 +23,8 @@ public final class R {
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
+ Default screen margins, per the Android Design guidelines. 
+ Default screen margins, per the Android Design guidelines. 
          */
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
@@ -226,25 +228,55 @@ public final class R {
         res/values-v11/styles.xml on API 14+ devices.
     
  API 14 theme customizations can go here. 
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
          */
         public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int MonTheme=0x7f080003;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int ThemeMenu=0x7f080002;
         public static final int btnStyleGenoa=0x7f080007;
         public static final int falseButton=0x7f080008;
         public static final int seekBarStyle=0x7f080006;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int themeMain=0x7f080004;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int themeMain2=0x7f080005;
     }
