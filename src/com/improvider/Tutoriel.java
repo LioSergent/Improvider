@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,8 +92,8 @@ public class Tutoriel extends Activity {
 		float dpWidth = widthScreen / density;
 		
        float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
-       
-       proportion=
+       Log.d("Diag", String.valueOf(diagonalInch));
+       proportion=0.48+diagonalInch*0.012;
 		
 		
 		imageWidth = (int) (screenWidth * proportion);
@@ -177,6 +178,7 @@ public class Tutoriel extends Activity {
 		getMenuInflater().inflate(R.menu.tutoriel, menu);
 		return true;
 	}
+
 
 	private boolean diapoPrecedente(int i) {
 

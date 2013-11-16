@@ -47,7 +47,7 @@ public final class R {
         public static final int progress=0x7f02000e;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0035;
+        public static final int action_settings=0x7f0a0036;
         public static final int auteur=0x7f0a0015;
         public static final int avancement_bar=0x7f0a0019;
         public static final int avancement_max=0x7f0a0018;
@@ -70,10 +70,11 @@ public final class R {
         public static final int bouton_reglages_retour=0x7f0a002d;
         public static final int bouton_retour_savoir=0x7f0a0030;
         public static final int bouton_savoir_plus=0x7f0a000a;
-        public static final int bouton_tutoriel_precedent=0x7f0a0033;
-        public static final int bouton_tutoriel_suivant=0x7f0a0034;
+        public static final int bouton_tutoriel_precedent=0x7f0a0034;
+        public static final int bouton_tutoriel_suivant=0x7f0a0035;
         public static final int image_scroller=0x7f0a0022;
-        public static final int image_tutoriel=0x7f0a0032;
+        public static final int image_tutoriel=0x7f0a0033;
+        public static final int layout_tuto=0x7f0a0031;
         public static final int linear_choix=0x7f0a0004;
         public static final int nbre_blanches_visibles_bar=0x7f0a002c;
         public static final int nbre_blanches_visibles_text=0x7f0a0029;
@@ -91,7 +92,7 @@ public final class R {
         public static final int text_credits2=0x7f0a0010;
         public static final int text_credits3=0x7f0a0011;
         public static final int text_savoir_plus=0x7f0a002e;
-        public static final int text_tutoriel=0x7f0a0031;
+        public static final int text_tutoriel=0x7f0a0032;
         public static final int titre_choix=0x7f0a0000;
         public static final int volume_accompagnement_bar=0x7f0a001d;
         public static final int volume_accompagnement_moins=0x7f0a001b;

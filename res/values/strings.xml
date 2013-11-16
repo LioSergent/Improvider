@@ -10,17 +10,17 @@
     <string name="title_activity_main">Main</string>
     <string name="title_activity_commencer">Start</string>
     <string name="text_commencer">Improvider will help you to make your own musical improvisation!</string>
-    <string name="montre_moi">Handling the app</string>
+    <string name="montre_moi">Manipulating the app</string>
     <string name="savoir_plus">How is that possible? I am not a musician!</string>
-    <string name="title_activity_tutoriel">Tutoriel</string>
+    <string name="title_activity_tutoriel">Tutorial</string>
     <string name="explication_premier_onglet">Dans l\'onglet Accomapgnement, </string>
-    <string name="title_activity_savoir_plus">SavoirPlus</string>
+    <string name="title_activity_savoir_plus">Know more</string>
     <string name="text_savoir_plus">You have surely seen some musicians improvise their solo completely? Divine inspiration?
        Years of work? Knowledge of thousands of music phrases?
        Maybe, but not only. Actually, the main tool to improvise solos are the scales.
        For a musicien, the idea is to search a scale adapted to the backing according to the chords played by his fellow musicians. Then, many musicians "print" visually that scale on their instrument. After that, they know they can play only on the keys/cases/buttons... they previously "printed".
        Improvider simply suggests you to launch a playback already contained within the app, and choose for you a classic scale for improvising on that track, and print it on the tactile keyboard by coloring the keys you should play with green.
-       Now, up to you to experiment, let you feelings express themselves, and by the way, enjoy!            </string>
+       Now, up to you to experiment, let your feelings express themselves, and by the way, enjoy!            </string>
     <string name="precedent">Previous</string>
     <string name="titre">Easy Impro!</string>
     <string name="jouer">Play</string>

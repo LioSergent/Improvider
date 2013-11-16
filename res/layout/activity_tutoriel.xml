@@ -11,6 +11,7 @@
     tools:context=".Tutoriel" >
 
     <RelativeLayout
+         android:id="@+id/layout_tuto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
