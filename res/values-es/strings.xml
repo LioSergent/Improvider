@@ -15,12 +15,11 @@
     <string name="title_activity_tutoriel">Tutorial</string>
     <string name="explication_premier_onglet">Dans l\'onglet Accomapgnement, </string>
     <string name="title_activity_savoir_plus">Saber mas</string>
-   <string name="text_savoir_plus">Vous avez sûrement déjà vu des musiciens improviser leur solo de A à Z. Inspiration divine? 
-       Travail acharné? Connaissance de milliers de phrases musicales?
-       Peut-être, mais pas seulement. En fait, l\'outil principal pour improviser des solos, ce sont les gammes. 
-        L\'idée pour un musicien, c\'est de chercher une gamme adaptée à l\'accompagnement, suivant les accords utilisés par les autres musiciens. Puis de nombreux musiciens "impriment" visuellement cette gamme sur leur instrument. Ensuite, ils savent qu\'ils ne peuvent jouer que sur les touches, cases, boutons... qu\'ils ont "imprimés".
-        Improvider vous propose tout simplement de lancer un playback contenu dans l\'application, et choisit alors pour vous une gamme d\'improvisation classique et "l\'imprime" sur un piano tactile en colorant les touches que vous devriez jouer en vert.
-        Après, il ne vous reste plus qu\'à expérimenter, vous laisser aller, et surtout, prendre du plaisir!
+   <string name="text_savoir_plus">Probablemente, ya ha visto músicos improvisar sus solo totalmente. Divina inspiración?
+       Años de trabajo? Conocimiento de miles de frases musicales?
+       Tal vez, pero no es todo. La verdad es que la herrramienta principal para improvisar solos, son la scalas.
+       La idea para un músico es buscar una scala adaptada al acompañamiento, según los accordes de los otros músicos. Después, muchos músicos "imprimen" visualmente esta scala sobre su instrumento. Pues saben que solo pueden jugar sobre estas teclas, butones...
+       Improvider le propone imprimir esta scala sobre el piano tactíl de la app. Entonces, solo le queda experimentar, dejar su feeling, y disfrutar!
    </string>
    <string name="precedent">Precedente</string>
    <string name="titre">Improvisen facilmente!</string>

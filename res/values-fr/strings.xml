@@ -42,7 +42,7 @@
    <string name="retour_choix">Retour au choix de l\'accompagnement</string>
    <string name="volume_piano">Volume piano</string>
    <string name="sustain">Sustain</string>
-   <string name="nombre_touches">Nombre de touches blanches visibles</string>
+   <string name="nombre_touches">Echelle du piano: nombre de touches visibles</string>
    <string name="accompagnement">Accompagnement</string>
    <string name="piano">Piano</string>
    <string name="reglages">Réglages</string>

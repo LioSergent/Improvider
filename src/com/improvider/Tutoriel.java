@@ -152,7 +152,7 @@ public class Tutoriel extends Activity {
 									false, false, false };
 							explicit.putExtra("Gamme", value);
 							explicit.putExtra("name",
-									"Blues Soul Em by Tom Bailey ");
+									"Blues Soul Em");
 							explicit.putExtra("Tonique", 2);
 							startActivity(explicit);
 
