@@ -13,6 +13,7 @@ import android.graphics.Shader.TileMode;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -60,7 +61,8 @@ public class ImageScroller extends View {
 	private float dx3 = 0;
 	private float dx4 = 0;
 
-	private final double proportionInitiale = 0.875;
+	boolean justZoomed = false;
+	private double proportionInitiale = 0.875;
 
 	Context contexte;
 
@@ -408,88 +410,117 @@ public class ImageScroller extends View {
 		// Pour zoom-in, zoom-out
 
 		if (pointerCount == 2) {
-			/*
-			 * float x3b = event.getX(0); float x4b = event.getX(1); if (x3!=0)
-			 * { dx3=x3b-x3; dx4=x4b-x4; x3=x3b; x4=x4b; } else { x3=x3b;
-			 * x4=x4b;
-			 * 
-			 * } double prop2; double
-			 * prop1=this.piano.getProportionPianoHorizontale(); float k=(float)
-			 * (this.screenWidth/(this.proportionInitiale));
-			 * 
-			 * int positionScrollInitiale=this.scroller.getScrollX();
-			 * 
-			 * if (x4>x3) {
-			 * 
-			 * prop2=prop1-(dx4-dx3)/k; Log.d("Prop2", String.valueOf(prop2));
-			 * 
-			 * double octaves= (double) nbreOctave; double maille= 1/octaves;
-			 * 
-			 * if (prop2>maille&&prop2<nbreOctave) {
-			 * this.piano.setProportionPianoHorizontale(prop2); } }
-			 * 
-			 * else { prop2=prop1-(dx3-dx4)/k; Log.d("Prop2",
-			 * String.valueOf(prop2));
-			 * 
-			 * double octaves= (double) nbreOctave; double maille= 1/octaves;
-			 * 
-			 * 
-			 * if ( prop2>maille&&prop2<nbreOctave) {
-			 * this.piano.setProportionPianoHorizontale(prop2); } }
-			 * 
-			 * //Scroll de repla�age pendant le redimensionnement
-			 * 
-			 * int newPositionToScroll=(int)
-			 * ((prop2/prop1*positionScrollInitiale
-			 * +this.screenWidth*((prop2/prop1)-1)));
-			 * 
-			 * Log.d("NewPositionToScroll",
-			 * String.valueOf(newPositionToScroll)); if
-			 * (newPositionToScroll>0&&newPositionToScroll
-			 * <this.piano.getLargeurToucheBlanche()*7*nbreOctave) { //
-			 * this.scroller.scrollTo(newPositionToScroll, 0);
-			 * 
-			 * 
-			 * 
-			 * pointerCount = event.getPointerCount(); if (pointerCount==1) {
-			 * x3=0; x4=0; dx3=0; dx4=0;
-			 * 
-			 * } }
-			 */
-		} else {
 
-			if (x3 == 0) {
-				int pointerIndex = MotionEventCompat.getActionIndex(event);
-				int pointerId = event.getPointerId(pointerIndex);
-				int y = (int) MotionEventCompat.getY(event, pointerIndex);
-				int x = (int) MotionEventCompat.getX(event, pointerIndex);
-				int offsetMedium = (int) ((largeurToucheBlanche * this
-						.getNbreTouchePiano()) / 2);
-				int x2 = x - offsetMedium;
-				dx1 = x2 - x1;
-				x1 = x2;
-				int toMove = (int) ((dx1)
-						* this.piano.getProportionPianoHorizontale() / this.proportionPianoHorizontale);
-				this.scroller.scrollBy(toMove, 0);
+			float x3b = event.getX(0);
+			float x4b = event.getX(1);
+			
+			
+				dx3 = x3b - x3;
+				dx4 = x4b - x4;
+				
+				if (ev== MotionEvent.ACTION_MOVE && x3!=0) {
+			double prop2;
+			double prop1 = this.piano.getProportionPianoHorizontale();
+			float k = (float) (this.screenWidth / (this.proportionInitiale));
 
-				if (ev == MotionEvent.ACTION_UP) {
-					x1 = (int) (this.scroller.getScrollX()
-							* this.proportionPianoHorizontale / this.piano
-							.getProportionPianoHorizontale());
-					dx1 = 0;
+			int positionScrollInitiale = this.scroller.getScrollX();
+
+			if (x4 > x3) {
+
+				prop2 = prop1 - (dx4 - dx3) / k;
+				
+
+				double octaves = (double) nbreOctave;
+				double maille = 1 / octaves;
+
+				if (prop2 > maille && prop2 < 2*nbreOctave) {
+					this.piano.setProportionPianoHorizontale(prop2);
 				}
 			}
-			x3 = 0;
-			x4 = 0;
-			dx3 = 0;
-			dx4 = 0;
+
+			else {
+				prop2 = prop1 - (dx3 - dx4) / k;
+				
+
+				double octaves = (double) nbreOctave;
+				double maille = 1 / octaves;
+
+				if (prop2 > maille && prop2 < 2*nbreOctave) {
+					this.piano.setProportionPianoHorizontale(prop2);
+				}
+			}
+
+			// Scroll de repla�age pendant le redimensionnement
+
+			int newPositionToScroll = (int) ((prop2 / prop1
+					* positionScrollInitiale + this.screenWidth
+					* ((prop2 / prop1) - 1)));
+
+			int correction= (int) ((3*(prop1-prop2)*this.screenWidth)/4);
+			
+			
+			if (newPositionToScroll > 0
+					&& newPositionToScroll < this.piano
+							.getLargeurToucheBlanche() * 7 * nbreOctave) { //
+				this.scroller.scrollTo(newPositionToScroll+correction, 0);
+				justZoomed = true;
+
+				
+			if(ev== MotionEvent.ACTION_POINTER_UP) {
+				Log.d("ActionUp2pointers", String.valueOf(x3));
+				x3 = 0;
+				x4 = 0;
+				dx3 = 0;
+				dx4 = 0;
+				
+
+			}
+			
+			}		
+}
+				
+				x3 = x3b;
+				x4 = x4b;
+				
+		}
+		else {
+
+			if (pointerCount == 1) {
+				if (justZoomed == false) {
+					int pointerIndex = MotionEventCompat.getActionIndex(event);
+					int pointerId = event.getPointerId(pointerIndex);
+					int y = (int) MotionEventCompat.getY(event, pointerIndex);
+					int x = (int) MotionEventCompat.getX(event, pointerIndex);
+					int offsetMedium = (int) ((largeurToucheBlanche * this
+							.getNbreTouchePiano()) / 2);
+					int x2 = x - offsetMedium;
+					dx1 = x2 - x1;
+					x1 = x2;
+					int toMove = (int) ((dx1)
+							* this.piano.getProportionPianoHorizontale() / this.proportionPianoHorizontale);
+					this.scroller.scrollBy(toMove, 0);
+
+					if (ev == MotionEvent.ACTION_UP) {
+						x1 = (int) (this.scroller.getScrollX()
+								* this.proportionPianoHorizontale / this.piano
+								.getProportionPianoHorizontale());
+						dx1 = 0;
+					}
+				}
+				x3 = 0;
+				x4 = 0;
+				dx3 = 0;
+				dx4 = 0;
+
+				justZoomed = false;
+			}
 
 		}
-		invalidate();
 
+		
+	
 		return true;
 	}
-
 	// Fonction qui récupère les infos pour le son et les stocke dans deux
 	// tableaux ayant la même structure que le tableau des états des touches
 
@@ -579,6 +610,10 @@ public class ImageScroller extends View {
 		int x2 = (int) (x * this.proportionPianoHorizontale / this.piano
 				.getProportionPianoHorizontale());
 		this.x1 = x2;
+	}
+	
+	public void setProportionInitiale(double prop) {
+		this.proportionInitiale=prop;
 	}
 
 }

@@ -323,7 +323,8 @@ public class Main extends Activity {
 		imageScroller.setPianoHorizontalScrollView(scroller);
 		imageScroller.setGamme(Gamme);
 		imageScroller.setTonique(tonique);
-
+        scroller.setImageScroller(imageScroller);
+        
 		// Barre de réglages du nombre de touches apparaissant à l'écran
 
 		nbreBlanchesVisiblesBar = (SeekBar) findViewById(R.id.nbre_blanches_visibles_bar);
@@ -720,6 +721,8 @@ public class Main extends Activity {
 
 			}
 		}
+		
+		imageScroller.setProportionInitiale(this.piano.proportionPianoHorizontale);
 	}
 
 	private void setTextSizeOnglets(TextView textview) {

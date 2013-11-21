@@ -28,8 +28,8 @@ public class Piano extends View {
 	private final static double proportionToucheNoireHauteur = 0.75;
 	private final static double proportionToucheNoireLargeur = 0.32;
 	private final static int nbreOctave = 3;
-	private double proportionPianoVerticale = 0.75;
-	private double proportionPianoHorizontale = 0.875;
+	public double proportionPianoVerticale = 0.75;
+	public double proportionPianoHorizontale = 0.875;
 
 	/*
 	 * Id du pointeur, numero de la touche (en commencant à 0) (+ 10 si noire)

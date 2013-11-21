@@ -12,6 +12,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 
 	public double proportionHauteur = 0.86;
 	private OverScroller myScroller;
+	private ImageScroller imageScroller;
 
 	public PianoHorizontalScrollView(Context context) {
 
@@ -178,6 +179,8 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		 * 
 		 * return super.onTouchEvent(event); }
 		 */
+		
+		imageScroller.invalidate();
 		return false;
 	}
 
@@ -196,12 +199,15 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		// Now see if we are scrolling horizontally with the custom gesture
 		// detector
 		if (y > hauteur) {
+			imageScroller.invalidate();
 			return result;
 		}
 		// If not scrolling vertically (y<hauteur), don't hijack the event.
 		else {
+			imageScroller.invalidate();
 			return false;
 		}
+		
 	}
 
 	public void customSmoothScrollBy(int dx, int dy) {
@@ -218,10 +224,15 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 
 		myScroller.startScroll(scrollX, getScrollY(), dx, 0, 2800);
 		invalidate();
+		imageScroller.invalidate();
 	}
 
 	public void customSmoothScrollTo(int x, int y) {
 		customSmoothScrollBy(x - getScrollX(), y - getScrollY());
+	}
+	
+	public void setImageScroller(ImageScroller imageScroller) {
+		this.imageScroller=imageScroller;
 	}
 
 }
