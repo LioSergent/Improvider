@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -475,11 +476,15 @@ public class Main extends Activity {
 		ongletMorceau.setIndicator(acc);
 		onglets.addTab(ongletMorceau);
 		onglets.getTabWidget().getChildAt(0).getLayoutParams().height = (int) (heightScreen * 0.11);
-		// onglets.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.tab_bg);
-
+		onglets.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.tab_bg_selector);
+		TextView tvb = (TextView) onglets.getTabWidget().getChildAt(0)
+				.findViewById(android.R.id.title);
+		
+	    tvb.setTextColor(Color.WHITE);
+	    tvb.setTextSize(0, 30);
 		// Onglet "Piano"
 		TabHost.TabSpec ongletPiano = onglets.newTabSpec("ongletPiano");
-
+		
 		ongletPiano.setContent(R.id.tab2);
 		String pia = getString(R.string.piano);
 		Log.d("TabHost", "Onglet 2");
@@ -487,7 +492,7 @@ public class Main extends Activity {
 		onglets.addTab(ongletPiano);
 		onglets.getTabWidget().getChildAt(1).getLayoutParams().height = (int) (heightScreen * 0.11);
 
-		// onglets.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.tab_bg);
+		onglets.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.tab_bg_selector);
 
 		onglets.getTabWidget().getChildAt(1)
 				.setOnTouchListener(new View.OnTouchListener() {
@@ -540,14 +545,14 @@ public class Main extends Activity {
 		onglets.addTab(ongletReglages);
 		onglets.getTabWidget().getChildAt(2).getLayoutParams().height = (int) (heightScreen * 0.11);
 
-		// onglets.getTabWidget().getChildAt(2).setBackgroundResource(R.drawable.tab_bg);
+		onglets.getTabWidget().getChildAt(2).setBackgroundResource(R.drawable.tabvert);
 
 		for (int i = 0; i < onglets.getTabWidget().getChildCount(); i++) {
 			TextView tv = (TextView) onglets.getTabWidget().getChildAt(i)
 					.findViewById(android.R.id.title);
 
 			setTextSizeOnglets(tv);
-
+			onglets.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.tab_bg_selector);
 		}
 		setDimensionsOngletPiano();
 
@@ -725,41 +730,48 @@ public class Main extends Activity {
 		imageScroller.setProportionInitiale(this.piano.proportionPianoHorizontale);
 	}
 
+	
+	
 	private void setTextSizeOnglets(TextView textview) {
 		int sizeTexte = 18;
 		textview.setTextSize(sizeTexte);
 
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
-			sizeTexte = 12;
+			sizeTexte = 14;
 			textview.setTextSize(sizeTexte);
-			Log.d("Taille", "Small");
+			
+			
+			
+		    textview.setTextColor(Color.BLACK);
 		}
 
 		else {
 			if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
-				sizeTexte = 14;
+				sizeTexte = 18;
 				textview.setTextSize(sizeTexte);
-				Log.d("Taille", "Normal");
+				textview.setTextColor(Color.BLACK);
 			}
 
 			else {
 				if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
-					sizeTexte = 18;
+					sizeTexte = 20;
 					textview.setTextSize(sizeTexte);
-					Log.d("Taille", "Large");
+					textview.setTextColor(Color.BLACK);
 				}
 
 				else {
 					if (android.os.Build.VERSION.SDK_INT >= 13) {
 
 						if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-							sizeTexte = 22;
+							sizeTexte = 24;
 							textview.setTextSize(sizeTexte);
-							Log.d("Taille", "Xlarge");
+							textview.setTextColor(Color.BLACK);
+							
 						} else {
-							sizeTexte = 19;
+							sizeTexte = 21;
 							textview.setTextSize(sizeTexte);
-							Log.d("Taille", "XLarge??");
+							textview.setTextColor(Color.BLACK);
+							
 						}
 					}
 

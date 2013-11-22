@@ -45,6 +45,11 @@ public final class R {
         public static final int pause=0x7f02000c;
         public static final int play=0x7f02000d;
         public static final int progress=0x7f02000e;
+        public static final int tab_bg_selector=0x7f02000f;
+        public static final int tabfocused=0x7f020010;
+        public static final int tabnotfocused=0x7f020011;
+        public static final int tabpressed=0x7f020012;
+        public static final int tabvert=0x7f020013;
     }
     public static final class id {
         public static final int action_settings=0x7f0a0036;
