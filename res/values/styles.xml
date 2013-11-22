@@ -76,9 +76,23 @@
           <item name="android:progressDrawable">@drawable/seekbarbackground</item>
           <item name="android:minHeight">3dip</item>
           <item name="android:maxHeight">4dip</item>
-          <item name="android:thumb">@drawable/curseurbis</item>
+          <item name="android:thumb">@drawable/curseur3</item>
           
-        </style>       
+        </style>  
+        
+   <style name="boutonrond" parent="@android:style/Widget.Button">
+       <item name="android:textSize">20sp</item>       
+       <item name="android:textColor">@color/white</item>
+       <item name="android:gravity">center</item>
+      <item name="android:typeface">sans</item>
+      <item name="android:textStyle">bold</item>
+       <item name="android:shadowColor">#000000</item>
+       <item name="android:shadowDx">1</item>
+       <item name="android:shadowDy">1</item>
+       <item name="android:shadowRadius">0.6</item>
+       <item name="android:background">@drawable/round_button</item>
+       <item name="android:padding">50dip</item>
+   </style>
     <style name="AppTheme" parent="android:Theme.Light" />
 
 </resources>

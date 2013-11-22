@@ -40,11 +40,13 @@
     <string name="volume_accompagnement">Backing volume</string>
     <string name="retour_choix">Back to the backing choice page</string>
     <string name="volume_piano">Piano volume</string>
-    <string name="sustain">Sustain</string>
+    <string name="sustain"> Sustain</string>
+    <string name="sustain_explanation">If sustain is enabled, the sound will continue even if you release your finger.</string>
+    <string name="ok">OK</string>
     <string name="nombre_touches">Piano scale: number of white keys</string>
     <string name="accompagnement">Backing</string>
     <string name="piano">Piano</string>
     <string name="reglages">Settings</string>
     <string name="chargement">Loading</string>
-
+<string name="interogation_point">\?</string>
 </resources>

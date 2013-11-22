@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /*
@@ -16,7 +17,7 @@ public class Musique extends Activity implements OnClickListener {
 	MediaPlayer player;
 	boolean enCoursLecture = false; // Pour savoir si l'on est en train de jouer
 									// un morceau
-	Button boutonPlay;
+	public ImageButton boutonPlay;
 	Context context; // Permettra de récupérer les informations concernant
 						// l'instance d'Improvider
 	View view;
@@ -31,9 +32,10 @@ public class Musique extends Activity implements OnClickListener {
 	public Musique(View v, Context c) {
 		context = c;
 		view = v;
-		boutonPlay = (Button) v.findViewById(R.id.boutonPlay);
-		boutonPlay.setBackgroundResource(R.drawable.play);
-		Auteur = (TextView) v.findViewById(R.id.auteur);
+		boutonPlay = (ImageButton) v.findViewById(R.id.boutonPlay);
+		
+			
+				Auteur = (TextView) v.findViewById(R.id.auteur);
 		this.setAuteur("...");
 
 		// Association du bouton Play à la lecture / pause du morceau
@@ -45,12 +47,12 @@ public class Musique extends Activity implements OnClickListener {
 		if (enCoursLecture) {
 			player.pause();
 			enCoursLecture = false;
-			boutonPlay.setBackgroundResource(R.drawable.play);
+			boutonPlay.setBackgroundResource(R.drawable.playbis);
 
 		} else if (!enCoursLecture) {
 			player.start();
 			enCoursLecture = true;
-			boutonPlay.setBackgroundResource(R.drawable.pause);
+			boutonPlay.setBackgroundResource(R.drawable.pausebis);
 		}
 
 	}

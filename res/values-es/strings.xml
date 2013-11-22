@@ -10,37 +10,39 @@
     <string name="title_activity_main">Main</string>
     <string name="title_activity_commencer">Empezar</string>
     <string name="text_commencer">¡Improvider va a ayudarle a realizar su propia improvisación!</string>
-    <string name="montre_moi">Como usar la app</string>
-    <string name="savoir_plus">¿Como es posible? ¡No toco música!</string>
+    <string name="montre_moi">Cómo usar la app</string>
+    <string name="savoir_plus">¿Cómo es posible? ¡No toco música!</string>
     <string name="title_activity_tutoriel">Tutorial</string>
     <string name="explication_premier_onglet">Dans l\'onglet Accomapgnement, </string>
     <string name="title_activity_savoir_plus">Saber mas</string>
-   <string name="text_savoir_plus">Probablemente, ya ha visto músicos improvisar sus solo totalmente. Divina inspiración?
+   <string name="text_savoir_plus">Probablemente, ya ha visto músicos improvisar sus solos totalmente. Divina inspiración?
        Años de trabajo? Conocimiento de miles de frases musicales?
        Tal vez, pero no es todo. La verdad es que la herrramienta principal para improvisar solos, son las escalas.
-       La idea para un músico es buscar una escala adaptada al acompañamiento, según los accordes de los otros músicos. Después, muchos músicos "imprimen" visualmente esta escala sobre su instrumento. Pues saben que solo pueden jugar sobre estas teclas, botones...
+       La idea para un músico es buscar una escala adaptada al acompañamiento según los accordes de los otros músicos. Después, muchos músicos "imprimen" visualmente esta escala sobre su instrumento, pues saben que solo pueden tocar sobre estas teclas, botones...
        Improvider le propone imprimir esta escala sobre el piano tactíl de la app. Entonces, solo le queda experimentar, dejar su feeling, y disfrutar!
    </string>
    <string name="precedent">Precedente</string>
    <string name="titre">Improvisen fácilmente!</string>
    <string name="jouer">Jugar</string>
    <string name="commencer">Tutorial</string>
-   <string name="credits">Crédito</string>
-   <string name="retour">Retorno</string>
+   <string name="credits">Créditos</string>
+   <string name="retour">Retornar</string>
    <string name="suivant">Siguiente</string>
-   <string name="diapotuto1">En la pantalla acompañamiento, puede encontrar los controles y reglajes de la música que sostiene la impro.</string>
-   <string name="diapotuto2">En la pantalla Piano, puede encontrar el piano cuyas algunas teclas han sido coloradas. Es una scala adaptada al acompañamiento.</string>
-   <string name="diapotuto3">Pues la idea es jugar solo sobre estas teclas coloradas, el sonido será harmonio! Para volverse seguro, hay que experimentar y probar todas las teclas.</string>
+   <string name="diapotuto1">En la pantalla de acompañamiento, puede encontrar los controles y reglajes de la música que sostiene la impro.</string>
+   <string name="diapotuto2">En la pantalla Piano, puede encontrar el piano en el cual algunas teclas han sido coloreadas que representan una escala adaptada al acompañamiento.</string>
+   <string name="diapotuto3">La idea es jugar solo sobre estas teclas coloreadas, el sonido será harmonioso! Para asegurarse, puede experimentar y probar todas las teclas.</string>
    <string name="diapotuto4">En la pantalla reglajes, se puede controlar algunos parámetros del piano.</string>
    <string name="letgo">Vamos!</string>
-   <string name="credits1">Músicas de Tom Bailey</string>
+   <string name="credits1">Música de Tom Bailey</string>
    <string name="credits2">Los acompañamientos se pueden encontrar en</string>
    <string name="credits3">http://www.youtube.com/user/guitarbackingtracks4</string>
    <string name="choix1">Eliga su acompañamiento</string>
    <string name="volume_accompagnement">Volumen del acompañamiento</string>
-   <string name="retour_choix">Retorno a la elección del acompañamiento</string>
+   <string name="retour_choix">Retornar a la elección del acompañamiento</string>
    <string name="volume_piano">Volumen del piano</string>
-   <string name="sustain">Sustain</string>
+   <string name="sustain"> Sustain</string>
+   <string name="sustain_explanation">Cuando sustain está activado, el sonido sigue aunque haya quitado el dedo.</string>
+   <string name="ok">OK</string>
    <string name="nombre_touches">Escala del piano (número de teclas)</string>
    <string name="accompagnement">Acompañamiento</string>
    <string name="piano">Piano</string>

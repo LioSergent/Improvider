@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -25,6 +27,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.SeekBar;
@@ -70,7 +73,10 @@ public class Main extends Activity {
 	private Button boutonMorceauRetour;
 	private Button boutonReglageRetour;
 	public boolean sustain = true;
-	private CheckBox sustainBox;
+
+	private ImageButton sustainButton;
+	private TextView sustainText;
+	private ImageButton sustainInfoButton;
 	public TextView tempsMax;
 	public TextView tempsMin;
 	public SeekBar nbreBlanchesVisiblesBar;
@@ -84,7 +90,8 @@ public class Main extends Activity {
 	private float dpHeight;
 	private float dpWidth;
 	private float diagonalInch;
-
+	final Context context = this;
+	
 	public void onCreate(Bundle icicle)
 
 	{
@@ -94,7 +101,7 @@ public class Main extends Activity {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.activity_main);
-
+		
 		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
 				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -204,17 +211,67 @@ public class Main extends Activity {
 				);
 
 		// Bouton Sustain
-		sustainBox = (CheckBox) findViewById(R.id.sustain_box);
-		sustainBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+		sustainButton = (ImageButton) findViewById(R.id.sustain_button);
+
+		sustainButton.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
+			public void onClick(View arg0) {
+
 				piano.setSustain(!piano.getSustain());
+				if (piano.getSustain()) {
 
+					sustainButton.setBackgroundResource(R.drawable.checked);
+				}
+
+				else {
+					sustainButton.setBackgroundResource(R.drawable.notchecked);
+
+				}
 			}
-
 		});
+		/*
+		 * sustainText=(TextView) findViewById(R.id.sustain_text);
+		 * sustainText.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View arg0) {
+		 * 
+		 * piano.setSustain(!piano.getSustain()); if (piano.getSustain()) {
+		 * 
+		 * sustainButton.setBackgroundResource(R.drawable.checked); }
+		 * 
+		 * else { sustainButton.setBackgroundResource(R.drawable.notchecked);
+		 * 
+		 * } } });
+		 */
+		sustainInfoButton = (ImageButton) findViewById(R.id.bouton_sustain_info);
+		sustainInfoButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+						context);
+		 
+					// set title
+					alertDialogBuilder.setTitle(R.string.sustain);
+		 
+					// set dialog message
+					alertDialogBuilder
+						.setMessage(R.string.sustain_explanation)						
+						.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                   public void onClick(DialogInterface dialog, int id) {
+                	   dialog.cancel();
+                   }
+               });
+						
+						// create alert dialog
+						AlertDialog alertDialog = alertDialogBuilder.create();
+		 
+						// show it
+						alertDialog.show();
+					}
+				});
+		
 
 		// On passe aux choses sérieuses
 
@@ -324,8 +381,8 @@ public class Main extends Activity {
 		imageScroller.setPianoHorizontalScrollView(scroller);
 		imageScroller.setGamme(Gamme);
 		imageScroller.setTonique(tonique);
-        scroller.setImageScroller(imageScroller);
-        
+		scroller.setImageScroller(imageScroller);
+
 		// Barre de réglages du nombre de touches apparaissant à l'écran
 
 		nbreBlanchesVisiblesBar = (SeekBar) findViewById(R.id.nbre_blanches_visibles_bar);
@@ -456,13 +513,14 @@ public class Main extends Activity {
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
 		density = getResources().getDisplayMetrics().density;
-		
+
 		dpHeight = heightScreen / density;
 		dpWidth = widthScreen / density;
-		
-        diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
-        Log.d("diagonalInch", String.valueOf(diagonalInch));
-        
+
+		diagonalInch = (float) Math.sqrt(dpHeight * dpHeight + dpWidth
+				* dpWidth) / 160;
+		Log.d("diagonalInch", String.valueOf(diagonalInch));
+
 		imageScroller.setScreenWidth(widthScreen);
 
 		onglets = (TabHost) findViewById(R.id.tabhost);
@@ -476,15 +534,16 @@ public class Main extends Activity {
 		ongletMorceau.setIndicator(acc);
 		onglets.addTab(ongletMorceau);
 		onglets.getTabWidget().getChildAt(0).getLayoutParams().height = (int) (heightScreen * 0.11);
-		onglets.getTabWidget().getChildAt(0).setBackgroundResource(R.drawable.tab_bg_selector);
+		onglets.getTabWidget().getChildAt(0)
+				.setBackgroundResource(R.drawable.tab_bg_selector);
 		TextView tvb = (TextView) onglets.getTabWidget().getChildAt(0)
 				.findViewById(android.R.id.title);
-		
-	    tvb.setTextColor(Color.WHITE);
-	    tvb.setTextSize(0, 30);
+
+		tvb.setTextColor(Color.WHITE);
+		tvb.setTextSize(0, 30);
 		// Onglet "Piano"
 		TabHost.TabSpec ongletPiano = onglets.newTabSpec("ongletPiano");
-		
+
 		ongletPiano.setContent(R.id.tab2);
 		String pia = getString(R.string.piano);
 		Log.d("TabHost", "Onglet 2");
@@ -492,7 +551,8 @@ public class Main extends Activity {
 		onglets.addTab(ongletPiano);
 		onglets.getTabWidget().getChildAt(1).getLayoutParams().height = (int) (heightScreen * 0.11);
 
-		onglets.getTabWidget().getChildAt(1).setBackgroundResource(R.drawable.tab_bg_selector);
+		onglets.getTabWidget().getChildAt(1)
+				.setBackgroundResource(R.drawable.tab_bg_selector);
 
 		onglets.getTabWidget().getChildAt(1)
 				.setOnTouchListener(new View.OnTouchListener() {
@@ -545,14 +605,16 @@ public class Main extends Activity {
 		onglets.addTab(ongletReglages);
 		onglets.getTabWidget().getChildAt(2).getLayoutParams().height = (int) (heightScreen * 0.11);
 
-		onglets.getTabWidget().getChildAt(2).setBackgroundResource(R.drawable.tabvert);
+		onglets.getTabWidget().getChildAt(2)
+				.setBackgroundResource(R.drawable.tabvert);
 
 		for (int i = 0; i < onglets.getTabWidget().getChildCount(); i++) {
 			TextView tv = (TextView) onglets.getTabWidget().getChildAt(i)
 					.findViewById(android.R.id.title);
 
 			setTextSizeOnglets(tv);
-			onglets.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.tab_bg_selector);
+			onglets.getTabWidget().getChildAt(i)
+					.setBackgroundResource(R.drawable.tab_bg_selector);
 		}
 		setDimensionsOngletPiano();
 
@@ -655,8 +717,6 @@ public class Main extends Activity {
 
 	private void setDimensionsOngletPiano() {
 
-		
-
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
 			for (int i = 0; i < 3; i++) {
 				onglets.getTabWidget().getChildAt(i).getLayoutParams().height = (int) (heightScreen * 0.15);
@@ -726,37 +786,35 @@ public class Main extends Activity {
 
 			}
 		}
-		
-		imageScroller.setProportionInitiale(this.piano.proportionPianoHorizontale);
+
+		imageScroller
+				.setProportionInitiale(this.piano.proportionPianoHorizontale);
 	}
 
-	
-	
 	private void setTextSizeOnglets(TextView textview) {
 		int sizeTexte = 18;
 		textview.setTextSize(sizeTexte);
+		textview.setGravity(0x00000011);
+		textview.setTextColor(Color.BLACK);
 
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
 			sizeTexte = 14;
 			textview.setTextSize(sizeTexte);
-			
-			
-			
-		    textview.setTextColor(Color.BLACK);
+
 		}
 
 		else {
 			if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
 				sizeTexte = 18;
 				textview.setTextSize(sizeTexte);
-				textview.setTextColor(Color.BLACK);
+
 			}
 
 			else {
 				if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
 					sizeTexte = 20;
 					textview.setTextSize(sizeTexte);
-					textview.setTextColor(Color.BLACK);
+
 				}
 
 				else {
@@ -765,13 +823,11 @@ public class Main extends Activity {
 						if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
 							sizeTexte = 24;
 							textview.setTextSize(sizeTexte);
-							textview.setTextColor(Color.BLACK);
-							
+
 						} else {
 							sizeTexte = 21;
 							textview.setTextSize(sizeTexte);
-							textview.setTextColor(Color.BLACK);
-							
+
 						}
 					}
 
