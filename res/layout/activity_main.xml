@@ -1,9 +1,9 @@
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tabhost"
-    android:textColor="@color/white"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:screenOrientation="landscape" >
+    android:screenOrientation="landscape"
+    android:textColor="@color/white" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -83,6 +83,7 @@
 
                     <SeekBar
                         android:id="@+id/avancement_bar"
+                        style="@style/CustomProgressBar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/boutonPlay"
@@ -99,7 +100,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/avancement_bar"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="10dp"
                         android:text="@string/volume_accompagnement"
                         android:textSize="22sp" />
 
@@ -127,6 +128,7 @@
 
                     <SeekBar
                         android:id="@+id/volume_accompagnement_bar"
+                        style="@style/CustomProgressBar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_accompagnement_text"
@@ -144,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_accompagnement_bar"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="18dp"
                         android:text="@string/retour_choix"
                         android:textSize="18sp" />
                 </RelativeLayout>
@@ -235,6 +237,7 @@
 
                     <SeekBar
                         android:id="@+id/volume_piano_bar"
+                        style="@style/CustomProgressBar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_piano_text"
@@ -251,7 +254,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_piano_bar"
                         android:layout_marginLeft="60dp"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="15dp"
                         android:checked="true"
                         android:text="@string/sustain"
                         android:textSize="24sp" />
@@ -290,6 +293,7 @@
 
                     <SeekBar
                         android:id="@+id/nbre_blanches_visibles_bar"
+                        style="@style/CustomProgressBar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/nbre_blanches_visibles_text"
@@ -306,7 +310,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/nbre_blanches_visibles_bar"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="20dp"
                         android:text="@string/retour_choix"
                         android:textSize="18sp" />
                 </RelativeLayout>

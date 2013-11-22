@@ -82,6 +82,7 @@
 
                     <SeekBar
                         android:id="@+id/avancement_bar"
+                        style="@style/CustomProgressBar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/boutonPlay"
@@ -126,6 +127,7 @@
 
                     <SeekBar
                         android:id="@+id/volume_accompagnement_bar"
+                        style="@style/CustomProgressBar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_accompagnement_text"
@@ -232,6 +234,7 @@
 
                     <SeekBar
                         android:id="@+id/volume_piano_bar"
+                        style="@style/CustomProgressBar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_piano_text"
@@ -287,6 +290,7 @@
 
                     <SeekBar
                         android:id="@+id/nbre_blanches_visibles_bar"
+                        style="@style/CustomProgressBar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/nbre_blanches_visibles_text"

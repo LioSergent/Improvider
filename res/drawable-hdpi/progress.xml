@@ -4,7 +4,14 @@
 
 <item android:id="@android:id/progress">
     <clip android:drawable="@color/bleuvertfonce"
-          android:minHeight="8dip"
-        android:maxHeight="8dip"  />
+          android:minHeight="2dip"
+        android:maxHeight="2dip"  />
+</item>
+
+<item android:id="@android:id/background">
+    <clip android:drawable="@color/gris"
+          android:minHeight="4dip"
+        android:maxHeight="4dip"  />
 </item>
 </layer-list> 
+
