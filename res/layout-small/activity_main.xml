@@ -49,8 +49,8 @@
 
                      <ImageButton
                         android:id="@+id/boutonPlay"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_below="@+id/auteur"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="2dp"
@@ -64,7 +64,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/boutonPlay"
                         android:layout_marginLeft="25dp"
-                        android:layout_marginTop="1dp"
+                        android:layout_marginTop="10dp"
                         android:text="   0:00 "
                         android:textSize="18dp" />
 
@@ -75,7 +75,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/boutonPlay"
                         android:layout_marginRight="15dp"
-                        android:layout_marginTop="1dp"
+                        android:layout_marginTop="10dp"
                         android:text=" 0:30   "
                         android:textSize="18dp" />
 
@@ -98,31 +98,31 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/avancement_bar"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="4dp"
                         android:text="@string/volume_accompagnement"
                         android:textSize="18sp" />
 
-                    <TextView
+                   <ImageView
                         android:id="@+id/volume_accompagnement_moins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/volume_accompagnement_text"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginTop="0dp"
-                        android:text="  -  "
-                        android:textSize="25dp" />
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="13dp"
+                        android:src="@drawable/hautparleurfaible" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/volume_accompagnement_plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/volume_accompagnement_text"
-                        android:layout_marginRight="60dp"
-                        android:layout_marginTop="0dp"
-                        android:text="  +  "
-                        android:textSize="23dp" />
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="70dp"
+                        android:layout_marginTop="13dp"
+                        android:src="@drawable/hautparleurfort" />
 
                     <SeekBar
                         android:id="@+id/volume_accompagnement_bar"
@@ -130,7 +130,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_accompagnement_text"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="0dp"
                         android:layout_toLeftOf="@+id/volume_accompagnement_plus"
                         android:layout_toRightOf="@+id/volume_accompagnement_moins"
                         android:max="100"
@@ -144,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_accompagnement_bar"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/retour_choix"
                         android:textSize="16sp" />
                 </RelativeLayout>
@@ -208,28 +208,27 @@
                         android:layout_marginTop="20dp"
                         android:text="@string/volume_piano"
                         android:textSize="18sp" />
-
-                    <TextView
+<ImageView
                         android:id="@+id/volume_piano_moins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/volume_piano_text"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginTop="0dp"
-                        android:text="  - "
-                        android:textSize="22sp" />
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/hautparleurfaible" />
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/volume_piano_plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/volume_piano_text"
-                        android:layout_marginRight="60dp"
-                        android:layout_marginTop="0dp"
-                        android:text=" +  "
-                        android:textSize="20sp" />
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="70dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/hautparleurfort" />
 
                     <SeekBar
                         android:id="@+id/volume_piano_bar"
@@ -237,29 +236,50 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/volume_piano_text"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="0dp"
                         android:layout_toLeftOf="@+id/volume_piano_plus"
                         android:layout_toRightOf="@+id/volume_piano_moins"
                         android:max="50"
                         android:progress="0"
                         android:secondaryProgress="0" />
 
-                    <CheckBox
-                        android:id="@+id/sustain_box"
-                        android:layout_width="fill_parent"
+                    <ImageButton
+                        android:id="@+id/sustain_button"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        android:layout_below="@+id/volume_piano_bar"                       
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/checked"
+                        android:text="hello" />
+
+                    <TextView
+                        android:id="@+id/sustain_text"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
                         android:layout_below="@+id/volume_piano_bar"
-                        android:layout_marginLeft="80dp"
-                        android:layout_marginTop="4dp"
-                        android:checked="true"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toRightOf="@+id/sustain_button"
                         android:text="@string/sustain"
-                        android:textSize="18sp" />
+                        android:textSize="20sp" />
+
+                    <ImageButton
+                        android:id="@+id/bouton_sustain_info"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_below="@+id/volume_piano_bar"
+                        android:layout_marginLeft="210dp"
+                        android:layout_marginTop="8dp"
+                        
+                        android:background="@drawable/boutoninforelache" />
 
                     <TextView
                         android:id="@+id/nbre_blanches_visibles_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/sustain_box"
+                        android:layout_below="@+id/bouton_sustain_info"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="5dp"
                         android:text="@string/nombre_touches"
@@ -272,7 +292,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/nbre_blanches_visibles_text"
                         android:layout_marginLeft="40dp"
-                        android:layout_marginTop="0dp"
+                        android:layout_marginTop="10dp"
                         android:text="  3 "
                         android:textSize="18sp" />
 
@@ -283,7 +303,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/nbre_blanches_visibles_text"
                         android:layout_marginRight="40sp"
-                        android:layout_marginTop="0dp"
+                        android:layout_marginTop="10dp"
                         android:text=" 14  "
                         android:textSize="18dp" />
 
@@ -306,7 +326,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/nbre_blanches_visibles_bar"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="18dp"
+                        android:layout_marginTop="14dp"
                         android:text="@string/retour_choix"
                         android:textSize="16sp" />
                 </RelativeLayout>

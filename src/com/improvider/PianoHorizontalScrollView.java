@@ -24,7 +24,6 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 			} while (!parent.getName().equals(
 					"android.widget.HorizontalScrollView"));
 
-			Log.i("Scroller", "class: " + parent.getName());
 			java.lang.reflect.Field field = parent
 					.getDeclaredField("mScroller");
 			field.setAccessible(true);
@@ -49,7 +48,6 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 			} while (!parent.getName().equals(
 					"android.widget.HorizontalScrollView"));
 
-			Log.i("Scroller", "class: " + parent.getName());
 			java.lang.reflect.Field field = parent
 					.getDeclaredField("mScroller");
 			field.setAccessible(true);
@@ -75,7 +73,6 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 			} while (!parent.getName().equals(
 					"android.widget.HorizontalScrollView"));
 
-			Log.i("Scroller", "class: " + parent.getName());
 			java.lang.reflect.Field field = parent
 					.getDeclaredField("mScroller");
 			field.setAccessible(true);
@@ -99,7 +96,6 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 			} while (!parent.getName().equals(
 					"android.widget.HorizontalScrollView"));
 
-			Log.i("Scroller", "class: " + parent.getName());
 			java.lang.reflect.Field field = parent
 					.getDeclaredField("mScroller");
 			field.setAccessible(true);
@@ -179,7 +175,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		 * 
 		 * return super.onTouchEvent(event); }
 		 */
-		
+
 		imageScroller.invalidate();
 		return false;
 	}
@@ -207,7 +203,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 			imageScroller.invalidate();
 			return false;
 		}
-		
+
 	}
 
 	public void customSmoothScrollBy(int dx, int dy) {
@@ -230,9 +226,9 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 	public void customSmoothScrollTo(int x, int y) {
 		customSmoothScrollBy(x - getScrollX(), y - getScrollY());
 	}
-	
+
 	public void setImageScroller(ImageScroller imageScroller) {
-		this.imageScroller=imageScroller;
+		this.imageScroller = imageScroller;
 	}
 
 }

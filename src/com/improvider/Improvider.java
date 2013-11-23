@@ -69,7 +69,7 @@ public class Improvider extends Activity {
 
 			}
 		});
-		
+
 		reSizeNormal();
 
 	}
@@ -82,33 +82,29 @@ public class Improvider extends Activity {
 	}
 
 	private void reSizeNormal() {
-		
-				if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
-					DisplayMetrics metrics = getResources().getDisplayMetrics();
-					int widthScreen = metrics.widthPixels;
-					int heightScreen = metrics.heightPixels;
-					float density = getResources().getDisplayMetrics().density;
-					
-					float dpHeight = heightScreen / density;
-					float dpWidth = widthScreen / density;
-					
-			       float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
-			  
-					
-			        if (diagonalInch<4) {
-			        
-			        	
-			        	
-			        	boutonCommencer.setTextSize(26);
-			        	boutonJouer.setTextSize(26);
-			        	boutonCredits.setTextSize(26);
-			      
-			        	
-			        }
-			        
-			        }
+
+		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
+			DisplayMetrics metrics = getResources().getDisplayMetrics();
+			int widthScreen = metrics.widthPixels;
+			int heightScreen = metrics.heightPixels;
+			float density = getResources().getDisplayMetrics().density;
+
+			float dpHeight = heightScreen / density;
+			float dpWidth = widthScreen / density;
+
+			float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight
+					+ dpWidth * dpWidth) / 160;
+
+			if (diagonalInch < 4) {
+
+				boutonCommencer.setTextSize(26);
+				boutonJouer.setTextSize(26);
+				boutonCredits.setTextSize(26);
+
+			}
 
 		}
-	
-	
+
+	}
+
 }

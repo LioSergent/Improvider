@@ -33,9 +33,8 @@ public class Musique extends Activity implements OnClickListener {
 		context = c;
 		view = v;
 		boutonPlay = (ImageButton) v.findViewById(R.id.boutonPlay);
-		
-			
-				Auteur = (TextView) v.findViewById(R.id.auteur);
+
+		Auteur = (TextView) v.findViewById(R.id.auteur);
 		this.setAuteur("...");
 
 		// Association du bouton Play à la lecture / pause du morceau
@@ -60,7 +59,7 @@ public class Musique extends Activity implements OnClickListener {
 	public void mettreEnPause() {
 		if (enCoursLecture) {
 			player.pause();
-			boutonPlay.setBackgroundResource(R.drawable.play);
+			boutonPlay.setBackgroundResource(R.drawable.playbis);
 			enCoursLecture = false;
 		}
 	}

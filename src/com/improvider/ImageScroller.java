@@ -413,77 +413,70 @@ public class ImageScroller extends View {
 
 			float x3b = event.getX(0);
 			float x4b = event.getX(1);
-			
-			
-				dx3 = x3b - x3;
-				dx4 = x4b - x4;
-				
-				if (ev== MotionEvent.ACTION_MOVE && x3!=0) {
-			double prop2;
-			double prop1 = this.piano.getProportionPianoHorizontale();
-			float k = (float) (this.screenWidth / (this.proportionInitiale));
 
-			int positionScrollInitiale = this.scroller.getScrollX();
+			dx3 = x3b - x3;
+			dx4 = x4b - x4;
 
-			if (x4 > x3) {
+			if (ev == MotionEvent.ACTION_MOVE && x3 != 0) {
+				double prop2;
+				double prop1 = this.piano.getProportionPianoHorizontale();
+				float k = (float) (this.screenWidth / (this.proportionInitiale));
 
-				prop2 = prop1 - (dx4 - dx3) / k;
-				
+				int positionScrollInitiale = this.scroller.getScrollX();
 
-				double octaves = (double) nbreOctave;
-				double maille = 1 / octaves;
+				if (x4 > x3) {
 
-				if (prop2 > maille && prop2 < 2*nbreOctave) {
-					this.piano.setProportionPianoHorizontale(prop2);
+					prop2 = prop1 - (dx4 - dx3) / k;
+
+					double octaves = (double) nbreOctave;
+					double maille = 1 / octaves;
+
+					if (prop2 > maille && prop2 < 2 * nbreOctave) {
+						this.piano.setProportionPianoHorizontale(prop2);
+					}
+				}
+
+				else {
+					prop2 = prop1 - (dx3 - dx4) / k;
+
+					double octaves = (double) nbreOctave;
+					double maille = 1 / octaves;
+
+					if (prop2 > maille && prop2 < 2 * nbreOctave) {
+						this.piano.setProportionPianoHorizontale(prop2);
+					}
+				}
+
+				// Scroll de repla�age pendant le redimensionnement
+
+				int newPositionToScroll = (int) ((prop2 / prop1
+						* positionScrollInitiale + this.screenWidth
+						* ((prop2 / prop1) - 1)));
+
+				int correction = (int) ((3 * (prop1 - prop2) * this.screenWidth) / 4);
+
+				if (newPositionToScroll > 0
+						&& newPositionToScroll < this.piano
+								.getLargeurToucheBlanche() * 7 * nbreOctave) { //
+					this.scroller.scrollTo(newPositionToScroll + correction, 0);
+					justZoomed = true;
+
+					if (ev == MotionEvent.ACTION_POINTER_UP) {
+
+						x3 = 0;
+						x4 = 0;
+						dx3 = 0;
+						dx4 = 0;
+
+					}
+
 				}
 			}
 
-			else {
-				prop2 = prop1 - (dx3 - dx4) / k;
-				
+			x3 = x3b;
+			x4 = x4b;
 
-				double octaves = (double) nbreOctave;
-				double maille = 1 / octaves;
-
-				if (prop2 > maille && prop2 < 2*nbreOctave) {
-					this.piano.setProportionPianoHorizontale(prop2);
-				}
-			}
-
-			// Scroll de repla�age pendant le redimensionnement
-
-			int newPositionToScroll = (int) ((prop2 / prop1
-					* positionScrollInitiale + this.screenWidth
-					* ((prop2 / prop1) - 1)));
-
-			int correction= (int) ((3*(prop1-prop2)*this.screenWidth)/4);
-			
-			
-			if (newPositionToScroll > 0
-					&& newPositionToScroll < this.piano
-							.getLargeurToucheBlanche() * 7 * nbreOctave) { //
-				this.scroller.scrollTo(newPositionToScroll+correction, 0);
-				justZoomed = true;
-
-				
-			if(ev== MotionEvent.ACTION_POINTER_UP) {
-				Log.d("ActionUp2pointers", String.valueOf(x3));
-				x3 = 0;
-				x4 = 0;
-				dx3 = 0;
-				dx4 = 0;
-				
-
-			}
-			
-			}		
-}
-				
-				x3 = x3b;
-				x4 = x4b;
-				
-		}
-		else {
+		} else {
 
 			if (pointerCount == 1) {
 				if (justZoomed == false) {
@@ -517,10 +510,9 @@ public class ImageScroller extends View {
 
 		}
 
-		
-	
 		return true;
 	}
+
 	// Fonction qui récupère les infos pour le son et les stocke dans deux
 	// tableaux ayant la même structure que le tableau des états des touches
 
@@ -611,9 +603,9 @@ public class ImageScroller extends View {
 				.getProportionPianoHorizontale());
 		this.x1 = x2;
 	}
-	
+
 	public void setProportionInitiale(double prop) {
-		this.proportionInitiale=prop;
+		this.proportionInitiale = prop;
 	}
 
 }

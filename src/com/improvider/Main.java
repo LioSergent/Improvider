@@ -91,7 +91,7 @@ public class Main extends Activity {
 	private float dpWidth;
 	private float diagonalInch;
 	final Context context = this;
-	
+
 	public void onCreate(Bundle icicle)
 
 	{
@@ -101,7 +101,7 @@ public class Main extends Activity {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.activity_main);
-		
+
 		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
 				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -251,27 +251,27 @@ public class Main extends Activity {
 			public void onClick(View arg0) {
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 						context);
-		 
-					// set title
-					alertDialogBuilder.setTitle(R.string.sustain);
-		 
-					// set dialog message
-					alertDialogBuilder
-						.setMessage(R.string.sustain_explanation)						
-						.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                   public void onClick(DialogInterface dialog, int id) {
-                	   dialog.cancel();
-                   }
-               });
-						
-						// create alert dialog
-						AlertDialog alertDialog = alertDialogBuilder.create();
-		 
-						// show it
-						alertDialog.show();
-					}
-				});
-		
+
+				// set title
+				alertDialogBuilder.setTitle(R.string.sustain);
+
+				// set dialog message
+				alertDialogBuilder.setMessage(R.string.sustain_explanation)
+						.setPositiveButton(R.string.ok,
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										dialog.cancel();
+									}
+								});
+
+				// create alert dialog
+				AlertDialog alertDialog = alertDialogBuilder.create();
+
+				// show it
+				alertDialog.show();
+			}
+		});
 
 		// On passe aux choses sérieuses
 
@@ -349,7 +349,6 @@ public class Main extends Activity {
 		piano.setTonique(tonique);
 
 		int a = piano.getHeight();
-		Log.d("HauteurPiano", String.valueOf(a));
 
 		// Recuperation du volume
 		AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
@@ -428,7 +427,7 @@ public class Main extends Activity {
 
 		// Barre d'avancement
 		int dureems = gestionMusique.getDuration();
-		Log.d("duration", String.valueOf(dureems));
+
 		int minutes = (int) dureems / 60000;
 		int secondes = (int) (dureems - minutes * 60000) / 1000;
 
@@ -519,7 +518,6 @@ public class Main extends Activity {
 
 		diagonalInch = (float) Math.sqrt(dpHeight * dpHeight + dpWidth
 				* dpWidth) / 160;
-		Log.d("diagonalInch", String.valueOf(diagonalInch));
 
 		imageScroller.setScreenWidth(widthScreen);
 
@@ -546,7 +544,7 @@ public class Main extends Activity {
 
 		ongletPiano.setContent(R.id.tab2);
 		String pia = getString(R.string.piano);
-		Log.d("TabHost", "Onglet 2");
+
 		ongletPiano.setIndicator(pia);
 		onglets.addTab(ongletPiano);
 		onglets.getTabWidget().getChildAt(1).getLayoutParams().height = (int) (heightScreen * 0.11);
@@ -559,25 +557,24 @@ public class Main extends Activity {
 
 					@Override
 					public boolean onTouch(View v, MotionEvent event) {
-						Log.d("Listener", String.valueOf(getWindow()));
-						Log.d("Scroller", "avant le run");
+
 						if (!premierScroll) {
 							int a = piano.getHeight();
-							Log.d("HauteurPiano", String.valueOf(a));
+
 							return false;
 
 						}
 
 						else {
 							int a = piano.getHeight();
-							Log.d("HauteurPiano", String.valueOf(a));
+
 							Handler lHandler = new Handler();
 
 							lHandler.postDelayed(new Runnable() {
 								public void run() {
 									PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
 									int a = scroler.getWidth();
-									Log.d("Scroller10", String.valueOf(a));
+
 									int positionToScroll = piano
 											.positionTouche(tonique);
 									scroler.customSmoothScrollTo(
@@ -604,9 +601,6 @@ public class Main extends Activity {
 		ongletReglages.setIndicator(regl);
 		onglets.addTab(ongletReglages);
 		onglets.getTabWidget().getChildAt(2).getLayoutParams().height = (int) (heightScreen * 0.11);
-
-		onglets.getTabWidget().getChildAt(2)
-				.setBackgroundResource(R.drawable.tabvert);
 
 		for (int i = 0; i < onglets.getTabWidget().getChildCount(); i++) {
 			TextView tv = (TextView) onglets.getTabWidget().getChildAt(i)
@@ -750,15 +744,15 @@ public class Main extends Activity {
 					double nouvelleProp = (double) 7 / 10;
 					nbreBlanchesVisiblesBar.setProgress(7);
 					piano.setProportionPianoHorizontale(nouvelleProp);
-					Log.d("redimensionnement", "prout");
+
 				}
 
 				else {
-					Log.d("redimenssionemment", "Passage dans le redim");
+
 					if (android.os.Build.VERSION.SDK_INT >= 13) {
 
 						if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-							Log.d("redimenssionemment", "Passage dans le redim");
+
 							for (int i = 0; i < 3; i++) {
 								onglets.getTabWidget().getChildAt(i)
 										.getLayoutParams().height = (int) (heightScreen * 0.09);

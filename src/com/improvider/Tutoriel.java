@@ -57,9 +57,7 @@ public class Tutoriel extends Activity {
 
 		// Petit r√©glage selon la taille de l'√©cran. C'est sale, mais je
 		// voulais le faire t√¥t juste pour le tuto.
-		
-		
-		
+
 		if (screenHeight < 500) {
 			proportion = 0.37;
 		}
@@ -79,23 +77,22 @@ public class Tutoriel extends Activity {
 		if (screenHeight > 1400) {
 			proportion = 0.64;
 		}
- 
-		
-// En fonction de la taille rÈelle de l'Ècran.
-		
+
+		// En fonction de la taille rÈelle de l'Ècran.
+
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		int widthScreen = metrics.widthPixels;
 		int heightScreen = metrics.heightPixels;
 		float density = getResources().getDisplayMetrics().density;
-		
+
 		float dpHeight = heightScreen / density;
 		float dpWidth = widthScreen / density;
-		
-       float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
-       Log.d("Diag", String.valueOf(diagonalInch));
-       proportion=0.48+diagonalInch*0.012;
-		
-		
+
+		float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight + dpWidth
+				* dpWidth) / 160;
+
+		proportion = 0.48 + diagonalInch * 0.012;
+
 		imageWidth = (int) (screenWidth * proportion);
 		imageHeight = (int) (imageWidth * proportionNexus4);
 
@@ -133,7 +130,6 @@ public class Tutoriel extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				Log.d("state", String.valueOf(state));
 
 				if (state == 3) {
 					toast = Toast.makeText(context, R.string.chargement, 20000);
@@ -152,8 +148,7 @@ public class Tutoriel extends Activity {
 									true, true, false, false, false, false,
 									false, false, false };
 							explicit.putExtra("Gamme", value);
-							explicit.putExtra("name",
-									"Blues Soul Em");
+							explicit.putExtra("name", "Blues Soul Em");
 							explicit.putExtra("Tonique", 2);
 							startActivity(explicit);
 
@@ -178,7 +173,6 @@ public class Tutoriel extends Activity {
 		getMenuInflater().inflate(R.menu.tutoriel, menu);
 		return true;
 	}
-
 
 	private boolean diapoPrecedente(int i) {
 
@@ -283,7 +277,7 @@ public class Tutoriel extends Activity {
 	}
 
 	public void onBackPressed() {
-		Log.d("CDA", "onBackPressed Called");
+
 		if (state > 0) {
 			this.diapoPrecedente(state);
 
@@ -292,30 +286,28 @@ public class Tutoriel extends Activity {
 		}
 
 	}
-private void reSizeNormal() {
-		
+
+	private void reSizeNormal() {
+
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
 			DisplayMetrics metrics = getResources().getDisplayMetrics();
 			int widthScreen = metrics.widthPixels;
 			int heightScreen = metrics.heightPixels;
 			float density = getResources().getDisplayMetrics().density;
-			
+
 			float dpHeight = heightScreen / density;
 			float dpWidth = widthScreen / density;
-			
-	       float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
-	   
-			
-	        if (diagonalInch<4) {
-	        
-	        	
-	        	
-	        	
-	      Button texte=(Button) findViewById(R.id.text_tutoriel);
-	        	texte.setTextSize(17);
-	        }
-	        
-	        }
 
-}
+			float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight
+					+ dpWidth * dpWidth) / 160;
+
+			if (diagonalInch < 4) {
+
+				Button texte = (Button) findViewById(R.id.text_tutoriel);
+				texte.setTextSize(17);
+			}
+
+		}
+
+	}
 }
