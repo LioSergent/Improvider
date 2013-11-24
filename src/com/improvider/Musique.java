@@ -46,12 +46,12 @@ public class Musique extends Activity implements OnClickListener {
 		if (enCoursLecture) {
 			player.pause();
 			enCoursLecture = false;
-			boutonPlay.setBackgroundResource(R.drawable.playbis);
+			boutonPlay.setImageResource(R.drawable.playbis);
 
 		} else if (!enCoursLecture) {
 			player.start();
 			enCoursLecture = true;
-			boutonPlay.setBackgroundResource(R.drawable.pausebis);
+			boutonPlay.setImageResource(R.drawable.pausebis);
 		}
 
 	}
@@ -59,7 +59,7 @@ public class Musique extends Activity implements OnClickListener {
 	public void mettreEnPause() {
 		if (enCoursLecture) {
 			player.pause();
-			boutonPlay.setBackgroundResource(R.drawable.playbis);
+			boutonPlay.setImageResource(R.drawable.playbis);
 			enCoursLecture = false;
 		}
 	}

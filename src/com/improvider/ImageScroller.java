@@ -420,7 +420,7 @@ public class ImageScroller extends View {
 			if (ev == MotionEvent.ACTION_MOVE && x3 != 0) {
 				double prop2;
 				double prop1 = this.piano.getProportionPianoHorizontale();
-				float k = (float) (this.screenWidth / (this.proportionInitiale));
+				float k = (float) (0.2*this.screenWidth / (this.proportionInitiale));
 
 				int positionScrollInitiale = this.scroller.getScrollX();
 
@@ -453,7 +453,7 @@ public class ImageScroller extends View {
 						* positionScrollInitiale + this.screenWidth
 						* ((prop2 / prop1) - 1)));
 
-				int correction = (int) ((3 * (prop1 - prop2) * this.screenWidth) / 4);
+				int correction = (int) ((4 * (prop1 - prop2) * this.screenWidth) / 5);
 
 				if (newPositionToScroll > 0
 						&& newPositionToScroll < this.piano

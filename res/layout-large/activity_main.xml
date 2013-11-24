@@ -48,15 +48,18 @@
                         android:textSize="30dp"
                         android:typeface="monospace" />
 
-                    <ImageButton
+                     <ImageButton
                         android:id="@+id/boutonPlay"
-                        android:layout_width="95dp"
-                        android:layout_height="95dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_below="@+id/auteur"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2dp"
-                        android:background="@drawable/playbis" />
-
+                        android:layout_marginTop="4dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/playbis" 
+                        android:background="@color/white"/>
+                     
                     <TextView
                         android:id="@+id/avancement_min"
                         android:layout_width="wrap_content"
