@@ -198,7 +198,6 @@ public final class R {
         public static final int diapotuto4=0x7f070019;
         public static final int explication_premier_onglet=0x7f07000c;
         public static final int hello_world=0x7f070002;
-        public static final int interogation_point=0x7f07002a;
         public static final int jouer=0x7f070011;
         public static final int letgo=0x7f07001a;
         public static final int montre_moi=0x7f070009;
