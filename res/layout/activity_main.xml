@@ -56,12 +56,10 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="2dp"
                         android:adjustViewBounds="true"
+                        android:background="@color/white"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/playbis" 
-                        android:background="@color/white"/>
+                        android:src="@drawable/playbis" />
 
-               
-                    
                     <TextView
                         android:id="@+id/avancement_min"
                         android:layout_width="wrap_content"
@@ -319,8 +317,8 @@
                         style="@style/CustomProgressBar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="-3dp"
                         android:layout_below="@+id/nbre_blanches_visibles_text"
+                        android:layout_marginTop="-3dp"
                         android:layout_toLeftOf="@+id/nbre_touches_max"
                         android:layout_toRightOf="@+id/nbre_touches_min"
                         android:max="11"

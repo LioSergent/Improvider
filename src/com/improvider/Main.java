@@ -48,7 +48,7 @@ public class Main extends Activity {
 	private Musique gestionMusique;
 	private int Adresse;
 	private String Auteur;
-	private final int volumeAccompagnementInitial = 65;
+	private final int volumeAccompagnementInitial = 78;
 	int volumePlayer;
 	public float volume;
 
@@ -611,7 +611,7 @@ public class Main extends Activity {
 					.setBackgroundResource(R.drawable.tab_bg_selector);
 		}
 		setDimensionsOngletPiano();
- reSizePlay();
+		reSizePlay();
 	}
 
 	/*
@@ -781,7 +781,6 @@ public class Main extends Activity {
 			}
 		}
 
-		
 	}
 
 	private void setTextSizeOnglets(TextView textview) {
@@ -832,29 +831,23 @@ public class Main extends Activity {
 
 	private void reSizePlay() {
 
-		
-			DisplayMetrics metrics = getResources().getDisplayMetrics();
-			int widthScreen = metrics.widthPixels;
-			int heightScreen = metrics.heightPixels;
-			float density = getResources().getDisplayMetrics().density;
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		int widthScreen = metrics.widthPixels;
+		int heightScreen = metrics.heightPixels;
+		float density = getResources().getDisplayMetrics().density;
 
-			float dpHeight = heightScreen / density;
-			float dpWidth = widthScreen / density;
+		float dpHeight = heightScreen / density;
+		float dpWidth = widthScreen / density;
 
-			float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight
-					+ dpWidth * dpWidth) / 160;
+		float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight + dpWidth
+				* dpWidth) / 160;
 
-				
-            ImageButton buttonPlay=(ImageButton) findViewById(R.id.boutonPlay);
-            int maxWidth= (int) (12*diagonalInch+11*diagonalInch*diagonalInch-110);
-            buttonPlay.setMaxWidth(maxWidth);
-            buttonPlay.setMaxHeight(maxWidth);
-            
-			
-			
-
-		
+		ImageButton buttonPlay = (ImageButton) findViewById(R.id.boutonPlay);
+		int maxWidth = (int) (12 * diagonalInch + 11 * diagonalInch
+				* diagonalInch - 110);
+		buttonPlay.setMaxWidth(maxWidth);
+		buttonPlay.setMaxHeight(maxWidth);
 
 	}
-	
+
 }

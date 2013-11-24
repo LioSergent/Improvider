@@ -42,7 +42,6 @@
    <string name="volume_piano">Volumen del piano</string>
    <string name="sustain"> Sustain</string>
    <string name="sustain_explanation">Cuando sustain está activado, el sonido sigue aunque haya quitado el dedo.</string>
-   <string name="ok">OK</string>
    <string name="nombre_touches">Escala del piano (número de teclas)</string>
    <string name="accompagnement">Acompañamiento</string>
    <string name="piano">Piano</string>
