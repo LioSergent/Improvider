@@ -10,35 +10,35 @@
     <string name="title_activity_main">Main</string>
     <string name="title_activity_commencer">Start</string>
     <string name="text_commencer">Improvider will help you to make your own musical improvisation!</string>
-    <string name="montre_moi">Manipulating the app</string>
+    <string name="montre_moi">App tour</string>
     <string name="savoir_plus">How is that possible? I am not a musician!</string>
     <string name="title_activity_tutoriel">Tutorial</string>
     <string name="explication_premier_onglet">Dans l\'onglet Accomapgnement, </string>
     <string name="title_activity_savoir_plus">Know more</string>
-    <string name="text_savoir_plus">You have surely seen some musicians improvise their solo completely? Divine inspiration?
+    <string name="text_savoir_plus">Have you ever seen musicians improvise their solo completely? Divine inspiration?
        Years of work? Knowledge of thousands of music phrases?
-       Maybe, but not only. Actually, the main tool to improvise solos are the scales.
-       For a musicien, the idea is to search a scale adapted to the backing according to the chords played by his fellow musicians. Then, many musicians "print" visually that scale on their instrument. After that, they know they can play only on the keys/cases/buttons... they previously "printed".
-       Improvider simply suggests you to launch a playback already contained within the app, and choose for you a classic scale for improvising on that track, and print it on the tactile keyboard by coloring the keys you should play with green.
-       Now, up to you to experiment, let your feelings express themselves, and by the way, enjoy!            </string>
+       Maybe, but that's not everything. In fact, the main tool to improvise solos are the scales.
+       A soloist uses a scale adapted to the backing consisting of the chords played by his fellow musicians. Many soloists can visualize that scale on their instrument. After that, they know they can play only on the keys(Piano)/buttons(Brass)/frets(guitar) etc. that they previously visualized as part of the scale.
+       Improvider simply provides you with a playback already contained within the app, chooses  a classic adapted scale and shows it to you by coloring some keys on the tactil keyboard. For the best solos, play on the green notes!
+       Now, it's up to you to experiment, let your feelings express themselves, and enjoy!            </string>
     <string name="precedent">Previous</string>
-    <string name="titre">Easy Impro!</string>
+    <string name="titre">Easy Impro!</string>which allows you to improvise on the backing track
     <string name="jouer">Play</string>
     <string name="commencer">Tutorial</string>
-    <string name="credits">Credits</string>
+    <string name="credits">Credits</string>   
     <string name="retour">Return</string>
     <string name="suivant">Next</string>
-    <string name="diapotuto1"> Within the backing tab, you will find the controls and settings concerning the backing.</string>
-    <string name="diapotuto2">Within the Piano tab, you will find the keyboard which some keys have been colored. It is an adapted scale for the backing.</string>
-    <string name="diapotuto3">The idea is: you should only play on the colored keys, it will sound alright! To convince yourself, just experiment and try other keys.</string>
+    <string name="diapotuto1"> Within the backing tab, you will find the controls and settings concerning the background music.</string>
+    <string name="diapotuto2">Within the Piano tab, you will find the keyboard with some keys that have been colored. These colored keys represent an adapted scale for the backing.</string>
+    <string name="diapotuto3">The idea is that by only playing on the colored keys, you can be sure it will sound good! If you need convincing, just experiment and try other keys.</string>
     <string name="diapotuto4">Within the settings tab, it is possible to set some parameters of the keyboard.</string>
     <string name="letgo">Let\'s go!</string>
-    <string name="credits1">Backing by Tom Bailey</string>
+    <string name="credits1">Backing tracks by Tom Bailey</string>
     <string name="credits2">Find those backing tracks at</string>
     <string name="credits3">http://www.youtube.com/user/guitarbackingtracks4</string>
     <string name="choix1">Choose your backing track</string>
     <string name="volume_accompagnement">Backing volume</string>
-    <string name="retour_choix">Back to the backing choice page</string>
+    <string name="retour_choix">Return to the backing choice page</string>
     <string name="volume_piano">Piano volume</string>
     <string name="sustain"> Sustain</string>
     <string name="sustain_explanation">If sustain is enabled, the sound will continue even if you release your finger.</string>
