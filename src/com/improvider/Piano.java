@@ -193,7 +193,7 @@ public class Piano extends View {
 				(int) (widthScreen * proportionPianoHorizontale * nbreOctave),
 				(int) (heightScreen * proportionPianoVerticale)));
 		// super.onMeasure((int) (widthMeasureSpec), heightMeasureSpec);
-
+Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 	}
 
 	public void onDraw(Canvas canvas) {
@@ -394,7 +394,7 @@ public class Piano extends View {
 
 			// Seulement si on est bien sur le piano
 			if (y < hauteurToucheBlanche) {
-
+				
 				if (ev == MotionEvent.ACTION_UP
 						|| ev == MotionEvent.ACTION_POINTER_UP) {
 					int toucheCorrespondante = positionPointeurs.get(pointerId);
@@ -473,9 +473,10 @@ public class Piano extends View {
 
 				// Coordonnées de l'évènement
 				x = (int) MotionEventCompat.getX(event, index);
-				y = (int) MotionEventCompat.getY(event, index);
-
+				 y = (int) MotionEventCompat.getY(event, index);
+				
 				// Seulement si on est bien sur le piano
+			
 				if (y < hauteurToucheBlanche) {
 
 					int indexTouche;
@@ -485,16 +486,20 @@ public class Piano extends View {
 					} else {
 						indexTouche = 0;
 					}
+				
 					toucheNoireAppuye = isNoire(x, y);
+					
 					int nouvelleToucheCorrespondante = (toucheNoireAppuye == -1) ? indexTouche
 							: (toucheNoireAppuye + 10 * nbreOctave);
 					int toucheCorrespondante;
-
+				
 					// Si l'on ne vient pas du piano, toucheCorrespondante=-1
 
 					if (positionPointeurs.get(pointerId) != null) {
 						toucheCorrespondante = positionPointeurs.get(pointerId);
+					
 					} else {
+						
 						toucheCorrespondante = -1;
 					}
 
@@ -537,11 +542,12 @@ public class Piano extends View {
 									this.stopNote(toucheCorrespondante);
 									tabEtatTouchesNoires[toucheCorrespondante
 											- 10 * nbreOctave] = false;
-
+									Log.d("OnMove", "1");
 								} else { // Sinon, c'est qu'elle �tait blanche
 									if (toucheCorrespondante != -1) {
 										tabEtatTouchesBlanches[toucheCorrespondante] = false;
 										this.stopNote(toucheCorrespondante);
+										Log.d("OnMove", "2");
 									}
 
 								}

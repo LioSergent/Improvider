@@ -13,6 +13,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 	public double proportionHauteur = 0.86;
 	private OverScroller myScroller;
 	private ImageScroller imageScroller;
+	private Piano piano;
 
 	public PianoHorizontalScrollView(Context context) {
 
@@ -110,27 +111,17 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		}
 	}
 
+	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
+		
+
+		  
+		
+		  
+		  
 		/*
-		 * int hauteur = (int) (getHeight() * proportionHauteur);
-		 * 
-		 * Log.d("passageScroll", String.valueOf(hauteur)); int ev =
-		 * MotionEventCompat.getActionMasked(event);
-		 * 
-		 * int pointerIndex = MotionEventCompat.getActionIndex(event); int
-		 * pointerId = event.getPointerId(pointerIndex); int y = (int)
-		 * MotionEventCompat.getY(event, pointerIndex); int x = (int)
-		 * MotionEventCompat.getX(event, pointerIndex);
-		 * 
-		 * 
-		 * if (event.getEdgeFlags() != 0) { // Don't handle edge touches
-		 * immediately -- they may actually belong // to one of our //
-		 * descendants. return false; }
-		 * 
-		 * 
-		 * 
 		 * if (y > hauteur) { switch (event.getAction()) {
 		 * 
 		 * case MotionEvent.ACTION_DOWN:
@@ -176,7 +167,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		 * return super.onTouchEvent(event); }
 		 */
 
-		imageScroller.invalidate();
+		
 		return false;
 	}
 
@@ -184,7 +175,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		// Call super first because it does some hidden motion event handling
 		boolean result = super.onInterceptTouchEvent(event);
 		int hauteur = (int) (getHeight() * proportionHauteur);
-
+Log.d("PianoHorizontalScroll", "OnIntercept");
 		int ev = MotionEventCompat.getActionMasked(event);
 
 		int pointerIndex = MotionEventCompat.getActionIndex(event);
@@ -230,5 +221,8 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 	public void setImageScroller(ImageScroller imageScroller) {
 		this.imageScroller = imageScroller;
 	}
-
+public void setPiano(Piano piano) {
+	this.piano=piano;
+}
+	
 }

@@ -17,12 +17,12 @@
     <string name="title_activity_savoir_plus">Know more</string>
     <string name="text_savoir_plus">Have you ever seen musicians improvise their solo completely? Divine inspiration?
        Years of work? Knowledge of thousands of music phrases?
-       Maybe, but that's not everything. In fact, the main tool to improvise solos are the scales.
+       Maybe, but that\'s not everything. In fact, the main tool to improvise solos are the scales.
        A soloist uses a scale adapted to the backing consisting of the chords played by his fellow musicians. Many soloists can visualize that scale on their instrument. After that, they know they can play only on the keys(Piano)/buttons(Brass)/frets(guitar) etc. that they previously visualized as part of the scale.
-       Improvider simply provides you with a playback already contained within the app, chooses  a classic adapted scale and shows it to you by coloring some keys on the tactil keyboard. For the best solos, play on the green notes!
-       Now, it's up to you to experiment, let your feelings express themselves, and enjoy!            </string>
+       Improvider simply provides you with a playback already contained within the app, chooses a classic adapted scale and shows it to you by coloring some keys on the tactil keyboard. For the best solos, play on the green notes!
+       Now, it\'s up to you to experiment, let your feelings express themselves, and enjoy!            </string>
     <string name="precedent">Previous</string>
-    <string name="titre">Easy Impro!</string>which allows you to improvise on the backing track
+    <string name="titre">Easy Impro!</string>
     <string name="jouer">Play</string>
     <string name="commencer">Tutorial</string>
     <string name="credits">Credits</string>   

@@ -374,7 +374,7 @@ public class Main extends Activity {
 		// Création de l'image Scroller
 
 		scroller = (PianoHorizontalScrollView) findViewById(R.id.scroller);
-
+        scroller.setPiano(piano);
 		imageScroller = (ImageScroller) findViewById(R.id.image_scroller);
 		imageScroller.setPiano(piano);
 		imageScroller.setPianoHorizontalScrollView(scroller);
