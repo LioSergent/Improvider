@@ -92,6 +92,8 @@
                         android:layout_toLeftOf="@+id/avancement_max"
                         android:layout_toRightOf="@+id/avancement_min"
                         android:max="100"
+                        android:paddingLeft="19px"
+                        android:paddingRight="19px"
                         android:progress="0"
                         android:secondaryProgress="0" />
 
@@ -113,7 +115,7 @@
                         android:layout_below="@+id/volume_accompagnement_text"
                         android:layout_marginLeft="130dp"
                         android:layout_marginRight="17dp"
-                        android:layout_marginTop="17dp"
+                        android:layout_marginTop="10dp"
                         android:src="@drawable/hautparleurfaible" />
 
                     <ImageView
@@ -124,7 +126,7 @@
                         android:layout_below="@+id/volume_accompagnement_text"
                         android:layout_marginLeft="17dp"
                         android:layout_marginRight="130dp"
-                        android:layout_marginTop="17dp"
+                        android:layout_marginTop="10dp"
                         android:src="@drawable/hautparleurfort" />
 
                     <SeekBar
@@ -137,6 +139,8 @@
                         android:layout_toLeftOf="@+id/volume_accompagnement_plus"
                         android:layout_toRightOf="@+id/volume_accompagnement_moins"
                         android:max="100"
+                        android:paddingLeft="19px"
+                        android:paddingRight="19px"
                         android:progress="0"
                         android:secondaryProgress="0" />
 
@@ -219,7 +223,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_below="@+id/volume_piano_text"
                         android:layout_marginLeft="130dp"
-                        android:layout_marginRight="17dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginTop="14dp"
                         android:src="@drawable/hautparleurfaible" />
 
@@ -229,7 +233,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/volume_piano_text"
-                        android:layout_marginLeft="17dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="130dp"
                         android:layout_marginTop="14dp"
                         android:src="@drawable/hautparleurfort" />
@@ -244,6 +248,8 @@
                         android:layout_toLeftOf="@+id/volume_piano_plus"
                         android:layout_toRightOf="@+id/volume_piano_moins"
                         android:max="50"
+                        android:paddingLeft="19px"
+                        android:paddingRight="19px"
                         android:progress="0"
                         android:secondaryProgress="0" />
 
@@ -307,7 +313,7 @@
                         android:layout_below="@+id/nbre_blanches_visibles_text"
                         android:layout_marginRight="90sp"
                         android:layout_marginTop="5dp"
-                        android:text=" 14  "
+                        android:text=" 21  "
                         android:textSize="25dp" />
 
                     <SeekBar
@@ -319,7 +325,9 @@
                         android:layout_marginTop="0dp"
                         android:layout_toLeftOf="@+id/nbre_touches_max"
                         android:layout_toRightOf="@+id/nbre_touches_min"
-                        android:max="11"
+                        android:max="18"
+                        android:paddingLeft="19px"
+                        android:paddingRight="19px"
                         android:progress="5"
                         android:secondaryProgress="0" />
 
