@@ -18,12 +18,14 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class ImageScroller extends View {
 
 	Piano piano;
 	PianoHorizontalScrollView scroller;
-
+    
 	/*
 	 * Constantes de la classe
 	 */
@@ -110,6 +112,7 @@ public class ImageScroller extends View {
 		DisplayMetrics metrics = contexte.getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
+		
 		// init();
 
 	}
@@ -431,7 +434,7 @@ public class ImageScroller extends View {
 					double octaves = (double) nbreOctave;
 					double maille = 1 / octaves;
 
-					if (prop2 > maille && prop2 < 2 * nbreOctave) {
+					if (prop2 > maille && prop2 < 0.5 * nbreOctave) {
 						this.piano.setProportionPianoHorizontale(prop2);
 					}
 				}
@@ -442,7 +445,7 @@ public class ImageScroller extends View {
 					double octaves = (double) nbreOctave;
 					double maille = 1 / octaves;
 
-					if (prop2 > maille && prop2 < 2 * nbreOctave) {
+					if (prop2 > maille && prop2 < 0.5 * nbreOctave) {
 						this.piano.setProportionPianoHorizontale(prop2);
 					}
 				}

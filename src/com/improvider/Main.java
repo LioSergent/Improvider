@@ -385,6 +385,7 @@ public class Main extends Activity {
 		// Barre de réglages du nombre de touches apparaissant à l'écran
 
 		nbreBlanchesVisiblesBar = (SeekBar) findViewById(R.id.nbre_blanches_visibles_bar);
+		
 		nbreBlanchesVisiblesBar.setProgress(7);
 
 		nbreBlanchesVisiblesBar
@@ -467,7 +468,8 @@ public class Main extends Activity {
 									+ " ";
 							setTempsMin(duree);
 						}
-
+						int progress= (int) Math.ceil(7/(piano.getProportionPianoHorizontale())-3);
+						nbreBlanchesVisiblesBar.setProgress(progress);
 					}
 				});
 			}
