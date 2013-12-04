@@ -28,6 +28,9 @@ public class Piano extends View {
 	private final static double proportionToucheNoireHauteur = 0.75;
 	private final static double proportionToucheNoireLargeur = 0.32;
 	private final static int nbreOctave = 3;
+	
+	
+	//Proportions du piano, par rapport à la taille de l'écran
 	public double proportionPianoVerticale = 0.75;
 	public double proportionPianoHorizontale = 0.875;
 
@@ -35,37 +38,42 @@ public class Piano extends View {
 	 * Id du pointeur, numero de la touche (en commencant Ã  0) (+ 10 si noire)
 	 */
 	Hashtable<Integer, Integer> positionPointeurs = new Hashtable<Integer, Integer>();
-	// Map associant numï¿½ro de soundclouds et touches (pour arrï¿½ter le son).
-	// Numï¿½ro de soundCloud= entier croissant dans l'ordre de lancement.(1
+	
+	// Map associant numéro de soundclouds et touches (pour arrêter le son).
+	// Numéro de soundCloud= entier croissant dans l'ordre de lancement.(1
 	// pour
 	// le premier soundcloud, 2 pour le suivant...)
+	
 	Hashtable<Integer, Integer> soundids = new Hashtable<Integer, Integer>();
+	
+	//Taille de l'écran
+	int screenWidth;
+	int heightScreen;
+	int widthScreen;
+	
+	//Taille des éléments graphiques
 	int largeur, hauteur, largeurTotale;
 	int largeurToucheBlanche;
 	int largeurToucheNoire;
 	int hauteurToucheNoire;
 	int hauteurToucheBlanche;
-	int screenWidth;
-	int heightScreen;
-	int widthScreen;
+
 
 	Context contexte;
 
 	private boolean[] gamme;
-	public boolean sustain = true;
 	private int tonique = 0;
+	
 
-	/*
-	 * Attributs divers de la classe
-	 */
+//Tableaux d'état des touches
 	boolean[] tabEtatTouchesBlanches = new boolean[7 * nbreOctave];
 	boolean[] tabEtatTouchesNoires = new boolean[7 * nbreOctave];
-	int[] tabSonTouchesBlanches = new int[7 * nbreOctave];
-	int[] tabSonTouchesNoires = new int[7 * nbreOctave];
-	int x, y;
+	
+	//Valeurs de stockage pour le onTouchEvent
+	int x, y;	
+	
+	//Avant de dessiner, on revérifie qu'on a bien initié.
 	boolean init = false;
-
-	int ancienx, ancieny;
 
 	/*
 	 * Les pinceaux
@@ -85,11 +93,12 @@ public class Piano extends View {
 	 */
 
 	SoundPool soundPool;
-
+	int[] tabSonTouchesBlanches = new int[7 * nbreOctave];
+	int[] tabSonTouchesNoires = new int[7 * nbreOctave];
 	float volume;
 	float volumeProportion;
 	float vol;
-
+	public boolean sustain = true;
 	/*
 	 * Deux constructeurs
 	 */
@@ -361,6 +370,8 @@ Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 			}
 
 		}
+		
+		//Dessin des lignes en haut et en bas.
 		canvas.drawLine(0, hauteurToucheBlanche - 1, 7 * nbreOctave
 				* largeurToucheBlanche, hauteurToucheBlanche - 1, new Paint());
 		canvas.drawLine(0, 0, 7 * nbreOctave * largeurToucheBlanche, 0,

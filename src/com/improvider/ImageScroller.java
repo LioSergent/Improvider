@@ -21,11 +21,15 @@ import android.widget.HorizontalScrollView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
+/*Cette classe sert de controleur graphique pour le pianoHorizontalScrollView du main. Tout est pareil sauf les proportions et surtout
+ le onTouchEvent, où se trouve le zoom-in, zoom-out, et le scrolling.
+ */
+
 public class ImageScroller extends View {
 
 	Piano piano;
 	PianoHorizontalScrollView scroller;
-    
+
 	/*
 	 * Constantes de la classe
 	 */
@@ -33,43 +37,42 @@ public class ImageScroller extends View {
 	private final static double proportionToucheNoireHauteur = 0.75;
 	private final static double proportionToucheNoireLargeur = 0.32;
 	private final static int nbreOctave = 3;
-	private double proportionPianoVerticale = 0.11;
 
+	// C'est ici qu'on définit la taille de l'image scroller, c'est la seule
+	// chose graphique qui change par rapport au vrai Piano.
+	private double proportionPianoVerticale = 0.11;
 	private double proportionPianoHorizontale = 0.27;
 
-	/*
-	 * Id du pointeur, numero de la touche (en commencant Ã  0) (+ 10 si noire)
-	 */
-	Hashtable<Integer, Integer> positionPointeurs = new Hashtable<Integer, Integer>();
-	// Map associant numï¿½ro de soundclouds et touches (pour arrï¿½ter le son).
-	// Numï¿½ro de soundCloud= entier croissant dans l'ordre de lancement.(1
-	// pour
-	// le premier soundcloud, 2 pour le suivant...)
-	Hashtable<Integer, Integer> soundids = new Hashtable<Integer, Integer>();
+	//Taille de l'écran
+	int screenWidth;
+	int heightScreen;
+	int widthScreen;
+	
+	//Taille des éléments graphiques
 	int largeur, hauteur, largeurTotale;
 	int largeurToucheBlanche;
 	int largeurToucheNoire;
 	int hauteurToucheNoire;
 	int hauteurToucheBlanche;
-	int screenWidth;
-	int heightScreen;
-	int widthScreen;
-
+	
+//Variables de scroll
 	private int x1 = 0;
 	private int dx1 = 0;
 
+	//Variable de zoom
 	private float x3;
 	private float x4;
 	private float dx3 = 0;
 	private float dx4 = 0;
-
 	boolean justZoomed = false;
-	private double proportionInitiale = 0.875;
+	//proportionInitiale sert juste à donner une idée pour ensuite construire la constante multiplicative pour le zoom
+	private double proportionInitiale = 0.875; 
 
+	//Context
 	Context contexte;
 
+	//Pour colorer
 	private boolean[] gamme;
-	public boolean sustain = true;
 	private int tonique = 0;
 
 	/*
@@ -77,12 +80,11 @@ public class ImageScroller extends View {
 	 */
 	boolean[] tabEtatTouchesBlanches = new boolean[7 * nbreOctave];
 	boolean[] tabEtatTouchesNoires = new boolean[7 * nbreOctave];
-	int[] tabSonTouchesBlanches = new int[7 * nbreOctave];
-	int[] tabSonTouchesNoires = new int[7 * nbreOctave];
-	int x, y;
+	
+	//On vérifie qu'on a bien initié avant d'essayer de dessiner.
 	boolean init = false;
 
-	int ancienx, ancieny;
+
 
 	/*
 	 * Les pinceaux
@@ -112,7 +114,7 @@ public class ImageScroller extends View {
 		DisplayMetrics metrics = contexte.getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
-		
+
 		// init();
 
 	}
@@ -380,17 +382,20 @@ public class ImageScroller extends View {
 			}
 
 		}
+		
+		//Dessin des lignes pour encadrer l'imageScroller
 		canvas.drawLine(0, hauteurToucheBlanche, 7 * nbreOctave
 				* largeurToucheBlanche, hauteurToucheBlanche, new Paint());
 		canvas.drawLine(0, 0, 7 * nbreOctave * largeurToucheBlanche, 0,
 				new Paint());
 
-		canvas.drawLine(0, 1, 0, hauteurToucheBlanche, new Paint());
+		canvas.drawLine(1, 1, 1, hauteurToucheBlanche, new Paint());
 
 		canvas.drawLine(7 * largeurToucheBlanche * nbreOctave - 1, 0, 7
 				* largeurToucheBlanche * nbreOctave - 1, hauteurToucheBlanche,
 				new Paint());
 
+		//Dessin du rectangle représentant l'espace du piano qu'on voit
 		canvas.drawRoundRect(
 
 				new RectF(
@@ -402,6 +407,8 @@ public class ImageScroller extends View {
 								* this.getNbreTouchePiano()),
 						hauteurToucheBlanche), 5, 10, pinceauRectangle);
 
+		
+		//Semble être une mauvaise pratique, mais apparemment acceptable pour les animations (scroll auto au premier clic sur la tab piano)
 		invalidate();
 
 	}
@@ -409,6 +416,9 @@ public class ImageScroller extends View {
 	public boolean onTouchEvent(MotionEvent event) {
 		int ev = MotionEventCompat.getActionMasked(event);
 		int pointerCount = event.getPointerCount();
+
+		// Ici on fait tout à l'ancienne! On peut avoir besoin d'un petit dessin
+		// pour bien comprendre...
 
 		// Pour zoom-in, zoom-out
 
@@ -423,10 +433,11 @@ public class ImageScroller extends View {
 			if (ev == MotionEvent.ACTION_MOVE && x3 != 0) {
 				double prop2;
 				double prop1 = this.piano.getProportionPianoHorizontale();
-				float k = (float) (0.2*this.screenWidth / (this.proportionInitiale));
+				float k = (float) (0.2 * this.screenWidth / (this.proportionInitiale));
 
 				int positionScrollInitiale = this.scroller.getScrollX();
 
+				//Deux cas car on ne sait pas forcément quel pointeur est celui de x plus grand.
 				if (x4 > x3) {
 
 					prop2 = prop1 - (dx4 - dx3) / k;
@@ -450,7 +461,8 @@ public class ImageScroller extends View {
 					}
 				}
 
-				// Scroll de replaçage pendant le redimensionnement
+				// Scroll de replaçage pendant le redimensionnement, pour garder
+				// à peu près le même centre
 
 				int newPositionToScroll = (int) ((prop2 / prop1
 						* positionScrollInitiale + this.screenWidth
@@ -464,6 +476,8 @@ public class ImageScroller extends View {
 					this.scroller.scrollTo(newPositionToScroll + correction, 0);
 					justZoomed = true;
 
+					
+					//Si au moins un des deux pointeurs et relevé, on réinitialise les variables de scroll.
 					if (ev == MotionEvent.ACTION_POINTER_UP) {
 
 						x3 = 0;
@@ -481,12 +495,17 @@ public class ImageScroller extends View {
 
 		} else {
 
+			
+			//Pour le simple déplaçage/scroll
 			if (pointerCount == 1) {
+				//Le if pour éviter de replacer quand on enlève le 2eme doigt après avoir zoom.
 				if (justZoomed == false) {
 					int pointerIndex = MotionEventCompat.getActionIndex(event);
 					int pointerId = event.getPointerId(pointerIndex);
 					int y = (int) MotionEventCompat.getY(event, pointerIndex);
 					int x = (int) MotionEventCompat.getX(event, pointerIndex);
+					
+					//Offset pour prendre comme référence le centre de la fenêtre
 					int offsetMedium = (int) ((largeurToucheBlanche * this
 							.getNbreTouchePiano()) / 2);
 					int x2 = x - offsetMedium;
@@ -512,7 +531,7 @@ public class ImageScroller extends View {
 			}
 
 		}
-
+invalidate();
 		return true;
 	}
 
@@ -536,13 +555,7 @@ public class ImageScroller extends View {
 		screenWidth = width;
 	}
 
-	public void setSustain(boolean a) {
-		sustain = a;
-	}
 
-	public boolean getSustain() {
-		return sustain;
-	}
 
 	public int getHauteur() {
 		return hauteurToucheBlanche;

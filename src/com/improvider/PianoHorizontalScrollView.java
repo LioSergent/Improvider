@@ -115,59 +115,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
-		
-
-		  
-		
-		  
-		  
-		/*
-		 * if (y > hauteur) { switch (event.getAction()) {
-		 * 
-		 * case MotionEvent.ACTION_DOWN:
-		 * 
-		 * // if we can scroll pass the event to the superclass return
-		 * super.onTouchEvent(event); // only continue to handle the touch event
-		 * if scrolling enabled
-		 * 
-		 * default:
-		 * 
-		 * return super.onTouchEvent(event); }
-		 * 
-		 * } return false;
-		 * 
-		 * }
-		 * 
-		 * public boolean onTouchEventBis(MotionEvent event) { int hauteur =
-		 * (int) (getHeight() * proportionHauteur);
-		 * 
-		 * int ev = MotionEventCompat.getActionMasked(event);
-		 * 
-		 * int pointerIndex = MotionEventCompat.getActionIndex(event); int
-		 * pointerId = event.getPointerId(pointerIndex); int y = (int)
-		 * MotionEventCompat.getY(event, pointerIndex); int x = (int)
-		 * MotionEventCompat.getX(event, pointerIndex); Log.d("OntoucheBis",
-		 * String.valueOf(pointerId));
-		 * 
-		 * /* if (event.getEdgeFlags() != 0) { // Don't handle edge touches
-		 * immediately -- they may actually belong // to one of our //
-		 * descendants. return false; }
-		 * 
-		 * 
-		 * switch (event.getAction()) {
-		 * 
-		 * case MotionEvent.ACTION_DOWN:
-		 * 
-		 * // if we can scroll pass the event to the superclass return
-		 * super.onTouchEvent(event); // only continue to handle the touch event
-		 * if scrolling enabled
-		 * 
-		 * default:
-		 * 
-		 * return super.onTouchEvent(event); }
-		 */
-
-		
+//Et ben oui, on ne fait plus rien, tous les scrollages sont appelés par imageScroller
 		return false;
 	}
 
@@ -175,7 +123,6 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		// Call super first because it does some hidden motion event handling
 		boolean result = super.onInterceptTouchEvent(event);
 		int hauteur = (int) (getHeight() * proportionHauteur);
-Log.d("PianoHorizontalScroll", "OnIntercept");
 		int ev = MotionEventCompat.getActionMasked(event);
 
 		int pointerIndex = MotionEventCompat.getActionIndex(event);
@@ -210,7 +157,6 @@ Log.d("PianoHorizontalScroll", "OnIntercept");
 		dx = Math.max(0, Math.min(scrollX + dx, maxX)) - scrollX;
 
 		myScroller.startScroll(scrollX, getScrollY(), dx, 0, 2800);
-		invalidate();
 		imageScroller.invalidate();
 	}
 

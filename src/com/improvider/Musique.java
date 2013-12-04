@@ -19,14 +19,14 @@ public class Musique extends Activity implements OnClickListener {
 									// un morceau
 	public ImageButton boutonPlay;
 	Context context; // Permettra de récupérer les informations concernant
-						// l'instance d'Improvider
+						// l'instance du main
 	View view;
 	TextView Auteur;
 	TextView tempsMax;
 	int volumePlayer;
 
 	/*
-	 * Constructeur appelé depuis Improvider.java
+	 * Constructeur appelé depuis Main.java
 	 */
 
 	public Musique(View v, Context c) {
@@ -72,10 +72,6 @@ public class Musique extends Activity implements OnClickListener {
 		return player.getCurrentPosition();
 	}
 
-	public void setPosition(int i) {
-		player.seekTo(i);
-	}
-
 	public int getDuration() {
 		return player.getDuration();
 	}
@@ -91,6 +87,10 @@ public class Musique extends Activity implements OnClickListener {
 
 	public void setAuteur(String i) {
 		Auteur.setText(i);
+	}
+
+	public void setPosition(int i) {
+		player.seekTo(i);
 	}
 
 }

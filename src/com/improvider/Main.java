@@ -2,7 +2,6 @@ package com.improvider;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,15 +34,11 @@ import android.widget.TabHost;
 
 public class Main extends Activity {
 
-	// Attributs liÃ©s Ã  l'accompagnement
+	// Attributs
+
+	// Attributs liés à l'accompagnement
 	public static int niveausonore = 50;
-	private SoundPool soundPool;
-	private int C2piano, Cd2piano, D2piano, Dd2piano, E2piano, F2piano,
-			Fd2piano, G2piano, Gd2piano, A2piano, Ad2piano, B2piano, C3piano,
-			Cd3piano, D3piano, Dd3piano, E3piano, F3piano, Fd3piano, G3piano,
-			Gd3piano, A3piano, Ad3piano, B3piano, C4piano, Cd4piano, D4piano,
-			Dd4piano, E4piano, F4piano, Fd4piano, G4piano, Gd4piano, A4piano,
-			Ad4piano, B4piano;
+
 	private Musique gestionMusique;
 	private int Adresse;
 	private String Auteur;
@@ -52,68 +46,70 @@ public class Main extends Activity {
 	int volumePlayer;
 	public float volume;
 
-	// Gestion du Piano
-	private boolean[] Gamme;
-	private int tonique;
+	// Gestion du son du Piano
 	public Piano piano;
-	public PianoHorizontalScrollView scroller;
-	public ImageScroller imageScroller;
+	private AudioManager audioManager = null;
+	private SoundPool soundPool;
+	private int C2piano, Cd2piano, D2piano, Dd2piano, E2piano, F2piano,
+			Fd2piano, G2piano, Gd2piano, A2piano, Ad2piano, B2piano, C3piano,
+			Cd3piano, D3piano, Dd3piano, E3piano, F3piano, Fd3piano, G3piano,
+			Gd3piano, A3piano, Ad3piano, B3piano, C4piano, Cd4piano, D4piano,
+			Dd4piano, E4piano, F4piano, Fd4piano, G4piano, Gd4piano, A4piano,
+			Ad4piano, B4piano;
 	public double volumePiano = 0.25;
 	public double volumeProportion = volumePiano / 0.5;
+	public boolean sustain = true;
+
+	// Gestion graphique et dynamique du Piano
+	private boolean[] Gamme;
+	private int tonique;
+	public PianoHorizontalScrollView scroller;
+	public ImageScroller imageScroller;
 	public int screenWidth;
 	public int screenHeight;
 	private boolean premierScroll = true;
-	private AudioManager audioManager = null;
-	// Boutons de rÃ©glages
+
+	// Navigation
 	TabHost onglets;
+	private Button boutonMorceauRetour;
+	private Button boutonReglageRetour;
+
+	// Boutons de réglages et d'information
 
 	public SeekBar volumeBar;
 	public SeekBar avancementBar;
 	public SeekBar volumePianoBar;
-	private Button boutonMorceauRetour;
-	private Button boutonReglageRetour;
-	public boolean sustain = true;
-
 	private ImageButton sustainButton;
 	private TextView sustainText;
 	private ImageButton sustainInfoButton;
 	public TextView tempsMax;
 	public TextView tempsMin;
 	public SeekBar nbreBlanchesVisiblesBar;
-
 	private CharSequence duree;
 
+	// Attributs de dimensions
 	private int widthScreen;
-
 	private int heightScreen;
 	private float density;
 	private float dpHeight;
 	private float dpWidth;
 	private float diagonalInch;
+
+	// Contexte
 	final Context context = this;
 
+	// Méthodes
 	public void onCreate(Bundle icicle)
 
 	{
+
+		// Création de la fenêtre
 		super.onCreate(icicle);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.activity_main);
-
-		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-		/*
-		 * int parentWidth = MeasureSpec.getSize(UNSPECIFIED); FrameLayout
-		 * _rootLayout = (FrameLayout) findViewById(R.id.tabcontent);
-		 * RelativeLayout.LayoutParams _rootLayoutParams = new
-		 * RelativeLayout.LayoutParams(_rootLayout.getWidth(),
-		 * _rootLayout.getHeight()); _rootLayoutParams.setMargins(300, 0, 300,
-		 * 0); _rootLayout.setLayoutParams(_rootLayoutParams);
-		 */
 
 		// On rÃ©cupÃ¨re les infos de l'Intent envoyÃ©s par ChoixAccompagnement.
 		Bundle extras = getIntent().getExtras();
@@ -122,6 +118,114 @@ public class Main extends Activity {
 		tonique = extras.getInt("Tonique");
 		Auteur = extras.getString("name");
 
+		// Récupération de données graphiques
+		if (android.os.Build.VERSION.SDK_INT >= 13) {
+			Display display = getWindowManager().getDefaultDisplay();
+			Point size = new Point();
+			display.getSize(size);
+			screenWidth = size.x;
+			screenHeight = size.y;
+		} else {
+			Display display = getWindowManager().getDefaultDisplay();
+			screenWidth = display.getWidth();
+			screenHeight = display.getHeight();
+
+			// the constructor which you are calling
+		}
+
+		// Chargement des objets liées au son
+
+		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+		// On associe les boutons materiels au controle du volume de
+		// l'application
+		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+		/*
+		 * Chargement des sons nÃ©cessaires
+		 */
+		soundPool = new SoundPool(24, AudioManager.STREAM_MUSIC, 0);
+
+		// PremiÃ¨re Octave
+		C2piano = soundPool.load(this, R.raw.c2piano, 1);
+		Cd2piano = soundPool.load(this, R.raw.c2dpiano, 1);
+		D2piano = soundPool.load(this, R.raw.d2piano, 1);
+		Dd2piano = soundPool.load(this, R.raw.dd2piano, 1);
+		E2piano = soundPool.load(this, R.raw.e2piano, 1);
+		F2piano = soundPool.load(this, R.raw.f2piano, 1);
+		Fd2piano = soundPool.load(this, R.raw.fd2piano, 1);
+		G2piano = soundPool.load(this, R.raw.g2piano, 1);
+		Gd2piano = soundPool.load(this, R.raw.gd2piano, 1);
+		A2piano = soundPool.load(this, R.raw.a2piano, 1);
+		Ad2piano = soundPool.load(this, R.raw.ad2piano, 1);
+		B2piano = soundPool.load(this, R.raw.b2piano, 1);
+
+		// Seconde Octave
+		C3piano = soundPool.load(this, R.raw.c3piano, 1);
+		Cd3piano = soundPool.load(this, R.raw.cd3piano, 1);
+		D3piano = soundPool.load(this, R.raw.d3piano, 1);
+		Dd3piano = soundPool.load(this, R.raw.dd3piano, 1);
+		E3piano = soundPool.load(this, R.raw.e3piano, 1);
+		F3piano = soundPool.load(this, R.raw.f3piano, 1);
+		Fd3piano = soundPool.load(this, R.raw.fd3piano, 1);
+		G3piano = soundPool.load(this, R.raw.g3piano, 1);
+		Gd3piano = soundPool.load(this, R.raw.gd3piano, 1);
+		A3piano = soundPool.load(this, R.raw.a3piano, 1);
+		Ad3piano = soundPool.load(this, R.raw.ad3piano, 1);
+		B3piano = soundPool.load(this, R.raw.b3piano, 1);
+
+		// Troisième octave
+		C4piano = soundPool.load(this, R.raw.c4piano, 1);
+		Cd4piano = soundPool.load(this, R.raw.cd4piano, 1);
+		D4piano = soundPool.load(this, R.raw.d4piano, 1);
+		Dd4piano = soundPool.load(this, R.raw.dd4piano, 1);
+		E4piano = soundPool.load(this, R.raw.e4piano, 1);
+		F4piano = soundPool.load(this, R.raw.f4piano, 1);
+		Fd4piano = soundPool.load(this, R.raw.fd4piano, 1);
+		G4piano = soundPool.load(this, R.raw.g4piano, 1);
+		Gd4piano = soundPool.load(this, R.raw.gd4piano, 1);
+		A4piano = soundPool.load(this, R.raw.a4piano, 1);
+		Ad4piano = soundPool.load(this, R.raw.ad4piano, 1);
+		B4piano = soundPool.load(this, R.raw.b4piano, 1);
+
+		// Récupération du piano
+		piano = (Piano) findViewById(R.id.tab_piano);
+		piano.setGamme(Gamme);
+		piano.setScreenWidth(screenWidth);
+		piano.setTonique(tonique);
+
+		// Recuperation du volume pour le piano
+
+		float actualVolume = (float) audioManager
+				.getStreamVolume(AudioManager.STREAM_MUSIC);
+		float maxVolume = (float) audioManager
+				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		volume = actualVolume / maxVolume;
+		float volumeffectif = (float) (volumePiano * volume);
+
+		// Envoi des informations Ã  la classe Piano
+
+		piano.recupererSon(soundPool, new int[] { C2piano, Cd2piano, D2piano,
+				Dd2piano, E2piano, F2piano, Fd2piano, G2piano, Gd2piano,
+				A2piano, Ad2piano, B2piano, C3piano, Cd3piano, D3piano,
+				Dd3piano, E3piano, F3piano, Fd3piano, G3piano, Gd3piano,
+				A3piano, Ad3piano, B3piano, C4piano, Cd4piano, D4piano,
+				Dd4piano, E4piano, F4piano, Fd4piano, G4piano, Gd4piano,
+				A4piano, Ad4piano, B4piano }, volumeffectif);
+
+		/*
+		 * Création de l'objet de gestion de l'accompagnement
+		 */
+		gestionMusique = new Musique(findViewById(R.id.tab1), findViewById(
+				R.id.tab1).getContext());
+		// On utilise les informations de l'intent.
+		gestionMusique.setPlayer(Adresse);
+		gestionMusique.setAuteur(Auteur);
+		gestionMusique.setVolume(volumeAccompagnementInitial);
+
+		// Les boutons
 		// 2 Boutons de retour
 		boutonMorceauRetour = (Button) findViewById(R.id.bouton_morceau_retour);
 		boutonMorceauRetour.setOnClickListener(new OnClickListener() {
@@ -230,20 +334,8 @@ public class Main extends Activity {
 				}
 			}
 		});
-		/*
-		 * sustainText=(TextView) findViewById(R.id.sustain_text);
-		 * sustainText.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View arg0) {
-		 * 
-		 * piano.setSustain(!piano.getSustain()); if (piano.getSustain()) {
-		 * 
-		 * sustainButton.setBackgroundResource(R.drawable.checked); }
-		 * 
-		 * else { sustainButton.setBackgroundResource(R.drawable.notchecked);
-		 * 
-		 * } } });
-		 */
+
+		// Le bouton d'info sur le sustain
 		sustainInfoButton = (ImageButton) findViewById(R.id.bouton_sustain_info);
 		sustainInfoButton.setOnClickListener(new OnClickListener() {
 
@@ -252,10 +344,7 @@ public class Main extends Activity {
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 						context);
 
-				// set title
 				alertDialogBuilder.setTitle(R.string.sustain);
-
-				// set dialog message
 				alertDialogBuilder.setMessage(R.string.sustain_explanation)
 						.setPositiveButton(R.string.ok,
 								new DialogInterface.OnClickListener() {
@@ -264,128 +353,15 @@ public class Main extends Activity {
 										dialog.cancel();
 									}
 								});
-
-				// create alert dialog
 				AlertDialog alertDialog = alertDialogBuilder.create();
-
-				// show it
 				alertDialog.show();
 			}
 		});
 
-		// On passe aux choses sÃ©rieuses
-
-		// On associe les boutons materiels au controle du volume de
-		// l'application
-		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
-
-		/*
-		 * Chargement des sons nÃ©cessaires
-		 */
-		soundPool = new SoundPool(24, AudioManager.STREAM_MUSIC, 0);
-
-		// PremiÃ¨re Octave
-		C2piano = soundPool.load(this, R.raw.c2piano, 1);
-		Cd2piano = soundPool.load(this, R.raw.c2dpiano, 1);
-		D2piano = soundPool.load(this, R.raw.d2piano, 1);
-		Dd2piano = soundPool.load(this, R.raw.dd2piano, 1);
-		E2piano = soundPool.load(this, R.raw.e2piano, 1);
-		F2piano = soundPool.load(this, R.raw.f2piano, 1);
-		Fd2piano = soundPool.load(this, R.raw.fd2piano, 1);
-		G2piano = soundPool.load(this, R.raw.g2piano, 1);
-		Gd2piano = soundPool.load(this, R.raw.gd2piano, 1);
-		A2piano = soundPool.load(this, R.raw.a2piano, 1);
-		Ad2piano = soundPool.load(this, R.raw.ad2piano, 1);
-		B2piano = soundPool.load(this, R.raw.b2piano, 1);
-
-		// Seconde Octave
-		C3piano = soundPool.load(this, R.raw.c3piano, 1);
-		Cd3piano = soundPool.load(this, R.raw.cd3piano, 1);
-		D3piano = soundPool.load(this, R.raw.d3piano, 1);
-		Dd3piano = soundPool.load(this, R.raw.dd3piano, 1);
-		E3piano = soundPool.load(this, R.raw.e3piano, 1);
-		F3piano = soundPool.load(this, R.raw.f3piano, 1);
-		Fd3piano = soundPool.load(this, R.raw.fd3piano, 1);
-		G3piano = soundPool.load(this, R.raw.g3piano, 1);
-		Gd3piano = soundPool.load(this, R.raw.gd3piano, 1);
-		A3piano = soundPool.load(this, R.raw.a3piano, 1);
-		Ad3piano = soundPool.load(this, R.raw.ad3piano, 1);
-		B3piano = soundPool.load(this, R.raw.b3piano, 1);
-
-		// Troisième octave
-		C4piano = soundPool.load(this, R.raw.c4piano, 1);
-		Cd4piano = soundPool.load(this, R.raw.cd4piano, 1);
-		D4piano = soundPool.load(this, R.raw.d4piano, 1);
-		Dd4piano = soundPool.load(this, R.raw.dd4piano, 1);
-		E4piano = soundPool.load(this, R.raw.e4piano, 1);
-		F4piano = soundPool.load(this, R.raw.f4piano, 1);
-		Fd4piano = soundPool.load(this, R.raw.fd4piano, 1);
-		G4piano = soundPool.load(this, R.raw.g4piano, 1);
-		Gd4piano = soundPool.load(this, R.raw.gd4piano, 1);
-		A4piano = soundPool.load(this, R.raw.a4piano, 1);
-		Ad4piano = soundPool.load(this, R.raw.ad4piano, 1);
-		B4piano = soundPool.load(this, R.raw.b4piano, 1);
-
-		/*
-		 * On envoie les sons Ã  l'instance de la classe Piano
-		 */
-		if (android.os.Build.VERSION.SDK_INT >= 13) {
-			Display display = getWindowManager().getDefaultDisplay();
-			Point size = new Point();
-			display.getSize(size);
-			screenWidth = size.x;
-			screenHeight = size.y;
-		} else {
-			Display display = getWindowManager().getDefaultDisplay();
-			screenWidth = display.getWidth();
-			screenHeight = display.getHeight();
-
-			// the constructor which you are calling
-		}
-
-		piano = (Piano) findViewById(R.id.tab_piano);
-		piano.setGamme(Gamme);
-		piano.setScreenWidth(screenWidth);
-		piano.setTonique(tonique);
-
-		int a = piano.getHeight();
-
-		// Recuperation du volume
-		AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-		float actualVolume = (float) audioManager
-				.getStreamVolume(AudioManager.STREAM_MUSIC);
-		float maxVolume = (float) audioManager
-				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-		volume = actualVolume / maxVolume;
-		float volumeffectif = (float) (volumePiano * volume);
-
-		// Envoi des informations Ã  la classe Piano
-
-		piano.recupererSon(soundPool, new int[] { C2piano, Cd2piano, D2piano,
-				Dd2piano, E2piano, F2piano, Fd2piano, G2piano, Gd2piano,
-				A2piano, Ad2piano, B2piano, C3piano, Cd3piano, D3piano,
-				Dd3piano, E3piano, F3piano, Fd3piano, G3piano, Gd3piano,
-				A3piano, Ad3piano, B3piano, C4piano, Cd4piano, D4piano,
-				Dd4piano, E4piano, F4piano, Fd4piano, G4piano, Gd4piano,
-				A4piano, Ad4piano, B4piano }, volumeffectif);
-
-		piano.setVolume(volumeffectif);
-
-		// Création de l'image Scroller
-
-		scroller = (PianoHorizontalScrollView) findViewById(R.id.scroller);
-        scroller.setPiano(piano);
-		imageScroller = (ImageScroller) findViewById(R.id.image_scroller);
-		imageScroller.setPiano(piano);
-		imageScroller.setPianoHorizontalScrollView(scroller);
-		imageScroller.setGamme(Gamme);
-		imageScroller.setTonique(tonique);
-		scroller.setImageScroller(imageScroller);
-
 		// Barre de rÃ©glages du nombre de touches apparaissant Ã  l'Ã©cran
 
 		nbreBlanchesVisiblesBar = (SeekBar) findViewById(R.id.nbre_blanches_visibles_bar);
-		
+
 		nbreBlanchesVisiblesBar.setProgress(7);
 
 		nbreBlanchesVisiblesBar
@@ -397,6 +373,7 @@ public class Main extends Activity {
 
 							double nouvelleProp = (double) 7 / (progress + 3);
 							piano.setProportionPianoHorizontale(nouvelleProp);
+							imageScroller.invalidate();
 						}
 					}
 
@@ -416,17 +393,8 @@ public class Main extends Activity {
 
 				);
 
-		/*
-		 * Classe de gestion de la musique
-		 */
-		gestionMusique = new Musique(findViewById(R.id.tab1), findViewById(
-				R.id.tab1).getContext());
-		// On utilise les informations de l'intent.
-		gestionMusique.setPlayer(Adresse);
-		gestionMusique.setAuteur(Auteur);
-		gestionMusique.setVolume(volumeAccompagnementInitial);
-
 		// Barre d'avancement
+		// Recherche de la fin
 		int dureems = gestionMusique.getDuration();
 
 		int minutes = (int) dureems / 60000;
@@ -443,41 +411,11 @@ public class Main extends Activity {
 		tempsMax.setText(duree);
 		tempsMin = (TextView) findViewById(R.id.avancement_min);
 
+		// Création de la barre
+
 		avancementBar = (SeekBar) findViewById(R.id.avancement_bar);
 		avancementBar.setMax(getDuration());
 		avancementBar.setProgress(getPositionGestion());
-
-		// Actualisation de la dite barre
-
-		TimerTask actualisation = new TimerTask() {
-
-			public void run() {
-				runOnUiThread(new Runnable() {
-					public void run() {
-						avancementBar.setProgress(getPositionGestion());
-
-						int dureems = getPositionGestion();
-						int minutes = (int) dureems / 60000;
-						int secondes = (int) (dureems - minutes * 60000) / 1000;
-						if (secondes >= 10) {
-							String duree = "   " + minutes + ":" + secondes
-									+ " ";
-							setTempsMin(duree);
-						} else {
-							String duree = "   " + minutes + ":0" + secondes
-									+ " ";
-							setTempsMin(duree);
-						}
-						int progress= (int) Math.ceil(7/(piano.getProportionPianoHorizontale())-3);
-						nbreBlanchesVisiblesBar.setProgress(progress);
-					}
-				});
-			}
-
-		};
-		Timer t = new Timer();
-
-		t.schedule(actualisation, (long) 1000, (long) 1000);
 
 		// Changement de l'avancement selon l'utilisateur
 
@@ -505,6 +443,56 @@ public class Main extends Activity {
 		}
 
 		);
+
+		// Actualisation des barres via Timer: avancementBar et
+		// nbreBlanchesVisiblesBar
+
+		TimerTask actualisation = new TimerTask() {
+
+			public void run() {
+				runOnUiThread(new Runnable() {
+					public void run() {
+						avancementBar.setProgress(getPositionGestion());
+
+						int dureems = getPositionGestion();
+						int minutes = (int) dureems / 60000;
+						int secondes = (int) (dureems - minutes * 60000) / 1000;
+						if (secondes >= 10) {
+							String duree = "   " + minutes + ":" + secondes
+									+ " ";
+							setTempsMin(duree);
+						} else {
+							String duree = "   " + minutes + ":0" + secondes
+									+ " ";
+							setTempsMin(duree);
+						}
+						int progress = (int) Math.ceil(7 / (piano
+								.getProportionPianoHorizontale()) - 3);
+						nbreBlanchesVisiblesBar.setProgress(progress);
+					}
+				});
+			}
+
+		};
+		Timer t = new Timer();
+
+		t.schedule(actualisation, (long) 1500, (long) 500);
+
+		// Création des éléments graphiques plus complexes
+
+		/* Création du scroller et de l'imageScroller, don au piano de l'imageScroller, du à un problème de non-actualisation de ce dernier 
+		lors du scroll automatique
+		*/
+
+		scroller = (PianoHorizontalScrollView) findViewById(R.id.scroller);
+		scroller.setPiano(piano);
+		imageScroller = (ImageScroller) findViewById(R.id.image_scroller);
+		imageScroller.setPiano(piano);
+		imageScroller.setPianoHorizontalScrollView(scroller);
+		imageScroller.setGamme(Gamme);
+		imageScroller.setTonique(tonique);
+		scroller.setImageScroller(imageScroller);
+		
 
 		/*
 		 * Modification des onglets
@@ -541,6 +529,7 @@ public class Main extends Activity {
 
 		tvb.setTextColor(Color.WHITE);
 		tvb.setTextSize(0, 30);
+
 		// Onglet "Piano"
 		TabHost.TabSpec ongletPiano = onglets.newTabSpec("ongletPiano");
 
@@ -612,9 +601,14 @@ public class Main extends Activity {
 			onglets.getTabWidget().getChildAt(i)
 					.setBackgroundResource(R.drawable.tab_bg_selector);
 		}
+
+		// Relayoutage de quelques éléments perturbateurs
+
 		setDimensionsOngletPiano();
 		reSizePlay();
 	}
+
+	// Méthodes diverses
 
 	/*
 	 * Gestion du cycle de vie de l'application
@@ -647,68 +641,27 @@ public class Main extends Activity {
 
 	}
 
-	// GETTERS
+	// Re-layout programaticly (f(diagonale, screen type))
 
-	public float getVolumePiano() {
-		return (float) volumePiano;
-	}
+	private void reSizePlay() {
 
-	public int getAdresse() {
-		return Adresse;
-	}
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		int widthScreen = metrics.widthPixels;
+		int heightScreen = metrics.heightPixels;
+		float density = getResources().getDisplayMetrics().density;
 
-	public Musique getGestionMusique() {
-		return gestionMusique;
-	}
+		float dpHeight = heightScreen / density;
+		float dpWidth = widthScreen / density;
 
-	public void setPositionGestion(int i) {
-		gestionMusique.setPosition(i);
+		float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight + dpWidth
+				* dpWidth) / 160;
 
-	}
+		ImageButton buttonPlay = (ImageButton) findViewById(R.id.boutonPlay);
+		int maxWidth = (int) (12 * diagonalInch + 11 * diagonalInch
+				* diagonalInch - 110);
+		buttonPlay.setMaxWidth(maxWidth);
+		buttonPlay.setMaxHeight(maxWidth);
 
-	public int getPositionGestion() {
-		return gestionMusique.getPosition();
-
-	}
-
-	public int getDuration() {
-		return gestionMusique.getDuration();
-
-	}
-
-	// Setters
-
-	public void setVolumeGestion(int i) {
-		gestionMusique.setVolume(i);
-	}
-
-	public void setAdresse(int adresse) {
-		Adresse = adresse;
-	}
-
-	public boolean[] getGamme() {
-		return Gamme;
-	}
-
-	public void setGamme(boolean[] gamme) {
-		Gamme = gamme;
-	}
-
-	public void setVolumePiano(int i) {
-		double j = (double) i;
-		volumePiano = (j / 100);
-
-		volumeProportion = volumePiano / 0.5;
-		piano.setVolume((float) volumePiano * volume);
-
-	}
-
-	public void setTempsMin(String text) {
-		tempsMin.setText(text);
-	}
-
-	public ImageScroller getImageScroller() {
-		return this.imageScroller;
 	}
 
 	private void setDimensionsOngletPiano() {
@@ -831,25 +784,67 @@ public class Main extends Activity {
 		}
 	}
 
-	private void reSizePlay() {
+	// Setters d'attributs
 
-		DisplayMetrics metrics = getResources().getDisplayMetrics();
-		int widthScreen = metrics.widthPixels;
-		int heightScreen = metrics.heightPixels;
-		float density = getResources().getDisplayMetrics().density;
+	public void setVolumeGestion(int i) {
+		gestionMusique.setVolume(i);
+	}
 
-		float dpHeight = heightScreen / density;
-		float dpWidth = widthScreen / density;
+	public void setAdresse(int adresse) {
+		Adresse = adresse;
+	}
 
-		float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight + dpWidth
-				* dpWidth) / 160;
+	public boolean[] getGamme() {
+		return Gamme;
+	}
 
-		ImageButton buttonPlay = (ImageButton) findViewById(R.id.boutonPlay);
-		int maxWidth = (int) (12 * diagonalInch + 11 * diagonalInch
-				* diagonalInch - 110);
-		buttonPlay.setMaxWidth(maxWidth);
-		buttonPlay.setMaxHeight(maxWidth);
+	public void setGamme(boolean[] gamme) {
+		Gamme = gamme;
+	}
+
+	public void setVolumePiano(int i) {
+		double j = (double) i;
+		volumePiano = (j / 100);
+
+		volumeProportion = volumePiano / 0.5;
+		piano.setVolume((float) volumePiano * volume);
 
 	}
 
+	public void setTempsMin(String text) {
+		tempsMin.setText(text);
+	}
+
+	// GETTERS
+
+	public float getVolumePiano() {
+		return (float) volumePiano;
+	}
+
+	public int getAdresse() {
+		return Adresse;
+	}
+
+	public Musique getGestionMusique() {
+		return gestionMusique;
+	}
+
+	public void setPositionGestion(int i) {
+		gestionMusique.setPosition(i);
+
+	}
+
+	public int getPositionGestion() {
+		return gestionMusique.getPosition();
+
+	}
+
+	public int getDuration() {
+		return gestionMusique.getDuration();
+
+	}
+
+	public ImageScroller getImageScroller() {
+		return this.imageScroller;
+	}
 }
