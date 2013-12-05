@@ -5,13 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-
 import android.widget.Button;
-import android.widget.RelativeLayout.LayoutParams;
 
 // COUCOU PIGNOUF
 
@@ -70,6 +67,7 @@ public class Improvider extends Activity {
 			}
 		});
 
+		// Redimensionnement du texte pour les appareil Normal-petits
 		reSizeNormal();
 
 	}

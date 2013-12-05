@@ -1,25 +1,17 @@
 package com.improvider;
 
-import java.util.Hashtable;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader.TileMode;
-
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
-
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 
 /*Cette classe sert de controleur graphique pour le pianoHorizontalScrollView du main. Tout est pareil sauf les proportions et surtout
  le onTouchEvent, où se trouve le zoom-in, zoom-out, et le scrolling.
@@ -43,61 +35,50 @@ public class ImageScroller extends View {
 	private double proportionPianoVerticale = 0.11;
 	private double proportionPianoHorizontale = 0.27;
 
-	//Taille de l'écran
+	// Taille de l'écran
 	int screenWidth;
 	int heightScreen;
 	int widthScreen;
-	
-	//Taille des éléments graphiques
+
+	// Taille des éléments graphiques
 	int largeur, hauteur, largeurTotale;
 	int largeurToucheBlanche;
 	int largeurToucheNoire;
 	int hauteurToucheNoire;
 	int hauteurToucheBlanche;
-	
-//Variables de scroll
+
+	// Variables de scroll
 	private int x1 = 0;
 	private int dx1 = 0;
 
-	//Variable de zoom
+	// Variable de zoom
 	private float x3;
 	private float x4;
 	private float dx3 = 0;
 	private float dx4 = 0;
 	boolean justZoomed = false;
-	//proportionInitiale sert juste à donner une idée pour ensuite construire la constante multiplicative pour le zoom
-	private double proportionInitiale = 0.875; 
+	// proportionInitiale sert juste à donner une idée pour ensuite construire
+	// la constante multiplicative pour le zoom
+	private double proportionInitiale = 0.875;
 
-	//Context
+	// Context
 	Context contexte;
 
-	//Pour colorer
+	// Pour colorer
 	private boolean[] gamme;
 	private int tonique = 0;
 
-	/*
-	 * Attributs divers de la classe
-	 */
-	boolean[] tabEtatTouchesBlanches = new boolean[7 * nbreOctave];
-	boolean[] tabEtatTouchesNoires = new boolean[7 * nbreOctave];
-	
-	//On vérifie qu'on a bien initié avant d'essayer de dessiner.
+	// On vérifie qu'on a bien initié avant d'essayer de dessiner.
 	boolean init = false;
-
-
 
 	/*
 	 * Les pinceaux
 	 */
-	private Paint pinceauToucheNoireAppuye, pinceauToucheNoireRelache;
-	private Paint pinceauToucheBlancheAppuye;
+	private Paint pinceauToucheNoireRelache;
 	private Paint pinceauToucheNoireJouable;
 	private Paint pinceauToucheBlancheJouable;
 	private Paint pinceauToucheBlancheRelache;
-	private Paint pinceauToucheNoireJouableAppuye;
-	private Paint pinceauToucheBlancheJouableAppuye;
 	private Paint pinceauToucheTonique;
-	private Paint pinceauToucheToniqueAppuye;
 
 	private Paint pinceauRectangle;
 
@@ -153,18 +134,8 @@ public class ImageScroller extends View {
 
 		// CrÃ©ation des pinceaux
 
-		pinceauToucheNoireAppuye = new Paint(Paint.ANTI_ALIAS_FLAG);
-		pinceauToucheNoireAppuye.setShader(new LinearGradient(0, 0, 0,
-				hauteurToucheNoire, new int[] { 0xFF000000, 0xff888888 }, null,
-				TileMode.MIRROR));
-
 		pinceauToucheNoireRelache = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinceauToucheNoireRelache.setColor(Color.BLACK);
-
-		pinceauToucheBlancheAppuye = new Paint();
-		pinceauToucheBlancheAppuye.setShader(new LinearGradient(0, 0, 0,
-				hauteur, new int[] { 0xFFFFFFFF, 0xFFAAAAAA }, null,
-				TileMode.MIRROR));
 
 		pinceauToucheNoireJouable = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinceauToucheNoireJouable.setColor(vertToucheNoireJouable);
@@ -175,24 +146,8 @@ public class ImageScroller extends View {
 		pinceauToucheBlancheRelache = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinceauToucheBlancheRelache.setColor(Color.WHITE);
 
-		pinceauToucheBlancheJouableAppuye = new Paint(Paint.ANTI_ALIAS_FLAG);
-		pinceauToucheBlancheJouableAppuye.setShader(new LinearGradient(0, 0, 0,
-				hauteurToucheNoire, new int[] { vertToucheBlancheJouable,
-						0xFFAAAAAA }, null, TileMode.MIRROR));
-
-		pinceauToucheNoireJouableAppuye = new Paint(Paint.ANTI_ALIAS_FLAG);
-		pinceauToucheNoireJouableAppuye.setShader(new LinearGradient(0, 0, 0,
-				hauteurToucheNoire, new int[] { vertToucheNoireJouable,
-						0xff888888 }, null, TileMode.MIRROR));
-
 		pinceauToucheTonique = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinceauToucheTonique.setColor(bleuToucheTonique);
-
-		pinceauToucheToniqueAppuye = new Paint(Paint.ANTI_ALIAS_FLAG);
-		pinceauToucheToniqueAppuye.setShader(new LinearGradient(0, 0, 0,
-				hauteurToucheNoire,
-				new int[] { bleuToucheTonique, 0xFFAAAAAA }, null,
-				TileMode.MIRROR));
 
 		pinceauRectangle = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinceauRectangle.setColor(bleuToucheTonique);
@@ -205,8 +160,6 @@ public class ImageScroller extends View {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
-		int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
-		int parentHeight = MeasureSpec.getSize(heightMeasureSpec);
 		this.setMeasuredDimension((int) (widthScreen
 				* proportionPianoHorizontale * nbreOctave),
 				(int) (heightScreen * proportionPianoVerticale));
@@ -225,29 +178,7 @@ public class ImageScroller extends View {
 		// Coloration des touches blanches
 		for (int i = 1; i <= 7 * nbreOctave; i++) {
 
-			if (tabEtatTouchesBlanches[i - 1] == true) {
-
-				if ((i) % 7 == tonique + 1) {
-					canvas.drawRect(new Rect((i - 1) * largeurToucheBlanche, 0,
-							i * largeurToucheBlanche, hauteur),
-							pinceauToucheToniqueAppuye);
-
-				} else {
-					if (this.gamme((i - 1) % 7)) {
-						canvas.drawRect(new Rect(
-								(i - 1) * largeurToucheBlanche, 0, i
-										* largeurToucheBlanche, hauteur),
-								pinceauToucheBlancheJouableAppuye);
-					} else {
-						canvas.drawRect(new Rect(
-								(i - 1) * largeurToucheBlanche, 0, i
-										* largeurToucheBlanche, hauteur),
-								pinceauToucheBlancheAppuye);
-					}
-
-				}
-
-			} else if (i % 7 == tonique + 1) {
+			if (i % 7 == tonique + 1) {
 				canvas.drawRect(new Rect((i - 1) * largeurToucheBlanche, 0, i
 						* largeurToucheBlanche, hauteur), pinceauToucheTonique);
 
@@ -275,90 +206,44 @@ public class ImageScroller extends View {
 												// Mi et le Fa, ni entre le Do
 												// et le si
 
-				// Cas appuyÃ©
-				if (tabEtatTouchesNoires[i - 1]) {
-
-					if ((i % 7) + 6 == tonique) {
-						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
-								5, 10, pinceauToucheToniqueAppuye);
-					} else if (this.gamme(i % 7 + 7)) {
-						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
-								5, 10, pinceauToucheNoireJouableAppuye);
-					} else {
-						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
-								5, 10, pinceauToucheNoireAppuye);
-					}
+				if ((i % 7) + 6 == tonique) {
+					canvas.drawRoundRect(
+							new RectF(
+									i
+											* largeurToucheBlanche
+											- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
+									-10,
+									i
+											* largeurToucheBlanche
+											+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
+									(int) (hauteur * proportionToucheNoireHauteur)),
+							5, 10, pinceauToucheTonique);
+				} else if (this.gamme(i % 7 + 7)) {
+					canvas.drawRoundRect(
+							new RectF(
+									i
+											* largeurToucheBlanche
+											- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
+									-10,
+									i
+											* largeurToucheBlanche
+											+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
+									(int) (hauteur * proportionToucheNoireHauteur)),
+							5, 10, pinceauToucheNoireJouable);
+				} else {
+					canvas.drawRoundRect(
+							new RectF(
+									i
+											* largeurToucheBlanche
+											- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
+									-10,
+									i
+											* largeurToucheBlanche
+											+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
+									(int) (hauteur * proportionToucheNoireHauteur)),
+							5, 10, pinceauToucheNoireRelache);
 				}
 
-				// Cas pas appuye
-
-				else {
-					if ((i % 7) + 6 == tonique) {
-						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
-								5, 10, pinceauToucheTonique);
-					} else if (this.gamme(i % 7 + 7)) {
-						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
-								5, 10, pinceauToucheNoireJouable);
-					} else {
-						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
-								5, 10, pinceauToucheNoireRelache);
-					}
-
-				}
 			}
 		}
 
@@ -382,8 +267,8 @@ public class ImageScroller extends View {
 			}
 
 		}
-		
-		//Dessin des lignes pour encadrer l'imageScroller
+
+		// Dessin des lignes pour encadrer l'imageScroller
 		canvas.drawLine(0, hauteurToucheBlanche, 7 * nbreOctave
 				* largeurToucheBlanche, hauteurToucheBlanche, new Paint());
 		canvas.drawLine(0, 0, 7 * nbreOctave * largeurToucheBlanche, 0,
@@ -395,7 +280,7 @@ public class ImageScroller extends View {
 				* largeurToucheBlanche * nbreOctave - 1, hauteurToucheBlanche,
 				new Paint());
 
-		//Dessin du rectangle représentant l'espace du piano qu'on voit
+		// Dessin du rectangle représentant l'espace du piano qu'on voit
 		canvas.drawRoundRect(
 
 				new RectF(
@@ -407,8 +292,8 @@ public class ImageScroller extends View {
 								* this.getNbreTouchePiano()),
 						hauteurToucheBlanche), 5, 10, pinceauRectangle);
 
-		
-		//Semble être une mauvaise pratique, mais apparemment acceptable pour les animations (scroll auto au premier clic sur la tab piano)
+		// Semble être une mauvaise pratique, mais apparemment acceptable pour
+		// les animations (scroll auto au premier clic sur la tab piano)
 		invalidate();
 
 	}
@@ -437,7 +322,8 @@ public class ImageScroller extends View {
 
 				int positionScrollInitiale = this.scroller.getScrollX();
 
-				//Deux cas car on ne sait pas forcément quel pointeur est celui de x plus grand.
+				// Deux cas car on ne sait pas forcément quel pointeur est celui
+				// de x plus grand.
 				if (x4 > x3) {
 
 					prop2 = prop1 - (dx4 - dx3) / k;
@@ -476,8 +362,8 @@ public class ImageScroller extends View {
 					this.scroller.scrollTo(newPositionToScroll + correction, 0);
 					justZoomed = true;
 
-					
-					//Si au moins un des deux pointeurs et relevé, on réinitialise les variables de scroll.
+					// Si au moins un des deux pointeurs et relevé, on
+					// réinitialise les variables de scroll.
 					if (ev == MotionEvent.ACTION_POINTER_UP) {
 
 						x3 = 0;
@@ -495,17 +381,18 @@ public class ImageScroller extends View {
 
 		} else {
 
-			
-			//Pour le simple déplaçage/scroll
+			// Pour le simple déplaçage/scroll
 			if (pointerCount == 1) {
-				//Le if pour éviter de replacer quand on enlève le 2eme doigt après avoir zoom.
+				// Le if pour éviter de replacer quand on enlève le 2eme doigt
+				// après avoir zoom.
 				if (justZoomed == false) {
 					int pointerIndex = MotionEventCompat.getActionIndex(event);
 					int pointerId = event.getPointerId(pointerIndex);
 					int y = (int) MotionEventCompat.getY(event, pointerIndex);
 					int x = (int) MotionEventCompat.getX(event, pointerIndex);
-					
-					//Offset pour prendre comme référence le centre de la fenêtre
+
+					// Offset pour prendre comme référence le centre de la
+					// fenêtre
 					int offsetMedium = (int) ((largeurToucheBlanche * this
 							.getNbreTouchePiano()) / 2);
 					int x2 = x - offsetMedium;
@@ -531,7 +418,7 @@ public class ImageScroller extends View {
 			}
 
 		}
-invalidate();
+		invalidate();
 		return true;
 	}
 
@@ -554,8 +441,6 @@ invalidate();
 	public void setScreenWidth(int width) {
 		screenWidth = width;
 	}
-
-
 
 	public int getHauteur() {
 		return hauteurToucheBlanche;

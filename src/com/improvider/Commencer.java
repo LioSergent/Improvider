@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,7 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Commencer extends Activity {
-	Button boutonMontrer;
+	Button boutonMontrer;// Le bouton servant à avoir un tour sur le maniement
+							// de l'app
 	Button boutonSavoir;
 	Button boutonRetour;
 
@@ -69,6 +69,8 @@ public class Commencer extends Activity {
 
 			}
 		});
+
+		// Pareil
 		reSizeNormal();
 
 	}
@@ -79,33 +81,32 @@ public class Commencer extends Activity {
 		getMenuInflater().inflate(R.menu.commencer, menu);
 		return true;
 	}
+
 	private void reSizeNormal() {
-		
+
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
 			DisplayMetrics metrics = getResources().getDisplayMetrics();
 			int widthScreen = metrics.widthPixels;
 			int heightScreen = metrics.heightPixels;
 			float density = getResources().getDisplayMetrics().density;
-			
+
 			float dpHeight = heightScreen / density;
 			float dpWidth = widthScreen / density;
-			
-	       float diagonalInch=(float) Math.sqrt(dpHeight*dpHeight+dpWidth*dpWidth)/160;
-	 
-			
-	        if (diagonalInch<4) {
-	        
-	        	
-	        	
-	        	boutonMontrer.setTextSize(17);
-	        	boutonSavoir.setTextSize(17);
-	        	boutonRetour.setTextSize(17);
-	      TextView texte=(TextView) findViewById(R.id.text_commencer);
-	        	texte.setTextSize(21);
-	        }
-	        
-	        }
 
-}
-	
+			float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight
+					+ dpWidth * dpWidth) / 160;
+
+			if (diagonalInch < 4) {
+
+				boutonMontrer.setTextSize(17);
+				boutonSavoir.setTextSize(17);
+				boutonRetour.setTextSize(17);
+				TextView texte = (TextView) findViewById(R.id.text_commencer);
+				texte.setTextSize(21);
+			}
+
+		}
+
+	}
+
 }

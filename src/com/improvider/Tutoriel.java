@@ -5,17 +5,12 @@ import android.os.Handler;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Point;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +20,8 @@ public class Tutoriel extends Activity {
 	ImageView image;
 	Button boutonPrecedent;
 	Button boutonSuivant;
-	int screenWidth;
-	int screenHeight;
+	int widthScreen;
+	int heightScreen;
 	int imageWidth;
 	int imageHeight;
 	double proportion = 0.6;
@@ -40,67 +35,7 @@ public class Tutoriel extends Activity {
 		setContentView(R.layout.activity_tutoriel);
 		final Context context = getApplicationContext();
 
-		if (android.os.Build.VERSION.SDK_INT >= 13) {
-			Display display = getWindowManager().getDefaultDisplay();
-			Point size = new Point();
-			display.getSize(size);
-			screenWidth = size.x;
-			screenHeight = size.y;
-
-		} else {
-			Display display = getWindowManager().getDefaultDisplay();
-			screenWidth = display.getWidth();
-			screenHeight = display.getHeight();
-
-			// the constructor which you are calling
-		}
-
-		// Petit r√©glage selon la taille de l'√©cran. C'est sale, mais je
-		// voulais le faire t√¥t juste pour le tuto.
-
-		if (screenHeight < 500) {
-			proportion = 0.37;
-		}
-
-		if (screenHeight < 700) {
-			proportion = 0.45;
-		}
-
-		if (screenHeight > 1000) {
-			proportion = 0.53;
-		}
-
-		if (screenHeight > 1200) {
-			proportion = 0.58;
-		}
-
-		if (screenHeight > 1400) {
-			proportion = 0.64;
-		}
-
-		// En fonction de la taille rÈelle de l'Ècran.
-
-		DisplayMetrics metrics = getResources().getDisplayMetrics();
-		int widthScreen = metrics.widthPixels;
-		int heightScreen = metrics.heightPixels;
-		float density = getResources().getDisplayMetrics().density;
-
-		float dpHeight = heightScreen / density;
-		float dpWidth = widthScreen / density;
-
-		float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight + dpWidth
-				* dpWidth) / 160;
-
-		proportion = 0.48 + diagonalInch * 0.012;
-
-		imageWidth = (int) (screenWidth * proportion);
-		imageHeight = (int) (imageWidth * proportionNexus4);
-
-		explication = (TextView) findViewById(R.id.text_tutoriel);
-		image = (ImageView) findViewById(R.id.image_tutoriel);
-
-		image.setMaxHeight(imageHeight);
-		image.setMaxWidth(imageWidth);
+		// Gestion des ÈvËnements des boutons du tutoriel
 
 		boutonPrecedent = (Button) findViewById(R.id.bouton_tutoriel_precedent);
 		boutonPrecedent.setText(R.string.retour);
@@ -132,7 +67,7 @@ public class Tutoriel extends Activity {
 			public void onClick(View arg0) {
 
 				if (state == 3) {
-					toast = Toast.makeText(context, R.string.chargement, 20000);
+					toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
 					toast.show();
 
 					Handler lHandler = new Handler();
@@ -164,14 +99,110 @@ public class Tutoriel extends Activity {
 			}
 		});
 
-		reSizeNormal();
+		// On s'occupe de layouter un peu plus prÈcisemment certains ÈlÈments
+		// En fonction de la taille de la diagonale
+
+		// Calcul de la diagonale
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		widthScreen = metrics.widthPixels;
+		heightScreen = metrics.heightPixels;
+		float density = getResources().getDisplayMetrics().density;
+
+		float dpHeight = heightScreen / density;
+		float dpWidth = widthScreen / density;
+
+		float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight + dpWidth
+				* dpWidth) / 160;
+
+		// Redimensionnement de l'image
+		proportion = 0.48 + diagonalInch * 0.012;
+
+		imageWidth = (int) (widthScreen * proportion);
+		imageHeight = (int) (imageWidth * proportionNexus4);
+
+		image = (ImageView) findViewById(R.id.image_tutoriel);
+		image.setMaxHeight(imageHeight);
+		image.setMaxWidth(imageWidth);
+
+		// Redimensionnement du texte
+		reSizeTexte(diagonalInch);
 	}
 
+	// MÈthodes de cycle de vie
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.tutoriel, menu);
 		return true;
+	}
+
+	public void onDestroy() {
+		super.onDestroy();
+		if (toast != null) {
+
+			toast.cancel();
+		}
+	}
+
+	public void onStop() {
+		super.onStop();
+		if (toast != null) {
+
+			toast.cancel();
+		}
+	}
+
+	public void onPause() {
+		super.onPause();
+		if (toast != null) {
+
+			toast.cancel();
+		}
+
+	}
+
+	public void onBackPressed() {
+
+		if (state > 0) {
+			this.diapoPrecedente(state);
+
+		} else {
+			finish();
+		}
+
+	}
+
+	// MÈthodes de navigation entre les diapos
+	private void premiereDiapo() {
+
+		boutonPrecedent.setText(R.string.retour);
+		explication.setText(R.string.diapotuto1);
+		image.setImageResource(R.drawable.diapotutomorceau);
+	}
+
+	private void deuxiemeDiapo() {
+		boutonPrecedent.setText(R.string.precedent);
+		explication.setText(R.string.diapotuto2);
+		image.setImageResource(R.drawable.diapotutopiano1);
+
+	}
+
+	private void troisiemeDiapo() {
+
+		explication.setText(R.string.diapotuto3);
+		image.setImageResource(R.drawable.diapotutopiano2);
+		boutonSuivant.setText(R.string.suivant);
+	}
+
+	private void quatriemeDiapo() {
+
+		boutonSuivant.setText(R.string.letgo);
+		explication.setText(R.string.diapotuto4);
+		image.setImageResource(R.drawable.diapotutoreglages);
+	}
+
+	private void setState(int i) {
+		this.state = i;
 	}
 
 	private boolean diapoPrecedente(int i) {
@@ -219,94 +250,13 @@ public class Tutoriel extends Activity {
 		return false;
 	}
 
-	private void premiereDiapo() {
+	//MÈthode de redimensionnement
+	private void reSizeTexte(float diagonalInch) {
 
-		boutonPrecedent.setText(R.string.retour);
-		explication.setText(R.string.diapotuto1);
-		image.setImageResource(R.drawable.diapotutomorceau);
-	}
+		if (diagonalInch < 4) {
 
-	private void deuxiemeDiapo() {
-		boutonPrecedent.setText(R.string.precedent);
-		explication.setText(R.string.diapotuto2);
-		image.setImageResource(R.drawable.diapotutopiano1);
-
-	}
-
-	private void troisiemeDiapo() {
-
-		explication.setText(R.string.diapotuto3);
-		image.setImageResource(R.drawable.diapotutopiano2);
-		boutonSuivant.setText(R.string.suivant);
-	}
-
-	private void quatriemeDiapo() {
-
-		boutonSuivant.setText(R.string.letgo);
-		explication.setText(R.string.diapotuto4);
-		image.setImageResource(R.drawable.diapotutoreglages);
-	}
-
-	private void setState(int i) {
-		this.state = i;
-	}
-
-	public void onDestroy() {
-		super.onDestroy();
-		if (toast != null) {
-
-			toast.cancel();
-		}
-	}
-
-	public void onStop() {
-		super.onStop();
-		if (toast != null) {
-
-			toast.cancel();
-		}
-	}
-
-	public void onPause() {
-		super.onPause();
-		if (toast != null) {
-
-			toast.cancel();
-		}
-
-	}
-
-	public void onBackPressed() {
-
-		if (state > 0) {
-			this.diapoPrecedente(state);
-
-		} else {
-			finish();
-		}
-
-	}
-
-	private void reSizeNormal() {
-
-		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
-			DisplayMetrics metrics = getResources().getDisplayMetrics();
-			int widthScreen = metrics.widthPixels;
-			int heightScreen = metrics.heightPixels;
-			float density = getResources().getDisplayMetrics().density;
-
-			float dpHeight = heightScreen / density;
-			float dpWidth = widthScreen / density;
-
-			float diagonalInch = (float) Math.sqrt(dpHeight * dpHeight
-					+ dpWidth * dpWidth) / 160;
-
-			if (diagonalInch < 4) {
-
-				Button texte = (Button) findViewById(R.id.text_tutoriel);
-				texte.setTextSize(17);
-			}
-
+			Button texte = (Button) findViewById(R.id.text_tutoriel);
+			texte.setTextSize(17);
 		}
 
 	}

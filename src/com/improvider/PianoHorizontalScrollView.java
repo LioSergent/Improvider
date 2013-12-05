@@ -1,9 +1,7 @@
 package com.improvider;
 
 import android.content.Context;
-import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 import android.widget.OverScroller;
@@ -13,13 +11,13 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 	public double proportionHauteur = 0.86;
 	private OverScroller myScroller;
 	private ImageScroller imageScroller;
-	private Piano piano;
 
 	public PianoHorizontalScrollView(Context context) {
 
+		// Récupération de l'overScroller pour le customSmoothScroll
 		super(context);
 		try {
-			Class parent = this.getClass();
+			Class<?> parent = this.getClass();
 			do {
 				parent = parent.getSuperclass();
 			} while (!parent.getName().equals(
@@ -37,13 +35,15 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public PianoHorizontalScrollView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+
+		// Récupère le OverScroll, nécessaire pour le customSmoothScroll
 		try {
-			Class parent = this.getClass();
+			Class<?> parent = this.getClass();
 			do {
 				parent = parent.getSuperclass();
 			} while (!parent.getName().equals(
@@ -61,14 +61,14 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public PianoHorizontalScrollView(Context context, AttributeSet attrs,
 			int defStyle) {
 		super(context, attrs, defStyle);
 		try {
-			Class parent = this.getClass();
+			Class<?> parent = this.getClass();
 			do {
 				parent = parent.getSuperclass();
 			} while (!parent.getName().equals(
@@ -86,62 +86,20 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		// TODO Auto-generated constructor stub
+
 	}
 
-	private void init() {
-		try {
-			Class parent = this.getClass();
-			do {
-				parent = parent.getSuperclass();
-			} while (!parent.getName().equals(
-					"android.widget.HorizontalScrollView"));
-
-			java.lang.reflect.Field field = parent
-					.getDeclaredField("mScroller");
-			field.setAccessible(true);
-			myScroller = (OverScroller) field.get(this);
-
-		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-	}
-
-	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
-//Et ben oui, on ne fait plus rien, tous les scrollages sont appelés par imageScroller
+		// Et ben oui, on ne fait plus rien, tous les scrollages sont appelés
+		// par imageScroller
 		return false;
 	}
 
 	public boolean onInterceptTouchEvent(MotionEvent event) {
-		// Call super first because it does some hidden motion event handling
-		boolean result = super.onInterceptTouchEvent(event);
-		int hauteur = (int) (getHeight() * proportionHauteur);
-		int ev = MotionEventCompat.getActionMasked(event);
-
-		int pointerIndex = MotionEventCompat.getActionIndex(event);
-		int pointerId = event.getPointerId(pointerIndex);
-		int y = (int) MotionEventCompat.getY(event, pointerIndex);
-		int x = (int) MotionEventCompat.getX(event, pointerIndex);
-
-		// Now see if we are scrolling horizontally with the custom gesture
-		// detector
-		if (y > hauteur) {
-			imageScroller.invalidate();
-			return result;
-		}
-		// If not scrolling vertically (y<hauteur), don't hijack the event.
-		else {
-			imageScroller.invalidate();
-			return false;
-		}
-
+		// Pareil
+		return false;
 	}
 
 	public void customSmoothScrollBy(int dx, int dy) {
@@ -167,8 +125,5 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 	public void setImageScroller(ImageScroller imageScroller) {
 		this.imageScroller = imageScroller;
 	}
-public void setPiano(Piano piano) {
-	this.piano=piano;
-}
-	
+
 }

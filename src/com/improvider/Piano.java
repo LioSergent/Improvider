@@ -14,7 +14,6 @@ import android.os.Handler;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -28,9 +27,8 @@ public class Piano extends View {
 	private final static double proportionToucheNoireHauteur = 0.75;
 	private final static double proportionToucheNoireLargeur = 0.32;
 	private final static int nbreOctave = 3;
-	
-	
-	//Proportions du piano, par rapport à la taille de l'écran
+
+	// Proportions du piano, par rapport à la taille de l'écran
 	public double proportionPianoVerticale = 0.75;
 	public double proportionPianoHorizontale = 0.875;
 
@@ -38,41 +36,39 @@ public class Piano extends View {
 	 * Id du pointeur, numero de la touche (en commencant Ã  0) (+ 10 si noire)
 	 */
 	Hashtable<Integer, Integer> positionPointeurs = new Hashtable<Integer, Integer>();
-	
+
 	// Map associant numéro de soundclouds et touches (pour arrêter le son).
 	// Numéro de soundCloud= entier croissant dans l'ordre de lancement.(1
 	// pour
 	// le premier soundcloud, 2 pour le suivant...)
-	
+
 	Hashtable<Integer, Integer> soundids = new Hashtable<Integer, Integer>();
-	
-	//Taille de l'écran
+
+	// Taille de l'écran
 	int screenWidth;
 	int heightScreen;
 	int widthScreen;
-	
-	//Taille des éléments graphiques
+
+	// Taille des éléments graphiques
 	int largeur, hauteur, largeurTotale;
 	int largeurToucheBlanche;
 	int largeurToucheNoire;
 	int hauteurToucheNoire;
 	int hauteurToucheBlanche;
 
-
 	Context contexte;
 
 	private boolean[] gamme;
 	private int tonique = 0;
-	
 
-//Tableaux d'état des touches
+	// Tableaux d'état des touches
 	boolean[] tabEtatTouchesBlanches = new boolean[7 * nbreOctave];
 	boolean[] tabEtatTouchesNoires = new boolean[7 * nbreOctave];
-	
-	//Valeurs de stockage pour le onTouchEvent
-	int x, y;	
-	
-	//Avant de dessiner, on revérifie qu'on a bien initié.
+
+	// Valeurs de stockage pour le onTouchEvent
+	int x, y;
+
+	// Avant de dessiner, on revérifie qu'on a bien initié.
 	boolean init = false;
 
 	/*
@@ -99,6 +95,7 @@ public class Piano extends View {
 	float volumeProportion;
 	float vol;
 	public boolean sustain = true;
+
 	/*
 	 * Deux constructeurs
 	 */
@@ -193,16 +190,14 @@ public class Piano extends View {
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
-		int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
-		int parentHeight = MeasureSpec.getSize(heightMeasureSpec);
 		this.setMeasuredDimension((int) (widthScreen
 				* proportionPianoHorizontale * nbreOctave),
 				(int) (heightScreen * proportionPianoVerticale));
-		this.setLayoutParams(new HorizontalScrollView.LayoutParams(
+		HorizontalScrollView.LayoutParams params = new HorizontalScrollView.LayoutParams(
 				(int) (widthScreen * proportionPianoHorizontale * nbreOctave),
-				(int) (heightScreen * proportionPianoVerticale)));
+				(int) (heightScreen * proportionPianoVerticale));
+		this.setLayoutParams(params);
 		// super.onMeasure((int) (widthMeasureSpec), heightMeasureSpec);
-Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 	}
 
 	public void onDraw(Canvas canvas) {
@@ -370,8 +365,8 @@ Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 			}
 
 		}
-		
-		//Dessin des lignes en haut et en bas.
+
+		// Dessin des lignes en haut et en bas.
 		canvas.drawLine(0, hauteurToucheBlanche - 1, 7 * nbreOctave
 				* largeurToucheBlanche, hauteurToucheBlanche - 1, new Paint());
 		canvas.drawLine(0, 0, 7 * nbreOctave * largeurToucheBlanche, 0,
@@ -385,11 +380,6 @@ Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 		int toucheNoireAppuye = -1;
 
 		if (ev != MotionEvent.ACTION_MOVE) {
-
-			DisplayMetrics metrics = contexte.getResources()
-					.getDisplayMetrics();
-			int widthScreen = metrics.widthPixels;
-			int heightScreen = metrics.heightPixels;
 
 			// Index du pointeur
 			int pointerIndex = MotionEventCompat.getActionIndex(event);
@@ -405,7 +395,7 @@ Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 
 			// Seulement si on est bien sur le piano
 			if (y < hauteurToucheBlanche) {
-				
+
 				if (ev == MotionEvent.ACTION_UP
 						|| ev == MotionEvent.ACTION_POINTER_UP) {
 					int toucheCorrespondante = positionPointeurs.get(pointerId);
@@ -484,10 +474,10 @@ Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 
 				// CoordonnÃ©es de l'Ã©vÃ¨nement
 				x = (int) MotionEventCompat.getX(event, index);
-				 y = (int) MotionEventCompat.getY(event, index);
-				
+				y = (int) MotionEventCompat.getY(event, index);
+
 				// Seulement si on est bien sur le piano
-			
+
 				if (y < hauteurToucheBlanche) {
 
 					int indexTouche;
@@ -497,20 +487,20 @@ Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 					} else {
 						indexTouche = 0;
 					}
-				
+
 					toucheNoireAppuye = isNoire(x, y);
-					
+
 					int nouvelleToucheCorrespondante = (toucheNoireAppuye == -1) ? indexTouche
 							: (toucheNoireAppuye + 10 * nbreOctave);
 					int toucheCorrespondante;
-				
+
 					// Si l'on ne vient pas du piano, toucheCorrespondante=-1
 
 					if (positionPointeurs.get(pointerId) != null) {
 						toucheCorrespondante = positionPointeurs.get(pointerId);
-					
+
 					} else {
-						
+
 						toucheCorrespondante = -1;
 					}
 
@@ -553,12 +543,11 @@ Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 									this.stopNote(toucheCorrespondante);
 									tabEtatTouchesNoires[toucheCorrespondante
 											- 10 * nbreOctave] = false;
-									Log.d("OnMove", "1");
 								} else { // Sinon, c'est qu'elle ï¿½tait blanche
 									if (toucheCorrespondante != -1) {
 										tabEtatTouchesBlanches[toucheCorrespondante] = false;
 										this.stopNote(toucheCorrespondante);
-										Log.d("OnMove", "2");
+
 									}
 
 								}
@@ -667,7 +656,7 @@ Log.d("hauteur", String.valueOf(heightScreen*proportionPianoVerticale));
 	}
 
 	private boolean gamme(int i) {
-		// TODO Auto-generated method stub
+
 		return gamme[i];
 	}
 
