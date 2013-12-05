@@ -93,8 +93,8 @@
                         android:layout_toLeftOf="@+id/avancement_max"
                         android:layout_toRightOf="@+id/avancement_min"
                         android:max="100"
-                        android:paddingLeft="19px"
-                        android:paddingRight="19px"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
                         android:progress="0"
                         android:secondaryProgress="0" />
 
@@ -140,8 +140,8 @@
                         android:layout_toLeftOf="@+id/volume_accompagnement_plus"
                         android:layout_toRightOf="@+id/volume_accompagnement_moins"
                         android:max="100"
-                        android:paddingLeft="19px"
-                        android:paddingRight="19px"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
                         android:progress="0"
                         android:secondaryProgress="0" />
 
@@ -249,8 +249,8 @@
                         android:layout_toLeftOf="@+id/volume_piano_plus"
                         android:layout_toRightOf="@+id/volume_piano_moins"
                         android:max="50"
-                        android:paddingLeft="19px"
-                        android:paddingRight="19px"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
                         android:progress="0"
                         android:secondaryProgress="0" />
 
@@ -329,8 +329,8 @@
                         android:layout_toLeftOf="@+id/nbre_touches_max"
                         android:layout_toRightOf="@+id/nbre_touches_min"
                         android:max="18"
-                        android:paddingLeft="19px"
-                        android:paddingRight="19px"
+                        android:paddingRight="20dp"
+                        android:paddingLeft="20dp"
                         android:progress="5"
                         android:secondaryProgress="0" />
 
