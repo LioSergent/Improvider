@@ -8,8 +8,9 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-/*
- * Classe qui gÃ¨re la lecture des fichiers mÃ©dia. Les boutons sont dÃ©finis dans le XML. On les rÃ©cupÃ¨re ici pour gÃ©rer les actions.
+/**
+ * Classe qui gère la lecture des fichiers média. Les boutons sont définis dans
+ * le XML. On les récupère ici pour gérer les actions.
  */
 public class Musique extends Activity implements OnClickListener {
 

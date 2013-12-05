@@ -14,6 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Classe manipulant tout le tutoriel (mais après l'activité Commencer). Elle
+ * sert à switcher les différentes "diapos".
+ * 
+ * @author Lionel
+ * 
+ */
 public class Tutoriel extends Activity {
 
 	TextView explication;
@@ -67,7 +74,8 @@ public class Tutoriel extends Activity {
 			public void onClick(View arg0) {
 
 				if (state == 3) {
-					toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
+					toast = Toast.makeText(context, R.string.chargement,
+							Toast.LENGTH_LONG);
 					toast.show();
 
 					Handler lHandler = new Handler();
@@ -250,7 +258,11 @@ public class Tutoriel extends Activity {
 		return false;
 	}
 
-	//Méthode de redimensionnement
+	/**
+	 * Méthode de redimensionnement
+	 * 
+	 * @param diagonalInch
+	 */
 	private void reSizeTexte(float diagonalInch) {
 
 		if (diagonalInch < 4) {

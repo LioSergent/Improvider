@@ -26,6 +26,14 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TabHost;
 
+/**
+ * Activité principale. C'est elle qui gère les 3 onglets et qui va instancier
+ * les boutons et charger les données audio pour les envoyer vers Piano ,
+ * Musique...
+ * 
+ * @author Lionel
+ * 
+ */
 public class Main extends Activity {
 
 	// Attributs
@@ -119,99 +127,98 @@ public class Main extends Activity {
 
 		diagonalInch = (float) Math.sqrt(dpHeight * dpHeight + dpWidth
 				* dpWidth) / 160;
-				
+
 		// Chargement des objets liées au son
 
-				audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-				audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-						audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-				// On associe les boutons materiels au controle du volume de
-				// l'application
-				this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+		// On associe les boutons materiels au controle du volume de
+		// l'application
+		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-				/*
-				 * Chargement des sons nÃ©cessaires
-				 */
-				soundPool = new SoundPool(24, AudioManager.STREAM_MUSIC, 0);
+		/*
+		 * Chargement des sons nÃ©cessaires
+		 */
+		soundPool = new SoundPool(24, AudioManager.STREAM_MUSIC, 0);
 
-				// PremiÃ¨re Octave
-				C2piano = soundPool.load(this, R.raw.c2piano, 1);
-				Cd2piano = soundPool.load(this, R.raw.c2dpiano, 1);
-				D2piano = soundPool.load(this, R.raw.d2piano, 1);
-				Dd2piano = soundPool.load(this, R.raw.dd2piano, 1);
-				E2piano = soundPool.load(this, R.raw.e2piano, 1);
-				F2piano = soundPool.load(this, R.raw.f2piano, 1);
-				Fd2piano = soundPool.load(this, R.raw.fd2piano, 1);
-				G2piano = soundPool.load(this, R.raw.g2piano, 1);
-				Gd2piano = soundPool.load(this, R.raw.gd2piano, 1);
-				A2piano = soundPool.load(this, R.raw.a2piano, 1);
-				Ad2piano = soundPool.load(this, R.raw.ad2piano, 1);
-				B2piano = soundPool.load(this, R.raw.b2piano, 1);
+		// PremiÃ¨re Octave
+		C2piano = soundPool.load(this, R.raw.c2piano, 1);
+		Cd2piano = soundPool.load(this, R.raw.c2dpiano, 1);
+		D2piano = soundPool.load(this, R.raw.d2piano, 1);
+		Dd2piano = soundPool.load(this, R.raw.dd2piano, 1);
+		E2piano = soundPool.load(this, R.raw.e2piano, 1);
+		F2piano = soundPool.load(this, R.raw.f2piano, 1);
+		Fd2piano = soundPool.load(this, R.raw.fd2piano, 1);
+		G2piano = soundPool.load(this, R.raw.g2piano, 1);
+		Gd2piano = soundPool.load(this, R.raw.gd2piano, 1);
+		A2piano = soundPool.load(this, R.raw.a2piano, 1);
+		Ad2piano = soundPool.load(this, R.raw.ad2piano, 1);
+		B2piano = soundPool.load(this, R.raw.b2piano, 1);
 
-				// Seconde Octave
-				C3piano = soundPool.load(this, R.raw.c3piano, 1);
-				Cd3piano = soundPool.load(this, R.raw.cd3piano, 1);
-				D3piano = soundPool.load(this, R.raw.d3piano, 1);
-				Dd3piano = soundPool.load(this, R.raw.dd3piano, 1);
-				E3piano = soundPool.load(this, R.raw.e3piano, 1);
-				F3piano = soundPool.load(this, R.raw.f3piano, 1);
-				Fd3piano = soundPool.load(this, R.raw.fd3piano, 1);
-				G3piano = soundPool.load(this, R.raw.g3piano, 1);
-				Gd3piano = soundPool.load(this, R.raw.gd3piano, 1);
-				A3piano = soundPool.load(this, R.raw.a3piano, 1);
-				Ad3piano = soundPool.load(this, R.raw.ad3piano, 1);
-				B3piano = soundPool.load(this, R.raw.b3piano, 1);
+		// Seconde Octave
+		C3piano = soundPool.load(this, R.raw.c3piano, 1);
+		Cd3piano = soundPool.load(this, R.raw.cd3piano, 1);
+		D3piano = soundPool.load(this, R.raw.d3piano, 1);
+		Dd3piano = soundPool.load(this, R.raw.dd3piano, 1);
+		E3piano = soundPool.load(this, R.raw.e3piano, 1);
+		F3piano = soundPool.load(this, R.raw.f3piano, 1);
+		Fd3piano = soundPool.load(this, R.raw.fd3piano, 1);
+		G3piano = soundPool.load(this, R.raw.g3piano, 1);
+		Gd3piano = soundPool.load(this, R.raw.gd3piano, 1);
+		A3piano = soundPool.load(this, R.raw.a3piano, 1);
+		Ad3piano = soundPool.load(this, R.raw.ad3piano, 1);
+		B3piano = soundPool.load(this, R.raw.b3piano, 1);
 
-				// Troisième octave
-				C4piano = soundPool.load(this, R.raw.c4piano, 1);
-				Cd4piano = soundPool.load(this, R.raw.cd4piano, 1);
-				D4piano = soundPool.load(this, R.raw.d4piano, 1);
-				Dd4piano = soundPool.load(this, R.raw.dd4piano, 1);
-				E4piano = soundPool.load(this, R.raw.e4piano, 1);
-				F4piano = soundPool.load(this, R.raw.f4piano, 1);
-				Fd4piano = soundPool.load(this, R.raw.fd4piano, 1);
-				G4piano = soundPool.load(this, R.raw.g4piano, 1);
-				Gd4piano = soundPool.load(this, R.raw.gd4piano, 1);
-				A4piano = soundPool.load(this, R.raw.a4piano, 1);
-				Ad4piano = soundPool.load(this, R.raw.ad4piano, 1);
-				B4piano = soundPool.load(this, R.raw.b4piano, 1);
+		// Troisième octave
+		C4piano = soundPool.load(this, R.raw.c4piano, 1);
+		Cd4piano = soundPool.load(this, R.raw.cd4piano, 1);
+		D4piano = soundPool.load(this, R.raw.d4piano, 1);
+		Dd4piano = soundPool.load(this, R.raw.dd4piano, 1);
+		E4piano = soundPool.load(this, R.raw.e4piano, 1);
+		F4piano = soundPool.load(this, R.raw.f4piano, 1);
+		Fd4piano = soundPool.load(this, R.raw.fd4piano, 1);
+		G4piano = soundPool.load(this, R.raw.g4piano, 1);
+		Gd4piano = soundPool.load(this, R.raw.gd4piano, 1);
+		A4piano = soundPool.load(this, R.raw.a4piano, 1);
+		Ad4piano = soundPool.load(this, R.raw.ad4piano, 1);
+		B4piano = soundPool.load(this, R.raw.b4piano, 1);
 
-				// Récupération du piano
-				piano = (Piano) findViewById(R.id.tab_piano);
-				piano.setGamme(Gamme);
-				piano.setScreenWidth(widthScreen);
-				piano.setTonique(tonique);
+		// Récupération du piano
+		piano = (Piano) findViewById(R.id.tab_piano);
+		piano.setGamme(Gamme);
+		piano.setScreenWidth(widthScreen);
+		piano.setTonique(tonique);
 
-				// Recuperation du volume pour le piano
+		// Recuperation du volume pour le piano
 
-				float actualVolume = (float) audioManager
-						.getStreamVolume(AudioManager.STREAM_MUSIC);
-				float maxVolume = (float) audioManager
-						.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-				volume = actualVolume / maxVolume;
-				float volumeffectif = (float) (volumePiano * volume);
+		float actualVolume = (float) audioManager
+				.getStreamVolume(AudioManager.STREAM_MUSIC);
+		float maxVolume = (float) audioManager
+				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		volume = actualVolume / maxVolume;
+		float volumeffectif = (float) (volumePiano * volume);
 
-				// Envoi des informations Ã  la classe Piano
+		// Envoi des informations Ã  la classe Piano
 
-				piano.recupererSon(soundPool, new int[] { C2piano, Cd2piano, D2piano,
-						Dd2piano, E2piano, F2piano, Fd2piano, G2piano, Gd2piano,
-						A2piano, Ad2piano, B2piano, C3piano, Cd3piano, D3piano,
-						Dd3piano, E3piano, F3piano, Fd3piano, G3piano, Gd3piano,
-						A3piano, Ad3piano, B3piano, C4piano, Cd4piano, D4piano,
-						Dd4piano, E4piano, F4piano, Fd4piano, G4piano, Gd4piano,
-						A4piano, Ad4piano, B4piano }, volumeffectif);
+		piano.recupererSon(soundPool, new int[] { C2piano, Cd2piano, D2piano,
+				Dd2piano, E2piano, F2piano, Fd2piano, G2piano, Gd2piano,
+				A2piano, Ad2piano, B2piano, C3piano, Cd3piano, D3piano,
+				Dd3piano, E3piano, F3piano, Fd3piano, G3piano, Gd3piano,
+				A3piano, Ad3piano, B3piano, C4piano, Cd4piano, D4piano,
+				Dd4piano, E4piano, F4piano, Fd4piano, G4piano, Gd4piano,
+				A4piano, Ad4piano, B4piano }, volumeffectif);
 
-				/*
-				 * Création de l'objet de gestion de l'accompagnement
-				 */
-				gestionMusique = new Musique(findViewById(R.id.tab1), findViewById(
-						R.id.tab1).getContext());
-				// On utilise les informations de l'intent.
-				gestionMusique.setPlayer(Adresse);
-				gestionMusique.setAuteur(Auteur);
-				gestionMusique.setVolume(volumeAccompagnementInitial);
-
+		/*
+		 * Création de l'objet de gestion de l'accompagnement
+		 */
+		gestionMusique = new Musique(findViewById(R.id.tab1), findViewById(
+				R.id.tab1).getContext());
+		// On utilise les informations de l'intent.
+		gestionMusique.setPlayer(Adresse);
+		gestionMusique.setAuteur(Auteur);
+		gestionMusique.setVolume(volumeAccompagnementInitial);
 
 		// Les boutons
 		// 2 Boutons de retour
@@ -260,13 +267,12 @@ public class Main extends Activity {
 
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
-				
 
 			}
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-			
+
 			}
 
 		}
@@ -287,13 +293,11 @@ public class Main extends Activity {
 
 					@Override
 					public void onStartTrackingTouch(SeekBar seekBar) {
-						
 
 					}
 
 					@Override
 					public void onStopTrackingTouch(SeekBar seekBar) {
-						
 
 					}
 
@@ -366,13 +370,11 @@ public class Main extends Activity {
 
 					@Override
 					public void onStartTrackingTouch(SeekBar seekBar) {
-					
 
 					}
 
 					@Override
 					public void onStopTrackingTouch(SeekBar seekBar) {
-				
 
 					}
 
@@ -417,13 +419,11 @@ public class Main extends Activity {
 
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
-				
 
 			}
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				
 
 			}
 
@@ -467,9 +467,11 @@ public class Main extends Activity {
 
 		// Création des éléments graphiques plus complexes
 
-		/* Création du scroller et de l'imageScroller, don au piano de l'imageScroller, du à un problème de non-actualisation de ce dernier 
-		lors du scroll automatique
-		*/
+		/*
+		 * Création du scroller et de l'imageScroller, don au piano de
+		 * l'imageScroller, du à un problème de non-actualisation de ce dernier
+		 * lors du scroll automatique
+		 */
 
 		scroller = (PianoHorizontalScrollView) findViewById(R.id.scroller);
 		imageScroller = (ImageScroller) findViewById(R.id.image_scroller);
@@ -478,13 +480,10 @@ public class Main extends Activity {
 		imageScroller.setGamme(Gamme);
 		imageScroller.setTonique(tonique);
 		scroller.setImageScroller(imageScroller);
-		
 
 		/*
 		 * Modification des onglets
 		 */
-
-		
 
 		imageScroller.setScreenWidth(widthScreen);
 
@@ -532,13 +531,12 @@ public class Main extends Activity {
 						}
 
 						else {
-						
 
 							Handler lHandler = new Handler();
 
 							lHandler.postDelayed(new Runnable() {
 								public void run() {
-									PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);								
+									PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
 
 									int positionToScroll = piano
 											.positionTouche(tonique);
@@ -580,7 +578,7 @@ public class Main extends Activity {
 
 		setDimensionsOngletPiano();
 		reSizePlay(diagonalInch);
-		
+
 	}
 
 	// Méthodes diverses

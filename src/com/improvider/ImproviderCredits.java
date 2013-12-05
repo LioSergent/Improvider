@@ -9,6 +9,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * Activité d'affichage des crédits
+ * 
+ * @author Lionel
+ * 
+ */
 public class ImproviderCredits extends Activity {
 	Button boutonCreditsRetour;
 

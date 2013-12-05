@@ -10,7 +10,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-// COUCOU PIGNOUF
+/**
+ * Activité initiale, lançée lors du démarrage de l'app. Contient donc le menu
+ * principal
+ * 
+ * @author Lionel
+ * 
+ */
 
 public class Improvider extends Activity {
 

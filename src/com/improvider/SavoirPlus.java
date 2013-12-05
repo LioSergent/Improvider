@@ -8,6 +8,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+/**
+ * Activité pour obtenir une explication "d'où vient l'app", que l'on peut
+ * obtenir depuis l'activité Commencer. Renvoie vers tuto ou Commencer.
+ * 
+ * @author Lionel
+ * 
+ */
 public class SavoirPlus extends Activity {
 
 	Button boutonMontrer;

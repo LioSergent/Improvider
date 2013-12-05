@@ -6,6 +6,16 @@ import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 import android.widget.OverScroller;
 
+/**
+ * Une custom HorizontalScrollView pour changer la gestion des évènements, et
+ * rajouter un CustomSmoothScroll qui va servir lors du premier clic sur la tab
+ * "Piano". Le passage sur l'OverScroller est un peu compliquée, c/p direct
+ * d'internet.
+ * 
+ * @author Lionel
+ * 
+ */
+
 public class PianoHorizontalScrollView extends HorizontalScrollView {
 
 	public double proportionHauteur = 0.86;

@@ -18,6 +18,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 
+/**
+ * Classe de type View qui gère le dessin du piano, les évènements graphiques et
+ * sonore qui arrivent dessus. Elle se sert d'informations récupérées par
+ * l'activité Main, et est suportée graphiquement par un
+ * PianoHorizontalScrollView pour gérer le scroll (et un ImageScroller pour
+ * l'image de ce scroller).
+ * 
+ * @author Lionel
+ * 
+ */
 public class Piano extends View {
 
 	/*
@@ -612,6 +622,14 @@ public class Piano extends View {
 		return true;
 	}
 
+	/**
+	 * Fonction qui renvoie -1 si ce n'est pas une noire, et renvoie le numéro
+	 * de cette touche noire sinon
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	private int isNoire(int x, int y) {
 		// Si l'on est forcÃ©ment sur une touche blanche
 		if (y > hauteurToucheNoire) {
@@ -631,8 +649,10 @@ public class Piano extends View {
 		}
 	}
 
-	// Fonction qui rÃ©cupÃ¨re les infos pour le son et les stocke dans deux
-	// tableaux ayant la mÃªme structure que le tableau des Ã©tats des touches
+	/**
+	 * Méthode qui rÃ©cupÃ¨re les infos pour le son et les stocke dans deux
+	 * tableaux ayant la mÃªme structure que le tableau des Ã©tats des touches
+	 */
 	void recupererSon(SoundPool s, int[] sons, float v) {
 		soundPool = s;
 		volume = v;

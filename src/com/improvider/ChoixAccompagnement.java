@@ -14,6 +14,13 @@ import android.widget.Toast;
 
 import com.improvider.R;
 
+/**
+ * Activité servant à demander à l'utilisateur son choix quand à
+ * l'accompagnement. Classique.
+ * 
+ * @author Lionel
+ * 
+ */
 public class ChoixAccompagnement extends Activity {
 	// Les 5 boutons correspondants aux morceaux
 	private Button boutonBarBlues;
@@ -22,6 +29,10 @@ public class ChoixAccompagnement extends Activity {
 	private Button boutonAcoustic;
 	private Button boutonHardRock;
 	private Button boutonChoixRetour;
+	/**
+	 * Le toast sert à afficher "Chargement"
+	 * 
+	 */
 	private Toast toast;
 
 	@Override
@@ -118,8 +129,7 @@ public class ChoixAccompagnement extends Activity {
 								false, false, true, false, true, false, false,
 								false, true, false };
 						explicit.putExtra("Gamme", value);
-						explicit.putExtra("name",
-								"Hip pop style Cm");
+						explicit.putExtra("name", "Hip pop style Cm");
 						explicit.putExtra("Tonique", 0);
 						startActivity(explicit);
 

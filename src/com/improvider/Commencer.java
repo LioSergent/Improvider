@@ -11,6 +11,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Activité obtenue lors du clic sur "Tutoriel" depuis le menu principal
+ * (Activité Improvider). Propose de passer aux activités Tutoriel, SavoirPlus
+ * et Improvider.
+ * 
+ * @author Lionel
+ * 
+ */
 public class Commencer extends Activity {
 	Button boutonMontrer;// Le bouton servant à avoir un tour sur le maniement
 							// de l'app

@@ -13,8 +13,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 
-/*Cette classe sert de controleur graphique pour le pianoHorizontalScrollView du main. Tout est pareil sauf les proportions et surtout
- le onTouchEvent, où se trouve le zoom-in, zoom-out, et le scrolling.
+/**
+ * Cette classe sert de controleur graphique pour le pianoHorizontalScrollView
+ * du main. Tout est pareil que Piano sauf les proportions et surtout le
+ * onTouchEvent, où se trouve le zoom-in, zoom-out, et le scrolling. Egalement
+ * des bouts de codes ont été supprimés au niveau des attributs, de l'init et du
+ * onDraw pour ne surcharger le code.
  */
 
 public class ImageScroller extends View {
@@ -298,6 +302,12 @@ public class ImageScroller extends View {
 
 	}
 
+	/**
+	 * Seule méthode intéressante de cette classe, permet le zoom-in et zoom-out
+	 * et le déplacement (scroll), en utilisant les évènement tactiles et en
+	 * appelant le PianoHorizontalScrollView (scroll et zoom) ainsi que
+	 * l'attribut proportionPianoHorizontale (zoom seulement)
+	 */
 	public boolean onTouchEvent(MotionEvent event) {
 		int ev = MotionEventCompat.getActionMasked(event);
 		int pointerCount = event.getPointerCount();
@@ -421,9 +431,6 @@ public class ImageScroller extends View {
 		invalidate();
 		return true;
 	}
-
-	// Fonction qui rÃ©cupÃ¨re les infos pour le son et les stocke dans deux
-	// tableaux ayant la mÃªme structure que le tableau des Ã©tats des touches
 
 	private boolean gamme(int i) {
 		// TODO Auto-generated method stub
