@@ -20,7 +20,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 
 	public double proportionHauteur = 0.86;
 	private OverScroller myScroller;
-	private ImageScroller imageScroller;
+	private final int TIME_SMOOTH_SCROLL=3000;
 
 	public PianoHorizontalScrollView(Context context) {
 
@@ -117,23 +117,28 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 		if (getChildCount() == 0) {
 			return;
 		}
-
+		/*Texte servant normalement à adapter le customSmoothScrollBy à toute situation mais certaines variables mettent un
+		 * peu de temps à s'instancier, donc ça marchait pas au premier affichage, seul moment où on s'en sert...
+		 * 
+		Log.d("dx Avant calcul", String.valueOf(dx));
 		final int width = getWidth() - getPaddingRight() - getPaddingLeft();
+		Log.d("width", String.valueOf(width));
 		final int right = getChildAt(0).getWidth();
+		Log.d("rigth", String.valueOf(right));
 		final int maxX = Math.max(0, right - width);
+		Log.d("maxX", String.valueOf(maxX));
 		final int scrollX = getScrollX();
+		Log.d("scrollX", String.valueOf(scrollX));
 		dx = Math.max(0, Math.min(scrollX + dx, maxX)) - scrollX;
-
-		myScroller.startScroll(scrollX, getScrollY(), dx, 0, 2800);
-		imageScroller.invalidate();
+		*/		
+		myScroller.startScroll(0, 0, dx, 0, TIME_SMOOTH_SCROLL);
+		
+		
 	}
 
 	public void customSmoothScrollTo(int x, int y) {
 		customSmoothScrollBy(x - getScrollX(), y - getScrollY());
 	}
 
-	public void setImageScroller(ImageScroller imageScroller) {
-		this.imageScroller = imageScroller;
-	}
 
 }

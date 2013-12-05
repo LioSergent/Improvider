@@ -3,7 +3,6 @@ package com.improvider;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.MotionEvent;
@@ -463,7 +462,7 @@ public class Main extends Activity {
 		};
 		Timer t = new Timer();
 
-		t.schedule(actualisation, (long) 1500, (long) 500);
+		t.schedule(actualisation, (long) 1500, (long) 200);
 
 		// Création des éléments graphiques plus complexes
 
@@ -479,7 +478,6 @@ public class Main extends Activity {
 		imageScroller.setPianoHorizontalScrollView(scroller);
 		imageScroller.setGamme(Gamme);
 		imageScroller.setTonique(tonique);
-		scroller.setImageScroller(imageScroller);
 
 		/*
 		 * Modification des onglets
@@ -532,22 +530,23 @@ public class Main extends Activity {
 
 						else {
 
-							Handler lHandler = new Handler();
+	/*						Handler lHandler = new Handler();
 
 							lHandler.postDelayed(new Runnable() {
 								public void run() {
+								*/
 									PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
 
 									int positionToScroll = piano
 											.positionTouche(tonique);
 									scroler.customSmoothScrollTo(
 											positionToScroll, 0);
-
 									getImageScroller().setX1(positionToScroll);
 									getImageScroller().invalidate();
-								}
+//								}
 
-							}, 100);
+									
+			//				}, 1000);
 
 							premierScroll = false;
 							return false;
