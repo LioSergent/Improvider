@@ -329,7 +329,7 @@ public class ImageScroller extends View {
 				double prop2;
 				double prop1 = this.piano.getProportionPianoHorizontale();
 				float k = (float) (0.2 * this.screenWidth / (this.proportionInitiale));
-
+				boolean hasBeenZoomed = false;
 				int positionScrollInitiale = this.scroller.getScrollX();
 
 				// Deux cas car on ne sait pas forcément quel pointeur est celui
@@ -343,6 +343,7 @@ public class ImageScroller extends View {
 
 					if (prop2 > maille && prop2 < 0.5 * nbreOctave) {
 						this.piano.setProportionPianoHorizontale(prop2);
+						hasBeenZoomed = true;
 					}
 				}
 
@@ -354,36 +355,40 @@ public class ImageScroller extends View {
 
 					if (prop2 > maille && prop2 < 0.5 * nbreOctave) {
 						this.piano.setProportionPianoHorizontale(prop2);
+						hasBeenZoomed = true;
 					}
 				}
 
 				// Scroll de replaçage pendant le redimensionnement, pour garder
 				// à peu près le même centre
+				if (hasBeenZoomed) {
+					int newPositionToScroll = (int) ((prop2 / prop1
+							* positionScrollInitiale + this.screenWidth
+							* ((prop2 / prop1) - 1)));
 
-				int newPositionToScroll = (int) ((prop2 / prop1
-						* positionScrollInitiale + this.screenWidth
-						* ((prop2 / prop1) - 1)));
+					int correction = (int) ((4 * (prop1 - prop2) * this.screenWidth) / 5);
 
-				int correction = (int) ((4 * (prop1 - prop2) * this.screenWidth) / 5);
-
-				if (newPositionToScroll > 0
-						&& newPositionToScroll < this.piano
-								.getLargeurToucheBlanche() * 7 * nbreOctave) { //
-					this.scroller.scrollTo(newPositionToScroll + correction, 0);
-					justZoomed = true;
-
-					// Si au moins un des deux pointeurs et relevé, on
-					// réinitialise les variables de scroll.
-					if (ev == MotionEvent.ACTION_POINTER_UP) {
-
-						x3 = 0;
-						x4 = 0;
-						dx3 = 0;
-						dx4 = 0;
+					if (newPositionToScroll > 0
+							&& newPositionToScroll < this.piano
+									.getLargeurToucheBlanche() * 7 * nbreOctave) { //
+						this.scroller.scrollTo(
+								newPositionToScroll + correction, 0);
 
 					}
+				}
+				justZoomed = true;
+
+				// Si au moins un des deux pointeurs et relevé, on
+				// réinitialise les variables de scroll.
+				if (ev == MotionEvent.ACTION_POINTER_UP) {
+
+					x3 = 0;
+					x4 = 0;
+					dx3 = 0;
+					dx4 = 0;
 
 				}
+
 			}
 
 			x3 = x3b;
