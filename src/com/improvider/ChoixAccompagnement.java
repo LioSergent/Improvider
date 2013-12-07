@@ -45,7 +45,7 @@ public class ChoixAccompagnement extends Activity {
 		boutonBarBlues.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, 20000);
+				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
 				toast.show();
 				// on cr�e un intent pour passer � l'activit� Improvider
 				// Le handler sert a retarder le lancement, sinon le toast a pas
@@ -81,7 +81,7 @@ public class ChoixAccompagnement extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, 20000);
+				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
 				toast.show();
 
 				Handler lHandler = new Handler();
@@ -113,7 +113,7 @@ public class ChoixAccompagnement extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, 20000);
+				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
 				toast.show();
 
 				Handler lHandler = new Handler();
@@ -145,7 +145,7 @@ public class ChoixAccompagnement extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, 20000);
+				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
 				toast.show();
 
 				Handler lHandler = new Handler();
@@ -178,7 +178,7 @@ public class ChoixAccompagnement extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, 20000);
+				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
 				toast.show();
 
 				Handler lHandler = new Handler();

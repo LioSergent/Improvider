@@ -176,8 +176,8 @@ public class Piano extends View {
 
 		pinceauToucheBlancheJouableAppuye = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinceauToucheBlancheJouableAppuye.setShader(new LinearGradient(0, 0, 0,
-				hauteurToucheNoire, new int[] { vertToucheBlancheJouable,
-						0xFFAAAAAA }, null, TileMode.MIRROR));
+				hauteur, new int[] { vertToucheBlancheJouable, 0xFFAAAAAA },
+				null, TileMode.MIRROR));
 
 		pinceauToucheNoireJouableAppuye = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinceauToucheNoireJouableAppuye.setShader(new LinearGradient(0, 0, 0,
@@ -189,8 +189,7 @@ public class Piano extends View {
 
 		pinceauToucheToniqueAppuye = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pinceauToucheToniqueAppuye.setShader(new LinearGradient(0, 0, 0,
-				hauteurToucheNoire,
-				new int[] { bleuToucheTonique, 0xFFAAAAAA }, null,
+				hauteur, new int[] { bleuToucheTonique, 0xFFAAAAAA }, null,
 				TileMode.MIRROR));
 
 		init = true;
@@ -656,7 +655,8 @@ public class Piano extends View {
 	void recupererSon(SoundPool s, int[] sons, float v) {
 		soundPool = s;
 		volume = v;
-
+		volumeProportion = (float) (v / 0.55);
+		
 		for (int i = 0; i < nbreOctave; i++) {
 
 			tabSonTouchesBlanches[7 * i] = sons[12 * i];
@@ -709,6 +709,7 @@ public class Piano extends View {
 				public void run() {
 
 					doStuff(Note, (float) 0.33 * volumeProportion);
+
 				}
 			}, 20);
 

@@ -60,7 +60,8 @@ public final class R {
         public static final int tabpressed=0x7f02001a;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0038;
+        public static final int action_settings=0x7f0a0039;
+        public static final int action_settingslol=0x7f0a0038;
         public static final int auteur=0x7f0a0015;
         public static final int avancement_bar=0x7f0a0019;
         public static final int avancement_max=0x7f0a0018;
