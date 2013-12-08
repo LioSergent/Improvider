@@ -18,6 +18,7 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ import android.widget.TabHost;
  * @author Lionel
  * 
  */
-public class Main extends Activity {
+public class Main  extends Activity implements ListSessions {
 
 	// Attributs
 
@@ -42,7 +43,6 @@ public class Main extends Activity {
 
 	private Musique gestionMusique;
 	private int Adresse;
-	private String Auteur;
 	private final int volumeAccompagnementInitial = 78;
 	int volumePlayer;
 	public float volume;
@@ -63,10 +63,12 @@ public class Main extends Activity {
 
 	// Gestion graphique et dynamique du Piano
 	private boolean[] Gamme;
+	private Session session;
 	private int tonique;
 	public PianoHorizontalScrollView scroller;
 	public ImageScroller imageScroller;
 	private boolean premierScroll = true;
+	private int numeroSession;
 
 	// Navigation
 	TabHost onglets;
@@ -111,11 +113,15 @@ public class Main extends Activity {
 
 		// On r√©cup√®re les infos de l'Intent envoy√©s par ChoixAccompagnement.
 		Bundle extras = getIntent().getExtras();
+		numeroSession=extras.getInt("numeroSession");
+	/*
 		Adresse = extras.getInt("Adresse");
 		Gamme = extras.getBooleanArray("Gamme");
 		tonique = extras.getInt("Tonique");
-		Auteur = extras.getString("name");
-
+	
+*/
+	chargeSession(numeroSession);	
+		
 		// RÈcupÈration de donnÈes graphiques
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
@@ -216,7 +222,7 @@ public class Main extends Activity {
 				R.id.tab1).getContext());
 		// On utilise les informations de l'intent.
 		gestionMusique.setPlayer(Adresse);
-		gestionMusique.setAuteur(Auteur);
+		
 		gestionMusique.setVolume(volumeAccompagnementInitial);
 
 		// Les boutons
@@ -613,6 +619,25 @@ public class Main extends Activity {
 
 	}
 
+	//Choisir la session en fonction de son code
+	private void chargeSession(int i) {
+		switch (i) {
+			case 1:
+				this.Adresse = barBluesAm.getAdresse();
+				this.session = barBluesAm;
+                Scale testScale=PENTA_LA_m;
+                Log.d("testScale", testScale.getName());
+                Session testSession=barBluesAm;
+				String nom=testSession.getNom();
+				Log.d("Nom session", nom);
+				Scale[] scaleTest=session.getScale();
+				Scale gammeTest=scaleTest[0];
+				this.Gamme=gammeTest.getUsedValue();
+				this.tonique = gammeTest.getTonique();
+				
+	}
+	}
+	
 	// Re-layout programaticly (f(diagonale, screen type))
 
 	private void reSizePlay(float diagonalInch) {

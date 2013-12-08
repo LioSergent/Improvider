@@ -2,23 +2,23 @@ package com.improvider;
 
 public class Scale {
 
-	private String name;
-	private int tonique;
+	public String name;
+	public int tonique;
 
-	private boolean[] usedValue;
+	public boolean[] usedValue;
 
-	boolean Do;
-	boolean Dod;
-	boolean Re;
-	boolean Red;
-	boolean Mi;
-	boolean Fa;
-	boolean Fad;
-	boolean Sol;
-	boolean Sold;
-	boolean La;
-	boolean Lad;
-	boolean Si;
+	public boolean Do;
+	public boolean Dod;
+	public boolean Re;
+	public boolean Red;
+	public boolean Mi;
+	public boolean Fa;
+	public boolean Fad;
+	public boolean Sol;
+	public boolean Sold;
+	public boolean La;
+	public boolean Lad;
+	public boolean Si;
 
 	/**
 	 * 
@@ -70,7 +70,7 @@ public class Scale {
 	 * @param unusedValue
 	 */
 	public Scale(String name, NameNote tonique, boolean[] unusedValue) {
-	new Scale(name,tonique, unusedValue[0],unusedValue[1],unusedValue[2],unusedValue[3],unusedValue[4],unusedValue[5],
+	this(name,tonique, unusedValue[0],unusedValue[1],unusedValue[2],unusedValue[3],unusedValue[4],unusedValue[5],
 				unusedValue[6],unusedValue[7],
 				unusedValue[8],unusedValue[9],unusedValue[10],unusedValue[11]);
 	}
@@ -84,27 +84,33 @@ public class Scale {
 	 * @param intervalles
 	 */	
 	 public Scale(String name, NameNote tonique, double[] intervalles) {
-		boolean[] unusedValue={false,false,false,false,false,false,false,false,false,false,false,false};
-		int base=calculateUnusedTonique(tonique);
-		int[] newIntervalles=new int[intervalles.length];
+		 this(name, tonique, fromIntervalsToUnusedValue(tonique,intervalles));
 		
-		for (int i=0; i<intervalles.length;i++) {
-		newIntervalles[i]=(int) (intervalles[i]*2)	;
-		}
 		
-		unusedValue[base]=true;
-		int sommeDeDegre=base;
-		for (int i=0; i<newIntervalles.length;i++) {
-			sommeDeDegre=sommeDeDegre+newIntervalles[i];
-			if (sommeDeDegre>11) {
-				sommeDeDegre=sommeDeDegre-12;
-			}
-			unusedValue[sommeDeDegre]=true;
-			}
-		
-		new Scale(name, tonique, unusedValue);
 	}
 
+	 private static boolean[] fromIntervalsToUnusedValue(NameNote tonique, double[] intervals ) {
+		 
+		 boolean[] unusedValue={false,false,false,false,false,false,false,false,false,false,false,false};
+			int base=calculateUnusedTonique(tonique);
+			int[] newIntervalles=new int[intervals.length];
+			
+			for (int i=0; i<intervals.length;i++) {
+			newIntervalles[i]=(int) (intervals[i]*2)	;
+			}
+			
+			unusedValue[base]=true;
+			int sommeDeDegre=base;
+			for (int i=0; i<newIntervalles.length;i++) {
+				sommeDeDegre=sommeDeDegre+newIntervalles[i];
+				if (sommeDeDegre>11) {
+					sommeDeDegre=sommeDeDegre-12;
+				}
+				unusedValue[sommeDeDegre]=true;
+				}
+			
+			return unusedValue;
+	 }
 	// Modèle de construction d'une gamme:
 	//
 	private int calculateTonique(NameNote nameNote) {
@@ -156,7 +162,7 @@ public class Scale {
 	return tonique;
 }
 
-	private int calculateUnusedTonique(NameNote nameNote) {
+	private static int calculateUnusedTonique(NameNote nameNote) {
 		int tonique=0;
 		switch (nameNote)
 		{

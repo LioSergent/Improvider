@@ -66,8 +66,11 @@ public class ChoixAccompagnement extends Activity {
 								true, false, true, false, false, false, false,
 								false, false };
 						explicit.putExtra("Gamme", value);
+	//					explicit.putExtra("Session", com.improvider.ListSessions.barBluesAm.getAllUsedValue());
 						explicit.putExtra("name", "Bar Blues");
 						explicit.putExtra("Tonique", 5);
+						explicit.putExtra("numeroSession", 1);
+				
 						startActivity(explicit);
 
 					}
@@ -163,7 +166,7 @@ public class ChoixAccompagnement extends Activity {
 								true, false, false };
 						explicit.putExtra("Gamme", value);
 						explicit.putExtra("name", "Acoustic Guitar BM");
-						explicit.putExtra("Tonique", 6);
+						explicit.putExtra("Tonique", 6);				
 						startActivity(explicit);
 
 					}

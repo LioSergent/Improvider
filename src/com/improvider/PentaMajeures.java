@@ -2,7 +2,7 @@ package com.improvider;
 
 public interface PentaMajeures {
 	double[] intervallesPentaMineure={1,1,1.5,1,1.5};
-	public final Scale PENTA_DO_M=new Scale ("Penta Do majeure",com.improvider.NameNote.DO, intervallesPentaMineure );
+	public final static Scale PENTA_DO_M=new Scale ("Penta Do majeure",com.improvider.NameNote.DO, intervallesPentaMineure );
 	public final Scale PENTA_DOD_M=new Scale ("Penta Do dièse majeure",com.improvider.NameNote.DOD, intervallesPentaMineure );
 	public final Scale PENTA_RE_M=new Scale ("Penta Ré majeure",com.improvider.NameNote.RE, intervallesPentaMineure );
 	public final Scale PENTA_MI_M=new Scale ("Penta Mi majeure",com.improvider.NameNote.MI, intervallesPentaMineure );
