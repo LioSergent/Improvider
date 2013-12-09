@@ -39,7 +39,7 @@
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:id="@+id/auteur"
+                        android:id="@+id/name_session"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -52,7 +52,7 @@
                         android:id="@+id/boutonPlay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/auteur"
+                        android:layout_below="@+id/name_session"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="4dp"
                         android:adjustViewBounds="true"

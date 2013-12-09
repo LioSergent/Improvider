@@ -34,8 +34,7 @@ public class Musique extends Activity implements OnClickListener {
 		view = v;
 		boutonPlay = (ImageButton) v.findViewById(R.id.boutonPlay);
 
-		Auteur = (TextView) v.findViewById(R.id.auteur);
-		this.setAuteur("...");
+		
 
 		// Association du bouton Play à la lecture / pause du morceau
 		boutonPlay.setOnClickListener(this);

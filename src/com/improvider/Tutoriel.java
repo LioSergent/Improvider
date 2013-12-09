@@ -41,6 +41,7 @@ public class Tutoriel extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tutoriel);
 		final Context context = getApplicationContext();
+		explication = (TextView) findViewById(R.id.text_tutoriel);
 
 		// Gestion des évènements des boutons du tutoriel
 
@@ -87,12 +88,10 @@ public class Tutoriel extends Activity {
 									"com.improvider.Main");
 							explicit.putExtra("Adresse",
 									R.raw.bluessoulguitarbackingtrackineminor);
-							boolean[] value = { false, true, true, false, true,
-									true, true, false, false, false, false,
-									false, false, false };
-							explicit.putExtra("Gamme", value);
-							explicit.putExtra("name", "Blues Soul Em");
-							explicit.putExtra("Tonique", 2);
+							// On rajoute le code de la session
+							
+							explicit.putExtra("numeroSession", 4);
+					
 							startActivity(explicit);
 
 						}

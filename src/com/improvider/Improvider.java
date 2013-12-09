@@ -26,27 +26,18 @@ public class Improvider extends Activity {
 	public Button boutonJouer; // Bouton jouer
 	public Button boutonCommencer; // Bouton Infos
 	public Button boutonCredits; // Bouton Cr�dits
-    public Toast toast;
-    public Scale scaleTest;
-    public Session sessionTest;
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_improvider);
-		final Context context = getApplicationContext();
-		double[] intervallesPentaMineure={1.5,1,1,1.5,1};
-		scaleTest= new Scale("LLLLLLLLOL", com.improvider.NameNote.DO, intervallesPentaMineure);
-		int[] sepa={250,600};
-		Scale[] tabScale={scaleTest};
-		sessionTest=new Session("LOLBIS", R.raw.barbluesaminor, tabScale,sepa);
+		
 		boutonJouer = (Button) findViewById(R.id.bouton_partie_rapide);
 		boutonJouer.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-				Log.d("scaleTestName", sessionTest.getNom());
-				toast = Toast.makeText(context,sessionTest.getNom() , Toast.LENGTH_LONG);
-				toast.show();
+				
 				// On passe � l'activit� ChoixAccompagnement
 				Intent explicit = new Intent();
 				explicit.setClassName("com.improvider",

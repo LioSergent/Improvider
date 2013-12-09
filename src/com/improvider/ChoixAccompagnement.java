@@ -45,7 +45,8 @@ public class ChoixAccompagnement extends Activity {
 		boutonBarBlues.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
+				toast = Toast.makeText(context, R.string.chargement,
+						Toast.LENGTH_LONG);
 				toast.show();
 				// on cr�e un intent pour passer � l'activit� Improvider
 				// Le handler sert a retarder le lancement, sinon le toast a pas
@@ -58,19 +59,10 @@ public class ChoixAccompagnement extends Activity {
 						// On sp�cifie la prochaine activit�
 						explicit.setClassName("com.improvider",
 								"com.improvider.Main");
-						// On rajoute les informations permettant de lancer la
-						// bonne
-						// session de jeu.
-						explicit.putExtra("Adresse", R.raw.barbluesaminor);
-						boolean[] value = { true, true, true, false, true,
-								true, false, true, false, false, false, false,
-								false, false };
-						explicit.putExtra("Gamme", value);
-	//					explicit.putExtra("Session", com.improvider.ListSessions.barBluesAm.getAllUsedValue());
-						explicit.putExtra("name", "Bar Blues");
-						explicit.putExtra("Tonique", 5);
+						// On rajoute le code de la session
+
 						explicit.putExtra("numeroSession", 1);
-				
+
 						startActivity(explicit);
 
 					}
@@ -84,7 +76,8 @@ public class ChoixAccompagnement extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
+				toast = Toast.makeText(context, R.string.chargement,
+						Toast.LENGTH_LONG);
 				toast.show();
 
 				Handler lHandler = new Handler();
@@ -94,14 +87,10 @@ public class ChoixAccompagnement extends Activity {
 						Intent explicit = new Intent();
 						explicit.setClassName("com.improvider",
 								"com.improvider.Main");
-						explicit.putExtra("Adresse",
-								R.raw.bluessoulguitarbackingtrackineminor);
-						boolean[] value = { false, true, true, false, true,
-								true, true, false, false, false, false, false,
-								false, false };
-						explicit.putExtra("Gamme", value);
-						explicit.putExtra("name", "Blues Soul Em");
-						explicit.putExtra("Tonique", 2);
+						// On rajoute le code de la session
+
+						explicit.putExtra("numeroSession", 2);
+
 						startActivity(explicit);
 
 					}
@@ -116,7 +105,8 @@ public class ChoixAccompagnement extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
+				toast = Toast.makeText(context, R.string.chargement,
+						Toast.LENGTH_LONG);
 				toast.show();
 
 				Handler lHandler = new Handler();
@@ -126,14 +116,10 @@ public class ChoixAccompagnement extends Activity {
 						Intent explicit = new Intent();
 						explicit.setClassName("com.improvider",
 								"com.improvider.Main");
-						explicit.putExtra("Adresse",
-								R.raw.freestylerapbeatinstrumentalincminor);
-						boolean[] value = { true, true, false, true, true,
-								false, false, true, false, true, false, false,
-								false, true, false };
-						explicit.putExtra("Gamme", value);
-						explicit.putExtra("name", "Hip pop style Cm");
-						explicit.putExtra("Tonique", 0);
+						// On rajoute le code de la session
+
+						explicit.putExtra("numeroSession", 3);
+
 						startActivity(explicit);
 
 					}
@@ -148,7 +134,8 @@ public class ChoixAccompagnement extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
+				toast = Toast.makeText(context, R.string.chargement,
+						Toast.LENGTH_LONG);
 				toast.show();
 
 				Handler lHandler = new Handler();
@@ -159,14 +146,10 @@ public class ChoixAccompagnement extends Activity {
 						Intent explicit = new Intent();
 						explicit.setClassName("com.improvider",
 								"com.improvider.Main");
-						explicit.putExtra("Adresse",
-								R.raw.acousticpopguitarbackingtrackinbmajor);
-						boolean[] value = { false, false, false, false, false,
-								false, true, false, true, true, false, true,
-								true, false, false };
-						explicit.putExtra("Gamme", value);
-						explicit.putExtra("name", "Acoustic Guitar BM");
-						explicit.putExtra("Tonique", 6);				
+						// On rajoute le code de la session
+						
+						explicit.putExtra("numeroSession", 4);
+				
 						startActivity(explicit);
 
 					}
@@ -181,7 +164,8 @@ public class ChoixAccompagnement extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				toast = Toast.makeText(context, R.string.chargement, Toast.LENGTH_LONG);
+				toast = Toast.makeText(context, R.string.chargement,
+						Toast.LENGTH_LONG);
 				toast.show();
 
 				Handler lHandler = new Handler();
@@ -192,14 +176,10 @@ public class ChoixAccompagnement extends Activity {
 						Intent explicit = new Intent();
 						explicit.setClassName("com.improvider",
 								"com.improvider.Main");
-						explicit.putExtra("Adresse",
-								R.raw.hardrockguitarbackingtrackineminor);
-						boolean[] value = { false, true, true, false, true,
-								true, true, false, false, false, false, false,
-								false, false };
-						explicit.putExtra("Gamme", value);
-						explicit.putExtra("name", "Hard Rock Em");
-						explicit.putExtra("Tonique", 2);
+						// On rajoute le code de la session
+						
+						explicit.putExtra("numeroSession", 5);
+				
 						startActivity(explicit);
 
 					}

@@ -34,7 +34,7 @@ import android.widget.TabHost;
  * @author Lionel
  * 
  */
-public class Main  extends Activity implements ListSessions {
+public class Main  extends Activity implements Constants {
 
 	// Attributs
 
@@ -62,13 +62,15 @@ public class Main  extends Activity implements ListSessions {
 	public boolean sustain = true;
 
 	// Gestion graphique et dynamique du Piano
-	private boolean[] Gamme;
+	private boolean[] CurrentGamme;
 	private Session session;
 	private int tonique;
 	public PianoHorizontalScrollView scroller;
 	public ImageScroller imageScroller;
 	private boolean premierScroll = true;
 	private int numeroSession;
+	private TextView TextViewNameSession;
+	private String nameSession;
 
 	// Navigation
 	TabHost onglets;
@@ -114,13 +116,9 @@ public class Main  extends Activity implements ListSessions {
 		// On rÃ©cupÃ¨re les infos de l'Intent envoyÃ©s par ChoixAccompagnement.
 		Bundle extras = getIntent().getExtras();
 		numeroSession=extras.getInt("numeroSession");
-	/*
-		Adresse = extras.getInt("Adresse");
-		Gamme = extras.getBooleanArray("Gamme");
-		tonique = extras.getInt("Tonique");
-	
-*/
-	chargeSession(numeroSession);	
+        
+		//Grâce au code de session, on charge la dite session.
+	    chargeSession(numeroSession);	
 		
 		// Récupération de données graphiques
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -192,7 +190,7 @@ public class Main  extends Activity implements ListSessions {
 
 		// Récupération du piano
 		piano = (Piano) findViewById(R.id.tab_piano);
-		piano.setGamme(Gamme);
+		piano.setGamme(CurrentGamme);
 		piano.setScreenWidth(widthScreen);
 		piano.setTonique(tonique);
 
@@ -226,6 +224,12 @@ public class Main  extends Activity implements ListSessions {
 		gestionMusique.setVolume(volumeAccompagnementInitial);
 
 		// Les boutons
+		
+		//L'affichage du nom de la session
+		
+		TextView textViewNameSession=(TextView) findViewById(R.id.name_session);
+		textViewNameSession.setText(nameSession);
+		
 		// 2 Boutons de retour
 		boutonMorceauRetour = (Button) findViewById(R.id.bouton_morceau_retour);
 		boutonMorceauRetour.setOnClickListener(new OnClickListener() {
@@ -482,7 +486,7 @@ public class Main  extends Activity implements ListSessions {
 		imageScroller = (ImageScroller) findViewById(R.id.image_scroller);
 		imageScroller.setPiano(piano);
 		imageScroller.setPianoHorizontalScrollView(scroller);
-		imageScroller.setGamme(Gamme);
+		imageScroller.setGamme(CurrentGamme);
 		imageScroller.setTonique(tonique);
 
 		/*
@@ -619,23 +623,35 @@ public class Main  extends Activity implements ListSessions {
 
 	}
 
-	//Choisir la session en fonction de son code
+	/**
+	 * Choisit la session à charger en fonction du code donné par ChoixAccompagnement. 
+	 * Moche mais évite de passer des objets entre les activités.
+	 * @param i
+	 */
 	private void chargeSession(int i) {
 		switch (i) {
 			case 1:
-				this.Adresse = barBluesAm.getAdresse();
 				this.session = barBluesAm;
-                Scale testScale=PENTA_LA_m;
-                Log.d("testScale", testScale.getName());
-                Session testSession=barBluesAm;
-				String nom=testSession.getNom();
-				Log.d("Nom session", nom);
-				Scale[] scaleTest=session.getScale();
-				Scale gammeTest=scaleTest[0];
-				this.Gamme=gammeTest.getUsedValue();
-				this.tonique = gammeTest.getTonique();
-				
+				break;
+			case 2 :
+				this.session = bluesSoulEm;
+				break;
+			case 3: 
+				this.session = hipHopCm;
+				break;
+			case 4:
+				this.session = sadMelodicBm;
+				break;
+			case 5:
+				this.session = hardRockEm;
+				break;
+			default:
+				this.session=bluesSoulEm;
 	}
+		this.Adresse = session.getAdresse();                              
+		this.CurrentGamme=session.getScale()[0].getUsedValue();
+		this.tonique = session.getScale()[0].getTonique();
+		this.nameSession=session.getNom();
 	}
 	
 	// Re-layout programaticly (f(diagonale, screen type))
@@ -781,11 +797,11 @@ public class Main  extends Activity implements ListSessions {
 	}
 
 	public boolean[] getGamme() {
-		return Gamme;
+		return CurrentGamme;
 	}
 
 	public void setGamme(boolean[] gamme) {
-		Gamme = gamme;
+		CurrentGamme = gamme;
 	}
 
 	public void setVolumePiano(int i) {

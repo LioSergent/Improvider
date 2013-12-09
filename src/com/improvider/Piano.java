@@ -548,14 +548,16 @@ public class Piano extends View {
 																				// pointeur
 																				// etait
 																				// appuyé
-
-									this.stopNote(toucheCorrespondante);
+									int ancienSon = soundids.get(toucheCorrespondante);
+									this.stopNote(ancienSon);
 									tabEtatTouchesNoires[toucheCorrespondante
 											- 10 * nbreOctave] = false;
 								} else { // Sinon, c'est qu'elle �tait blanche
 									if (toucheCorrespondante != -1) {
+										int ancienSon = soundids.get(toucheCorrespondante);
+										this.stopNote(ancienSon);
 										tabEtatTouchesBlanches[toucheCorrespondante] = false;
-										this.stopNote(toucheCorrespondante);
+										
 
 									}
 
@@ -708,35 +710,35 @@ public class Piano extends View {
 			lHandler.postDelayed(new Runnable() {
 				public void run() {
 
-					doStuff(Note, (float) 0.33 * volumeProportion);
+					doStuff(Note, (float) 0.25 * volumeProportion);
 
 				}
-			}, 20);
+			}, 10);
 
 			Handler mHandler = new Handler();
 
 			mHandler.postDelayed(new Runnable() {
 				public void run() {
 
-					doStuff(Note, (float) 0.17 * volumeProportion);
+					doStuff(Note, (float) 0.13 * volumeProportion);
 				}
-			}, 200);
+			}, 100);
 
 			Handler nHandler = new Handler();
 
 			nHandler.postDelayed(new Runnable() {
 				public void run() {
 
-					doStuff(Note, (float) 0.07 * volumeProportion);
+					doStuff(Note, (float) 0.03 * volumeProportion);
 				}
-			}, 350);
+			}, 250);
 
 			Handler pHandler = new Handler();
 			pHandler.postDelayed(new Runnable() {
 				public void run() {
 					doStuffbis(Note);
 				}
-			}, 600);
+			}, 1000);
 
 		}
 
