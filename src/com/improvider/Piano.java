@@ -9,11 +9,12 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
-import android.media.SoundPool;
+import android.media.AudioManager;
 import android.os.Handler;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -34,8 +35,8 @@ public class Piano extends View {
 	 * Constantes de la classe
 	 */
 
-	private final static double proportionToucheNoireHauteur = 0.75;
-	private final static double proportionToucheNoireLargeur = 0.32;
+	private final static double proportionToucheNoireHauteur = 0.72;
+	private final static double proportionToucheNoireLargeur = 0.35;
 	private final static int nbreOctave = 3;
 
 	// Proportions du piano, par rapport � la taille de l'�cran
@@ -98,13 +99,12 @@ public class Piano extends View {
 	 * Gestion des sons
 	 */
 
-	SoundPool soundPool;
+	public Instrument instrument;
+	
 	int[] tabSonTouchesBlanches = new int[7 * nbreOctave];
 	int[] tabSonTouchesNoires = new int[7 * nbreOctave];
 	float volume;
-	float volumeProportion;
-	float vol;
-	public boolean sustain = true;
+	
 
 	/*
 	 * Deux constructeurs
@@ -115,6 +115,9 @@ public class Piano extends View {
 		DisplayMetrics metrics = contexte.getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
+		instrument=new InstruPiano(contexte);
+	    instrument.chargeInstrument();
+	    recupererTabSon(instrument.returnTabSon());
 		// init();
 
 	}
@@ -125,7 +128,10 @@ public class Piano extends View {
 		DisplayMetrics metrics = contexte.getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
 		heightScreen = metrics.heightPixels;
-
+		instrument=new InstruPiano(contexte);
+		instrument.chargeInstrument();
+	    recupererTabSon(instrument.returnTabSon());
+		
 		// init();
 
 	}
@@ -135,6 +141,8 @@ public class Piano extends View {
 		 * Mise en place graphique
 		 */
 
+		
+		
 		// Calcul des différentes longueurs
 		largeur = (int) (widthScreen * proportionPianoHorizontale);
 		hauteur = (int) (heightScreen * proportionPianoVerticale);
@@ -429,11 +437,11 @@ public class Piano extends View {
 							tabEtatTouchesNoires[toucheCorrespondante - 10
 									* nbreOctave] = false;
 							int ancienSon = soundids.get(toucheCorrespondante);
-							this.stopNote(ancienSon);
+							this.instrument.stopNote(ancienSon);
 						} else { // Sinon, c'est qu'elle est blanche
 							tabEtatTouchesBlanches[toucheCorrespondante] = false;
 							int ancienSon = soundids.get(toucheCorrespondante);
-							this.stopNote(ancienSon);
+							this.instrument.stopNote(ancienSon);
 
 						}
 					}
@@ -446,13 +454,12 @@ public class Piano extends View {
 					// Si l'on est sur une touche blanche
 					if (toucheNoireAppuye == -1) {
 						if (soundids.get(indexTouche) != null) {
-							soundPool.stop(soundids.get(indexTouche));
+							instrument.stopDirect(soundids.get(indexTouche));
 						}
 						tabEtatTouchesBlanches[indexTouche] = true;
 						positionPointeurs.put(pointerId, indexTouche);
-						int a = soundPool.play(
-								tabSonTouchesBlanches[indexTouche], volume,
-								volume, 1, 0, 1f);
+						int a = instrument.play(
+								tabSonTouchesBlanches[indexTouche]);
 						soundids.put(indexTouche, a);
 					}
 					// Sinon l'on est sur une noire
@@ -461,11 +468,10 @@ public class Piano extends View {
 						positionPointeurs.put(pointerId, toucheNoireAppuye + 10
 								* nbreOctave);
 						if (soundids.get(toucheNoireAppuye) != null) {
-							soundPool.stop(soundids.get(toucheNoireAppuye));
+							instrument.stopDirect(soundids.get(toucheNoireAppuye));
 						}
-						int a = soundPool.play(
-								tabSonTouchesNoires[toucheNoireAppuye], volume,
-								volume, 1, 0, 1f);
+						int a = instrument.play(
+								tabSonTouchesNoires[toucheNoireAppuye]);
 						soundids.put(toucheNoireAppuye + 10 * nbreOctave, a);
 
 					}
@@ -525,9 +531,7 @@ public class Piano extends View {
 							tabEtatTouchesBlanches[indexTouche] = true;
 							positionPointeurs.put(pointerId, indexTouche);
 
-							int b = soundPool.play(
-									tabSonTouchesBlanches[indexTouche], volume,
-									volume, 1, 0, 1f);
+							int b = instrument.play(tabSonTouchesBlanches[indexTouche]);
 
 							soundids.put(indexTouche, b);
 
@@ -549,13 +553,13 @@ public class Piano extends View {
 																				// etait
 																				// appuyé
 									int ancienSon = soundids.get(toucheCorrespondante);
-									this.stopNote(ancienSon);
+									instrument.stopNote(ancienSon);
 									tabEtatTouchesNoires[toucheCorrespondante
 											- 10 * nbreOctave] = false;
 								} else { // Sinon, c'est qu'elle �tait blanche
 									if (toucheCorrespondante != -1) {
 										int ancienSon = soundids.get(toucheCorrespondante);
-										this.stopNote(ancienSon);
+										this.instrument.stopNote(ancienSon);
 										tabEtatTouchesBlanches[toucheCorrespondante] = false;
 										
 
@@ -571,9 +575,8 @@ public class Piano extends View {
 							positionPointeurs.put(pointerId,
 									nouvelleToucheCorrespondante);
 
-							int b = soundPool.play(
-									tabSonTouchesNoires[toucheNoireAppuye],
-									volume, volume, 1, 0, 1f);
+							int b = instrument.play(
+									tabSonTouchesNoires[toucheNoireAppuye]);
 
 							soundids.put(toucheNoireAppuye + 10 * nbreOctave, b);
 							if (toucheCorrespondante != -1) {
@@ -596,11 +599,11 @@ public class Piano extends View {
 																					// appuyé
 										tabEtatTouchesNoires[toucheCorrespondante
 												- 10 * nbreOctave] = false;
-										this.stopNote(toucheCorrespondante);
+										this.instrument.stopNote(toucheCorrespondante);
 									} else { // Sinon, c'est qu'elle est blanche
 
 										tabEtatTouchesBlanches[toucheCorrespondante] = false;
-										this.stopNote(toucheCorrespondante);
+										this.instrument.stopNote(toucheCorrespondante);
 
 									}
 								}
@@ -654,11 +657,9 @@ public class Piano extends View {
 	 * M�thode qui récupère les infos pour le son et les stocke dans deux
 	 * tableaux ayant la même structure que le tableau des états des touches
 	 */
-	void recupererSon(SoundPool s, int[] sons, float v) {
-		soundPool = s;
-		volume = v;
-		volumeProportion = (float) (v / 0.55);
+	void recupererTabSon(int[] sons) {
 		
+				
 		for (int i = 0; i < nbreOctave; i++) {
 
 			tabSonTouchesBlanches[7 * i] = sons[12 * i];
@@ -694,68 +695,14 @@ public class Piano extends View {
 		screenWidth = width;
 	}
 
-	public void setSustain(boolean a) {
-		sustain = a;
-	}
 
-	public boolean getSustain() {
-		return sustain;
-	}
 
-	public void stopNote(final int Note) {
-		if (!sustain) {
 
-			Handler lHandler = new Handler();
 
-			lHandler.postDelayed(new Runnable() {
-				public void run() {
-
-					doStuff(Note, (float) 0.25 * volumeProportion);
-
-				}
-			}, 10);
-
-			Handler mHandler = new Handler();
-
-			mHandler.postDelayed(new Runnable() {
-				public void run() {
-
-					doStuff(Note, (float) 0.13 * volumeProportion);
-				}
-			}, 100);
-
-			Handler nHandler = new Handler();
-
-			nHandler.postDelayed(new Runnable() {
-				public void run() {
-
-					doStuff(Note, (float) 0.03 * volumeProportion);
-				}
-			}, 250);
-
-			Handler pHandler = new Handler();
-			pHandler.postDelayed(new Runnable() {
-				public void run() {
-					doStuffbis(Note);
-				}
-			}, 1000);
-
-		}
-
-	}
-
-	private void doStuff(int Note, float vr) {
-		soundPool.setVolume(Note, vr, vr);
-
-	}
-
-	private void doStuffbis(int Note) {
-		soundPool.stop(Note);
-	}
 
 	public void setVolume(float v) {
 		volume = v;
-		volumeProportion = (float) (v / 0.55);
+		
 
 	}
 
@@ -817,5 +764,13 @@ public class Piano extends View {
 			return a;
 		}
 
+	}
+	
+	public Instrument getInstrument() {
+		return instrument;
+	}
+
+	public void setInstrument(Instrument instrument) {
+		this.instrument = instrument;
 	}
 }

@@ -1,5 +1,7 @@
 package com.improvider;
 
+import android.util.Log;
+
 public class Scale {
 
 	public String name;
@@ -215,6 +217,7 @@ public class Scale {
 			boolean sold, boolean la, boolean lad, boolean si) {
 
 		boolean[] toFill = new boolean[15];
+		
 		toFill[0] = Do;
 		toFill[1] = Re;
 		toFill[2] = Mi;
@@ -233,6 +236,12 @@ public class Scale {
 		return toFill;
 	}
 
+	
+	public void addNote(NameNote note) {
+		int a=note.nameNote;
+		this.usedValue[a]=true;
+	}
+	
 	// Méthodes: getters et setters
 	public String getName() {
 		return name;
