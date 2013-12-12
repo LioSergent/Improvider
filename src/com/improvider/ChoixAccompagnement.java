@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.view.Menu;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -148,9 +147,9 @@ public class ChoixAccompagnement extends Activity {
 						explicit.setClassName("com.improvider",
 								"com.improvider.Main");
 						// On rajoute le code de la session
-						
+
 						explicit.putExtra("numeroSession", 4);
-				
+
 						startActivity(explicit);
 
 					}
@@ -178,9 +177,9 @@ public class ChoixAccompagnement extends Activity {
 						explicit.setClassName("com.improvider",
 								"com.improvider.Main");
 						// On rajoute le code de la session
-						
+
 						explicit.putExtra("numeroSession", 5);
-				
+
 						startActivity(explicit);
 
 					}

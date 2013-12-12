@@ -16,9 +16,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.SoundPool;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -35,7 +33,7 @@ import android.widget.TabHost;
  * @author Lionel
  * 
  */
-public class Main  extends Activity implements Constants {
+public class Main extends Activity implements Constants {
 
 	// Attributs
 
@@ -52,9 +50,6 @@ public class Main  extends Activity implements Constants {
 	public Piano piano;
 	private AudioManager audioManager = null;
 
-	
-
-
 	// Gestion graphique et dynamique du Piano
 	private boolean[] CurrentGamme;
 	private Session session;
@@ -63,7 +58,6 @@ public class Main  extends Activity implements Constants {
 	public ImageScroller imageScroller;
 	private boolean premierScroll = true;
 	private int numeroSession;
-	private TextView TextViewNameSession;
 	private String nameSession;
 
 	// Navigation
@@ -110,11 +104,11 @@ public class Main  extends Activity implements Constants {
 
 		// On rÃ©cupÃ¨re les infos de l'Intent envoyÃ©s par ChoixAccompagnement.
 		Bundle extras = getIntent().getExtras();
-		numeroSession=extras.getInt("numeroSession");
-        
-		//Grâce au code de session, on charge la dite session.
-	    chargeSession(numeroSession);	
-		
+		numeroSession = extras.getInt("numeroSession");
+
+		// Grâce au code de session, on charge la dite session.
+		chargeSession(numeroSession);
+
 		// Récupération de données graphiques
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		widthScreen = metrics.widthPixels;
@@ -128,10 +122,10 @@ public class Main  extends Activity implements Constants {
 
 		// Chargement des objets liées au son
 
-		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);		
+		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
 				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-		
+
 		// On associe les boutons materiels au controle du volume de
 		// l'application
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -153,16 +147,16 @@ public class Main  extends Activity implements Constants {
 				R.id.tab1).getContext());
 		// On utilise les informations de l'intent.
 		gestionMusique.setPlayer(Adresse);
-		
+
 		gestionMusique.setVolume(volumeAccompagnementInitial);
 
 		// Les boutons
-		
-		//L'affichage du nom de la session
-		
-		TextView textViewNameSession=(TextView) findViewById(R.id.name_session);
+
+		// L'affichage du nom de la session
+
+		TextView textViewNameSession = (TextView) findViewById(R.id.name_session);
 		textViewNameSession.setText(nameSession);
-		
+
 		// 2 Boutons de retour
 		boutonMorceauRetour = (Button) findViewById(R.id.bouton_morceau_retour);
 		boutonMorceauRetour.setOnClickListener(new OnClickListener() {
@@ -221,7 +215,6 @@ public class Main  extends Activity implements Constants {
 
 		);
 
-		
 		volumePianoBar = (SeekBar) findViewById(R.id.volume_piano_bar);
 		volumePianoBar.setProgress(10);
 		piano.instrument.setVolume(volumePianoBar.getProgress());
@@ -249,8 +242,8 @@ public class Main  extends Activity implements Constants {
 
 				);
 
-		//Choix de l'instrument
-		
+		// Choix de l'instrument
+
 		chooseInstrumentButton = (Button) findViewById(R.id.button_choose_instrument);
 		chooseInstrumentButton.setOnClickListener(new OnClickListener() {
 
@@ -258,48 +251,56 @@ public class Main  extends Activity implements Constants {
 			public void onClick(View arg0) {
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 						context);
-				final CharSequence[] items={getResources().getString(R.string.piano),getResources().getString(R.string.guitar),getResources().getString(R.string.organ)};
+				final CharSequence[] items = {
+						getResources().getString(R.string.piano),
+						getResources().getString(R.string.guitar),
+						getResources().getString(R.string.organ) };
 				alertDialogBuilder.setTitle(R.string.choose_instrument);
-			
-					alertDialogBuilder.setItems(items, new DialogInterface.OnClickListener() {
-			               public void onClick(DialogInterface dialog, int which) {				              
-				              
-				              switch (which) {
-				              case 0:
-				            	  Instrument a= new InstruPiano(context);
-				            	  piano.setInstrument(a);				            	  
-				            	  piano.instrument.setVolume(volumePianoBar.getProgress());
-				            	  Toast toast = Toast.makeText(context, R.string.pianoloaded,
-				  						Toast.LENGTH_SHORT);
-				  				toast.show();
-				            	  break;
-				              case 1:
-				            	  Instrument b= new InstruGuitar(context);
-				            	  piano.setInstrument(b);
-				            	  piano.instrument.setVolume(volumePianoBar.getProgress());
-				            	  Toast toast1 = Toast.makeText(context, R.string.guitarloaded,
-					  						Toast.LENGTH_SHORT);
-					  				toast1.show();
-				            	  break;
-				              case 2:
-				            	  Instrument c = new InstruOrgan(context);
-				            	  piano.setInstrument(c);
-				            	  piano.instrument.setVolume(volumePianoBar.getProgress());
-				            	  Toast toast2 = Toast.makeText(context, R.string.organloaded,
-					  						Toast.LENGTH_SHORT);
-					  				toast2.show();
-				            	  break;
-				              }
-				           }
-				    });
+
+				alertDialogBuilder.setItems(items,
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+									int which) {
+
+								switch (which) {
+								case 0:
+									Instrument a = new InstruPiano(context);
+									piano.setInstrument(a);
+									piano.instrument.setVolume(volumePianoBar
+											.getProgress());
+									Toast toast = Toast.makeText(context,
+											R.string.pianoloaded,
+											Toast.LENGTH_SHORT);
+									toast.show();
+									break;
+								case 1:
+									Instrument b = new InstruGuitar(context);
+									piano.setInstrument(b);
+									piano.instrument.setVolume(volumePianoBar
+											.getProgress());
+									Toast toast1 = Toast.makeText(context,
+											R.string.guitarloaded,
+											Toast.LENGTH_SHORT);
+									toast1.show();
+									break;
+								case 2:
+									Instrument c = new InstruOrgan(context);
+									piano.setInstrument(c);
+									piano.instrument.setVolume(volumePianoBar
+											.getProgress());
+									Toast toast2 = Toast.makeText(context,
+											R.string.organloaded,
+											Toast.LENGTH_SHORT);
+									toast2.show();
+									break;
+								}
+							}
+						});
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
 			}
 		});
 
-		
-		
-		
 		// Bouton Sustain
 		sustainButton = (ImageButton) findViewById(R.id.sustain_button);
 
@@ -525,15 +526,14 @@ public class Main  extends Activity implements Constants {
 						}
 
 						else {
-	
-									PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
 
-									int positionToScroll = piano
-											.positionTouche(tonique);
-									scroler.customSmoothScrollTo(
-											positionToScroll, 0);
-									getImageScroller().setX1(positionToScroll);
-									getImageScroller().invalidate();
+							PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
+
+							int positionToScroll = piano
+									.positionTouche(tonique);
+							scroler.customSmoothScrollTo(positionToScroll, 0);
+							getImageScroller().setX1(positionToScroll);
+							getImageScroller().invalidate();
 
 							premierScroll = false;
 							return false;
@@ -589,7 +589,8 @@ public class Main  extends Activity implements Constants {
 	public void onPause() {
 		super.onPause();
 		gestionMusique.mettreEnPause();
-		piano.instrument.soundPool.autoPause();;
+		piano.instrument.soundPool.autoPause();
+		;
 	}
 
 	public void onResume() {
@@ -599,36 +600,38 @@ public class Main  extends Activity implements Constants {
 	}
 
 	/**
-	 * Choisit la session à charger en fonction du code donné par ChoixAccompagnement. 
-	 * Moche mais évite de passer des objets entre les activités.
+	 * Choisit la session à charger en fonction du code donné par
+	 * ChoixAccompagnement. Moche mais évite de passer des objets entre les
+	 * activités.
+	 * 
 	 * @param i
 	 */
 	private void chargeSession(int i) {
 		switch (i) {
-			case 1:
-				this.session = barBluesAm;
-				break;
-			case 2 :
-				this.session = bluesSoulEm;
-				break;
-			case 3: 
-				this.session = hipHopCm;
-				break;
-			case 4:
-				this.session = sadMelodicBm;
-				break;
-			case 5:
-				this.session = hardRockEm;
-				break;
-			default:
-				this.session=bluesSoulEm;
-	}
-		this.Adresse = session.getAdresse();                              
-		this.CurrentGamme=session.getScale()[0].getUsedValue();
+		case 1:
+			this.session = barBluesAm;
+			break;
+		case 2:
+			this.session = bluesSoulEm;
+			break;
+		case 3:
+			this.session = hipHopCm;
+			break;
+		case 4:
+			this.session = sadMelodicBm;
+			break;
+		case 5:
+			this.session = hardRockEm;
+			break;
+		default:
+			this.session = bluesSoulEm;
+		}
+		this.Adresse = session.getAdresse();
+		this.CurrentGamme = session.getScale()[0].getUsedValue();
 		this.tonique = session.getScale()[0].getTonique();
-		this.nameSession=session.getNom();		
+		this.nameSession = session.getNom();
 	}
-	
+
 	// Re-layout programaticly (f(diagonale, screen type))
 
 	private void reSizePlay(float diagonalInch) {
@@ -779,16 +782,11 @@ public class Main  extends Activity implements Constants {
 		CurrentGamme = gamme;
 	}
 
-
-	
-
 	public void setTempsMin(String text) {
 		tempsMin.setText(text);
 	}
 
 	// GETTERS
-
-
 
 	public int getAdresse() {
 		return Adresse;

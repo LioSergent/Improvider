@@ -1,7 +1,5 @@
 package com.improvider;
 
-import android.util.Log;
-
 public class Scale {
 
 	public String name;
@@ -64,160 +62,195 @@ public class Scale {
 				la, lad, si);
 
 	}
-	
+
 	/**
 	 * Constructeur prenant un tableau équivalent à do, dod, re, red...
+	 * 
 	 * @param name
 	 * @param tonique
 	 * @param unusedValue
 	 */
 	public Scale(String name, NameNote tonique, boolean[] unusedValue) {
-	this(name,tonique, unusedValue[0],unusedValue[1],unusedValue[2],unusedValue[3],unusedValue[4],unusedValue[5],
-				unusedValue[6],unusedValue[7],
-				unusedValue[8],unusedValue[9],unusedValue[10],unusedValue[11]);
+		this(name, tonique, unusedValue[0], unusedValue[1], unusedValue[2],
+				unusedValue[3], unusedValue[4], unusedValue[5], unusedValue[6],
+				unusedValue[7], unusedValue[8], unusedValue[9],
+				unusedValue[10], unusedValue[11]);
 	}
-	
+
 	/**
-	 * Crée une gamme à partir de liste des intervalles, la première case d'intervalles
-	 * doit donc être du type: 1.5 ton entre la tonique et le 2eme degré utilisé 
-	 * (la tierce par exemple), puis 1 ton entre le 2d et le 3eme...
+	 * Crée une gamme à partir de liste des intervalles, la première case
+	 * d'intervalles doit donc être du type: 1.5 ton entre la tonique et le 2eme
+	 * degré utilisé (la tierce par exemple), puis 1 ton entre le 2d et le
+	 * 3eme...
+	 * 
 	 * @param name
 	 * @param tonique
 	 * @param intervalles
-	 */	
-	 public Scale(String name, NameNote tonique, double[] intervalles) {
-		 this(name, tonique, fromIntervalsToUnusedValue(tonique,intervalles));
-		
-		
+	 */
+	public Scale(String name, NameNote tonique, double[] intervalles) {
+		this(name, tonique, fromIntervalsToUnusedValue(tonique, intervalles));
+
 	}
 
-	 private static boolean[] fromIntervalsToUnusedValue(NameNote tonique, double[] intervals ) {
-		 
-		 boolean[] unusedValue={false,false,false,false,false,false,false,false,false,false,false,false};
-			int base=calculateUnusedTonique(tonique);
-			int[] newIntervalles=new int[intervals.length];
-			
-			for (int i=0; i<intervals.length;i++) {
-			newIntervalles[i]=(int) (intervals[i]*2)	;
-			}
-			
-			unusedValue[base]=true;
-			int sommeDeDegre=base;
-			for (int i=0; i<newIntervalles.length;i++) {
-				sommeDeDegre=sommeDeDegre+newIntervalles[i];
-				if (sommeDeDegre>11) {
-					sommeDeDegre=sommeDeDegre-12;
-				}
-				unusedValue[sommeDeDegre]=true;
-				}
-			
-			return unusedValue;
-	 }
-	// Modèle de construction d'une gamme:
-	//
-	private int calculateTonique(NameNote nameNote) {
-	int tonique=0;
-	switch (nameNote)
-	{
-	    case DO:
-	    tonique=0;
-	    break;
-	    
-	      case DOD:
-	      tonique=8;
-          break;
-   	      case RE:
-		  tonique=1;
-		  break;
-		  case RED:
-		  tonique=9;
-	      break;
-		  case MI:
-	      tonique=2;
-	      break;
-	      case FA:
-		  tonique=3;
-		  break;
-		  case FAD:
-		  tonique=11;
-		  break;
-		  case SOL:
-		  tonique=4;
-		  break;
-		  case SOLD:
-		  tonique=12;
-		  break;
-		  case LA:
-			  tonique=5;
-			  break;
-		  case LAD:
-			  tonique=13;
-			  break;
-		  case SI:
-			  tonique=6;
-			  break;
-    	  default:
-    		  tonique=14;
-	   
-	}
-	
-	return tonique;
-}
+	/**
+	 * Méthode permettant la conversion (tonique + intervalles) à un tableau de
+	 * boolean représentant chaque note (do,dod,re,red...)
+	 * 
+	 * @param tonique
+	 * @param intervals
+	 * @return
+	 */
+	private static boolean[] fromIntervalsToUnusedValue(NameNote tonique,
+			double[] intervals) {
 
-	private static int calculateUnusedTonique(NameNote nameNote) {
-		int tonique=0;
-		switch (nameNote)
-		{
-		    case DO:
-		    tonique=0;
-		    break;
-		    
-		      case DOD:
-		      tonique=1;
-	          break;
-	   	      case RE:
-			  tonique=2;
-			  break;
-			  case RED:
-			  tonique=3;
-		      break;
-			  case MI:
-		      tonique=4;
-		      break;
-		      case FA:
-			  tonique=5;
-			  break;
-			  case FAD:
-			  tonique=6;
-			  break;
-			  case SOL:
-			  tonique=7;
-			  break;
-			  case SOLD:
-			  tonique=8;
-			  break;
-			  case LA:
-				  tonique=9;
-				  break;
-			  case LAD:
-				  tonique=10;
-				  break;
-			  case SI:
-				  tonique=11;
-				  break;
-	    	  default:
-	    		  tonique=14;
-		   
+		boolean[] unusedValue = { false, false, false, false, false, false,
+				false, false, false, false, false, false };
+		int base = calculateUnusedTonique(tonique);
+		int[] newIntervalles = new int[intervals.length];
+
+		for (int i = 0; i < intervals.length; i++) {
+			newIntervalles[i] = (int) (intervals[i] * 2);
 		}
-		
+
+		unusedValue[base] = true;
+		int sommeDeDegre = base;
+		for (int i = 0; i < newIntervalles.length; i++) {
+			sommeDeDegre = sommeDeDegre + newIntervalles[i];
+			if (sommeDeDegre > 11) {
+				sommeDeDegre = sommeDeDegre - 12;
+			}
+			unusedValue[sommeDeDegre] = true;
+		}
+
+		return unusedValue;
+	}
+
+	/**
+	 * Méthode de calcul de la tonique à partir de son nom
+	 * 
+	 * @param nameNote
+	 * @return
+	 */
+	private int calculateTonique(NameNote nameNote) {
+		int tonique = 0;
+		switch (nameNote) {
+		case DO:
+			tonique = 0;
+			break;
+
+		case DOD:
+			tonique = 8;
+			break;
+		case RE:
+			tonique = 1;
+			break;
+		case RED:
+			tonique = 9;
+			break;
+		case MI:
+			tonique = 2;
+			break;
+		case FA:
+			tonique = 3;
+			break;
+		case FAD:
+			tonique = 11;
+			break;
+		case SOL:
+			tonique = 4;
+			break;
+		case SOLD:
+			tonique = 12;
+			break;
+		case LA:
+			tonique = 5;
+			break;
+		case LAD:
+			tonique = 13;
+			break;
+		case SI:
+			tonique = 6;
+			break;
+		default:
+			tonique = 14;
+
+		}
+
 		return tonique;
 	}
+
+	private static int calculateUnusedTonique(NameNote nameNote) {
+		int tonique = 0;
+		switch (nameNote) {
+		case DO:
+			tonique = 0;
+			break;
+
+		case DOD:
+			tonique = 1;
+			break;
+		case RE:
+			tonique = 2;
+			break;
+		case RED:
+			tonique = 3;
+			break;
+		case MI:
+			tonique = 4;
+			break;
+		case FA:
+			tonique = 5;
+			break;
+		case FAD:
+			tonique = 6;
+			break;
+		case SOL:
+			tonique = 7;
+			break;
+		case SOLD:
+			tonique = 8;
+			break;
+		case LA:
+			tonique = 9;
+			break;
+		case LAD:
+			tonique = 10;
+			break;
+		case SI:
+			tonique = 11;
+			break;
+		default:
+			tonique = 14;
+
+		}
+
+		return tonique;
+	}
+
+	/**
+	 * Méthode permettant le calcul de du tableau utilisable par la classe
+	 * Piano/clavier.
+	 * 
+	 * @param do1
+	 * @param dod
+	 * @param re
+	 * @param red
+	 * @param mi
+	 * @param fa
+	 * @param fad
+	 * @param sol
+	 * @param sold
+	 * @param la
+	 * @param lad
+	 * @param si
+	 * @return
+	 */
 	private boolean[] createUsedValue(boolean do1, boolean dod, boolean re,
 			boolean red, boolean mi, boolean fa, boolean fad, boolean sol,
 			boolean sold, boolean la, boolean lad, boolean si) {
 
 		boolean[] toFill = new boolean[15];
-		
+
 		toFill[0] = Do;
 		toFill[1] = Re;
 		toFill[2] = Mi;
@@ -236,17 +269,23 @@ public class Scale {
 		return toFill;
 	}
 
-	
 	public void addNote(NameNote note) {
-		int a=note.nameNote;
-		this.usedValue[a]=true;
+		int a = note.nameNote;
+		this.usedValue[a] = true;
 	}
-	
+
+	/**
+	 * Servant à ajouter une note à une gamme
+	 * 
+	 * @param note
+	 * @return
+	 */
 	public Scale addNoteReturn(NameNote note) {
-		int a=note.nameNote;
-		this.usedValue[a]=true;
+		int a = note.nameNote;
+		this.usedValue[a] = true;
 		return this;
 	}
+
 	// Méthodes: getters et setters
 	public String getName() {
 		return name;

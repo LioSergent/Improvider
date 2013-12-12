@@ -271,8 +271,7 @@
                         android:layout_below="@+id/button_choose_instrument"
                         android:layout_marginLeft="130dp"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/checked"
-                         />
+                        android:background="@drawable/checked" />
 
                     <TextView
                         android:id="@+id/sustain_text"

@@ -2,16 +2,13 @@ package com.improvider;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 /**
  * Activité initiale, lançée lors du démarrage de l'app. Contient donc le menu
@@ -26,18 +23,18 @@ public class Improvider extends Activity {
 	public Button boutonJouer; // Bouton jouer
 	public Button boutonCommencer; // Bouton Infos
 	public Button boutonCredits; // Bouton Crï¿½dits
-    
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_improvider);
-		
+
 		boutonJouer = (Button) findViewById(R.id.bouton_partie_rapide);
 		boutonJouer.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-				
+
 				// On passe ï¿½ l'activitï¿½ ChoixAccompagnement
 				Intent explicit = new Intent();
 				explicit.setClassName("com.improvider",

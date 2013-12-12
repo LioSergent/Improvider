@@ -1,5 +1,10 @@
 package com.improvider;
 
+/**Interface définissant des gammes et des sessions.
+ * 
+ * @author Lionel
+ *
+ */
 public interface Constants {
 
 	//Les penta mineures
