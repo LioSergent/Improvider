@@ -52,6 +52,9 @@
    <string name="guitar">Guitrra líder</string>
     <string name="organ">Órgano</string>
     <string name="keyboard">Teclado</string>
+    <string name="pianoloaded">Piano cargado!</string>
+    <string name="guitarloaded">Guitarra cargada!</string>
+    <string name="organloaded">Órgano cargado!</string>
 
   
    

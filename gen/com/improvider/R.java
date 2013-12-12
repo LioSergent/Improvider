@@ -273,6 +273,7 @@ public final class R {
         public static final int diapotuto4=0x7f070019;
         public static final int explication_premier_onglet=0x7f07000c;
         public static final int guitar=0x7f07002b;
+        public static final int guitarloaded=0x7f07002f;
         public static final int hello_world=0x7f070002;
         public static final int jouer=0x7f070011;
         public static final int keyboard=0x7f07002d;
@@ -281,7 +282,9 @@ public final class R {
         public static final int nombre_touches=0x7f070025;
         public static final int ok=0x7f070024;
         public static final int organ=0x7f07002c;
+        public static final int organloaded=0x7f070030;
         public static final int piano=0x7f070027;
+        public static final int pianoloaded=0x7f07002e;
         public static final int precedent=0x7f07000f;
         public static final int reglages=0x7f070028;
         public static final int retour=0x7f070014;

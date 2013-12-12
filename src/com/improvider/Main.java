@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.SeekBar;
+import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TabHost;
 
@@ -268,16 +269,25 @@ public class Main  extends Activity implements Constants {
 				            	  Instrument a= new InstruPiano(context);
 				            	  piano.setInstrument(a);				            	  
 				            	  piano.instrument.setVolume(volumePianoBar.getProgress());
+				            	  Toast toast = Toast.makeText(context, R.string.pianoloaded,
+				  						Toast.LENGTH_SHORT);
+				  				toast.show();
 				            	  break;
 				              case 1:
 				            	  Instrument b= new InstruGuitar(context);
 				            	  piano.setInstrument(b);
 				            	  piano.instrument.setVolume(volumePianoBar.getProgress());
+				            	  Toast toast1 = Toast.makeText(context, R.string.guitarloaded,
+					  						Toast.LENGTH_SHORT);
+					  				toast1.show();
 				            	  break;
 				              case 2:
 				            	  Instrument c = new InstruOrgan(context);
 				            	  piano.setInstrument(c);
 				            	  piano.instrument.setVolume(volumePianoBar.getProgress());
+				            	  Toast toast2 = Toast.makeText(context, R.string.organloaded,
+					  						Toast.LENGTH_SHORT);
+					  				toast2.show();
 				            	  break;
 				              }
 				           }

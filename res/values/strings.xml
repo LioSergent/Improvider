@@ -52,4 +52,7 @@
     <string name="guitar">Lead Guitar</string>
     <string name="organ">Organ</string>
     <string name="keyboard">Keyboard</string>
+    <string name="pianoloaded">Piano loaded!</string>
+    <string name="guitarloaded">Guitar loaded!</string>
+    <string name="organloaded">Organ loaded!</string>
 </resources>

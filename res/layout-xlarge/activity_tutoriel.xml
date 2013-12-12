@@ -34,7 +34,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="12dp"
             android:adjustViewBounds="true"
-            android:scaleType="fitStart"
+            android:scaleType="fitCenter"
             android:maxHeight="250dp"
             android:maxWidth="300dp"
             android:src="@drawable/diapotutomorceau" />
