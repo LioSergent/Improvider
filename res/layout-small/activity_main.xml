@@ -248,7 +248,7 @@
                         android:layout_marginTop="-5dp"
                         android:layout_toLeftOf="@+id/volume_piano_plus"
                         android:layout_toRightOf="@+id/volume_piano_moins"
-                        android:max="50"
+                        android:max="100"
                         android:paddingRight="20dp"
                         android:paddingLeft="20dp"
                         android:progress="0"

@@ -13,8 +13,8 @@ public class InstruPiano extends Instrument {
 
 	@Override
 	public void chargeInstrument() {
-		
-		proportionVolumeInstrument=(float) 0.80;
+		sustain=true;
+		proportionVolumeInstrument=(float) 0.25;
 		volumeSoundPool=actualVolumeAudio*proportionVolumeInstrument/maxVolumeAudio;
 		
 		// Première Octave

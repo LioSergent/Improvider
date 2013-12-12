@@ -21,6 +21,7 @@ import com.improvider.R;
  * @author Lionel
  * 
  */
+
 public class ChoixAccompagnement extends Activity {
 	// Les 5 boutons correspondants aux morceaux
 	private Button boutonBarBlues;

@@ -10,7 +10,7 @@ public abstract class Instrument {
 	public SoundPool soundPool;
     public Context context;
 	
-	public boolean sustain=true;
+	public boolean sustain;
 	public float maxVolumeAudio;
 	public float actualVolumeAudio;
 	public float proportionVolumeInstrument;
@@ -86,4 +86,10 @@ public abstract class Instrument {
 		this.sustain = sustain;
 	}
 
+	
+	public void setVolume(int a) {
+		float b=(float) a/100;
+		
+		volumeSoundPool=b*proportionVolumeInstrument*maxVolumeAudio;
+	}
 }

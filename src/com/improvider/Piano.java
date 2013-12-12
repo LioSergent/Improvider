@@ -770,7 +770,10 @@ public class Piano extends View {
 		return instrument;
 	}
 
-	public void setInstrument(Instrument instrument) {
-		this.instrument = instrument;
+	public void setInstrument(Instrument a) {
+		instrument.release();
+		instrument = a;
+	    instrument.chargeInstrument();
+  	    recupererTabSon(instrument.returnTabSon());
 	}
 }

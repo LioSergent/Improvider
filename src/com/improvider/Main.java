@@ -50,13 +50,8 @@ public class Main  extends Activity implements Constants {
 	// Gestion du son du Piano
 	public Piano piano;
 	private AudioManager audioManager = null;
-	private int C2piano, Cd2piano, D2piano, Dd2piano, E2piano, F2piano,
-			Fd2piano, G2piano, Gd2piano, A2piano, Ad2piano, B2piano, C3piano,
-			Cd3piano, D3piano, Dd3piano, E3piano, F3piano, Fd3piano, G3piano,
-			Gd3piano, A3piano, Ad3piano, B3piano, C4piano, Cd4piano, D4piano,
-			Dd4piano, E4piano, F4piano, Fd4piano, G4piano, Gd4piano, A4piano,
-			Ad4piano, B4piano;
-	public double volumePiano = 0.25;
+
+	
 
 
 	// Gestion graphique et dynamique du Piano
@@ -86,6 +81,7 @@ public class Main  extends Activity implements Constants {
 	public TextView tempsMin;
 	public SeekBar nbreBlanchesVisiblesBar;
 	private CharSequence duree;
+	public Button chooseInstrumentButton;
 
 	// Attributs de dimensions
 	private int widthScreen;
@@ -224,15 +220,17 @@ public class Main  extends Activity implements Constants {
 
 		);
 
+		
 		volumePianoBar = (SeekBar) findViewById(R.id.volume_piano_bar);
-		volumePianoBar.setProgress(30);
+		volumePianoBar.setProgress(50);
+		piano.instrument.setVolume(volumePianoBar.getProgress());
 		volumePianoBar
 				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 					@Override
 					public void onProgressChanged(SeekBar seekBar,
 							int progress, boolean fromUser) {
 						;
-						setVolumePiano(progress);
+						piano.instrument.setVolume(progress);
 
 					}
 
@@ -250,6 +248,48 @@ public class Main  extends Activity implements Constants {
 
 				);
 
+		//Choix de l'instrument
+		
+		chooseInstrumentButton = (Button) findViewById(R.id.button_choose_instrument);
+		chooseInstrumentButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+						context);
+				final CharSequence[] items={getResources().getString(R.string.piano),getResources().getString(R.string.guitar),getResources().getString(R.string.organ)};
+				alertDialogBuilder.setTitle(R.string.choose_instrument);
+			
+					alertDialogBuilder.setItems(items, new DialogInterface.OnClickListener() {
+			               public void onClick(DialogInterface dialog, int which) {				              
+				              
+				              switch (which) {
+				              case 0:
+				            	  Instrument a= new InstruPiano(context);
+				            	  piano.setInstrument(a);				            	  
+				            	  piano.instrument.setVolume(volumePianoBar.getProgress());
+				            	  break;
+				              case 1:
+				            	  Instrument b= new InstruGuitar(context);
+				            	  piano.setInstrument(b);
+				            	  piano.instrument.setVolume(volumePianoBar.getProgress());
+				            	  break;
+				              case 2:
+				            	  Instrument c = new InstruOrgan(context);
+				            	  piano.setInstrument(c);
+				            	  piano.instrument.setVolume(volumePianoBar.getProgress());
+				            	  break;
+				              }
+				           }
+				    });
+				AlertDialog alertDialog = alertDialogBuilder.create();
+				alertDialog.show();
+			}
+		});
+
+		
+		
+		
 		// Bouton Sustain
 		sustainButton = (ImageButton) findViewById(R.id.sustain_button);
 
@@ -454,7 +494,7 @@ public class Main  extends Activity implements Constants {
 		TabHost.TabSpec ongletPiano = onglets.newTabSpec("ongletPiano");
 
 		ongletPiano.setContent(R.id.tab2);
-		String pia = getString(R.string.piano);
+		String pia = getString(R.string.keyboard);
 
 		ongletPiano.setIndicator(pia);
 		onglets.addTab(ongletPiano);
@@ -475,12 +515,7 @@ public class Main  extends Activity implements Constants {
 						}
 
 						else {
-
-	/*						Handler lHandler = new Handler();
-
-							lHandler.postDelayed(new Runnable() {
-								public void run() {
-								*/
+	
 									PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
 
 									int positionToScroll = piano
@@ -489,10 +524,6 @@ public class Main  extends Activity implements Constants {
 											positionToScroll, 0);
 									getImageScroller().setX1(positionToScroll);
 									getImageScroller().invalidate();
-//								}
-
-									
-			//				}, 1000);
 
 							premierScroll = false;
 							return false;
@@ -738,13 +769,8 @@ public class Main  extends Activity implements Constants {
 		CurrentGamme = gamme;
 	}
 
-	public void setVolumePiano(int i) {
-		double j = (double) i;
-		volumePiano = (j / 100);
 
-		piano.setVolume((float) volumePiano * volume);
-
-	}
+	
 
 	public void setTempsMin(String text) {
 		tempsMin.setText(text);
@@ -752,9 +778,7 @@ public class Main  extends Activity implements Constants {
 
 	// GETTERS
 
-	public float getVolumePiano() {
-		return (float) volumePiano;
-	}
+
 
 	public int getAdresse() {
 		return Adresse;

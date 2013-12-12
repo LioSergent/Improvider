@@ -29,7 +29,7 @@
    <string name="retour">Retornar</string>
    <string name="suivant">Siguiente</string>
    <string name="diapotuto1">En la pantalla de acompañamiento, puede encontrar los controles y reglajes de la música que sostiene la impro.</string>
-   <string name="diapotuto2">En la pantalla Piano, puede encontrar el piano en el cual algunas teclas han sido coloreadas que representan una escala adaptada al acompañamiento.</string>
+   <string name="diapotuto2">En la pantalla Teclado, puede encontrar el piano en el cual algunas teclas han sido coloreadas que representan una escala adaptada al acompañamiento.</string>
    <string name="diapotuto3">La idea es jugar solo sobre estas teclas coloreadas, el sonido será harmonioso! Para asegurarse, puede experimentar y probar todas las teclas.</string>
    <string name="diapotuto4">En la pantalla reglajes, se puede controlar algunos parámetros del piano.</string>
    <string name="letgo">Vamos!</string>
@@ -48,6 +48,10 @@
    <string name="reglages">Reglajes</string>
    <string name="chargement">Cargando</string>
    <string name="ok">OK</string>
+   <string name="choose_instrument">Eliga su instrumento</string> 
+   <string name="guitar">Guitrra líder</string>
+    <string name="organ">Órgano</string>
+    <string name="keyboard">Teclado</string>
 
   
    

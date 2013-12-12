@@ -30,7 +30,7 @@
    <string name="retour">Retour</string>
    <string name="suivant">Suivant</string>
    <string name="diapotuto1">Dans l\'onglet Accompagnement se trouvent les contrôles et les réglages du morceau qui soutient l\'impro</string>
-   <string name="diapotuto2">Dans l\'onglet piano se trouve le piano dont certaines touches sont colorées. Il s\'agit d\'une gamme adaptée à  l\'accompagnement.</string>
+   <string name="diapotuto2">Dans l\'onglet clavier se trouve le piano dont certaines touches sont colorées. Il s\'agit d\'une gamme adaptée à  l\'accompagnement.</string>
    <string name="diapotuto3">L\'idée c\'est donc de jouer uniquement sur les touches colorées, ça sonnera forcément juste! Pour s\'en convaincre, il suffit d\'expérimenter et essayer toutes les touches.</string>
    <string name="diapotuto4">Dans l\'onglet réglages, il est possible de règler quelques paramètres du piano</string>
    <string name="letgo">C\'est parti!</string>
@@ -49,7 +49,10 @@
    <string name="reglages">Réglages</string>
    <string name="chargement">Chargement</string>
    <string name="ok">OK</string>
-
+   <string name="choose_instrument">Choisissez votre instrument</string>
+   <string name="guitar">Lead guitar</string>
+   <string name="organ">Orgue</string>
+   <string name="keyboard">Clavier</string>
   
    
 
