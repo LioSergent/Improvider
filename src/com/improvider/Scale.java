@@ -242,6 +242,11 @@ public class Scale {
 		this.usedValue[a]=true;
 	}
 	
+	public Scale addNoteReturn(NameNote note) {
+		int a=note.nameNote;
+		this.usedValue[a]=true;
+		return this;
+	}
 	// Méthodes: getters et setters
 	public String getName() {
 		return name;

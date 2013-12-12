@@ -16,7 +16,7 @@ public class InstruOrgan extends Instrument {
 	public void chargeInstrument() {
 		// TODO Auto-generated method stub
 		sustain=false;
-		proportionVolumeInstrument=(float) 0.10;
+		proportionVolumeInstrument=(float) 0.12;
 		volumeSoundPool=actualVolumeAudio*proportionVolumeInstrument/maxVolumeAudio;
 		
 		// Première Octave
