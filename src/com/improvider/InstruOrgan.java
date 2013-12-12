@@ -75,7 +75,7 @@ public class InstruOrgan extends Instrument {
 					doStuff(Note, (float) 0.25 * volumeSoundPool);
 
 				}
-			}, 30);
+			}, 20);
 
 			Handler mHandler = new Handler();
 
@@ -84,16 +84,16 @@ public class InstruOrgan extends Instrument {
 
 					doStuff(Note, (float) 0.13 * volumeSoundPool);
 				}
-			}, 200);
+			}, 70);
 
 			Handler nHandler = new Handler();
 
 			nHandler.postDelayed(new Runnable() {
 				public void run() {
 
-					doStuff(Note, (float) 0.03 * volumeSoundPool);
+					doStuff(Note, (float) 0.002 * volumeSoundPool);
 				}
-			}, 350);
+			}, 150);
 
 			Handler pHandler = new Handler();
 			pHandler.postDelayed(new Runnable() {

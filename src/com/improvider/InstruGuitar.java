@@ -84,16 +84,16 @@ public class InstruGuitar extends Instrument {
 
 					doStuff(Note, (float) 0.13 * volumeSoundPool);
 				}
-			}, 100);
+			}, 80);
 
 			Handler nHandler = new Handler();
 
 			nHandler.postDelayed(new Runnable() {
 				public void run() {
 
-					doStuff(Note, (float) 0.03 * volumeSoundPool);
+					doStuff(Note, (float) 0.002 * volumeSoundPool);
 				}
-			}, 250);
+			}, 150);
 
 			Handler pHandler = new Handler();
 			pHandler.postDelayed(new Runnable() {
