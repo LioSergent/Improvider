@@ -39,7 +39,7 @@
     <string name="choix1">Choose your backing track</string>
     <string name="volume_accompagnement">Backing volume</string>
     <string name="retour_choix">Return to the backing choice page</string>
-    <string name="volume_piano">Piano volume</string>
+    <string name="volume_piano">Instrument volume</string>
     <string name="sustain"> Sustain</string>
     <string name="sustain_explanation">If sustain is enabled, the sound will continue even if you release your finger.</string>
     <string name="ok">OK</string>

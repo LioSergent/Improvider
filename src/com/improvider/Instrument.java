@@ -13,6 +13,9 @@ public abstract class Instrument {
 	public boolean sustain;
 	public float maxVolumeAudio;
 	public float actualVolumeAudio;
+	/**
+	 * Entre 0.10 et 0.30
+	 */
 	public float proportionVolumeInstrument;
 	public float volumeSoundPool;
 	
@@ -34,9 +37,10 @@ public abstract class Instrument {
 		
 		actualVolumeAudio = (float) audioManager
 				.getStreamVolume(AudioManager.STREAM_MUSIC);
+		Log.d("ActualVOlume", String.valueOf(actualVolumeAudio));
 		maxVolumeAudio = (float) audioManager
 				.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-		
+		Log.d("maxVOlume", String.valueOf(maxVolumeAudio));
 
 	
 	}
@@ -50,8 +54,7 @@ public abstract class Instrument {
 	
 	public int play(int soundID) {
 		
-		int a=soundPool.play(soundID, volumeSoundPool, volumeSoundPool, 1, 0,1f);
-		Log.d("Instrument.plays()", String.valueOf(a));
+		int a=soundPool.play(soundID, volumeSoundPool, volumeSoundPool, 1, 0,1f);		
 		return a;
 	}
 	
@@ -88,8 +91,13 @@ public abstract class Instrument {
 
 	
 	public void setVolume(int a) {
-		float b=(float) a/100;
-		
+		Log.d("a", String.valueOf(a));
+		float c=(float) a/300;
+		float d= (float) 3.2*a*a/10000;
+		float b=c+d;
+		Log.d("d", String.valueOf(d));
+		Log.d("max", String.valueOf(maxVolumeAudio));
 		volumeSoundPool=b*proportionVolumeInstrument*maxVolumeAudio;
+		Log.d("VolumeSOundPool", String.valueOf(volumeSoundPool));
 	}
 }

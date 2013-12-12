@@ -15,7 +15,7 @@ public class InstruGuitar extends Instrument {
 	public void chargeInstrument() {
 		// TODO Auto-generated method stub
 		sustain=false;
-		proportionVolumeInstrument=(float) 0.20;
+		proportionVolumeInstrument=(float) 0.15;
 		volumeSoundPool=actualVolumeAudio*proportionVolumeInstrument/maxVolumeAudio;
 		
 		// Première Octave

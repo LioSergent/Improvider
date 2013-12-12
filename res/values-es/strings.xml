@@ -39,7 +39,7 @@
    <string name="choix1">Eliga su acompañamiento</string>
    <string name="volume_accompagnement">Volumen del acompañamiento</string>
    <string name="retour_choix">Retornar a la elección del acompañamiento</string>
-   <string name="volume_piano">Volumen del piano</string>
+   <string name="volume_piano">Volumen del instrumento</string>
    <string name="sustain"> Sustain</string>
    <string name="sustain_explanation">Cuando sustain está activado, el sonido sigue aunque haya quitado el dedo.</string>
    <string name="nombre_touches">Escala del piano (número de teclas)</string>

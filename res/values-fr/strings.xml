@@ -40,7 +40,7 @@
    <string name="choix1">Choisissez votre accompagnement</string>
    <string name="volume_accompagnement">Volume accompagnement</string>
    <string name="retour_choix">Retour au choix de l\'accompagnement</string>
-   <string name="volume_piano">Volume piano</string>
+   <string name="volume_piano">Volume instrument</string>
    <string name="sustain"> Sustain</string>
    <string name="sustain_explanation">Lorsque Sustain est activé, le son du piano continue même lorsque vous relevez vos doigts.</string>
    <string name="nombre_touches">Echelle du piano: nombre de touches visibles</string>

@@ -127,10 +127,10 @@ public class Main  extends Activity implements Constants {
 
 		// Chargement des objets liées au son
 
-		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);		
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
 				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
+		
 		// On associe les boutons materiels au controle du volume de
 		// l'application
 		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -222,7 +222,7 @@ public class Main  extends Activity implements Constants {
 
 		
 		volumePianoBar = (SeekBar) findViewById(R.id.volume_piano_bar);
-		volumePianoBar.setProgress(50);
+		volumePianoBar.setProgress(10);
 		piano.instrument.setVolume(volumePianoBar.getProgress());
 		volumePianoBar
 				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {

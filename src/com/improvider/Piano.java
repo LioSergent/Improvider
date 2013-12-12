@@ -601,9 +601,13 @@ public class Piano extends View {
 												- 10 * nbreOctave] = false;
 										this.instrument.stopNote(toucheCorrespondante);
 									} else { // Sinon, c'est qu'elle est blanche
+										if (toucheCorrespondante != -1) {
+											int ancienSon = soundids.get(toucheCorrespondante);
+											this.instrument.stopNote(ancienSon);
+											tabEtatTouchesBlanches[toucheCorrespondante] = false;
+											
 
-										tabEtatTouchesBlanches[toucheCorrespondante] = false;
-										this.instrument.stopNote(toucheCorrespondante);
+										}
 
 									}
 								}

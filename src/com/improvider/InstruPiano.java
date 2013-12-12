@@ -15,7 +15,7 @@ public class InstruPiano extends Instrument {
 	public void chargeInstrument() {
 		sustain=true;
 		proportionVolumeInstrument=(float) 0.25;
-		volumeSoundPool=actualVolumeAudio*proportionVolumeInstrument/maxVolumeAudio;
+		volumeSoundPool=proportionVolumeInstrument/maxVolumeAudio;
 		
 		// Première Octave
 				C2 = soundPool.load(context, R.raw.c2piano, 1);
