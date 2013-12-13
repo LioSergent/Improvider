@@ -31,7 +31,7 @@
    <string name="diapotuto1">En la pantalla de acompañamiento, puede encontrar los controles y reglajes de la música que sostiene la impro.</string>
    <string name="diapotuto2">En la pantalla Teclado, puede encontrar el piano en el cual algunas teclas han sido coloreadas que representan una escala adaptada al acompañamiento.</string>
    <string name="diapotuto3">La idea es jugar solo sobre estas teclas coloreadas, el sonido será harmonioso! Para asegurarse, puede experimentar y probar todas las teclas.</string>
-   <string name="diapotuto4">En la pantalla reglajes, se puede controlar algunos parámetros del piano.</string>
+   <string name="diapotuto4">En la pantalla reglajes, se puede controlar algunos parámetros de su instrumento.</string>
    <string name="letgo">Vamos!</string>
    <string name="credits1">Música de Tom Bailey</string>
    <string name="credits2">Los acompañamientos se pueden encontrar en</string>
@@ -42,7 +42,7 @@
    <string name="volume_piano">Volumen del instrumento</string>
    <string name="sustain"> Sustain</string>
    <string name="sustain_explanation">Cuando sustain está activado, el sonido sigue aunque haya quitado el dedo.</string>
-   <string name="nombre_touches">Escala del piano (número de teclas)</string>
+   <string name="nombre_touches">Escala del teclado (número de teclas)</string>
    <string name="accompagnement">Acompañamiento</string>
    <string name="piano">Piano</string>
    <string name="reglages">Reglajes</string>

@@ -4,9 +4,7 @@ public class Scale {
 
 	public String name;
 	public int tonique;
-
 	public boolean[] usedValue;
-
 	public boolean Do;
 	public boolean Dod;
 	public boolean Re;
@@ -39,6 +37,7 @@ public class Scale {
 	 * @param lad
 	 * @param si
 	 */
+	
 	public Scale(String name, NameNote TONIQUE, boolean do1, boolean dod,
 			boolean re, boolean red, boolean mi, boolean fa, boolean fad,
 			boolean sol, boolean sold, boolean la, boolean lad, boolean si) {

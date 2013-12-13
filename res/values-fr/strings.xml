@@ -32,7 +32,7 @@
    <string name="diapotuto1">Dans l\'onglet Accompagnement se trouvent les contrôles et les réglages du morceau qui soutient l\'impro</string>
    <string name="diapotuto2">Dans l\'onglet clavier se trouve le piano dont certaines touches sont colorées. Il s\'agit d\'une gamme adaptée à  l\'accompagnement.</string>
    <string name="diapotuto3">L\'idée c\'est donc de jouer uniquement sur les touches colorées, ça sonnera forcément juste! Pour s\'en convaincre, il suffit d\'expérimenter et essayer toutes les touches.</string>
-   <string name="diapotuto4">Dans l\'onglet réglages, il est possible de règler quelques paramètres du piano</string>
+   <string name="diapotuto4">Dans l\'onglet réglages, il est possible de règler quelques paramètres de votre instrument (volume, piano/guitare/orgue...).</string>
    <string name="letgo">C\'est parti!</string>
    <string name="credits1">Musiques par Tom Bailey</string>
    <string name="credits2">Retrouvez ces accompagnements sur</string>
@@ -43,7 +43,7 @@
    <string name="volume_piano">Volume instrument</string>
    <string name="sustain"> Sustain</string>
    <string name="sustain_explanation">Lorsque Sustain est activé, le son du piano continue même lorsque vous relevez vos doigts.</string>
-   <string name="nombre_touches">Echelle du piano: nombre de touches visibles</string>
+   <string name="nombre_touches">Echelle du clavier: nombre de touches visibles</string>
    <string name="accompagnement">Accompagnement</string>
    <string name="piano">Piano</string>
    <string name="reglages">Réglages</string>

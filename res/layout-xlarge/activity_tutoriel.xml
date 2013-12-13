@@ -24,7 +24,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="@string/diapotuto1"
-            android:textSize="22sp" />
+            android:textSize="27sp" />
 
         <ImageView
             android:id="@+id/image_tutoriel"

@@ -31,7 +31,7 @@
     <string name="diapotuto1"> Within the backing tab, you will find the controls and settings concerning the background music.</string>
     <string name="diapotuto2">Within the Keyboard tab, you will find the keyboard with some keys that have been colored. These colored keys represent an adapted scale for the backing.</string>
     <string name="diapotuto3">The idea is that by only playing on the colored keys, you can be sure it will sound good! If you need convincing, just experiment and try other keys.</string>
-    <string name="diapotuto4">Within the settings tab, it is possible to set some parameters of the keyboard.</string>
+    <string name="diapotuto4">Within the settings tab, it is possible to set some parameters of your instrument (volume, piano/guitar/organ...).</string>
     <string name="letgo">Let\'s go!</string>
     <string name="credits1">Backing tracks by Tom Bailey</string>
     <string name="credits2">Find those backing tracks at</string>
@@ -43,7 +43,7 @@
     <string name="sustain"> Sustain</string>
     <string name="sustain_explanation">If sustain is enabled, the sound will continue even if you release your finger.</string>
     <string name="ok">OK</string>
-    <string name="nombre_touches">Piano scale: number of white keys</string>
+    <string name="nombre_touches">Keyboard scale: number of white keys</string>
     <string name="accompagnement">Backing</string>
     <string name="piano">Piano</string>
     <string name="reglages">Settings</string>
