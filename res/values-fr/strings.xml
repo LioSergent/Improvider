@@ -52,7 +52,9 @@
    <string name="choose_instrument">Choisissez votre instrument</string>
    <string name="guitar">Lead guitar</string>
    <string name="organ">Orgue</string>
-   <string name="keyboard">Clavier</string>
+   <string name="keyboard">Clavier</string> <string name="pianoloaded">Piano loaded!</string>
+    <string name="guitarloaded">Guitar loaded!</string>
+    <string name="organloaded">Organ loaded!</string>
   
    
 

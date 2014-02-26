@@ -373,7 +373,7 @@ public class ImageScroller extends View {
 									.getLargeurToucheBlanche() * 7 * nbreOctave) { //
 						this.scroller.scrollTo(
 								newPositionToScroll + correction, 0);
-
+// GitHub c'est pas mal, c'est cool.
 					}
 				}
 				justZoomed = true;
