@@ -285,17 +285,39 @@
                         android:layout_marginTop="15dp"
                         android:layout_toRightOf="@+id/sustain_button"
                         android:text="@string/sustain"
-                        android:textSize="24sp" />
+                        android:textSize="22sp" />
 
                     <ImageButton
                         android:id="@+id/bouton_sustain_info"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_below="@+id/button_choose_instrument"
-                        android:layout_marginLeft="230dp"
+                        android:layout_marginLeft="215dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/boutoninforelache" />
 
+                    <ImageButton
+                        android:id="@+id/uncolored_button"
+                        android:layout_width="33dp"
+                        android:layout_height="33dp"
+                        android:layout_below="@+id/button_choose_instrument"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@+id/bouton_sustain_info"
+                        android:background="@drawable/checked" />
+                    
+                    <TextView
+                        android:id="@+id/uncolored_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/button_choose_instrument"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_toRightOf="@+id/uncolored_button"
+                        android:text="@string/uncolored_activation"
+                        android:textSize="19sp" />
+                    
                     <TextView
                         android:id="@+id/nbre_blanches_visibles_text"
                         android:layout_width="wrap_content"

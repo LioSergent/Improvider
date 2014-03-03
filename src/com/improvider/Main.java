@@ -79,6 +79,7 @@ public class Main extends Activity implements Constants {
 	public SeekBar nbreBlanchesVisiblesBar;
 	private CharSequence duree;
 	public Button chooseInstrumentButton;
+	public ImageButton uncoloredActivationButton;
 
 	// Attributs de dimensions
 	private int widthScreen;
@@ -352,6 +353,26 @@ public class Main extends Activity implements Constants {
 			}
 		});
 
+		//Bouton d'activation des touches non color�es
+		
+		uncoloredActivationButton = (ImageButton) findViewById(R.id.uncolored_button);
+
+		uncoloredActivationButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				if (piano.getUncoloredDesactivated()) {
+                     piano.setUncoloredDesactivated(false);
+                     uncoloredActivationButton.setBackgroundResource(R.drawable.checked);
+				}
+				else {
+					piano.setUncoloredDesactivated(true);
+                    uncoloredActivationButton.setBackgroundResource(R.drawable.notchecked);
+				}
+			
+			}
+		});
+		
 		// Barre de réglages du nombre de touches apparaissant à l'écran
 
 		nbreBlanchesVisiblesBar = (SeekBar) findViewById(R.id.nbre_blanches_visibles_bar);

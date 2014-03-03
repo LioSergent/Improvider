@@ -60,8 +60,8 @@ public final class R {
         public static final int tabpressed=0x7f02001a;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a003a;
-        public static final int action_settingslol=0x7f0a0039;
+        public static final int action_settings=0x7f0a003c;
+        public static final int action_settingslol=0x7f0a003b;
         public static final int avancement_bar=0x7f0a0019;
         public static final int avancement_max=0x7f0a0018;
         public static final int avancement_min=0x7f0a0017;
@@ -77,25 +77,25 @@ public final class R {
         public static final int bouton_commencer_retour=0x7f0a000b;
         public static final int bouton_credits_retour=0x7f0a0012;
         public static final int bouton_montre_moi=0x7f0a0009;
-        public static final int bouton_montre_moi_bis=0x7f0a0032;
+        public static final int bouton_montre_moi_bis=0x7f0a0034;
         public static final int bouton_morceau_retour=0x7f0a001e;
         public static final int bouton_partie_rapide=0x7f0a000d;
-        public static final int bouton_reglages_retour=0x7f0a0030;
-        public static final int bouton_retour_savoir=0x7f0a0033;
+        public static final int bouton_reglages_retour=0x7f0a0032;
+        public static final int bouton_retour_savoir=0x7f0a0035;
         public static final int bouton_savoir_plus=0x7f0a000a;
         public static final int bouton_sustain_info=0x7f0a002b;
-        public static final int bouton_tutoriel_precedent=0x7f0a0037;
-        public static final int bouton_tutoriel_suivant=0x7f0a0038;
+        public static final int bouton_tutoriel_precedent=0x7f0a0039;
+        public static final int bouton_tutoriel_suivant=0x7f0a003a;
         public static final int button_choose_instrument=0x7f0a0028;
         public static final int image_scroller=0x7f0a0022;
-        public static final int image_tutoriel=0x7f0a0036;
-        public static final int layout_tuto=0x7f0a0034;
+        public static final int image_tutoriel=0x7f0a0038;
+        public static final int layout_tuto=0x7f0a0036;
         public static final int linear_choix=0x7f0a0004;
         public static final int name_session=0x7f0a0015;
-        public static final int nbre_blanches_visibles_bar=0x7f0a002f;
-        public static final int nbre_blanches_visibles_text=0x7f0a002c;
-        public static final int nbre_touches_max=0x7f0a002e;
-        public static final int nbre_touches_min=0x7f0a002d;
+        public static final int nbre_blanches_visibles_bar=0x7f0a0031;
+        public static final int nbre_blanches_visibles_text=0x7f0a002e;
+        public static final int nbre_touches_max=0x7f0a0030;
+        public static final int nbre_touches_min=0x7f0a002f;
         public static final int scroller=0x7f0a0020;
         public static final int sustain_button=0x7f0a0029;
         public static final int sustain_text=0x7f0a002a;
@@ -108,9 +108,11 @@ public final class R {
         public static final int text_credits1=0x7f0a000f;
         public static final int text_credits2=0x7f0a0010;
         public static final int text_credits3=0x7f0a0011;
-        public static final int text_savoir_plus=0x7f0a0031;
-        public static final int text_tutoriel=0x7f0a0035;
+        public static final int text_savoir_plus=0x7f0a0033;
+        public static final int text_tutoriel=0x7f0a0037;
         public static final int titre_choix=0x7f0a0000;
+        public static final int uncolored_button=0x7f0a002c;
+        public static final int uncolored_text=0x7f0a002d;
         public static final int volume_accompagnement_bar=0x7f0a001d;
         public static final int volume_accompagnement_moins=0x7f0a001b;
         public static final int volume_accompagnement_plus=0x7f0a001c;
@@ -303,6 +305,7 @@ public final class R {
         public static final int title_activity_savoir_plus=0x7f07000d;
         public static final int title_activity_tutoriel=0x7f07000b;
         public static final int titre=0x7f070010;
+        public static final int uncolored_activation=0x7f070031;
         public static final int volume_accompagnement=0x7f07001f;
         public static final int volume_piano=0x7f070021;
     }
