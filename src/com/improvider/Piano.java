@@ -104,6 +104,7 @@ public class Piano extends View {
 	int[] tabSonTouchesBlanches = new int[7 * nbreOctave];
 	int[] tabSonTouchesNoires = new int[7 * nbreOctave];
 	float volume;
+	boolean uncoloredDesactivated=true;
 	
 
 	/*
@@ -417,14 +418,19 @@ public class Piano extends View {
 						|| ev == MotionEvent.ACTION_POINTER_UP) {
 					int toucheCorrespondante = positionPointeurs.get(pointerId);
 					positionPointeurs.remove(pointerId);
-
+                    
+					
+					
+					
 					if (!positionPointeurs.containsValue(toucheCorrespondante)) { // Si
 																					// aucun
 																					// (autre)
 																					// pointeur
 																					// n'est
 																					// dessus
-						if (toucheCorrespondante >= 10 * nbreOctave) { // C'est
+						if (toucheCorrespondante >= 10 * nbreOctave) {
+						
+							// C'est
 																		// une
 																		// touche
 																		// noire
@@ -433,15 +439,21 @@ public class Piano extends View {
 																		// ce
 																		// pointeur
 																		// etait
-																		// appuyé
+							
+							// appuyé
+							if(this.gamme(((toucheCorrespondante-10*nbreOctave)%7)+8)) {
+						
 							tabEtatTouchesNoires[toucheCorrespondante - 10
 									* nbreOctave] = false;
 							int ancienSon = soundids.get(toucheCorrespondante);
 							this.instrument.stopNote(ancienSon);
+							}
 						} else { // Sinon, c'est qu'elle est blanche
+							if (this.gamme((toucheCorrespondante)%7)) {
 							tabEtatTouchesBlanches[toucheCorrespondante] = false;
 							int ancienSon = soundids.get(toucheCorrespondante);
 							this.instrument.stopNote(ancienSon);
+							}
 
 						}
 					}
@@ -451,29 +463,38 @@ public class Piano extends View {
 						|| ev == MotionEvent.ACTION_POINTER_DOWN) {
 
 					toucheNoireAppuye = isNoire(x, y);
+					Log.d("toucheNoireAppuye",String.valueOf(toucheNoireAppuye));
 					// Si l'on est sur une touche blanche
 					if (toucheNoireAppuye == -1) {
+						Log.d("IndexTouche", String.valueOf(indexTouche));
+						if(this.gamme(((indexTouche)%7))) {
 						if (soundids.get(indexTouche) != null) {
 							instrument.stopDirect(soundids.get(indexTouche));
 						}
 						tabEtatTouchesBlanches[indexTouche] = true;
-						positionPointeurs.put(pointerId, indexTouche);
+						
 						int a = instrument.play(
 								tabSonTouchesBlanches[indexTouche]);
 						soundids.put(indexTouche, a);
+						}
+						positionPointeurs.put(pointerId, indexTouche);
 					}
 					// Sinon l'on est sur une noire
 					else {
-						tabEtatTouchesNoires[toucheNoireAppuye] = true;
+						
 						positionPointeurs.put(pointerId, toucheNoireAppuye + 10
 								* nbreOctave);
+					if(this.gamme((toucheNoireAppuye%7)+8)) {
+						tabEtatTouchesNoires[toucheNoireAppuye] = true;
+						
 						if (soundids.get(toucheNoireAppuye) != null) {
 							instrument.stopDirect(soundids.get(toucheNoireAppuye));
 						}
 						int a = instrument.play(
 								tabSonTouchesNoires[toucheNoireAppuye]);
 						soundids.put(toucheNoireAppuye + 10 * nbreOctave, a);
-
+						}
+						
 					}
 				}
 
@@ -527,14 +548,15 @@ public class Piano extends View {
 
 						// Si l'on est sur une touche blanche
 						if (toucheNoireAppuye == -1) {
-
+							if(this.gamme(((indexTouche)%7))) {
 							tabEtatTouchesBlanches[indexTouche] = true;
-							positionPointeurs.put(pointerId, indexTouche);
+							
 
 							int b = instrument.play(tabSonTouchesBlanches[indexTouche]);
 
 							soundids.put(indexTouche, b);
-
+							}
+							positionPointeurs.put(pointerId, indexTouche);
 							if (!positionPointeurs
 									.containsValue(toucheCorrespondante)) { // Si
 																			// aucun
@@ -552,16 +574,19 @@ public class Piano extends View {
 																				// pointeur
 																				// etait
 																				// appuyé
+									if(this.gamme(((toucheCorrespondante-10*nbreOctave)%7)+8)) {
 									int ancienSon = soundids.get(toucheCorrespondante);
 									instrument.stopNote(ancienSon);
 									tabEtatTouchesNoires[toucheCorrespondante
 											- 10 * nbreOctave] = false;
+									}
 								} else { // Sinon, c'est qu'elle �tait blanche
 									if (toucheCorrespondante != -1) {
+										if(this.gamme((toucheCorrespondante)%7)) {
 										int ancienSon = soundids.get(toucheCorrespondante);
 										this.instrument.stopNote(ancienSon);
 										tabEtatTouchesBlanches[toucheCorrespondante] = false;
-										
+										}
 
 									}
 
@@ -571,14 +596,18 @@ public class Piano extends View {
 						}
 						// Sinon l'on est sur une noire
 						else {
-							tabEtatTouchesNoires[toucheNoireAppuye] = true;
 							positionPointeurs.put(pointerId,
-									nouvelleToucheCorrespondante);
+							nouvelleToucheCorrespondante);
+						if (this.gamme((toucheNoireAppuye%7)+8)) {
+							
+							tabEtatTouchesNoires[toucheNoireAppuye] = true;
+							
 
 							int b = instrument.play(
 									tabSonTouchesNoires[toucheNoireAppuye]);
 
 							soundids.put(toucheNoireAppuye + 10 * nbreOctave, b);
+						}
 							if (toucheCorrespondante != -1) {
 								if (!positionPointeurs
 										.containsValue(toucheCorrespondante)) { // Si
@@ -602,17 +631,19 @@ public class Piano extends View {
 										this.instrument.stopNote(toucheCorrespondante);
 									} else { // Sinon, c'est qu'elle est blanche
 										if (toucheCorrespondante != -1) {
+											if(this.gamme((toucheCorrespondante)%7)) {
 											int ancienSon = soundids.get(toucheCorrespondante);
 											this.instrument.stopNote(ancienSon);
 											tabEtatTouchesBlanches[toucheCorrespondante] = false;
 											
-
+											}
 										}
 
 									}
 								}
 
 							}
+				
 						}
 					}
 
@@ -623,6 +654,7 @@ public class Piano extends View {
 				}
 
 			}
+		
 		}
 
 		invalidate();

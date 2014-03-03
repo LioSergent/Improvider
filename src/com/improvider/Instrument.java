@@ -45,7 +45,7 @@ public abstract class Instrument {
 
 	public Instrument(Context context) {
 		this.context = context;
-		soundPool = new SoundPool(24, AudioManager.STREAM_MUSIC, 0);
+		soundPool = new SoundPool(36, AudioManager.STREAM_MUSIC, 0);
 
 		AudioManager audioManager = (AudioManager) this.context
 				.getSystemService(Context.AUDIO_SERVICE);

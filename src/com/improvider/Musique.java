@@ -91,5 +91,8 @@ public class Musique extends Activity implements OnClickListener {
 	public void setPosition(int i) {
 		player.seekTo(i);
 	}
-
+   public void play() {
+	   player.start();
+	   boutonPlay.setImageResource(R.drawable.pausebis);
+   }
 }

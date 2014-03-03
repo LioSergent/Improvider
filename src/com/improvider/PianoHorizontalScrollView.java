@@ -20,7 +20,7 @@ public class PianoHorizontalScrollView extends HorizontalScrollView {
 
 	public double proportionHauteur = 0.86;
 	private OverScroller myScroller;
-	private final int TIME_SMOOTH_SCROLL=3000;
+	private final int TIME_SMOOTH_SCROLL=5000;
 
 	public PianoHorizontalScrollView(Context context) {
 

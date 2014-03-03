@@ -3,6 +3,7 @@ package com.improvider;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.MotionEvent;
@@ -64,6 +65,7 @@ public class Main extends Activity implements Constants {
 	TabHost onglets;
 	private Button boutonMorceauRetour;
 	private Button boutonReglageRetour;
+	private boolean fromTuto=false;
 
 	// Boutons de rÈglages et d'information
 
@@ -105,6 +107,7 @@ public class Main extends Activity implements Constants {
 		// On r√©cup√®re les infos de l'Intent envoy√©s par ChoixAccompagnement.
 		Bundle extras = getIntent().getExtras();
 		numeroSession = extras.getInt("numeroSession");
+		fromTuto=extras.getBoolean("fromTuto");
 
 		// Gr‚ce au code de session, on charge la dite session.
 		chargeSession(numeroSession);
@@ -165,12 +168,14 @@ public class Main extends Activity implements Constants {
 			public void onClick(View arg0) {
 
 				finish();
+				if (fromTuto==true) {
 				Intent explicit = new Intent();
 				explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				explicit.setClassName("com.improvider",
 						"com.improvider.ChoixAccompagnement");
 				startActivity(explicit);
-
+				}
+           
 			}
 		});
 
@@ -181,11 +186,13 @@ public class Main extends Activity implements Constants {
 			public void onClick(View arg0) {
 
 				finish();
+				if (fromTuto==true) {
 				Intent explicit = new Intent();
 				explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				explicit.setClassName("com.improvider",
 						"com.improvider.ChoixAccompagnement");
 				startActivity(explicit);
+				}
 			}
 		});
 
@@ -514,33 +521,7 @@ public class Main extends Activity implements Constants {
 		onglets.getTabWidget().getChildAt(1)
 				.setBackgroundResource(R.drawable.tab_bg_selector);
 
-		onglets.getTabWidget().getChildAt(1)
-				.setOnTouchListener(new View.OnTouchListener() {
 
-					@Override
-					public boolean onTouch(View v, MotionEvent event) {
-
-						if (!premierScroll) {
-							return false;
-
-						}
-
-						else {
-
-							PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
-
-							int positionToScroll = piano
-									.positionTouche(tonique);
-							scroler.customSmoothScrollTo(positionToScroll, 0);
-							getImageScroller().setX1(positionToScroll);
-							getImageScroller().invalidate();
-
-							premierScroll = false;
-							return false;
-						}
-
-					}
-				});
 
 		// Onglet "R√©glages"
 		TabHost.TabSpec ongletReglages = onglets.newTabSpec("ongletReglages");
@@ -564,7 +545,8 @@ public class Main extends Activity implements Constants {
 
 		setDimensionsOngletPiano();
 		reSizePlay(diagonalInch);
-
+        //DÈmarrage auto de l'extrait et mis en position sur le piano.
+		quickStart();
 	}
 
 	// MÈthodes diverses
@@ -632,6 +614,27 @@ public class Main extends Activity implements Constants {
 		this.nameSession = session.getNom();
 	}
 
+private void quickStart() {
+	gestionMusique.play();
+	onglets.setCurrentTab(1);
+	Handler lHandler = new Handler();
+
+	lHandler.postDelayed(new Runnable() {
+		public void run() {
+			PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
+
+			int positionToScroll = piano
+					.positionTouche(tonique);
+			scroler.customSmoothScrollTo(positionToScroll, 0);
+			getImageScroller().setX1(positionToScroll);
+			getImageScroller().invalidate();
+
+		
+
+		}
+	}, 100);
+	
+}
 	// Re-layout programaticly (f(diagonale, screen type))
 
 	private void reSizePlay(float diagonalInch) {

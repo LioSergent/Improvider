@@ -86,8 +86,8 @@ public class Tutoriel extends Activity {
 							Intent explicit = new Intent();
 							explicit.setClassName("com.improvider",
 									"com.improvider.Main");
-							explicit.putExtra("Adresse",
-									R.raw.bluessoulguitarbackingtrackineminor);
+						
+							explicit.putExtra("fromTuto",true);
 							// On rajoute le code de la session
 							
 							explicit.putExtra("numeroSession", 4);
