@@ -21,6 +21,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -337,8 +338,10 @@ public class Main extends Activity implements Constants {
 								}
 							}
 						});
+				
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
+				
 			}
 		});
 
@@ -638,7 +641,7 @@ public class Main extends Activity implements Constants {
 	
 	 public void onStart() {
 		    super.onStart();
-		
+		    Log.d("lol", "ah ouais");
 		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
 		  }
 
