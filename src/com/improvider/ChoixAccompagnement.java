@@ -11,6 +11,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
 import com.improvider.R;
 
 /**
@@ -51,6 +53,8 @@ public class ChoixAccompagnement extends Activity {
 				// on cr�e un intent pour passer � l'activit� Improvider
 				// Le handler sert a retarder le lancement, sinon le toast a pas
 				// le temps de show
+				sendToTrackerSession("Bar Blues");
+				
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -79,7 +83,7 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
-
+				sendToTrackerSession("Blues Soul");
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -108,7 +112,7 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
-
+				sendToTrackerSession("Hip Hop");
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -137,7 +141,7 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
-
+				sendToTrackerSession("Sad Melodic");
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -167,7 +171,7 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
-
+				sendToTrackerSession("Hard Rock");
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -226,6 +230,7 @@ public class ChoixAccompagnement extends Activity {
 
 			toast.cancel();
 		}
+		EasyTracker.getInstance(this).activityStop(this);  // Add this method.
 	}
 
 	public void onPause() {
@@ -236,4 +241,26 @@ public class ChoixAccompagnement extends Activity {
 		}
 
 	}
+
+	 public void onStart() {
+		    super.onStart();
+		
+		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		  }
+	 
+	 private void sendToTrackerSession(String action) {
+		// May return null if a EasyTracker has not yet been initialized with a
+		  // property ID.
+		  EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+		  // MapBuilder.createEvent().build() returns a Map of event fields and values
+		  // that are set and sent with the hit.
+		  easyTracker.send(MapBuilder
+		      .createEvent("Session choisie",     // Event category (required)
+		                   action,  // Event action (required)
+		                   action,   // Event label
+		                   null)            // Event value
+		      .build()
+		  );
+	 }
 }

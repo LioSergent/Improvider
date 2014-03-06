@@ -1,6 +1,10 @@
 package com.improvider;
 
 import java.util.Hashtable;
+
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -820,4 +824,6 @@ public class Piano extends View {
 	public void setUncoloredDesactivated(boolean a) {
 		this.uncoloredDesactivated=a;
 	}
+	
+	
 } 

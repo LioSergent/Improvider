@@ -1,5 +1,7 @@
 package com.improvider;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
@@ -157,6 +159,7 @@ public class Tutoriel extends Activity {
 
 			toast.cancel();
 		}
+		EasyTracker.getInstance(this).activityStop(this);  // Add this method.
 	}
 
 	public void onPause() {
@@ -271,4 +274,11 @@ public class Tutoriel extends Activity {
 		}
 
 	}
+	
+	 public void onStart() {
+		    super.onStart();
+		
+		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		  }
+	
 }

@@ -1,5 +1,7 @@
 package com.improvider;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -89,6 +91,16 @@ public class Commencer extends Activity {
 		getMenuInflater().inflate(R.menu.commencer, menu);
 		return true;
 	}
+	
+	 public void onStart() {
+		    super.onStart();
+		
+		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		  }
+	 public void onStop() {
+			super.onStop();
+			EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+		}
 
 	private void reSizeNormal() {
 

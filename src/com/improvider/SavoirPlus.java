@@ -1,5 +1,7 @@
 package com.improvider;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -67,4 +69,14 @@ public class SavoirPlus extends Activity {
 		return true;
 	}
 
+	 public void onStart() {
+		    super.onStart();
+		
+		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		  }
+	 public void onStop() {
+			super.onStop();
+			EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+		}
+	
 }

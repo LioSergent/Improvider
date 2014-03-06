@@ -1,5 +1,6 @@
 package com.improvider;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.improvider.R;
 
 import android.os.Bundle;
@@ -42,4 +43,14 @@ public class ImproviderCredits extends Activity {
 		return true;
 	}
 
+	
+	 public void onStart() {
+		    super.onStart();
+		
+		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		  }
+	 public void onStop() {
+			super.onStop();
+			EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+		}
 }

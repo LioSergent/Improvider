@@ -2,6 +2,8 @@ package com.improvider;
 
 import java.util.Timer;
 import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
+
 import java.util.TimerTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -277,6 +279,7 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(a);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
+									sendToTracker("Piano");
 									if (piano.instrument.getSustain()) {
 
 										sustainButton.setBackgroundResource(R.drawable.checked);
@@ -296,6 +299,7 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(b);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
+									sendToTracker("Guitare");
 									if (piano.instrument.getSustain()) {
 
 										sustainButton.setBackgroundResource(R.drawable.checked);
@@ -315,6 +319,7 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(c);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
+									sendToTracker("Orgue");
 									if (piano.instrument.getSustain()) {
 
 										sustainButton.setBackgroundResource(R.drawable.checked);
@@ -872,5 +877,21 @@ private void quickStart() {
 
 	public ImageScroller getImageScroller() {
 		return this.imageScroller;
+	}
+	
+	private void sendToTracker(String action) {
+		// May return null if a EasyTracker has not yet been initialized with a
+		  // property ID.
+		  EasyTracker easyTracker = EasyTracker.getInstance(this);
+
+		  // MapBuilder.createEvent().build() returns a Map of event fields and values
+		  // that are set and sent with the hit.
+		  easyTracker.send(MapBuilder
+		      .createEvent("Instrument choisi",     // Event category (required)
+		                   action,  // Event action (required)
+		                   action,   // Event label
+		                   null)            // Event value
+		      .build()
+		  );
 	}
 }
