@@ -55,6 +55,7 @@
    <string name="keyboard">Clavier</string> <string name="pianoloaded">Piano loaded!</string>
     <string name="guitarloaded">Guitar loaded!</string>
     <string name="organloaded">Organ loaded!</string>
+    <string name="uncolored_activation">Touches non colorées activées</string>
   
    
 

@@ -293,6 +293,28 @@
                         android:layout_marginLeft="290dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/boutoninforelache" />
+                    
+                     <ImageButton
+                        android:id="@+id/uncolored_button"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_below="@+id/button_choose_instrument"
+                        android:layout_marginLeft="70dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_toRightOf="@+id/bouton_sustain_info"
+                        android:background="@drawable/checked" />
+                    
+                    <TextView
+                        android:id="@+id/uncolored_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/button_choose_instrument"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_toRightOf="@+id/uncolored_button"
+                        android:text="@string/uncolored_activation"
+                        android:textSize="25sp" />
 
                     <TextView
                         android:id="@+id/nbre_blanches_visibles_text"

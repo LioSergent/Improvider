@@ -289,12 +289,34 @@
 
                     <ImageButton
                         android:id="@+id/bouton_sustain_info"
-                        android:layout_width="30dp"
+                        android:layout_width="37dp"
                         android:layout_height="30dp"
                         android:layout_below="@+id/button_choose_instrument"
-                        android:layout_marginLeft="210dp"
+                        android:layout_marginLeft="195dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/boutoninforelache" />
+                    
+                         <ImageButton
+                        android:id="@+id/uncolored_button"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        android:layout_below="@+id/button_choose_instrument"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toRightOf="@+id/bouton_sustain_info"
+                        android:background="@drawable/checked" />
+                    
+                    <TextView
+                        android:id="@+id/uncolored_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/button_choose_instrument"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toRightOf="@+id/uncolored_button"
+                        android:text="@string/uncolored_activation"
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/nbre_blanches_visibles_text"

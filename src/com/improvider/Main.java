@@ -276,6 +276,15 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(a);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
+									if (piano.instrument.getSustain()) {
+
+										sustainButton.setBackgroundResource(R.drawable.checked);
+									}
+
+									else {
+										sustainButton.setBackgroundResource(R.drawable.notchecked);
+
+									}
 									Toast toast = Toast.makeText(context,
 											R.string.pianoloaded,
 											Toast.LENGTH_SHORT);
@@ -286,6 +295,15 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(b);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
+									if (piano.instrument.getSustain()) {
+
+										sustainButton.setBackgroundResource(R.drawable.checked);
+									}
+
+									else {
+										sustainButton.setBackgroundResource(R.drawable.notchecked);
+
+									}
 									Toast toast1 = Toast.makeText(context,
 											R.string.guitarloaded,
 											Toast.LENGTH_SHORT);
@@ -296,6 +314,15 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(c);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
+									if (piano.instrument.getSustain()) {
+
+										sustainButton.setBackgroundResource(R.drawable.checked);
+									}
+
+									else {
+										sustainButton.setBackgroundResource(R.drawable.notchecked);
+
+									}
 									Toast toast2 = Toast.makeText(context,
 											R.string.organloaded,
 											Toast.LENGTH_SHORT);

@@ -55,6 +55,7 @@
     <string name="pianoloaded">Piano cargado!</string>
     <string name="guitarloaded">Guitarra cargada!</string>
     <string name="organloaded">Órgano cargado!</string>
+    <string name="uncolored_activation">Teclas no coloradas activadas</string>
 
   
    
