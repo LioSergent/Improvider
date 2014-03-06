@@ -1,6 +1,7 @@
 package com.improvider;
 
 import java.util.Timer;
+import com.google.analytics.tracking.android.EasyTracker;
 import java.util.TimerTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -614,6 +615,7 @@ public class Main extends Activity implements Constants {
 		super.onStop();
 		gestionMusique.mettreEnPause();
 		piano.instrument.soundPool.autoPause();
+		EasyTracker.getInstance(this).activityStop(this);  // Add this method.
 	}
 
 	public void onPause() {
@@ -628,6 +630,12 @@ public class Main extends Activity implements Constants {
 		piano.instrument.soundPool.autoResume();
 
 	}
+	
+	 public void onStart() {
+		    super.onStart();
+		
+		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		  }
 
 	/**
 	 * Choisit la session à charger en fonction du code donné par
