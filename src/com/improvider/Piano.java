@@ -2,9 +2,6 @@ package com.improvider;
 
 import java.util.Hashtable;
 
-import com.google.analytics.tracking.android.EasyTracker;
-import com.google.analytics.tracking.android.MapBuilder;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,12 +10,9 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
-import android.media.AudioManager;
-import android.os.Handler;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -82,6 +76,7 @@ public class Piano extends View {
 
 	// Valeurs de stockage pour le onTouchEvent
 	int x, y;
+	int pressAnalytics=0;
 
 	// Avant de dessiner, on revérifie qu'on a bien initié.
 	boolean init = false;
@@ -465,12 +460,13 @@ public class Piano extends View {
 
 				else if (ev == MotionEvent.ACTION_DOWN
 						|| ev == MotionEvent.ACTION_POINTER_DOWN) {
-
+                    pressAnalytics++;
+                   
 					toucheNoireAppuye = isNoire(x, y);
-					Log.d("toucheNoireAppuye",String.valueOf(toucheNoireAppuye));
+					
 					// Si l'on est sur une touche blanche
 					if (toucheNoireAppuye == -1) {
-						Log.d("IndexTouche", String.valueOf(indexTouche));
+				
 						if(this.gamme(((indexTouche)%7))||!uncoloredDesactivated) {
 						if (soundids.get(indexTouche) != null) {
 							instrument.stopDirect(soundids.get(indexTouche));
@@ -824,6 +820,8 @@ public class Piano extends View {
 	public void setUncoloredDesactivated(boolean a) {
 		this.uncoloredDesactivated=a;
 	}
-	
-	
+	public int getPressAnalytics() {
+		return this.pressAnalytics;
+	}
+	 
 } 

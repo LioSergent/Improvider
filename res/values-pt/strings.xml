@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+ <string name="app_name">Improvider</string>
+    <string name="action_settings">Parâmetros</string>
+    <string name="title_activity_commencer">Começar</string>
+    <string name="text_commencer">Improvider vai ajudá-lo a criar a sua própria improvisação musical! </string>
+<string name="montre_moi">Uso da aplicação</string>
+    <string name="savoir_plus">Como é possível eu usar a aplicação? Não sou músico!</string>
+    <string name="title_activity_tutoriel">Tutorial</string>
+    <string name="explication_premier_onglet">Na secção Acompanhamento </string>
+    <string name="title_activity_savoir_plus">SaberMais</string>
+   <string name="text_savoir_plus">Já testemunhou de certeza músicos a improvisarem espontâneamente. Inspiração divina ? Trabalho redobrado? Conhecimento de milhares de frases musicais?
+       Talvez mas não só. Na realidade, a principal ferramenta de improvisação são as escalas musicais.
+       A ideia para um músico, é procurar uma escala adaptada ao acompanhamento, em função dos acordes tocados pelos outros músicos. Em seguida, muitos músicos imprimem visualmente essa escala no instrumento e sabem que só poderão tocar nas teclas, campos, botões ... que terão imprimido.
+        Improvider propõe-lhe de lançar simplesmente um playback presente na aplicação, e escolhe uma escala de improvisação clássica para si, e imprime-a num piano táctil, iluminando as teclas que pode tocar com uma cor verde. Só lhe falta experimentar, explorar a sua creatividade, e sobretudo, divertir-se!
+   </string>
+   <string name="precedent">Voltar</string>
+   <string name="titre">Improvise facilmente!</string>
+   <string name="jouer">Partida rápida </string>
+   <string name="commencer">Tutorial</string>
+   <string name="credits">Créditos</string>
+   <string name="retour">Regresso</string>
+   <string name="suivant">Seguinte</string>
+   <string name="diapotuto1">Na secção Acompanhamento encontram-se os parâmetros da peça sobre a qual se baseia a improvisação. </string>
+   <string name="diapotuto2">Na secção Teclado encontrará o piano com certas teclas iluminadas em verde. É a escala adaptada ao acompanhamento.</string>
+   <string name="diapotuto3">A ideia é simplesmente tocar nas teclas verdes, porque a melodia soará necessariamente certa! Se não estiver convencido, basta experimentar e tocar todas as teclas iluminadas.</string>
+   <string name="diapotuto4"> Na secção Configuração, é possível ajustar alguns dos parâmetros do seu instrumento (volume, piano/guitarra/órgão ...). </string>
+   <string name="letgo"> Vamos a isso! </string>
+   <string name="credits1">Músicas por Tom Bailey</string>
+   <string name="credits2">Encontre estes acompanhamentos na página</string>
+   <string name="credits3">http://www.youtube.com/user/guitarbackingtracks4</string>
+   <string name="choix1">Escolha o seu acompanhamento</string>
+   <string name="volume_accompagnement">Volume acompanhamento</string>
+   <string name="retour_choix">Voltar à escolha do acompanhamento</string>
+   <string name="volume_piano">Volume instrumento</string>
+   <string name="sustain"> Reter</string>
+   <string name="sustain_explanation"> Quando Reter é activado, o som do piano continua até depois de levantar os dedos do teclado.</string>
+   <string name="nombre_touches"> Zoom do teclado : número de teclas visíveis</string>
+   <string name="accompagnement">Acompanhamento</string>
+   <string name="piano">Piano</string>
+   <string name="reglages">Configurações</string>
+   <string name="chargement">Carregamento</string>
+   <string name="ok">OK</string>
+   <string name="choose_instrument">Escolha o seu instrumento</string>
+   <string name="guitar">Guitarra principal</string>
+   <string name="organ">Órgão</string>
+   <string name="keyboard">Teclado</string> <string name="pianoloaded">Piano carregado!</string>
+    <string name="guitarloaded">Guitarra carregada!</string>
+    <string name="organloaded">Órgão carregado!</string>
+
+    
+    <string name="uncolored_activation">Uncolored keys enabled</string>
+</resources>

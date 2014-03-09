@@ -93,6 +93,7 @@ public class Musique extends Activity implements OnClickListener {
 	}
    public void play() {
 	   player.start();
+	   enCoursLecture = true;
 	   boutonPlay.setImageResource(R.drawable.pausebis);
    }
 }

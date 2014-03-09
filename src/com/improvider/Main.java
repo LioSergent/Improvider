@@ -1,34 +1,34 @@
 package com.improvider;
 
 import java.util.Timer;
-import com.google.analytics.tracking.android.EasyTracker;
-import com.google.analytics.tracking.android.MapBuilder;
-
 import java.util.TimerTask;
-import android.os.Bundle;
-import android.os.Handler;
+
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.media.AudioManager;
+import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.SeekBar;
-import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
 
 /**
  * Activité principale. C'est elle qui gère les 3 onglets et qui va instancier
@@ -61,7 +61,6 @@ public class Main extends Activity implements Constants {
 	private int tonique;
 	public PianoHorizontalScrollView scroller;
 	public ImageScroller imageScroller;
-	private boolean premierScroll = true;
 	private int numeroSession;
 	private String nameSession;
 
@@ -69,7 +68,7 @@ public class Main extends Activity implements Constants {
 	TabHost onglets;
 	private Button boutonMorceauRetour;
 	private Button boutonReglageRetour;
-	private boolean fromTuto=false;
+	private boolean fromTuto = false;
 
 	// Boutons de réglages et d'information
 
@@ -112,7 +111,7 @@ public class Main extends Activity implements Constants {
 		// On rÃ©cupÃ¨re les infos de l'Intent envoyÃ©s par ChoixAccompagnement.
 		Bundle extras = getIntent().getExtras();
 		numeroSession = extras.getInt("numeroSession");
-		fromTuto=extras.getBoolean("fromTuto");
+		fromTuto = extras.getBoolean("fromTuto");
 
 		// Grâce au code de session, on charge la dite session.
 		chargeSession(numeroSession);
@@ -173,14 +172,14 @@ public class Main extends Activity implements Constants {
 			public void onClick(View arg0) {
 
 				finish();
-				if (fromTuto==true) {
-				Intent explicit = new Intent();
-				explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-				explicit.setClassName("com.improvider",
-						"com.improvider.ChoixAccompagnement");
-				startActivity(explicit);
+				if (fromTuto == true) {
+					Intent explicit = new Intent();
+					explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+					explicit.setClassName("com.improvider",
+							"com.improvider.ChoixAccompagnement");
+					startActivity(explicit);
 				}
-           
+
 			}
 		});
 
@@ -191,12 +190,12 @@ public class Main extends Activity implements Constants {
 			public void onClick(View arg0) {
 
 				finish();
-				if (fromTuto==true) {
-				Intent explicit = new Intent();
-				explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-				explicit.setClassName("com.improvider",
-						"com.improvider.ChoixAccompagnement");
-				startActivity(explicit);
+				if (fromTuto == true) {
+					Intent explicit = new Intent();
+					explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+					explicit.setClassName("com.improvider",
+							"com.improvider.ChoixAccompagnement");
+					startActivity(explicit);
 				}
 			}
 		});
@@ -283,11 +282,13 @@ public class Main extends Activity implements Constants {
 									sendToTracker("Piano");
 									if (piano.instrument.getSustain()) {
 
-										sustainButton.setBackgroundResource(R.drawable.checked);
+										sustainButton
+												.setBackgroundResource(R.drawable.checked);
 									}
 
 									else {
-										sustainButton.setBackgroundResource(R.drawable.notchecked);
+										sustainButton
+												.setBackgroundResource(R.drawable.notchecked);
 
 									}
 									Toast toast = Toast.makeText(context,
@@ -303,11 +304,13 @@ public class Main extends Activity implements Constants {
 									sendToTracker("Guitare");
 									if (piano.instrument.getSustain()) {
 
-										sustainButton.setBackgroundResource(R.drawable.checked);
+										sustainButton
+												.setBackgroundResource(R.drawable.checked);
 									}
 
 									else {
-										sustainButton.setBackgroundResource(R.drawable.notchecked);
+										sustainButton
+												.setBackgroundResource(R.drawable.notchecked);
 
 									}
 									Toast toast1 = Toast.makeText(context,
@@ -323,11 +326,13 @@ public class Main extends Activity implements Constants {
 									sendToTracker("Orgue");
 									if (piano.instrument.getSustain()) {
 
-										sustainButton.setBackgroundResource(R.drawable.checked);
+										sustainButton
+												.setBackgroundResource(R.drawable.checked);
 									}
 
 									else {
-										sustainButton.setBackgroundResource(R.drawable.notchecked);
+										sustainButton
+												.setBackgroundResource(R.drawable.notchecked);
 
 									}
 									Toast toast2 = Toast.makeText(context,
@@ -338,10 +343,10 @@ public class Main extends Activity implements Constants {
 								}
 							}
 						});
-				
+
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				alertDialog.show();
-				
+
 			}
 		});
 
@@ -389,8 +394,8 @@ public class Main extends Activity implements Constants {
 			}
 		});
 
-		//Bouton d'activation des touches non colorées
-		
+		// Bouton d'activation des touches non colorées
+
 		uncoloredActivationButton = (ImageButton) findViewById(R.id.uncolored_button);
 
 		uncoloredActivationButton.setOnClickListener(new OnClickListener() {
@@ -398,17 +403,18 @@ public class Main extends Activity implements Constants {
 			@Override
 			public void onClick(View arg0) {
 				if (piano.getUncoloredDesactivated()) {
-                     piano.setUncoloredDesactivated(false);
-                     uncoloredActivationButton.setBackgroundResource(R.drawable.checked);
-				}
-				else {
+					piano.setUncoloredDesactivated(false);
+					uncoloredActivationButton
+							.setBackgroundResource(R.drawable.checked);
+				} else {
 					piano.setUncoloredDesactivated(true);
-                    uncoloredActivationButton.setBackgroundResource(R.drawable.notchecked);
+					uncoloredActivationButton
+							.setBackgroundResource(R.drawable.notchecked);
 				}
-			
+
 			}
 		});
-		
+
 		// Barre de rÃ©glages du nombre de touches apparaissant Ã  l'Ã©cran
 
 		nbreBlanchesVisiblesBar = (SeekBar) findViewById(R.id.nbre_blanches_visibles_bar);
@@ -578,8 +584,6 @@ public class Main extends Activity implements Constants {
 		onglets.getTabWidget().getChildAt(1)
 				.setBackgroundResource(R.drawable.tab_bg_selector);
 
-
-
 		// Onglet "RÃ©glages"
 		TabHost.TabSpec ongletReglages = onglets.newTabSpec("ongletReglages");
 
@@ -602,7 +606,7 @@ public class Main extends Activity implements Constants {
 
 		setDimensionsOngletPiano();
 		reSizePlay(diagonalInch);
-        //Démarrage auto de l'extrait et mis en position sur le piano.
+		// Démarrage auto de l'extrait et mis en position sur le piano.
 		quickStart();
 	}
 
@@ -623,7 +627,9 @@ public class Main extends Activity implements Constants {
 		super.onStop();
 		gestionMusique.mettreEnPause();
 		piano.instrument.soundPool.autoPause();
-		EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+		Log.d("Nombre de fois total", String.valueOf(piano.getPressAnalytics()));
+		sendToTrackerPress(piano.getPressAnalytics());
+		EasyTracker.getInstance(this).activityStop(this); // Add this method.
 	}
 
 	public void onPause() {
@@ -638,12 +644,11 @@ public class Main extends Activity implements Constants {
 		piano.instrument.soundPool.autoResume();
 
 	}
-	
-	 public void onStart() {
-		    super.onStart();
-		    Log.d("lol", "ah ouais");
-		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
-		  }
+
+	public void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this); // Add this method.
+	}
 
 	/**
 	 * Choisit la session à charger en fonction du code donné par
@@ -678,27 +683,25 @@ public class Main extends Activity implements Constants {
 		this.nameSession = session.getNom();
 	}
 
-private void quickStart() {
-	gestionMusique.play();
-	onglets.setCurrentTab(1);
-	Handler lHandler = new Handler();
+	private void quickStart() {
+		gestionMusique.play();
+		onglets.setCurrentTab(1);
+		Handler lHandler = new Handler();
 
-	lHandler.postDelayed(new Runnable() {
-		public void run() {
-			PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
+		lHandler.postDelayed(new Runnable() {
+			public void run() {
+				PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
 
-			int positionToScroll = piano
-					.positionTouche(tonique);
-			scroler.customSmoothScrollTo(positionToScroll, 0);
-			getImageScroller().setX1(positionToScroll);
-			getImageScroller().invalidate();
+				int positionToScroll = piano.positionTouche(tonique);
+				scroler.customSmoothScrollTo(positionToScroll, 0);
+				getImageScroller().setX1(positionToScroll);
+				getImageScroller().invalidate();
 
-		
+			}
+		}, 100);
 
-		}
-	}, 100);
-	
-}
+	}
+
 	// Re-layout programaticly (f(diagonale, screen type))
 
 	private void reSizePlay(float diagonalInch) {
@@ -881,20 +884,38 @@ private void quickStart() {
 	public ImageScroller getImageScroller() {
 		return this.imageScroller;
 	}
-	
+
 	private void sendToTracker(String action) {
 		// May return null if a EasyTracker has not yet been initialized with a
-		  // property ID.
-		  EasyTracker easyTracker = EasyTracker.getInstance(this);
+		// property ID.
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
 
-		  // MapBuilder.createEvent().build() returns a Map of event fields and values
-		  // that are set and sent with the hit.
-		  easyTracker.send(MapBuilder
-		      .createEvent("Instrument choisi",     // Event category (required)
-		                   action,  // Event action (required)
-		                   action,   // Event label
-		                   null)            // Event value
-		      .build()
-		  );
+		// MapBuilder.createEvent().build() returns a Map of event fields and
+		// values
+		// that are set and sent with the hit.
+		easyTracker.send(MapBuilder.createEvent("Instrument choisi", // Event
+																		// category
+																		// (required)
+				action, // Event action (required)
+				action, // Event label
+				null) // Event value
+				.build());
+	}
+
+	private void sendToTrackerPress(int pressAnalytics) {
+		// May return null if a EasyTracker has not yet been initialized with a
+		// property ID.
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
+		long number = (long) pressAnalytics;
+		// MapBuilder.createEvent().build() returns a Map of event fields and
+		// values
+		// that are set and sent with the hit.
+		easyTracker.send(MapBuilder.createEvent("Press Number", // Event
+																// category
+																// (required)
+				"press analytics", // Event action (required)
+				"press analytics", // Event label
+				number) // Event value
+				.build());
 	}
 }
