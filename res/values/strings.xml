@@ -25,7 +25,7 @@
     <string name="titre">Easy Impro!</string>
     <string name="jouer">Play</string>
     <string name="commencer">Tutorial</string>
-    <string name="credits">Credits</string>   
+    <string name="credits">Credits</string>
     <string name="retour">Return</string>
     <string name="suivant">Next</string>
     <string name="diapotuto1"> Within the backing tab, you will find the controls and settings concerning the background music.</string>
@@ -48,7 +48,7 @@
     <string name="piano">Piano</string>
     <string name="reglages">Settings</string>
     <string name="chargement">Loading</string>
-    <string name="choose_instrument">Choose your instrument</string>    
+    <string name="choose_instrument">Choose your instrument</string>
     <string name="guitar">Lead Guitar</string>
     <string name="organ">Organ</string>
     <string name="keyboard">Keyboard</string>
@@ -56,4 +56,5 @@
     <string name="guitarloaded">Guitar loaded!</string>
     <string name="organloaded">Organ loaded!</string>
     <string name="uncolored_activation">Uncolored keys enabled</string>
+
 </resources>
