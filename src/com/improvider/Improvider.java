@@ -89,13 +89,16 @@ public class Improvider extends Activity {
 
 	 public void onStart() {
 		    super.onStart();
-		
+		    if (BuildMode.DEBUG) {
 		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		    }
 		  }
 
 	 public void onStop() {
 			super.onStop();
-			EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+			if (BuildMode.DEBUG) {
+			EasyTracker.getInstance(this).activityStop(this);  
+			}// Add this method.
 		}
 	private void reSizeNormal() {
 

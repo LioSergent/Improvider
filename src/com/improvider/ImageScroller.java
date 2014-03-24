@@ -36,8 +36,8 @@ public class ImageScroller extends View {
 
 	// C'est ici qu'on définit la taille de l'image scroller, c'est la seule
 	// chose graphique qui change par rapport au vrai Piano.
-	private double proportionPianoVerticale = 0.11;
-	private double proportionPianoHorizontale = 0.27;
+	private double proportionPianoVerticale = 0.10;
+	private double proportionPianoHorizontale = 0.22;
 
 	// Taille de l'écran
 	int screenWidth;

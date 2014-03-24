@@ -26,11 +26,11 @@
    <string name="jouer">Jugar</string>
    <string name="commencer">Tutorial</string>
    <string name="credits">Créditos</string>
-   <string name="retour">Retornar</string>
+   <string name="retour">Volver</string>
    <string name="suivant">Siguiente</string>
    <string name="diapotuto1">En la pantalla de acompañamiento, puede encontrar los controles y reglajes de la música que sostiene la impro.</string>
    <string name="diapotuto2">En la pantalla Teclado, puede encontrar el piano en el cual algunas teclas han sido coloreadas que representan una escala adaptada al acompañamiento.</string>
-   <string name="diapotuto3">La idea es jugar solo sobre estas teclas coloreadas, el sonido será harmonioso! Para asegurarse, puede experimentar y probar todas las teclas.</string>
+   <string name="diapotuto3">La idea es jugar solo sobre estas teclas coloreadas, el sonido será armonioso! Para asegurarse, puede experimentar y probar todas las teclas.</string>
    <string name="diapotuto4">En la pantalla reglajes, se puede controlar algunos parámetros de su instrumento.</string>
    <string name="letgo">Vamos!</string>
    <string name="credits1">Música de Tom Bailey</string>

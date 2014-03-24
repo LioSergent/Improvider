@@ -551,7 +551,7 @@ public class Piano extends View {
 							if(this.gamme(((indexTouche)%7))||!uncoloredDesactivated) {
 							tabEtatTouchesBlanches[indexTouche] = true;
 							
-
+							pressAnalytics++;
 							int b = instrument.play(tabSonTouchesBlanches[indexTouche]);
 
 							soundids.put(indexTouche, b);
@@ -602,7 +602,7 @@ public class Piano extends View {
 							
 							tabEtatTouchesNoires[toucheNoireAppuye] = true;
 							
-
+							pressAnalytics++;
 							int b = instrument.play(
 									tabSonTouchesNoires[toucheNoireAppuye]);
 

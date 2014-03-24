@@ -128,16 +128,17 @@ public class Main extends Activity implements Constants {
 				* dpWidth) / 160;
 
 		// Chargement des objets liées au son
-
+		
+		
 		audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
+		
+	
 		// On associe les boutons materiels au controle du volume de
 		// l'application
-		this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 		// Récupération du piano
+		
 		piano = (Piano) findViewById(R.id.tab_piano);
 		piano.setGamme(CurrentGamme);
 		piano.setScreenWidth(widthScreen);
@@ -260,6 +261,7 @@ public class Main extends Activity implements Constants {
 
 			@Override
 			public void onClick(View arg0) {
+				
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 						context);
 				final CharSequence[] items = {
@@ -279,7 +281,9 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(a);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
+									if (BuildMode.DEBUG) {
 									sendToTracker("Piano");
+									}
 									if (piano.instrument.getSustain()) {
 
 										sustainButton
@@ -301,7 +305,9 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(b);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
+									if (BuildMode.DEBUG) {
 									sendToTracker("Guitare");
+									}
 									if (piano.instrument.getSustain()) {
 
 										sustainButton
@@ -323,7 +329,9 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(c);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
+									if (BuildMode.DEBUG) {
 									sendToTracker("Orgue");
+									}
 									if (piano.instrument.getSustain()) {
 
 										sustainButton
@@ -627,9 +635,10 @@ public class Main extends Activity implements Constants {
 		super.onStop();
 		gestionMusique.mettreEnPause();
 		piano.instrument.soundPool.autoPause();
-		Log.d("Nombre de fois total", String.valueOf(piano.getPressAnalytics()));
+		if (BuildMode.DEBUG) {
 		sendToTrackerPress(piano.getPressAnalytics());
-		EasyTracker.getInstance(this).activityStop(this); // Add this method.
+		EasyTracker.getInstance(this).activityStop(this); 
+		}// Add this method.
 	}
 
 	public void onPause() {
@@ -647,7 +656,9 @@ public class Main extends Activity implements Constants {
 
 	public void onStart() {
 		super.onStart();
-		EasyTracker.getInstance(this).activityStart(this); // Add this method.
+		if (BuildMode.DEBUG) {
+		EasyTracker.getInstance(this).activityStart(this);
+		}// Add this method.
 	}
 
 	/**
@@ -684,7 +695,7 @@ public class Main extends Activity implements Constants {
 	}
 
 	private void quickStart() {
-		gestionMusique.play();
+//		gestionMusique.play();
 		onglets.setCurrentTab(1);
 		Handler lHandler = new Handler();
 
@@ -888,6 +899,7 @@ public class Main extends Activity implements Constants {
 	private void sendToTracker(String action) {
 		// May return null if a EasyTracker has not yet been initialized with a
 		// property ID.
+		if (BuildMode.DEBUG) {
 		EasyTracker easyTracker = EasyTracker.getInstance(this);
 
 		// MapBuilder.createEvent().build() returns a Map of event fields and
@@ -900,11 +912,13 @@ public class Main extends Activity implements Constants {
 				action, // Event label
 				null) // Event value
 				.build());
+		}
 	}
 
 	private void sendToTrackerPress(int pressAnalytics) {
 		// May return null if a EasyTracker has not yet been initialized with a
 		// property ID.
+		if (BuildMode.DEBUG) {
 		EasyTracker easyTracker = EasyTracker.getInstance(this);
 		long number = (long) pressAnalytics;
 		// MapBuilder.createEvent().build() returns a Map of event fields and
@@ -917,5 +931,6 @@ public class Main extends Activity implements Constants {
 				"press analytics", // Event label
 				number) // Event value
 				.build());
+	}
 	}
 }

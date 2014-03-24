@@ -94,12 +94,15 @@ public class Commencer extends Activity {
 	
 	 public void onStart() {
 		    super.onStart();
-		
-		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		    if (BuildMode.DEBUG) {
+		    EasyTracker.getInstance(this).activityStart(this);
+		    }// Add this method.
 		  }
 	 public void onStop() {
 			super.onStop();
-			EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+			if (BuildMode.DEBUG) {
+			EasyTracker.getInstance(this).activityStop(this);
+			}// Add this method.
 		}
 
 	private void reSizeNormal() {

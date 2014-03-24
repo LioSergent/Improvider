@@ -1,8 +1,10 @@
 package com.improvider;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +45,7 @@ public class ChoixAccompagnement extends Activity {
 		setContentView(R.layout.activity_choix_accompagnement);
 		final Context context = getApplicationContext();
 
+		
 		boutonBarBlues = (Button) findViewById(R.id.boutonBarBlues);
 		boutonBarBlues.setOnClickListener(new OnClickListener() {
 			@Override
@@ -53,7 +56,9 @@ public class ChoixAccompagnement extends Activity {
 				// on cr�e un intent pour passer � l'activit� Improvider
 				// Le handler sert a retarder le lancement, sinon le toast a pas
 				// le temps de show
+				if (BuildMode.DEBUG) {
 				sendToTrackerSession("Bar Blues");
+				}
 				
 				Handler lHandler = new Handler();
 
@@ -83,7 +88,9 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
+				if (BuildMode.DEBUG) {
 				sendToTrackerSession("Blues Soul");
+				}
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -112,7 +119,9 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
+				if (BuildMode.DEBUG) {
 				sendToTrackerSession("Hip Hop");
+				}
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -141,7 +150,9 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
+				if (BuildMode.DEBUG) {
 				sendToTrackerSession("Sad Melodic");
+				}
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -171,7 +182,9 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
+				if (BuildMode.DEBUG) {
 				sendToTrackerSession("Hard Rock");
+				}
 				Handler lHandler = new Handler();
 
 				lHandler.postDelayed(new Runnable() {
@@ -230,7 +243,9 @@ public class ChoixAccompagnement extends Activity {
 
 			toast.cancel();
 		}
-		EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+		if (BuildMode.DEBUG) {
+		EasyTracker.getInstance(this).activityStop(this); 
+		}// Add this method.
 	}
 
 	public void onPause() {
@@ -244,13 +259,15 @@ public class ChoixAccompagnement extends Activity {
 
 	 public void onStart() {
 		    super.onStart();
-		
-		    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		    if (BuildMode.DEBUG) {
+		    EasyTracker.getInstance(this).activityStart(this);
+		    }// Add this method.
 		  }
 	 
 	 private void sendToTrackerSession(String action) {
 		// May return null if a EasyTracker has not yet been initialized with a
 		  // property ID.
+		 if (BuildMode.DEBUG) {
 		  EasyTracker easyTracker = EasyTracker.getInstance(this);
 
 		  // MapBuilder.createEvent().build() returns a Map of event fields and values
@@ -262,5 +279,6 @@ public class ChoixAccompagnement extends Activity {
 		                   null)            // Event value
 		      .build()
 		  );
+	 }
 	 }
 }

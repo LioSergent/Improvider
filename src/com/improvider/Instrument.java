@@ -49,9 +49,7 @@ public abstract class Instrument {
 
 		AudioManager audioManager = (AudioManager) this.context
 				.getSystemService(Context.AUDIO_SERVICE);
-		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
-				audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
+	
 		actualVolumeAudio = (float) audioManager
 				.getStreamVolume(AudioManager.STREAM_MUSIC);
 		maxVolumeAudio = (float) audioManager
