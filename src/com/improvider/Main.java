@@ -71,7 +71,8 @@ public class Main extends Activity implements Constants {
 	private boolean fromTuto = false;
 
 	// Boutons de réglages et d'information
-
+	public ImageButton boutonPlay;
+    public ImageButton boutonPlayClavier;
 	public SeekBar volumeBar;
 	public SeekBar avancementBar;
 	public SeekBar volumePianoBar;
@@ -538,6 +539,38 @@ public class Main extends Activity implements Constants {
 		Timer t = new Timer();
 
 		t.schedule(actualisation, (long) 1500, (long) 200);
+		
+		
+		boutonPlay=(ImageButton) findViewById(R.id.boutonPlay);
+		boutonPlay.setOnClickListener(new OnClickListener() {
+			
+		public void onClick(View v) {
+			if (gestionMusique.enCoursLecture) {
+				pause();
+
+			} else  {
+				play();
+
+			}
+
+		}
+		}
+		);
+		
+		boutonPlayClavier=(ImageButton) findViewById(R.id.boutonPlayClavier);
+		boutonPlayClavier.setOnClickListener(new OnClickListener() {
+              
+			@Override
+			public void onClick(View arg0) {
+			if (gestionMusique.enCoursLecture) {
+				pause();
+			}
+			else {
+			play();
+			}
+			}
+		});
+		
 
 		// Création des éléments graphiques plus complexes
 
@@ -614,26 +647,37 @@ public class Main extends Activity implements Constants {
 
 		setDimensionsOngletPiano();
 		reSizePlay(diagonalInch);
+		reSizePlayClavier(diagonalInch);
 		// Démarrage auto de l'extrait et mis en position sur le piano.
 		quickStart();
 	}
 
 	// Méthodes diverses
-
+	
+	private void play() {
+		gestionMusique.play();				
+		boutonPlay.setImageResource(R.drawable.pausebis);
+		boutonPlayClavier.setImageResource(R.drawable.pausebis);
+	}
+private void pause () {
+	gestionMusique.pause();				
+	boutonPlay.setImageResource(R.drawable.playbis);
+	boutonPlayClavier.setImageResource(R.drawable.playbis);
+}
 	/*
 	 * Gestion du cycle de vie de l'application
 	 */
 
 	public void onDestroy() {
 		super.onDestroy();
-		gestionMusique.couperMusique();
+	pause();
 		piano.instrument.release();
 
 	}
 
 	public void onStop() {
 		super.onStop();
-		gestionMusique.mettreEnPause();
+		pause();
 		piano.instrument.soundPool.autoPause();
 		if (BuildMode.DEBUG) {
 		sendToTrackerPress(piano.getPressAnalytics());
@@ -643,7 +687,7 @@ public class Main extends Activity implements Constants {
 
 	public void onPause() {
 		super.onPause();
-		gestionMusique.mettreEnPause();
+		pause();
 		piano.instrument.soundPool.autoPause();
 		;
 	}
@@ -695,7 +739,7 @@ public class Main extends Activity implements Constants {
 	}
 
 	private void quickStart() {
-//		gestionMusique.play();
+//		play();
 		onglets.setCurrentTab(1);
 		Handler lHandler = new Handler();
 
@@ -725,6 +769,16 @@ public class Main extends Activity implements Constants {
 
 	}
 
+	private void reSizePlayClavier(float diagonalInch) {
+
+		ImageButton buttonPlayClavier = (ImageButton) findViewById(R.id.boutonPlayClavier);
+		int maxWidth = (int) heightScreen/7;
+		buttonPlayClavier.setMaxWidth(maxWidth);
+		buttonPlayClavier.setMaxHeight(maxWidth);
+
+	}
+
+	
 	private void setDimensionsOngletPiano() {
 
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {

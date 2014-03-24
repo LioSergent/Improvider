@@ -12,12 +12,13 @@ import android.widget.TextView;
  * Classe qui gère la lecture des fichiers média. Les boutons sont définis dans
  * le XML. On les récupère ici pour gérer les actions.
  */
-public class Musique extends Activity implements OnClickListener {
+public class Musique extends Activity  {
 
 	MediaPlayer player;
 	boolean enCoursLecture = false; // Pour savoir si l'on est en train de jouer
 									// un morceau
-	public ImageButton boutonPlay;
+
+	
 	Context context; // Permettra de rÃ©cupÃ©rer les informations concernant
 						// l'instance du main
 	View view;
@@ -32,37 +33,13 @@ public class Musique extends Activity implements OnClickListener {
 	public Musique(View v, Context c) {
 		context = c;
 		view = v;
-		boutonPlay = (ImageButton) v.findViewById(R.id.boutonPlay);
-
-		
-
-		// Association du bouton Play Ã  la lecture / pause du morceau
-		boutonPlay.setOnClickListener(this);
-
+	
+	
 	}
 
-	public void onClick(View v) {
-		if (enCoursLecture) {
-			player.pause();
-			enCoursLecture = false;
-			boutonPlay.setImageResource(R.drawable.playbis);
+	
 
-		} else if (!enCoursLecture) {
-			player.start();
-			enCoursLecture = true;
-			boutonPlay.setImageResource(R.drawable.pausebis);
-		}
-
-	}
-
-	public void mettreEnPause() {
-		if (enCoursLecture) {
-			player.pause();
-			boutonPlay.setImageResource(R.drawable.playbis);
-			enCoursLecture = false;
-		}
-	}
-
+	
 	public void couperMusique() {
 		player.stop();
 	}
@@ -94,6 +71,12 @@ public class Musique extends Activity implements OnClickListener {
    public void play() {
 	   player.start();
 	   enCoursLecture = true;
-	   boutonPlay.setImageResource(R.drawable.pausebis);
+	
+   }
+   
+   public void pause() {
+	   player.pause();
+	   enCoursLecture=false;
+	  
    }
 }

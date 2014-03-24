@@ -273,8 +273,8 @@ public class ImageScroller extends View {
 		}
 
 		// Dessin des lignes pour encadrer l'imageScroller
-		canvas.drawLine(0, hauteurToucheBlanche, 7 * nbreOctave
-				* largeurToucheBlanche, hauteurToucheBlanche, new Paint());
+		canvas.drawLine(0, hauteurToucheBlanche-1, 7 * nbreOctave
+				* largeurToucheBlanche, hauteurToucheBlanche-1, new Paint());
 		canvas.drawLine(0, 0, 7 * nbreOctave * largeurToucheBlanche, 0,
 				new Paint());
 
