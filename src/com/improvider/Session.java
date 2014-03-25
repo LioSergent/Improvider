@@ -16,6 +16,7 @@ public class Session {
 	// longueur de l'audio. En nombre de secondes
 	private Scale[] scale;
 	private int[] separations;
+	public double tempo;
 
 	/**
 	 * Constructeur utilisable pour des backing complexes
@@ -24,12 +25,13 @@ public class Session {
 	 * @param gamme
 	 * @param separations
 	 */
-	public Session(String nom, int adresse, Scale[] gamme, int[] separations) {
+	public Session(String nom, int adresse, Scale[] gamme, int[] separations, double tempo) {
 		super();
 		this.nom = nom;
 		this.adresse = adresse;
 		this.scale = gamme;
 		this.separations = separations;
+		this.tempo=tempo;
 	}
 
 	/** Constructeur à utiliser pour des backings n'utilisant d'une seule gamme
@@ -38,11 +40,16 @@ public class Session {
 	 * @param adresse
 	 * @param preGamme
 	 */
-	public Session(String nom, int adresse, Scale preGamme) {
-		this(nom, adresse, fromPreGammeToGamme(preGamme), separationBidon);
+	public Session(String nom, int adresse, Scale preGamme, double tempo) {
+		this(nom, adresse, fromPreGammeToGamme(preGamme), separationBidon, tempo);
 
 	}
 
+	public Session(String nom, int adresse, Scale preGamme) {
+		this(nom, adresse, fromPreGammeToGamme(preGamme), separationBidon, 60);
+
+	}
+	
 	public static Scale[] fromPreGammeToGamme(Scale preGamme) {
 		Scale[] gamme = { preGamme, preGamme };
 		return gamme;

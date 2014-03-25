@@ -171,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
+                     android:layout_marginBottom="4dp"
                     android:fadeScrollbars="true"
                     android:fillViewport="true"
                     android:scrollbars="none" >
@@ -190,17 +191,30 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="4dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/playbis" />
+                
+                <ImageButton
+                    android:id="@+id/metronome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="4dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/metronomebleu" />
 
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="5dp" >
+                    android:layout_marginTop="6dp" >
 
                     <com.improvider.ImageScroller
                         android:id="@+id/image_scroller"

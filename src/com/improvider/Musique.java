@@ -14,8 +14,8 @@ import android.widget.TextView;
  */
 public class Musique extends Activity  {
 
-	MediaPlayer player;
-	boolean enCoursLecture = false; // Pour savoir si l'on est en train de jouer
+	public MediaPlayer player;
+	public boolean enCoursLecture = false; // Pour savoir si l'on est en train de jouer
 									// un morceau
 
 	

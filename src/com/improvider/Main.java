@@ -648,6 +648,7 @@ public class Main extends Activity implements Constants {
 		setDimensionsOngletPiano();
 		reSizePlay(diagonalInch);
 		reSizePlayClavier(diagonalInch);
+		prepareMetronome();
 		// Démarrage auto de l'extrait et mis en position sur le piano.
 		quickStart();
 	}
@@ -658,6 +659,7 @@ public class Main extends Activity implements Constants {
 		gestionMusique.play();				
 		boutonPlay.setImageResource(R.drawable.pausebis);
 		boutonPlayClavier.setImageResource(R.drawable.pausebis);
+		prepareMetronome();
 	}
 private void pause () {
 	gestionMusique.pause();				
@@ -772,7 +774,7 @@ private void pause () {
 	private void reSizePlayClavier(float diagonalInch) {
 
 		ImageButton buttonPlayClavier = (ImageButton) findViewById(R.id.boutonPlayClavier);
-		int maxWidth = (int) heightScreen/7;
+		int maxWidth =  (int) ((int) heightScreen/6.5);
 		buttonPlayClavier.setMaxWidth(maxWidth);
 		buttonPlayClavier.setMaxHeight(maxWidth);
 
@@ -987,4 +989,38 @@ private void pause () {
 				.build());
 	}
 	}
+	
+	private void prepareMetronome() {
+		final ImageButton metronome=(ImageButton) findViewById(R.id.metronome);
+		final int periodePulsation=(int) (60*1000/(this.session.tempo));
+		
+	
+
+		Handler lHandler = new Handler();
+
+		lHandler.postDelayed(new Runnable() {
+			public void run() {
+
+				int avance=gestionMusique.getPosition();
+				
+				if(avance%periodePulsation<100) {
+					metronome.setImageResource(R.drawable.metronomebleu);
+				}
+				
+				else {
+					metronome.setImageResource(R.drawable.metronomeblanc);
+				}
+
+			}
+		}, 20);
+		
+		
+		
+		
+			
+		
+		
+		
 }
+	}	
+
