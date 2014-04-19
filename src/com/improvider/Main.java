@@ -1,5 +1,6 @@
 package com.improvider;
 
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -54,6 +55,10 @@ public class Main extends Activity implements Constants {
 	// Gestion du son du Piano
 	public Piano piano;
 	private AudioManager audioManager = null;
+	private Handler lHandler;
+	private Runnable action;
+	private ImageButton metronome;
+	private int periodePulsation;
 
 	// Gestion graphique et dynamique du Piano
 	private boolean[] CurrentGamme;
@@ -659,7 +664,7 @@ public class Main extends Activity implements Constants {
 		gestionMusique.play();				
 		boutonPlay.setImageResource(R.drawable.pausebis);
 		boutonPlayClavier.setImageResource(R.drawable.pausebis);
-		prepareMetronome();
+		startMetronome();
 	}
 private void pause () {
 	gestionMusique.pause();				
@@ -991,36 +996,43 @@ private void pause () {
 	}
 	
 	private void prepareMetronome() {
-		final ImageButton metronome=(ImageButton) findViewById(R.id.metronome);
-		final int periodePulsation=(int) (60*1000/(this.session.tempo));
+		metronome=(ImageButton) findViewById(R.id.metronome);
+		periodePulsation=(int) (60*1000/(this.session.tempo));
 		
 	
 
-		Handler lHandler = new Handler();
+		lHandler = new Handler();
 
-		lHandler.postDelayed(new Runnable() {
+		action=new Runnable() {
 			public void run() {
 
 				int avance=gestionMusique.getPosition();
-				
-				if(avance%periodePulsation<100) {
+				Log.d("congruence", String.valueOf(avance%periodePulsation));
+				if(avance%periodePulsation<300) {
+			
 					metronome.setImageResource(R.drawable.metronomebleu);
 				}
 				
 				else {
 					metronome.setImageResource(R.drawable.metronomeblanc);
 				}
-
+				if (gestionMusique.enCoursLecture){
+				lHandler.postDelayed(action, 1);
+				}
+				
 			}
-		}, 20);
 		
 		
-		
-		
+	
 			
 		
 		
 		
-}
+};
+		
 	}	
-
+	
+	private void startMetronome() {
+		lHandler.postDelayed(action, 10);
+	}
+}

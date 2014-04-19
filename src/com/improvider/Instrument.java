@@ -80,7 +80,17 @@ public abstract class Instrument {
 				1f);
 		return a;
 	}
-
+ 
+	
+	public int play(int soundID, float touchedProportionVolume) {
+		
+		float meanTimeVolume=(float) volumeSoundPool*touchedProportionVolume;
+		
+		int a = soundPool.play(soundID,meanTimeVolume , meanTimeVolume, 1, 0,
+				1f);
+		return a;
+		
+	}
 	public void stopDirect(int Note) {
 		soundPool.stop(Note);
 	}
@@ -111,6 +121,11 @@ public abstract class Instrument {
 
 	public void setSustain(boolean sustain) {
 		this.sustain = sustain;
+	}
+	
+	public void changeVolumeNote(int soundID, float newPropVolume){
+		float newVolume=(float) volumeSoundPool*newPropVolume;
+		soundPool.setVolume(soundID, newVolume, newVolume);
 	}
 
 	/**
