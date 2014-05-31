@@ -29,14 +29,14 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/boutonBarBlues"
+            android:id="@+id/boutonIndieRock"
             style="@style/btnStyleGenoa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/titre_choix"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp"
-            android:text="Bar Blues"
+            android:text="Indie Rock"
             android:textSize="35sp" />
 
         <Button
@@ -47,7 +47,7 @@
             android:layout_below="@+id/titre_choix"
             android:layout_marginRight="15dp"
             android:layout_marginTop="60dp"
-            android:layout_toLeftOf="@+id/boutonBarBlues"
+            android:layout_toLeftOf="@+id/boutonIndieRock"
             android:text="Blues Soul"
             android:textSize="35sp" />
 
@@ -59,7 +59,7 @@
             android:layout_below="@+id/titre_choix"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="60dp"
-            android:layout_toRightOf="@+id/boutonBarBlues"
+            android:layout_toRightOf="@+id/boutonIndieRock"
             android:text="Hip Hop"
             android:textSize="35sp" />
 
@@ -67,7 +67,7 @@
             android:id="@+id/linear_choix"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/boutonBarBlues"
+            android:layout_below="@+id/boutonIndieRock"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="14dp"
             android:orientation="horizontal" >

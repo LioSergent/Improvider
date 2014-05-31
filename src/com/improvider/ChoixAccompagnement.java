@@ -27,7 +27,7 @@ import com.improvider.R;
 
 public class ChoixAccompagnement extends Activity {
 	// Les 5 boutons correspondants aux morceaux
-	private Button boutonBarBlues;
+	private Button boutonIndieRock;
 	private Button boutonBluesSoul;
 	private Button boutonHipHop;
 	private Button boutonAcoustic;
@@ -46,8 +46,8 @@ public class ChoixAccompagnement extends Activity {
 		final Context context = getApplicationContext();
 
 		
-		boutonBarBlues = (Button) findViewById(R.id.boutonBarBlues);
-		boutonBarBlues.setOnClickListener(new OnClickListener() {
+		boutonIndieRock = (Button) findViewById(R.id.boutonIndieRock);
+		boutonIndieRock.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				toast = Toast.makeText(context, R.string.chargement,
@@ -57,7 +57,7 @@ public class ChoixAccompagnement extends Activity {
 				// Le handler sert a retarder le lancement, sinon le toast a pas
 				// le temps de show
 				if (BuildMode.DEBUG) {
-				sendToTrackerSession("Bar Blues");
+				sendToTrackerSession("Indie Rock");
 				}
 				
 				Handler lHandler = new Handler();

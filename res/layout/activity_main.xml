@@ -195,7 +195,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/playbis" />
-                
+<!--                
                 <ImageButton
                     android:id="@+id/metronome"
                     android:layout_width="40dp"
@@ -205,9 +205,9 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="4dp"
-                  
                     android:scaleType="fitCenter"
                     android:src="@drawable/metronomebleu" />
+                -->
 
                 <FrameLayout
                     android:layout_width="wrap_content"

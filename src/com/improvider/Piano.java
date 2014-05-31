@@ -441,7 +441,9 @@ public class Piano extends View {
 										* nbreOctave] = false;
 								int ancienSon = soundids
 										.get(toucheCorrespondante);
-								this.instrument.stopNote(ancienSon);
+								float touchedVolume = (float) y
+										/ hauteurToucheNoire;
+								this.instrument.stopNote(ancienSon, touchedVolume);
 							}
 						} else { // Sinon, c'est qu'elle est blanche
 							if (this.gamme((toucheCorrespondante) % 7)
@@ -449,7 +451,9 @@ public class Piano extends View {
 								tabEtatTouchesBlanches[toucheCorrespondante] = false;
 								int ancienSon = soundids
 										.get(toucheCorrespondante);
-								this.instrument.stopNote(ancienSon);
+								float touchedVolume = (float) y
+										/ hauteurToucheBlanche;
+								this.instrument.stopNote(ancienSon, touchedVolume);
 							}
 
 						}
@@ -588,7 +592,9 @@ public class Piano extends View {
 											|| !uncoloredDesactivated) {
 										int ancienSon = soundids
 												.get(toucheCorrespondante);
-										instrument.stopNote(ancienSon);
+										float touchedVolume = (float) y
+												/ hauteurToucheNoire;
+										instrument.stopNote(ancienSon, touchedVolume);
 										tabEtatTouchesNoires[toucheCorrespondante
 												- 10 * nbreOctave] = false;
 									}
@@ -598,7 +604,9 @@ public class Piano extends View {
 												|| !uncoloredDesactivated) {
 											int ancienSon = soundids
 													.get(toucheCorrespondante);
-											this.instrument.stopNote(ancienSon);
+											float touchedVolume = (float) y
+													/ hauteurToucheBlanche;
+											this.instrument.stopNote(ancienSon,touchedVolume);
 											tabEtatTouchesBlanches[toucheCorrespondante] = false;
 										}
 
@@ -644,16 +652,20 @@ public class Piano extends View {
 																					// appuyé
 										tabEtatTouchesNoires[toucheCorrespondante
 												- 10 * nbreOctave] = false;
+										float touchedVolume = (float) y
+												/ hauteurToucheNoire;
 										this.instrument
-												.stopNote(toucheCorrespondante);
+												.stopNote(toucheCorrespondante,touchedVolume);
 									} else { // Sinon, c'est qu'elle est blanche
 										if (toucheCorrespondante != -1) {
 											if (this.gamme((toucheCorrespondante) % 7)
 													|| !uncoloredDesactivated) {
 												int ancienSon = soundids
 														.get(toucheCorrespondante);
+												float touchedVolume = (float) y
+														/ hauteurToucheBlanche;
 												this.instrument
-														.stopNote(ancienSon);
+														.stopNote(ancienSon,touchedVolume);
 												tabEtatTouchesBlanches[toucheCorrespondante] = false;
 
 											}

@@ -653,7 +653,7 @@ public class Main extends Activity implements Constants {
 		setDimensionsOngletPiano();
 		reSizePlay(diagonalInch);
 		reSizePlayClavier(diagonalInch);
-		prepareMetronome();
+	//	prepareMetronome();
 		// Démarrage auto de l'extrait et mis en position sur le piano.
 		quickStart();
 	}
@@ -664,7 +664,7 @@ public class Main extends Activity implements Constants {
 		gestionMusique.play();				
 		boutonPlay.setImageResource(R.drawable.pausebis);
 		boutonPlayClavier.setImageResource(R.drawable.pausebis);
-		startMetronome();
+//		startMetronome();
 	}
 private void pause () {
 	gestionMusique.pause();				
@@ -722,7 +722,7 @@ private void pause () {
 	private void chargeSession(int i) {
 		switch (i) {
 		case 1:
-			this.session = barBluesAm;
+			this.session = indieRockAm;
 			break;
 		case 2:
 			this.session = bluesSoulEm;
@@ -779,7 +779,7 @@ private void pause () {
 	private void reSizePlayClavier(float diagonalInch) {
 
 		ImageButton buttonPlayClavier = (ImageButton) findViewById(R.id.boutonPlayClavier);
-		int maxWidth =  (int) ((int) heightScreen/6.5);
+		int maxWidth =  (int) ((int) heightScreen/8.5 +15);
 		buttonPlayClavier.setMaxWidth(maxWidth);
 		buttonPlayClavier.setMaxHeight(maxWidth);
 
@@ -994,9 +994,9 @@ private void pause () {
 				.build());
 	}
 	}
-	
+	/*
 	private void prepareMetronome() {
-		metronome=(ImageButton) findViewById(R.id.metronome);
+//		metronome=(ImageButton) findViewById(R.id.metronome);
 		periodePulsation=(int) (60*1000/(this.session.tempo));
 		
 	
@@ -1035,4 +1035,5 @@ private void pause () {
 	private void startMetronome() {
 		lHandler.postDelayed(action, 10);
 	}
+	*/
 }

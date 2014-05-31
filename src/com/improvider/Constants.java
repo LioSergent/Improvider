@@ -34,11 +34,11 @@ public interface Constants {
 	Pour la première, 2 pour la deuxième session... Ce code implicite est utilisé dans la méthode chargeSession du Main.
 	L'entier codé (1,2 ,3..) est envoyé par ChoixAccompagnement pour transmettre le choix au Main
 	*/
-public final Session barBluesAm=new Session ("Bar Blues Am", R.raw.barbluesaminor, PENTA_LA_m);
+//public final Session barBluesAm=new Session ("Bar Blues Am", R.raw.barbluesaminor, PENTA_LA_m);
 public final Session bluesSoulEm=new Session("Blues Soul Em", R.raw.bluessoulguitarbackingtrackineminor, PENTA_MI_m.addNoteReturn(com.improvider.NameNote.FAD));
 public final Session hipHopCm=new Session("HipHop Style Cm", R.raw.freestylerapbeatinstrumentalincminor,PENTA_DO_m);
 public final Session sadMelodicBm=new Session ("Sad Melodic Bm", R.raw.sadmelodic,PENTA_SI_m.addNoteReturn(com.improvider.NameNote.DOD));
 //public final Session acousticPopGuitarBM=new Session("Acoustic Guitar BM", R.raw.acousticpopguitarbackingtrackinbmajor, PENTA_SI_M);
 public final Session hardRockEm=new Session("Hard Rock Em", R.raw.hardrockguitarbackingtrackineminor, PENTA_MI_m.addNoteReturn(com.improvider.NameNote.FAD));
-
+public final Session indieRockAm=new Session ("Indie Rock Am", R.raw.indierockaminor, PENTA_LA_m);
 }

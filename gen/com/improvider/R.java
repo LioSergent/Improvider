@@ -13,9 +13,11 @@ public final class R {
     public static final class bool {
         /** Enable automatic activity tracking
 Enable automatic activity tracking
+Enable automatic activity tracking
          */
         public static final int ga_autoActivityTracking=0x7f060000;
         /** Enable automatic exception tracking
+Enable automatic exception tracking
 Enable automatic exception tracking
          */
         public static final int ga_reportUncaughtExceptions=0x7f060001;
@@ -34,6 +36,7 @@ Enable automatic exception tracking
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
+ Default screen margins, per the Android Design guidelines. 
  Default screen margins, per the Android Design guidelines. 
  Default screen margins, per the Android Design guidelines. 
  Default screen margins, per the Android Design guidelines. 
@@ -73,17 +76,17 @@ Enable automatic exception tracking
         public static final int tabpressed=0x7f02001c;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b003e;
-        public static final int action_settingslol=0x7f0b003d;
+        public static final int action_settings=0x7f0b003d;
+        public static final int action_settingslol=0x7f0b003c;
         public static final int avancement_bar=0x7f0b0019;
         public static final int avancement_max=0x7f0b0018;
         public static final int avancement_min=0x7f0b0017;
         public static final int boutonAcoustic=0x7f0b0005;
-        public static final int boutonBarBlues=0x7f0b0001;
         public static final int boutonBluesSoul=0x7f0b0002;
         public static final int boutonCredits=0x7f0b000e;
         public static final int boutonHardRock=0x7f0b0006;
         public static final int boutonHipHop=0x7f0b0003;
+        public static final int boutonIndieRock=0x7f0b0001;
         public static final int boutonPlay=0x7f0b0016;
         public static final int boutonPlayClavier=0x7f0b0022;
         public static final int bouton_choix_retour=0x7f0b0007;
@@ -91,51 +94,50 @@ Enable automatic exception tracking
         public static final int bouton_commencer_retour=0x7f0b000b;
         public static final int bouton_credits_retour=0x7f0b0012;
         public static final int bouton_montre_moi=0x7f0b0009;
-        public static final int bouton_montre_moi_bis=0x7f0b0036;
+        public static final int bouton_montre_moi_bis=0x7f0b0035;
         public static final int bouton_morceau_retour=0x7f0b001e;
         public static final int bouton_partie_rapide=0x7f0b000d;
-        public static final int bouton_reglages_retour=0x7f0b0034;
-        public static final int bouton_retour_savoir=0x7f0b0037;
+        public static final int bouton_reglages_retour=0x7f0b0033;
+        public static final int bouton_retour_savoir=0x7f0b0036;
         public static final int bouton_savoir_plus=0x7f0b000a;
-        public static final int bouton_sustain_info=0x7f0b002d;
-        public static final int bouton_tutoriel_precedent=0x7f0b003b;
-        public static final int bouton_tutoriel_suivant=0x7f0b003c;
-        public static final int button_choose_instrument=0x7f0b002a;
-        public static final int image_scroller=0x7f0b0024;
-        public static final int image_tutoriel=0x7f0b003a;
-        public static final int layout_tuto=0x7f0b0038;
+        public static final int bouton_sustain_info=0x7f0b002c;
+        public static final int bouton_tutoriel_precedent=0x7f0b003a;
+        public static final int bouton_tutoriel_suivant=0x7f0b003b;
+        public static final int button_choose_instrument=0x7f0b0029;
+        public static final int image_scroller=0x7f0b0023;
+        public static final int image_tutoriel=0x7f0b0039;
+        public static final int layout_tuto=0x7f0b0037;
         public static final int linear_choix=0x7f0b0004;
-        public static final int metronome=0x7f0b0023;
         public static final int name_session=0x7f0b0015;
-        public static final int nbre_blanches_visibles_bar=0x7f0b0033;
-        public static final int nbre_blanches_visibles_text=0x7f0b0030;
-        public static final int nbre_touches_max=0x7f0b0032;
-        public static final int nbre_touches_min=0x7f0b0031;
+        public static final int nbre_blanches_visibles_bar=0x7f0b0032;
+        public static final int nbre_blanches_visibles_text=0x7f0b002f;
+        public static final int nbre_touches_max=0x7f0b0031;
+        public static final int nbre_touches_min=0x7f0b0030;
         public static final int scroller=0x7f0b0020;
-        public static final int sustain_button=0x7f0b002b;
-        public static final int sustain_text=0x7f0b002c;
+        public static final int sustain_button=0x7f0b002a;
+        public static final int sustain_text=0x7f0b002b;
         public static final int tab1=0x7f0b0014;
         public static final int tab2=0x7f0b001f;
-        public static final int tab3=0x7f0b0025;
+        public static final int tab3=0x7f0b0024;
         public static final int tab_piano=0x7f0b0021;
         public static final int tabhost=0x7f0b0013;
         public static final int text_commencer=0x7f0b0008;
         public static final int text_credits1=0x7f0b000f;
         public static final int text_credits2=0x7f0b0010;
         public static final int text_credits3=0x7f0b0011;
-        public static final int text_savoir_plus=0x7f0b0035;
-        public static final int text_tutoriel=0x7f0b0039;
+        public static final int text_savoir_plus=0x7f0b0034;
+        public static final int text_tutoriel=0x7f0b0038;
         public static final int titre_choix=0x7f0b0000;
-        public static final int uncolored_button=0x7f0b002e;
-        public static final int uncolored_text=0x7f0b002f;
+        public static final int uncolored_button=0x7f0b002d;
+        public static final int uncolored_text=0x7f0b002e;
         public static final int volume_accompagnement_bar=0x7f0b001d;
         public static final int volume_accompagnement_moins=0x7f0b001b;
         public static final int volume_accompagnement_plus=0x7f0b001c;
         public static final int volume_accompagnement_text=0x7f0b001a;
-        public static final int volume_piano_bar=0x7f0b0029;
-        public static final int volume_piano_moins=0x7f0b0027;
-        public static final int volume_piano_plus=0x7f0b0028;
-        public static final int volume_piano_text=0x7f0b0026;
+        public static final int volume_piano_bar=0x7f0b0028;
+        public static final int volume_piano_moins=0x7f0b0026;
+        public static final int volume_piano_plus=0x7f0b0027;
+        public static final int volume_piano_text=0x7f0b0025;
     }
     public static final class layout {
         public static final int activity_choix_accompagnement=0x7f030000;
@@ -185,91 +187,91 @@ Enable automatic exception tracking
         public static final int b4guitar=0x7f040018;
         public static final int b4organ=0x7f040019;
         public static final int b4piano=0x7f04001a;
-        public static final int barbluesaminor=0x7f04001b;
-        public static final int bluessoulguitarbackingtrackineminor=0x7f04001c;
-        public static final int c2dpiano=0x7f04001d;
-        public static final int c2guitar=0x7f04001e;
-        public static final int c2organ=0x7f04001f;
-        public static final int c2piano=0x7f040020;
-        public static final int c3guitar=0x7f040021;
-        public static final int c3organ=0x7f040022;
-        public static final int c3piano=0x7f040023;
-        public static final int c4guitar=0x7f040024;
-        public static final int c4organ=0x7f040025;
-        public static final int c4piano=0x7f040026;
-        public static final int cd2guitar=0x7f040027;
-        public static final int cd2organ=0x7f040028;
-        public static final int cd3guitar=0x7f040029;
-        public static final int cd3organ=0x7f04002a;
-        public static final int cd3piano=0x7f04002b;
-        public static final int cd4guitar=0x7f04002c;
-        public static final int cd4organ=0x7f04002d;
-        public static final int cd4piano=0x7f04002e;
-        public static final int d2guitar=0x7f04002f;
-        public static final int d2organ=0x7f040030;
-        public static final int d2piano=0x7f040031;
-        public static final int d3guitar=0x7f040032;
-        public static final int d3organ=0x7f040033;
-        public static final int d3piano=0x7f040034;
-        public static final int d4guitar=0x7f040035;
-        public static final int d4organ=0x7f040036;
-        public static final int d4piano=0x7f040037;
-        public static final int dd2guitar=0x7f040038;
-        public static final int dd2organ=0x7f040039;
-        public static final int dd2piano=0x7f04003a;
-        public static final int dd3guitar=0x7f04003b;
-        public static final int dd3organ=0x7f04003c;
-        public static final int dd3piano=0x7f04003d;
-        public static final int dd4guitar=0x7f04003e;
-        public static final int dd4organ=0x7f04003f;
-        public static final int dd4piano=0x7f040040;
-        public static final int e2guitar=0x7f040041;
-        public static final int e2organ=0x7f040042;
-        public static final int e2piano=0x7f040043;
-        public static final int e3guitar=0x7f040044;
-        public static final int e3organ=0x7f040045;
-        public static final int e3piano=0x7f040046;
-        public static final int e4guitar=0x7f040047;
-        public static final int e4organ=0x7f040048;
-        public static final int e4piano=0x7f040049;
-        public static final int f2guitar=0x7f04004a;
-        public static final int f2organ=0x7f04004b;
-        public static final int f2piano=0x7f04004c;
-        public static final int f3guitar=0x7f04004d;
-        public static final int f3organ=0x7f04004e;
-        public static final int f3piano=0x7f04004f;
-        public static final int f4guitar=0x7f040050;
-        public static final int f4organ=0x7f040051;
-        public static final int f4piano=0x7f040052;
-        public static final int fd2guitar=0x7f040053;
-        public static final int fd2organ=0x7f040054;
-        public static final int fd2piano=0x7f040055;
-        public static final int fd3guitar=0x7f040056;
-        public static final int fd3organ=0x7f040057;
-        public static final int fd3piano=0x7f040058;
-        public static final int fd4guitar=0x7f040059;
-        public static final int fd4organ=0x7f04005a;
-        public static final int fd4piano=0x7f04005b;
-        public static final int freestylerapbeatinstrumentalincminor=0x7f04005c;
-        public static final int g2guitar=0x7f04005d;
-        public static final int g2organ=0x7f04005e;
-        public static final int g2piano=0x7f04005f;
-        public static final int g3guitar=0x7f040060;
-        public static final int g3organ=0x7f040061;
-        public static final int g3piano=0x7f040062;
-        public static final int g4guitar=0x7f040063;
-        public static final int g4organ=0x7f040064;
-        public static final int g4piano=0x7f040065;
-        public static final int gd2guitar=0x7f040066;
-        public static final int gd2organ=0x7f040067;
-        public static final int gd2piano=0x7f040068;
-        public static final int gd3guitar=0x7f040069;
-        public static final int gd3organ=0x7f04006a;
-        public static final int gd3piano=0x7f04006b;
-        public static final int gd4guitar=0x7f04006c;
-        public static final int gd4organ=0x7f04006d;
-        public static final int gd4piano=0x7f04006e;
-        public static final int hardrockguitarbackingtrackineminor=0x7f04006f;
+        public static final int bluessoulguitarbackingtrackineminor=0x7f04001b;
+        public static final int c2dpiano=0x7f04001c;
+        public static final int c2guitar=0x7f04001d;
+        public static final int c2organ=0x7f04001e;
+        public static final int c2piano=0x7f04001f;
+        public static final int c3guitar=0x7f040020;
+        public static final int c3organ=0x7f040021;
+        public static final int c3piano=0x7f040022;
+        public static final int c4guitar=0x7f040023;
+        public static final int c4organ=0x7f040024;
+        public static final int c4piano=0x7f040025;
+        public static final int cd2guitar=0x7f040026;
+        public static final int cd2organ=0x7f040027;
+        public static final int cd3guitar=0x7f040028;
+        public static final int cd3organ=0x7f040029;
+        public static final int cd3piano=0x7f04002a;
+        public static final int cd4guitar=0x7f04002b;
+        public static final int cd4organ=0x7f04002c;
+        public static final int cd4piano=0x7f04002d;
+        public static final int d2guitar=0x7f04002e;
+        public static final int d2organ=0x7f04002f;
+        public static final int d2piano=0x7f040030;
+        public static final int d3guitar=0x7f040031;
+        public static final int d3organ=0x7f040032;
+        public static final int d3piano=0x7f040033;
+        public static final int d4guitar=0x7f040034;
+        public static final int d4organ=0x7f040035;
+        public static final int d4piano=0x7f040036;
+        public static final int dd2guitar=0x7f040037;
+        public static final int dd2organ=0x7f040038;
+        public static final int dd2piano=0x7f040039;
+        public static final int dd3guitar=0x7f04003a;
+        public static final int dd3organ=0x7f04003b;
+        public static final int dd3piano=0x7f04003c;
+        public static final int dd4guitar=0x7f04003d;
+        public static final int dd4organ=0x7f04003e;
+        public static final int dd4piano=0x7f04003f;
+        public static final int e2guitar=0x7f040040;
+        public static final int e2organ=0x7f040041;
+        public static final int e2piano=0x7f040042;
+        public static final int e3guitar=0x7f040043;
+        public static final int e3organ=0x7f040044;
+        public static final int e3piano=0x7f040045;
+        public static final int e4guitar=0x7f040046;
+        public static final int e4organ=0x7f040047;
+        public static final int e4piano=0x7f040048;
+        public static final int f2guitar=0x7f040049;
+        public static final int f2organ=0x7f04004a;
+        public static final int f2piano=0x7f04004b;
+        public static final int f3guitar=0x7f04004c;
+        public static final int f3organ=0x7f04004d;
+        public static final int f3piano=0x7f04004e;
+        public static final int f4guitar=0x7f04004f;
+        public static final int f4organ=0x7f040050;
+        public static final int f4piano=0x7f040051;
+        public static final int fd2guitar=0x7f040052;
+        public static final int fd2organ=0x7f040053;
+        public static final int fd2piano=0x7f040054;
+        public static final int fd3guitar=0x7f040055;
+        public static final int fd3organ=0x7f040056;
+        public static final int fd3piano=0x7f040057;
+        public static final int fd4guitar=0x7f040058;
+        public static final int fd4organ=0x7f040059;
+        public static final int fd4piano=0x7f04005a;
+        public static final int freestylerapbeatinstrumentalincminor=0x7f04005b;
+        public static final int g2guitar=0x7f04005c;
+        public static final int g2organ=0x7f04005d;
+        public static final int g2piano=0x7f04005e;
+        public static final int g3guitar=0x7f04005f;
+        public static final int g3organ=0x7f040060;
+        public static final int g3piano=0x7f040061;
+        public static final int g4guitar=0x7f040062;
+        public static final int g4organ=0x7f040063;
+        public static final int g4piano=0x7f040064;
+        public static final int gd2guitar=0x7f040065;
+        public static final int gd2organ=0x7f040066;
+        public static final int gd2piano=0x7f040067;
+        public static final int gd3guitar=0x7f040068;
+        public static final int gd3organ=0x7f040069;
+        public static final int gd3piano=0x7f04006a;
+        public static final int gd4guitar=0x7f04006b;
+        public static final int gd4organ=0x7f04006c;
+        public static final int gd4piano=0x7f04006d;
+        public static final int hardrockguitarbackingtrackineminor=0x7f04006e;
+        public static final int indierockaminor=0x7f04006f;
         public static final int sadmelodic=0x7f040070;
     }
     public static final class string {
@@ -290,6 +292,7 @@ Enable automatic exception tracking
         public static final int diapotuto4=0x7f05001a;
         public static final int explication_premier_onglet=0x7f05000d;
         /** Replace placeholder ID with your tracking ID
+Replace placeholder ID with your tracking ID
 Replace placeholder ID with your tracking ID
          */
         public static final int ga_trackingId=0x7f050000;
@@ -376,9 +379,20 @@ Replace placeholder ID with your tracking ID
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
          */
         public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
@@ -393,9 +407,11 @@ Replace placeholder ID with your tracking ID
  All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int MonTheme=0x7f090003;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 
@@ -409,9 +425,11 @@ Replace placeholder ID with your tracking ID
  All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int themeMain=0x7f090004;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
+ All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 
  All customizations that are NOT specific to a particular API-level can go here. 

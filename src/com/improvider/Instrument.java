@@ -37,7 +37,7 @@ public abstract class Instrument {
 	 * 
 	 * @param Note
 	 */
-	public abstract void stopNote(final int Note);
+	public abstract void stopNote(final int Note, final float touchedVolume);
 
 	protected int C2, Cd2, D2, Dd2, E2, F2, Fd2, G2, Gd2, A2, Ad2, B2, C3, Cd3,
 			D3, Dd3, E3, F3, Fd3, G3, Gd3, A3, Ad3, B3, C4, Cd4, D4, Dd4, E4,

@@ -61,7 +61,7 @@ public class InstruPiano extends Instrument {
 	}
 
 	@Override
-	public void stopNote(final int Note) {
+	public void stopNote(final int Note, final float touchedVolume) {
 		// TODO Auto-generated method stub
 		if (!sustain) {
 
@@ -70,7 +70,7 @@ public class InstruPiano extends Instrument {
 			lHandler.postDelayed(new Runnable() {
 				public void run() {
 
-					doStuff(Note, (float) 0.25 * volumeSoundPool);
+					doStuff(Note, (float) 0.25 * volumeSoundPool*touchedVolume);
 
 				}
 			}, 20);
@@ -80,7 +80,7 @@ public class InstruPiano extends Instrument {
 			mHandler.postDelayed(new Runnable() {
 				public void run() {
 
-					doStuff(Note, (float) 0.15 * volumeSoundPool);
+					doStuff(Note, (float) 0.15 * volumeSoundPool*touchedVolume);
 				}
 			}, 180);
 
@@ -89,7 +89,7 @@ public class InstruPiano extends Instrument {
 			nHandler.postDelayed(new Runnable() {
 				public void run() {
 
-					doStuff(Note, (float) 0.003 * volumeSoundPool);
+					doStuff(Note, (float) 0.003 * volumeSoundPool*touchedVolume);
 				}
 			}, 300);
 

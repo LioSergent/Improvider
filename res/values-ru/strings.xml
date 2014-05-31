@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Improvider</string>
+    <string name="action_settings">Настройки</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_choix_accompagnement">Improvider</string>
+      <string name="title_activity_improvider_infos">Improvider</string>
+    <string name="title_activity_improvider_credits">Improvider</string>
+    <string name="title_activity_main">Main</string>
+    <string name="title_activity_commencer">Начать</string>
+    <string name="text_commencer">Improvider поможет вам осуществлять вашей собственной музыкальной импровизации!</string>
+    <string name="montre_moi">Владение программы</string>
+    <string name="savoir_plus">Возможно ли это? Я же не музыкант !</string>
+    <string name="title_activity_tutoriel">Oбучалка</string>
+    <string name="explication_premier_onglet">На вкладке Аккомпанемент, </string>
+    <string name="title_activity_savoir_plus">Подробнее</string>
+   <string name="text_savoir_plus">Вам, конечно, уже доводилось видеть музыкантов, импровизирующих соло от A до Z. Божественное вдохновение? Упорная работа? Значие тысяч музыкальных фраз? Может быть, но не только. На самом деле, для того чтобы сымитировать соло, самое главное - это гаммы.
+Цель музыканта - найти гамму, подходящую под аккомпанемент, следующий за аккордами других музыкантов.
+Далее эти музыканты зрительно "печатают" эту гамму на своих инструментах. После этого они знают, что могут играть только на этих клавишах, ячейках, кнопках... которые они себе "напечатали".
+Improvider вам предлагает только запустить воспроизведение, содержащееся в приложении, и выбирает для вас классическую гамму для импровизации и "печатает" ее на пианино, раскрашивая клавиши, которые вам предстоит нажимать, в зеленый цвет.
+И наконец, вам остается только экспериментировать, позволить себе лететь, а главное, получать от этого удовольствие!
+   </string>
+   <string name="precedent">Предыдущий</string>
+   <string name="titre">Импровизируйте легко!</string>
+   <string name="jouer">Играть</string>
+   <string name="commencer">Oбучалка</string>
+   <string name="credits">Информация об авторах</string>
+   <string name="retour">Oбратно</string>
+   <string name="suivant">Cледующий</string>
+   <string name="diapotuto1">На вкладке Аккомпанемент, вы найдете элементы управления и настройки, касающиеся фоновую музыку</string>
+   <string name="diapotuto2">На вкладке Клавиатура, вы найдете "фортепиано", из которого некоторые клавиши окрашены. Этa гамма подходит для аккомпанементa</string>
+   <string name="diapotuto3">Идея состоит в том, что, играя на цветных клавиш, вы можете быть уверены, что он будет звучать хорошо! Если вам нужно убедительно, просто экспериментируйте и попробуйте другие ключи</string>
+   <string name="diapotuto4">На вкладке Настройки, можно настроить несколько параметров инструмента (Громкость, клавиатурa, гитара/орган...).</string>
+   <string name="letgo">Вперед !</string>
+   <string name="credits1">Музыки созданы Tom Bailey</string>
+   <string name="credits2">Вы можете найти эти аккомпанементы на</string>
+   <string name="credits3">http://www.youtube.com/user/guitarbackingtracks4</string>
+   <string name="choix1">Выберите аккомпанемент</string>
+   <string name="volume_accompagnement">Громкость аккомпанемента</string>
+   <string name="retour_choix">Назад к выбору аккомпанемента</string>
+   <string name="volume_piano">Громкость инструмента</string>
+   <string name="sustain"> Сустейн</string>
+   <string name="sustain_explanation">Когда "Сустейн" включен, звук пианино продолжается, даже когда вы поднимите палец.</string>
+   <string name="nombre_touches">Масштаб клавиатури: Количество видимых клавиш</string>
+   <string name="accompagnement">Аккомпанемент</string>
+   <string name="piano">Фортепиано</string>
+   <string name="reglages">Hастройки</string>
+   <string name="chargement">Загрузка</string>
+   <string name="ok">OK</string>
+   <string name="choose_instrument">Выберите инструмент</string>
+   <string name="guitar">Соло-гитара</string>
+   <string name="organ">Орган</string>
+   <string name="keyboard">Клавиатура</string>
+   <string name="pianoloaded">Фортепиано загружен!</string>
+    <string name="guitarloaded">Гитара загружен!</string>
+    <string name="organloaded">Орган загружен!</string>
+    <string name="uncolored_activation">Неокрашенные клавиши активированы</string>
+  
+   
+
+</resources>
