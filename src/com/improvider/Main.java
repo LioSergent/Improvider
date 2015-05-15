@@ -113,7 +113,7 @@ public class Main extends Activity implements Constants {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.activity_main);
-
+		
 		// On récupère les infos de l'Intent envoyés par ChoixAccompagnement.
 		Bundle extras = getIntent().getExtras();
 		numeroSession = extras.getInt("numeroSession");
@@ -287,7 +287,7 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(a);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
-									if (BuildMode.DEBUG) {
+									if (BuildMode.PROD) {
 									sendToTracker("Piano");
 									}
 									if (piano.instrument.getSustain()) {
@@ -311,7 +311,7 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(b);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
-									if (BuildMode.DEBUG) {
+									if (BuildMode.PROD) {
 									sendToTracker("Guitare");
 									}
 									if (piano.instrument.getSustain()) {
@@ -335,7 +335,7 @@ public class Main extends Activity implements Constants {
 									piano.setInstrument(c);
 									piano.instrument.setVolume(volumePianoBar
 											.getProgress());
-									if (BuildMode.DEBUG) {
+									if (BuildMode.PROD) {
 									sendToTracker("Orgue");
 									}
 									if (piano.instrument.getSustain()) {
@@ -536,6 +536,16 @@ public class Main extends Activity implements Constants {
 						int progress = (int) Math.ceil(7 / (piano
 								.getProportionPianoHorizontale()) - 3);
 						nbreBlanchesVisiblesBar.setProgress(progress);
+						
+						if(gestionMusique.player.isPlaying()) {
+							getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+							
+						}
+						else {
+							getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+							boutonPlay.setImageResource(R.drawable.playbis);
+							boutonPlayClavier.setImageResource(R.drawable.playbis);
+						}
 					}
 				});
 			}
@@ -543,16 +553,15 @@ public class Main extends Activity implements Constants {
 		};
 		Timer t = new Timer();
 
-		t.schedule(actualisation, (long) 1500, (long) 200);
+		t.schedule(actualisation, (long) 1500, (long) 300);
 		
 		
 		boutonPlay=(ImageButton) findViewById(R.id.boutonPlay);
 		boutonPlay.setOnClickListener(new OnClickListener() {
 			
 		public void onClick(View v) {
-			if (gestionMusique.enCoursLecture) {
+			if (gestionMusique.player.isPlaying()) {
 				pause();
-
 			} else  {
 				play();
 
@@ -567,7 +576,7 @@ public class Main extends Activity implements Constants {
               
 			@Override
 			public void onClick(View arg0) {
-			if (gestionMusique.enCoursLecture) {
+			if (gestionMusique.player.isPlaying()) {
 				pause();
 			}
 			else {
@@ -678,7 +687,15 @@ private void pause () {
 	public void onDestroy() {
 		super.onDestroy();
 	pause();
-		piano.instrument.release();
+	finish();
+	if (fromTuto == true) {
+		Intent explicit = new Intent();
+		explicit.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+		explicit.setClassName("com.improvider",
+				"com.improvider.ChoixAccompagnement");
+		startActivity(explicit);
+	}
+//		piano.instrument.release();
 
 	}
 
@@ -686,7 +703,7 @@ private void pause () {
 		super.onStop();
 		pause();
 		piano.instrument.soundPool.autoPause();
-		if (BuildMode.DEBUG) {
+		if (BuildMode.PROD) {
 		sendToTrackerPress(piano.getPressAnalytics());
 		EasyTracker.getInstance(this).activityStop(this); 
 		}// Add this method.
@@ -707,7 +724,7 @@ private void pause () {
 
 	public void onStart() {
 		super.onStart();
-		if (BuildMode.DEBUG) {
+		if (BuildMode.PROD) {
 		EasyTracker.getInstance(this).activityStart(this);
 		}// Add this method.
 	}
@@ -960,7 +977,7 @@ private void pause () {
 	private void sendToTracker(String action) {
 		// May return null if a EasyTracker has not yet been initialized with a
 		// property ID.
-		if (BuildMode.DEBUG) {
+		if (BuildMode.PROD) {
 		EasyTracker easyTracker = EasyTracker.getInstance(this);
 
 		// MapBuilder.createEvent().build() returns a Map of event fields and
@@ -979,7 +996,7 @@ private void pause () {
 	private void sendToTrackerPress(int pressAnalytics) {
 		// May return null if a EasyTracker has not yet been initialized with a
 		// property ID.
-		if (BuildMode.DEBUG) {
+		if (BuildMode.PROD) {
 		EasyTracker easyTracker = EasyTracker.getInstance(this);
 		long number = (long) pressAnalytics;
 		// MapBuilder.createEvent().build() returns a Map of event fields and

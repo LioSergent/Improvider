@@ -94,13 +94,13 @@ public class Commencer extends Activity {
 	
 	 public void onStart() {
 		    super.onStart();
-		    if (BuildMode.DEBUG) {
+		    if (BuildMode.PROD) {
 		    EasyTracker.getInstance(this).activityStart(this);
 		    }// Add this method.
 		  }
 	 public void onStop() {
 			super.onStop();
-			if (BuildMode.DEBUG) {
+			if (BuildMode.PROD) {
 			EasyTracker.getInstance(this).activityStop(this);
 			}// Add this method.
 		}

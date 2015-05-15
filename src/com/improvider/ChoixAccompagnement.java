@@ -56,7 +56,7 @@ public class ChoixAccompagnement extends Activity {
 				// on cr�e un intent pour passer � l'activit� Improvider
 				// Le handler sert a retarder le lancement, sinon le toast a pas
 				// le temps de show
-				if (BuildMode.DEBUG) {
+				if (BuildMode.PROD) {
 				sendToTrackerSession("Indie Rock");
 				}
 				
@@ -88,7 +88,7 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
-				if (BuildMode.DEBUG) {
+				if (BuildMode.PROD) {
 				sendToTrackerSession("Blues Soul");
 				}
 				Handler lHandler = new Handler();
@@ -119,7 +119,7 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
-				if (BuildMode.DEBUG) {
+				if (BuildMode.PROD) {
 				sendToTrackerSession("Hip Hop");
 				}
 				Handler lHandler = new Handler();
@@ -150,7 +150,7 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
-				if (BuildMode.DEBUG) {
+				if (BuildMode.PROD) {
 				sendToTrackerSession("Sad Melodic");
 				}
 				Handler lHandler = new Handler();
@@ -182,7 +182,7 @@ public class ChoixAccompagnement extends Activity {
 				toast = Toast.makeText(context, R.string.chargement,
 						Toast.LENGTH_LONG);
 				toast.show();
-				if (BuildMode.DEBUG) {
+				if (BuildMode.PROD) {
 				sendToTrackerSession("Hard Rock");
 				}
 				Handler lHandler = new Handler();
@@ -243,7 +243,7 @@ public class ChoixAccompagnement extends Activity {
 
 			toast.cancel();
 		}
-		if (BuildMode.DEBUG) {
+		if (BuildMode.PROD) {
 		EasyTracker.getInstance(this).activityStop(this); 
 		}// Add this method.
 	}
@@ -259,7 +259,7 @@ public class ChoixAccompagnement extends Activity {
 
 	 public void onStart() {
 		    super.onStart();
-		    if (BuildMode.DEBUG) {
+		    if (BuildMode.PROD) {
 		    EasyTracker.getInstance(this).activityStart(this);
 		    }// Add this method.
 		  }
@@ -267,7 +267,7 @@ public class ChoixAccompagnement extends Activity {
 	 private void sendToTrackerSession(String action) {
 		// May return null if a EasyTracker has not yet been initialized with a
 		  // property ID.
-		 if (BuildMode.DEBUG) {
+		 if (BuildMode.PROD) {
 		  EasyTracker easyTracker = EasyTracker.getInstance(this);
 
 		  // MapBuilder.createEvent().build() returns a Map of event fields and values

@@ -159,7 +159,7 @@ public class Tutoriel extends Activity {
 
 			toast.cancel();
 		}
-		if (BuildMode.DEBUG) {
+		if (BuildMode.PROD) {
 		EasyTracker.getInstance(this).activityStop(this);
 		}// Add this method.
 	}
@@ -279,7 +279,7 @@ public class Tutoriel extends Activity {
 	
 	 public void onStart() {
 		    super.onStart();
-		    if (BuildMode.DEBUG) {
+		    if (BuildMode.PROD) {
 		    EasyTracker.getInstance(this).activityStart(this); 
 		    }// Add this method.
 		  }
