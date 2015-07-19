@@ -520,7 +520,7 @@ public class Main extends Activity implements Constants {
 				runOnUiThread(new Runnable() {
 					public void run() {
 						avancementBar.setProgress(getPositionGestion());
-
+						getImageScroller().invalidate();	
 						int dureems = getPositionGestion();
 						int minutes = (int) dureems / 60000;
 						int secondes = (int) (dureems - minutes * 60000) / 1000;
@@ -777,7 +777,7 @@ private void pause () {
 				getImageScroller().invalidate();
 
 			}
-		}, 100);
+		}, 500);
 
 	}
 

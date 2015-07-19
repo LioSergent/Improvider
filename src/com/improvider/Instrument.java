@@ -1,8 +1,12 @@
 package com.improvider;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.media.SoundPool.Builder;
+import android.media.AudioAttributes;
+import android.os.Build;
 
 /**
  * Classe abstraite décrivant le comportement des instrument comme InstruPiano,
@@ -19,6 +23,9 @@ public abstract class Instrument {
 	public boolean sustain;
 	public float maxVolumeAudio;
 	public float actualVolumeAudio;
+	
+	public final int NUMBER_NOTES=36;
+	public final int MAX_STREAMS=12;
 	/**
 	 * Entre 0.10 et 0.30
 	 */
@@ -45,7 +52,11 @@ public abstract class Instrument {
 
 	public Instrument(Context context) {
 		this.context = context;
-		soundPool = new SoundPool(36, AudioManager.STREAM_MUSIC, 0);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			soundPool=createSoundPoolWithBuilder();
+		} else{
+			soundPool=createSoundPoolWithConstructor();
+		}
 
 		AudioManager audioManager = (AudioManager) this.context
 				.getSystemService(Context.AUDIO_SERVICE);
@@ -140,4 +151,21 @@ public abstract class Instrument {
 		volumeSoundPool = b * proportionVolumeInstrument * maxVolumeAudio;
 
 	}
+	
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	protected SoundPool createSoundPoolWithBuilder(){
+	    AudioAttributes attributes = new AudioAttributes.Builder()
+	        .setUsage(AudioAttributes.USAGE_GAME)
+	        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+	        .build();
+	 
+	    return new SoundPool.Builder().setAudioAttributes(attributes).setMaxStreams(MAX_STREAMS).build();
+	}
+	
+	@SuppressWarnings("deprecation")
+	protected SoundPool createSoundPoolWithConstructor(){
+	    return new SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0);
+	}
+
+
 }
