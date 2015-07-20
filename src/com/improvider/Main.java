@@ -560,6 +560,9 @@ public class Main extends Activity implements Constants {
 		boutonPlay.setOnClickListener(new OnClickListener() {
 			
 		public void onClick(View v) {
+			if (BuildMode.PROD) {
+				sendToTracker("PlayMusicTab");
+				}
 			if (gestionMusique.player.isPlaying()) {
 				pause();
 			} else  {
@@ -576,6 +579,9 @@ public class Main extends Activity implements Constants {
               
 			@Override
 			public void onClick(View arg0) {
+				if (BuildMode.PROD) {
+					sendToTracker("PlayKeyboardTab");
+					}
 			if (gestionMusique.player.isPlaying()) {
 				pause();
 			}
@@ -687,6 +693,7 @@ private void pause () {
 	public void onDestroy() {
 		super.onDestroy();
 	pause();
+	piano.instrument.release();
 	finish();
 	if (fromTuto == true) {
 		Intent explicit = new Intent();
@@ -705,6 +712,7 @@ private void pause () {
 		piano.instrument.soundPool.autoPause();
 		if (BuildMode.PROD) {
 		sendToTrackerPress(piano.getPressAnalytics());
+		sendToTrackerScroller(imageScroller.getScrollerAnalytics());
 		EasyTracker.getInstance(this).activityStop(this); 
 		}// Add this method.
 	}
@@ -772,9 +780,12 @@ private void pause () {
 				PianoHorizontalScrollView scroler = (PianoHorizontalScrollView) findViewById(R.id.scroller);
 
 				int positionToScroll = piano.positionTouche(tonique);
-				scroler.customSmoothScrollTo(positionToScroll, 0);
+				//scroler.customSmoothScrollTo(positionToScroll, 0);
+				scroler.smoothScrollTo(positionToScroll,0);
 				getImageScroller().setX1(positionToScroll);
 				getImageScroller().invalidate();
+				
+				//Make play button switch on and off for a few seconds.
 
 			}
 		}, 500);
@@ -1007,6 +1018,25 @@ private void pause () {
 																// (required)
 				"press analytics", // Event action (required)
 				"press analytics", // Event label
+				number) // Event value
+				.build());
+	}
+	}
+	
+	private void sendToTrackerScroller(int scrollerAnalytics) {
+		// May return null if a EasyTracker has not yet been initialized with a
+		// property ID.
+		if (BuildMode.PROD) {
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
+		long number = (long) scrollerAnalytics;
+		// MapBuilder.createEvent().build() returns a Map of event fields and
+		// values
+		// that are set and sent with the hit.
+		easyTracker.send(MapBuilder.createEvent("Scroll touch", // Event
+																// category
+																// (required)
+				"Scroll touch", // Event action (required)
+				"Scroll touch", // Event label
 				number) // Event value
 				.build());
 	}

@@ -86,10 +86,11 @@ public class ImageScroller extends View {
 
 	private Paint pinceauRectangle;
 
-	/*
-	 * Gestion des sons
-	 */
-
+/*
+ * Google analytics
+ */
+	
+	private int scrollerAnalytics=0;
 	/*
 	 * Deux constructeurs
 	 */
@@ -316,6 +317,8 @@ public class ImageScroller extends View {
 		// pour bien comprendre...
 
 		// Pour zoom-in, zoom-out
+		
+		
 
 		if (pointerCount == 2) {
 
@@ -324,6 +327,12 @@ public class ImageScroller extends View {
 
 			dx3 = x3b - x3;
 			dx4 = x4b - x4;
+			
+			if (ev == MotionEvent.ACTION_DOWN
+					|| ev == MotionEvent.ACTION_POINTER_DOWN) {
+			scrollerAnalytics++;
+			}
+			
 
 			if (ev == MotionEvent.ACTION_MOVE && x3 != 0) {
 				double prop2;
@@ -519,6 +528,9 @@ public class ImageScroller extends View {
 
 	public void setProportionInitiale(double prop) {
 		this.proportionInitiale = prop;
+	}
+	public int getScrollerAnalytics() {
+		return this.scrollerAnalytics;
 	}
 
 }

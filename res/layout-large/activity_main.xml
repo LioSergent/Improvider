@@ -194,6 +194,19 @@
                     android:adjustViewBounds="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/playbis" />
+        <!--          
+                <ImageView
+                        android:id="@+id/circlePlay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="4dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                        android:src="@drawable/redcircle" />
+                -->
 <!--                
                 <ImageButton
                     android:id="@+id/metronome"
