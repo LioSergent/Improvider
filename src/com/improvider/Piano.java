@@ -13,6 +13,7 @@ import android.graphics.Shader.TileMode;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -143,7 +144,7 @@ public class Piano extends View {
 		// Calcul des différentes longueurs
 		largeur = (int) (widthScreen * proportionPianoHorizontale);
 		hauteur = (int) (heightScreen * proportionPianoVerticale);
-		largeurToucheBlanche = (int) largeur / 7;
+		largeurToucheBlanche = (int) 1 + largeur / 7;
 		largeurToucheNoire = (int) (largeurToucheBlanche * proportionToucheNoireLargeur);
 		hauteurToucheNoire = (int) (hauteur * proportionToucheNoireHauteur);
 		hauteurToucheBlanche = (int) hauteur;
@@ -403,8 +404,7 @@ public class Piano extends View {
 			x = (int) MotionEventCompat.getX(event, pointerIndex);
 			y = (int) MotionEventCompat.getY(event, pointerIndex);
 			// Numero de la touche sur le clavier
-			int indexTouche = (int) Math.floor((double) x / (double) largeur
-					* 7.0); // Index de la touche blanche correspondant à la
+			int indexTouche = (int)  (x / largeurToucheBlanche); // Index de la touche blanche correspondant à la
 							// position (si s'en est une ...)
 
 			// Seulement si on est bien sur le piano
@@ -415,6 +415,12 @@ public class Piano extends View {
 					int toucheCorrespondante = positionPointeurs.get(pointerId);
 					positionPointeurs.remove(pointerId);
 
+					if(indexTouche>20) {
+						invalidate();
+						return true;
+					}
+					
+					
 					if (!positionPointeurs.containsValue(toucheCorrespondante)) { // Si
 																					// aucun
 																					// (autre)
@@ -466,6 +472,11 @@ public class Piano extends View {
 
 					toucheNoireAppuye = isNoire(x, y);
 
+					if(indexTouche>20) {
+						invalidate();
+						return true;
+					}
+					
 					// Si l'on est sur une touche blanche
 					if (toucheNoireAppuye == -1) {
 
@@ -530,8 +541,13 @@ public class Piano extends View {
 
 					int indexTouche;
 					if (x > 0) {
-						indexTouche = (int) Math.floor((double) x
-								/ (double) largeur * 7);
+				//		largeurToucheBlanche = (int) 1 + largeur / 7;
+				//		indexTouche = (int) Math.floor((double) x
+					//			 (double) largeur * 7);
+						indexTouche=(int) x/largeurToucheBlanche;
+						if (indexTouche>20) {
+							Log.d("haha", "stop");
+						}
 					} else {
 						indexTouche = 0;
 					}
@@ -542,6 +558,29 @@ public class Piano extends View {
 							: (toucheNoireAppuye + 10 * nbreOctave);
 					int toucheCorrespondante;
 
+					//Special case if the touch is after the display part of the screen but still on the touch part of the screen
+					if (indexTouche>20) {
+						if (tabEtatTouchesBlanches[20]) {
+							
+						toucheCorrespondante=20;
+							if (this.gamme((toucheCorrespondante) % 7)
+									|| !uncoloredDesactivated) {
+								int ancienSon = soundids
+										.get(toucheCorrespondante);
+								float touchedVolume = (float) y
+										/ hauteurToucheBlanche;
+								this.instrument.stopNote(ancienSon,touchedVolume);
+								tabEtatTouchesBlanches[toucheCorrespondante] = false;
+							}
+						}
+						invalidate();
+						return true;
+					}
+					
+					
+					
+					
+					
 					// Si l'on ne vient pas du piano, toucheCorrespondante=-1
 
 					if (positionPointeurs.get(pointerId) != null) {
@@ -558,6 +597,8 @@ public class Piano extends View {
 						// Sinon, on calcule la nouvelle position et on enlève
 						// l'ancienne touche si personne n'est dessus
 
+						
+						
 						// Si l'on est sur une touche blanche
 						if (toucheNoireAppuye == -1) {
 							if (this.gamme(((indexTouche) % 7))
@@ -678,6 +719,7 @@ public class Piano extends View {
 
 						}
 					} else {
+					//	try {
 						int sonChange = soundids.get(toucheCorrespondante);
 
 						float newPropVolume;
@@ -689,6 +731,14 @@ public class Piano extends View {
 						}
 						this.instrument.changeVolumeNote(sonChange,
 								newPropVolume);
+				//		}
+					//	catch(NullPointerException e) {
+							//Nothing to do...
+				//		}
+						
+						
+						
+						
 					}
 
 				}
@@ -807,7 +857,7 @@ public class Piano extends View {
 
 		largeur = (int) (widthScreen * proportionPianoHorizontale);
 		hauteur = (int) (heightScreen * proportionPianoVerticale);
-		largeurToucheBlanche = (int) largeur / 7;
+		largeurToucheBlanche = (int) 1 + largeur / 7;
 		largeurToucheNoire = (int) (largeurToucheBlanche * proportionToucheNoireLargeur);
 		hauteurToucheNoire = (int) (hauteur * proportionToucheNoireHauteur);
 		hauteurToucheBlanche = (int) hauteur;
