@@ -94,7 +94,14 @@ public class Piano extends View {
 	private Paint pinceauToucheBlancheJouableAppuye;
 	private Paint pinceauToucheTonique;
 	private Paint pinceauToucheToniqueAppuye;
+	
+	/*
+	 * Les éléments graphiques
+	 */
 
+	private Rect[] whiteRects;
+	private RectF[] blackRects;
+	
 	/*
 	 * Gestion des sons
 	 */
@@ -149,6 +156,17 @@ public class Piano extends View {
 		hauteurToucheNoire = (int) (hauteur * proportionToucheNoireHauteur);
 		hauteurToucheBlanche = (int) hauteur;
 		largeurTotale = largeurToucheBlanche * 7 * nbreOctave;
+		
+		//Rectangles calculation
+		whiteRects=new Rect[7*nbreOctave+1];
+		for (int i=0; i<whiteRects.length;i++) {
+			whiteRects[i]=new Rect((i - 1) * largeurToucheBlanche, 0,	i * largeurToucheBlanche, hauteur);
+		}
+		
+		blackRects=new RectF[7*nbreOctave+1];
+		for (int i=1; i<blackRects.length;i++) {
+			blackRects[i]=new RectF(i* largeurToucheBlanche - (int) (largeurToucheBlanche * proportionToucheNoireLargeur),-10, i * largeurToucheBlanche + (int) (largeurToucheBlanche * proportionToucheNoireLargeur), (int) (hauteur * proportionToucheNoireHauteur));
+		}
 
 		// Mise en place des couleurs.
 
@@ -226,40 +244,33 @@ public class Piano extends View {
 			if (tabEtatTouchesBlanches[i - 1] == true) {
 
 				if ((i) % 7 == tonique + 1) {
-					canvas.drawRect(new Rect((i - 1) * largeurToucheBlanche, 0,
-							i * largeurToucheBlanche, hauteur),
+					canvas.drawRect(whiteRects[i],
 							pinceauToucheToniqueAppuye);
 
 				} else {
 					if (this.gamme((i - 1) % 7)) {
-						canvas.drawRect(new Rect(
-								(i - 1) * largeurToucheBlanche, 0, i
-										* largeurToucheBlanche, hauteur),
+						canvas.drawRect(whiteRects[i],
 								pinceauToucheBlancheJouableAppuye);
 					} else {
-						canvas.drawRect(new Rect(
-								(i - 1) * largeurToucheBlanche, 0, i
-										* largeurToucheBlanche, hauteur),
+						canvas.drawRect(whiteRects[i],
 								pinceauToucheBlancheAppuye);
 					}
 
 				}
 
 			} else if (i % 7 == tonique + 1) {
-				canvas.drawRect(new Rect((i - 1) * largeurToucheBlanche, 0, i
-						* largeurToucheBlanche, hauteur), pinceauToucheTonique);
-
+				canvas.drawRect(whiteRects[i],
+						pinceauToucheTonique);
+			
 			}
 
 			else if (this.gamme((i - 1) % 7)) {
-				canvas.drawRect(new Rect((i - 1) * largeurToucheBlanche, 0, i
-						* largeurToucheBlanche, hauteur),
+				canvas.drawRect(whiteRects[i],
 						pinceauToucheBlancheJouable);
 			}
 
 			else {
-				canvas.drawRect(new Rect((i - 1) * largeurToucheBlanche, 0, i
-						* largeurToucheBlanche, hauteur),
+				canvas.drawRect(whiteRects[i],
 						pinceauToucheBlancheRelache);
 			}
 
@@ -278,39 +289,15 @@ public class Piano extends View {
 
 					if ((i % 7) + 6 == tonique) {
 						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
+								blackRects[i],
 								5, 10, pinceauToucheToniqueAppuye);
 					} else if (this.gamme(i % 7 + 7)) {
 						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
+								blackRects[i],
 								5, 10, pinceauToucheNoireJouableAppuye);
 					} else {
 						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
+								blackRects[i],
 								5, 10, pinceauToucheNoireAppuye);
 					}
 				}
@@ -320,39 +307,15 @@ public class Piano extends View {
 				else {
 					if ((i % 7) + 6 == tonique) {
 						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
+								blackRects[i],
 								5, 10, pinceauToucheTonique);
 					} else if (this.gamme(i % 7 + 7)) {
 						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
+								blackRects[i],
 								5, 10, pinceauToucheNoireJouable);
 					} else {
 						canvas.drawRoundRect(
-								new RectF(
-										i
-												* largeurToucheBlanche
-												- (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										-10,
-										i
-												* largeurToucheBlanche
-												+ (int) (largeurToucheBlanche * proportionToucheNoireLargeur),
-										(int) (hauteur * proportionToucheNoireHauteur)),
+								blackRects[i],
 								5, 10, pinceauToucheNoireRelache);
 					}
 
@@ -393,7 +356,7 @@ public class Piano extends View {
 		// int ev = event.getActionMasked();
 
 		int toucheNoireAppuye = -1;
-
+		Log.d("time onTouch", "time in mili" + System.currentTimeMillis());
 		if (ev != MotionEvent.ACTION_MOVE) {
 
 			// Index du pointeur
@@ -546,7 +509,7 @@ public class Piano extends View {
 					//			 (double) largeur * 7);
 						indexTouche=(int) x/largeurToucheBlanche;
 						if (indexTouche>20) {
-							Log.d("haha", "stop");
+							
 						}
 					} else {
 						indexTouche = 0;
@@ -719,7 +682,7 @@ public class Piano extends View {
 
 						}
 					} else {
-					//	try {
+						try {
 						int sonChange = soundids.get(toucheCorrespondante);
 
 						float newPropVolume;
@@ -731,10 +694,10 @@ public class Piano extends View {
 						}
 						this.instrument.changeVolumeNote(sonChange,
 								newPropVolume);
-				//		}
-					//	catch(NullPointerException e) {
-							//Nothing to do...
-				//		}
+						}
+						catch(NullPointerException e) {
+							//Nothing to don't understand this exception.
+						}
 						
 						
 						
